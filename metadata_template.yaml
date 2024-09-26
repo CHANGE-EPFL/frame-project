@@ -4,15 +4,17 @@
 hybrid_model:
   general:
     contributors:
+      - Fabrizio Fenicia
+      - Marco Dal Molin
+      - Dmitri Kavetski
       - {type: string, required: true}
-      - {type: string, required: true}
-    description: {type: string, required: true}
-    documentation: {type: string, required: true}
+    description: SFpy is a modular modelling framework in Python... (abstract or summary)
+    documentation: link to documentation
     doi: {type: string, required: false}
     keywords:
       - {type: string, required: true}
     license: {type: string, required: true}
-    name: {type: string, required: true}
+    name: SFpy
     repository: {type: string, required: true}
     version: {type: string, required: true}
   ml_process: {type: string, required: true}
