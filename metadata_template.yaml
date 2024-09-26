@@ -1,143 +1,302 @@
 # A template for FAIR hybrid models
 
-# Hybrid Model
 hybrid_model:
   general:
     contributors:
-      - {type: string, required: true}
-      - {type: string, required: true}
-    description: {type: string, required: true}
-    documentation: {type: string, required: true}
-    doi: {type: string, required: false}
+      - Reda ElGhawi
+      - Kraft, Basil
+      - Reimers, Christian
+      - Reichstein, Markus
+      - Körner, Marco
+      - Gentine, Pierre
+      - Winkler, Alexander J
+    description: Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning
+    documentation: ElGhawi, R., Kraft, B., Reimers, C., Reichstein, M., Körner, M., Gentine, P., & Winkler, A. J. (2023). Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning. Environmental Research Letters, 18(3), 034039
+    doi: https://doi.org/10.1088/1748-9326/ACBBE0
     keywords:
-      - {type: string, required: true}
-    license: {type: string, required: true}
-    name: {type: string, required: true}
-    repository: {type: string, required: true}
-    version: {type: string, required: true}
-  ml_process: {type: string, required: true}
-  host_physics: {type: string, required: true}
-  latent_variable: {type: string, required: true}
+      - hybrid model
+      - latent variables
+      - machine learning
+    license: MIT
+    name: Hybrid Model
+    repository: https://github.com/relghawi/Hybrid_ET.git
+    version: 1.0.0
+  ml_process: Feed-forward Nwural Network
+  host_physics: Penman Monteith
+  latent_variable:
+    rs:
+      description: stomatal resistance
+      type: string
+    ra:
+      description: aerodynamic rsistance
+      type: string
 
-# Physics-based Component
+### For multiple Physics Based components
 physics_based_component:
   general:
-    description: {type: string, required: true}
-    documentation: {type: string, required: true}
-    doi: {type: string, required: false}
+    description: "Penman-Monteith"
+    documentation: 
+      - "Monteith J L 1965 Evaporation and environment Symp. Society for Experimental Biology, the State and Movement ofWater in Living Organisms vol 19, ed G E Fogg pp 205–34"
+      - "Penman H L 1948 Natural evaporation from open water, hare soil and grass Proc. R. Soc. A 193 120–45"
+    doi: ""
     keywords:
-      - {type: string, required: true}
-    license: {type: string, required: true}
-    name: {type: string, required: true}
-    repository: {type: string, required: true}
-    version: {type: string, required: true}
-  type: {type: string, required: true}
-  parameters:
-    number_fixed: {type: integer, required: true}
-    number_tunable: {type: integer, required: true}
-  coverage:
-    spatial: {type: string, required: true}
-    temporal: {type: string, required: true}
-  vertical_discretization:
-    soil: {type: integer, required: true}
-    vegetation: {type: integer, required: true}
-  resolution:
-    temporal: {type: integer, required: true}
-  lateral_flow: {type: boolean, required: true}
-  number_state_variables: {type: integer, required: true}
-  # equations_doi:
-  #   - {type: string, required: true}
-  # Modules
-  resources_tested:
-    compute_time: {type: string, required: true}
-    memory: {type: string, required: true}
-    storage: {type: string, required: true}
-    gpu: {type: string, required: true}
-    cpu: {type: string, required: true}
-    software: {type: string, required: true}
+      - "Physics-based"
+    license: ""
+    name: "Penman-Monteith"
+    repository: ""
+    version: ""
+    type: ""
+    parameters:
+      number_fixed: 9
+      number_tunable: 2
+    coverage:
+      spatial: ""
+      temporal: ""
+    vertical_discretization:
+      soil: ""
+      vegetation: ""
+    resolution:
+      temporal: Half-hourly
+    lateral_flow: false
+    number_state_variables: 0
+    resources_tested:
+      compute_time: ""
+      memory: ""
+      storage: ""
+      gpu: ""
+      cpu: ""
+      software: ""
+
 
 # Machine Learning-based Component
 machine_learning_component:
   general:
-    description: {type: string, required: true}
-    documentation: {type: string, required: true}
-    doi: {type: string, required: false}
+    description: Feed-forward Neural Network
+    documentation: ElGhawi, R., Kraft, B., Reimers, C., Reichstein, M., Körner, M., Gentine, P., & Winkler, A. J. (2023). Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning. Environmental Research Letters, 18(3), 034039
+    doi: https://doi.org/10.1088/1748-9326/ACBBE0
     keywords:
-      - {type: string, required: true}
-    license: {type: string, required: true}
-    name: {type: string, required: true}
-    repository: {type: string, required: true}
-    version: {type: string, required: true}
-  type: {type: string, required: true}
+      - latent variables
+      - machine learning
+    license: MIT
+    name: FNN
+    repository: https://github.com/relghawi/Hybrid_ET.git
+    version: 1.0.0
+    ml_process: Feed-forward Nwural Network
 
+
+#### Multiple NNs, for mutliple targets/latents
   # If type == "NN"
-  nn_type: {type: string, required: false}
-  number_layers: {type: integer, required: false}
-  number_predictors: {type: integer, required: false}
-  activation_function: {type: string, required: false}
-  input_scaling: {type: string, required: false}
-  initialization: {type: string, required: false}
-  loss_function: {type: string, required: false}
-  regularization: {type: string, required: false}
-  optimization_method: {type: string, required: false}
-  host_physics_model: {type: string, required: false}
-  target_variable: {type: string, required: false}
-  training_requirements: {type: string, required: false}
+  nn_type: FNN
+  nn_name: FNN-rs
+  number_layers: 4
+  num_nodes: 32
+  batch_size: 2000
+  learning_rate: 0.0005
+  number_predictors: 1
+  activation_function: 
+  - Sofplus
+  - ReLU
+  input_scaling: Normalization Mean-Std
+  initialization: Random initialization
+  loss_function: Mean Absolute Error
+  regularization: None
+  optimization_method: AdamW
+  host_physics_model: Penman-Monteith
+  target_variable: 
+  - Latent Heat FLux
+  - Sensible Heat FLux
+  training_requirements: GPU/CPU
   training_resources:
-    compute_time: {type: string, required: true}
-    memory: {type: string, required: true}
-    storage: {type: string, required: true}
-    gpu: {type: string, required: true}
-    cpu: {type: string, required: true}
-    software: {type: string, required: true}
+    compute_time: N/A
+    memory: N/A
+    storage: N/A
+    gpu_ID: A40 ## parallelization
+    gpu_num : 1
+    cpu_ID: N/A
+    cpu_num: N/A
+    software: Python
+  # End if type == "NN"
+
+
+  nn_type: FNN
+  nn_name: FNN-ra
+  number_layers: 2
+  num_nodes: 32
+  batch_size: 2000
+  learning_rate: 0.0005
+  number_predictors: 1
+  activation_function: 
+  - Sofplus
+  - ReLU
+  input_scaling: Normalization Mean-Std
+  initialization: Random initialization
+  loss_function: Mean Absolute Error
+  regularization: None
+  optimization_method: AdamW
+  host_physics_model: Penman-Monteith
+  target_variable: 
+  - Latent Heat FLux
+  - Sensible Heat FLux
+  training_requirements: GPU/CPU
+  training_resources:
+    compute_time: N/A
+    memory: N/A
+    storage: N/A
+    gpu_ID: A40 ## parallelization
+    gpu_num : 1
+    cpu_ID: N/A
+    cpu_num: N/A
+    software: Python
   # End if type == "NN"
 
 # Data
 data:
   ## Input Data
   input:
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
+  - name: Net Radiation 
+    format: Rn
     extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: {type: string, required: true}
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
+      min: N/A
+      max: N/A
+    source: FLUXNET2015
+    quality: Raw data
+    units: W/m^2
+    precision: Raw data
+    scale: ""
+    offset: ""
     resolution:
-      spatial: {type: string, required: true}
-      temporal: {type: string, required: true}
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
+      spatial: ""
+      temporal: Half-hourly
+
+  - name: Vapor Pressure Deficit
+    format: VPD
     extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: {type: string, required: true}
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
+      min: 0
+      max: 5
+    source: FLUXNET2015
+    quality: Raw data
+    units: kPa
+    precision: ""
+    scale: ""
+    offset: ""
     resolution:
-      spatial: {type: string, required: true}
-      temporal: {type: string, required: true}
+      spatial: ""
+      temporal: Half-hourly
+
+  input:
+  - name: Shortwave Incoming
+    format: SWin
+    extent:
+      min: N/A
+      max: N/A
+    source: FLUXNET2015
+    quality: Raw data
+    units: W/m^2
+    precision: ""
+    scale: ""
+    offset: ""
+    resolution:
+      spatial: ""
+      temporal: Half-hourly
+
+  input:
+  - name: mean incoming shortwave potential
+    format: SW_pot_sm
+    extent:
+      min: N/A
+      max: N/A
+    source: Calculated 
+    quality: Raw data
+    units: W/m^2
+    precision: ""
+    scale: ""
+    offset: ""
+    resolution:
+      spatial: ""
+      temporal: Half-hourly
+
+
+  input:
+  - name: Air temperarture
+    format: TA
+    extent:
+      min: N/A
+      max: N/A
+    source: FLUXNET2015
+    quality: Raw data
+    units: degrees Celsius
+    precision: ""
+    scale: ""
+    offset: ""
+    resolution:
+      spatial: ""
+      temporal: Half-hourly
+
+
+  input:
+  - name: Water Availability Index
+    format: WAI
+    extent:
+      min: N/A
+      max: N/A
+    source: Calculated 
+    quality: Raw data
+    units: -
+    precision:""
+    scale: ""
+    offset: ""
+    resolution:
+      spatial: ""
+      temporal: Half-hourly
+
+
+  input:
+  - name: Wind Speed
+    format: WS
+    extent:
+      min: N/A
+      max: N/A
+    source: FLUXNET2015
+    quality: Raw data
+    units: -
+    precision: ""
+    scale: ""
+    offset: ""
+    resolution:
+      spatial: ""
+      temporal: Half-hourly
 
   ## Output Data
   output:
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
+  - name: Latent Heat FLux
+    format: LE
     extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: {type: string, required: true}
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
+      min: N/A
+      max: N/A
+    source: FLUXNET2015
+    quality: Raw data
+    units: W/m^2
+    precision: ""
+    scale: ""
+    offset: ""
     resolution:
-      spatial: {type: string, required: true}
-      temporal: {type: string, required: true}
+      spatial: ""
+      temporal: Half-hourly
+
+
+  output:
+  - name: Sensible Heat FLux
+    format: H
+    extent:
+      min: N/A
+      max: N/A
+    source: FLUXNET2015
+    quality: Raw data
+    units: W/m^2
+    precision: ""
+    scale: ""
+    offset: ""
+    resolution:
+      spatial: ""
+      temporal: Half-hourly
+
