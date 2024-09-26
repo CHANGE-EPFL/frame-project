@@ -33,18 +33,22 @@ physics_based_component:
     description: SuperflexPy is used to implement conceptual models, using storage and routing elements,
     intended to represent catchment processes such as interception, surface and subsurface runoff, and river routing.
     The specific configuration is specified by the user depending on the needs of a particular application.
-    documentation: {type: string, required: true}
-    doi: {type: string, required: false}
+    documentation: https://superflexpy.readthedocs.io/en/latest/
+    doi_paper: https://doi.org/10.5194/gmd-14-7047-2021
+    doi_model: https://doi.org/10.5281/zenodo.3699124
     keywords:
-      - {type: string, required: true}
-    license: {type: string, required: true}
-    name: {type: string, required: true}
-    repository: {type: string, required: true}
-    version: {type: string, required: true}
+      - Catchment
+      - Conceptual
+      - Modular
+      - Superflex
+    license: LGPL-3.0
+    name: SuperflexPy
+    repository: https://superflexpy.readthedocs.io/en/latest/index.html
+    version: 1.3.2
   type: {type: string, required: true}
   parameters:
-    number_fixed: {type: integer, required: true}
-    number_tunable: {type: integer, required: true}
+    number_fixed: to be determined (application dependent)
+    number_tunable: to be determined (application dependent)
   coverage:
     spatial: {type: string, required: true}
     temporal: {type: string, required: true}
@@ -52,8 +56,8 @@ physics_based_component:
     soil: {type: integer, required: true}
     vegetation: {type: integer, required: true}
   resolution:
-    temporal: {type: integer, required: true}
-  lateral_flow: {type: boolean, required: true}
+    temporal: can be specified, typically hourly or daily
+  lateral_flow: yes
   number_state_variables: {type: integer, required: true}
   # equations_doi:
   #   - {type: string, required: true}
@@ -106,48 +110,62 @@ machine_learning_component:
 data:
   ## Input Data
   input:
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
+  - name: precipitation
+    format: text
     extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
+      min: 0.0
+      max: inf
     source: {type: string, required: true}
     quality: {type: integer, required: true}
-    units: {type: string, required: true}
+    units: mm/time step
     precision: {type: string, required: true}
     scale: {type: float, required: true}
     offset: {type: float, required: true}
     resolution:
-      spatial: {type: string, required: true}
+      spatial: lumped
       temporal: {type: string, required: true}
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
+  - name: temperature
+    format: text
     extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
+      min: -inf
+      max: +inf
     source: {type: string, required: true}
     quality: {type: integer, required: true}
-    units: {type: string, required: true}
+    units: mm/time step
     precision: {type: string, required: true}
     scale: {type: float, required: true}
     offset: {type: float, required: true}
     resolution:
-      spatial: {type: string, required: true}
+      spatial: lumped
+      temporal: {type: string, required: true}
+  - name: Potential evaporation
+    format: text
+    extent:
+      min: 0.0
+      max: {type: float, required: true}
+    source: {type: string, required: true}
+    quality: {type: integer, required: true}
+    units: mm/time step
+    precision: {type: string, required: true}
+    scale: {type: float, required: true}
+    offset: {type: float, required: true}
+    resolution:
+      spatial: lumped
       temporal: {type: string, required: true}
 
   ## Output Data
   output:
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
+  - name: Streamflow
+    format: text
     extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
+      min: 0.0
+      max: +inf
     source: {type: string, required: true}
     quality: {type: integer, required: true}
-    units: {type: string, required: true}
+    units: mm/time step
     precision: {type: string, required: true}
     scale: {type: float, required: true}
     offset: {type: float, required: true}
     resolution:
-      spatial: {type: string, required: true}
+      spatial: lumped
       temporal: {type: string, required: true}
