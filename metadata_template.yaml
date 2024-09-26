@@ -1,4 +1,5 @@
 # A template for FAIR hybrid models
+# Should be adapted for multiple physics and multiple ML models. 
 
 # Hybrid Model
 hybrid_model:
