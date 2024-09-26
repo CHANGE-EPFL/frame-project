@@ -8,15 +8,21 @@ hybrid_model:
       - Marco Dal Molin
       - Dmitri Kavetski
       - {type: string, required: true}
-    description: SFpy is a modular modelling framework in Python... (abstract or summary)
-    documentation: link to documentation
-    doi: {type: string, required: false}
+    description: SuperflexPy is an open-source Python framework 
+    for constructing conceptual hydrological models for lumped 
+    and semi-distributed applications.
+    documentation: https://superflexpy.readthedocs.io/en/latest/
+    doi_paper: https://doi.org/10.5194/gmd-14-7047-2021
+    doi_model: https://doi.org/10.5281/zenodo.3699124
     keywords:
-      - {type: string, required: true}
-    license: {type: string, required: true}
-    name: SFpy
-    repository: {type: string, required: true}
-    version: {type: string, required: true}
+      - Catchment
+      - Conceptual
+      - Modular
+      - Superflex
+    license: LGPL-3.0
+    name: SuperflexPy
+    repository: https://superflexpy.readthedocs.io/en/latest/index.html
+    version: 1.3.2
   ml_process: {type: string, required: true}
   host_physics: {type: string, required: true}
   latent_variable: {type: string, required: true}
@@ -24,7 +30,9 @@ hybrid_model:
 # Physics-based Component
 physics_based_component:
   general:
-    description: {type: string, required: true}
+    description: SuperflexPy is used to implement conceptual models, using storage and routing elements,
+    intended to represent catchment processes such as interception, surface and subsurface runoff, and river routing.
+    The specific configuration is specified by the user depending on the needs of a particular application.
     documentation: {type: string, required: true}
     doi: {type: string, required: false}
     keywords:
