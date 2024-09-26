@@ -51,7 +51,7 @@ physics_based_component:
     number_fixed: {type: integer, required: true} # too many..
     number_tunable: {type: integer, required: true} # too many..
   coverage:
-    spatial: T&C can be applied on a plot scale and spatially distributed way.
+    spatial: T&C can be applied on a plot scale and spatially distributed way. (maybe also add the name of the catchcments)
     temporal: T&C calculates the hydrological budget hourly and updates vegetation and soil biogeochemistry variables daily. Other components of the model (e.g., water routing and channel water flows) may operate on a sub-hourly scale (e.g., seconds). 
   vertical_discretization:
     soil: Discretized to different vertical layers. The top 250 mm of soil is modeled as an active layer for soil biochemistry processes. 
