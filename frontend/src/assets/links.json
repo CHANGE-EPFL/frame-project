@@ -1,0 +1,28 @@
+[
+  {
+    "title": "EPFL",
+    "caption": "epfl.ch",
+    "icon": "school",
+    "link": "https://epfl.ch"
+  },
+  {
+    "title": "CHANGE",
+    "caption": "epfl.ch/labs/change",
+    "icon": "engineering",
+    "contribution": "Laboratory of Catchment Hydrology and Geomorphology",
+    "link": "https://www.epfl.ch/labs/change/"
+  },
+  {
+    "title": "ENAC IT4R",
+    "caption": "go.epfl.ch/it4r",
+    "icon": "construction",
+    "contribution": "it4r_contrib",
+    "link": "https://www.epfl.ch/schools/enac/about/data-at-enac/enac-it4research/"
+  },
+  {
+    "title": "source_code",
+    "caption": "CHANGE-EPFL/frame-project",
+    "icon": "code",
+    "link": "https://github.com/CHANGE-EPFL/frame-project"
+  }
+]
