@@ -54,7 +54,7 @@ module.exports = configure(function (ctx) {
         node: 'node16',
       },
 
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -66,7 +66,6 @@ module.exports = configure(function (ctx) {
       env: {
         API_URL: ctx.dev ? 'http://localhost:8000' : process.env.API_URL,
         API_PATH: ctx.dev ? '' : process.env.API_PATH,
-        CESIUM_ACCESS_TOKEN: ctx.dev ? '' : process.env.CESIUM_ACCESS_TOKEN,
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
