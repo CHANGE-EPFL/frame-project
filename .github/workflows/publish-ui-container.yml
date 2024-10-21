@@ -11,7 +11,7 @@ on:
       - v*
 
 env:
-  IMAGE_NAME: iaqdb-ui
+  IMAGE_NAME: frame-ui
 
 jobs:
   # Push image to GitHub Packages.
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build image
-        run: docker build frontend --build-arg API_URL=https://iaqdb.epfl.ch --build-arg API_PATH=/api --tag $IMAGE_NAME
+        run: docker build frontend --build-arg API_URL=https://frame.epfl.ch --build-arg API_PATH=/api --tag $IMAGE_NAME
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin

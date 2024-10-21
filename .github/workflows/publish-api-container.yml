@@ -11,7 +11,7 @@ on:
       - v*
 
 env:
-  IMAGE_NAME: iaqdb-api
+  IMAGE_NAME: frame-api
 
 jobs:
   # Push image to GitHub Packages.
