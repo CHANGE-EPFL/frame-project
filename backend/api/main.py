@@ -1,9 +1,11 @@
 import os
+from logging import INFO, basicConfig
+
 from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
-from api.config import config
-from logging import basicConfig, INFO
 from pydantic import BaseModel
+
+from api.config import config
 from api.views.files import router as files_router
 
 basicConfig(level=INFO)
@@ -23,6 +25,7 @@ app.add_middleware(
 
 class HealthCheck(BaseModel):
     """Response model to validate and return when performing a health check."""
+
     status: str = "OK"
 
 
@@ -34,9 +37,9 @@ class HealthCheck(BaseModel):
     status_code=status.HTTP_200_OK,
     response_model=HealthCheck,
 )
-async def get_health(
-) -> HealthCheck:
+async def get_health() -> HealthCheck:
     return HealthCheck(status="OK")
+
 
 app.include_router(
     files_router,

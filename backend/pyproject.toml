@@ -2,22 +2,32 @@
 name = "frame-api"
 version = "0.1.0"
 description = ""
-authors = ["ymarcon <yannick.marcon@epfl.ch>"]
+authors = ["Son Pham-Ba <son.phamba@epfl.ch>"]
 readme = "README.md"
 packages = [{include = "api"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+aiobotocore = "^2.13.3"
+dynaconf = "^3.2.6"
 fastapi = "^0.111.0"
+pandas = "^2.2.2"
+pillow = "^10.4.0"
+pydantic-settings = "^2.4.0"
 pyproj = "^3.6.1"
 requests = "^2.32.3"
-pydantic-settings = "^2.4.0"
-dynaconf = "^3.2.6"
-pillow = "^10.4.0"
-aiobotocore = "^2.13.3"
-pandas = "^2.2.2"
-
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+preview = true
+
+[tool.isort]
+line_length = 120
+profile = "black"
+
+[tool.codespell]
+skip = 'poetry.lock'

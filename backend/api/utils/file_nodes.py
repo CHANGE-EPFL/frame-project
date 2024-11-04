@@ -2,10 +2,11 @@ from urllib.parse import quote
 
 
 class FileNode:
-    """A node in a tree representing a file system, used to represent a list of file objects in S3
-    """
+    """A node in a tree representing a file system, used to represent a list of file objects in S3"""
 
-    def __init__(self, name, path=None, size=None, is_file=False, alt_name=None, alt_path=None, alt_size=None, children=[]):
+    def __init__(
+        self, name, path=None, size=None, is_file=False, alt_name=None, alt_path=None, alt_size=None, children=[]
+    ):
         self.name = name
         self.path = path
         self.size = size
@@ -22,18 +23,16 @@ class FileNode:
             file_ref (Dict): A dictionary representing a file object in S3
         """
         current_node = self
-        parts = file_ref["name"].split('/')
+        parts = file_ref["name"].split("/")
         current_parts = []
 
         for part in parts:
             current_parts.append(part)
-            matching_child = next(
-                (child for child in current_node.children if child.name == part), None)
+            matching_child = next((child for child in current_node.children if child.name == part), None)
 
             if matching_child is None:
                 is_file = True if part == parts[-1] else False
-                new_path = file_ref["path"] if is_file else quote("/".join(
-                    current_parts), safe="/")
+                new_path = file_ref["path"] if is_file else quote("/".join(current_parts), safe="/")
                 if not is_file:
                     new_path = file_ref["path"].split(new_path)[0] + new_path
                 new_size = file_ref["size"] if is_file else None
@@ -52,7 +51,7 @@ class FileNode:
             "name": self.name,
             "path": self.path,
             "is_file": self.is_file,
-            "children": [child.to_dict() for child in self.children] if self.children else None
+            "children": [child.to_dict() for child in self.children] if self.children else None,
         }
         if self.is_file:
             rval["size"] = self.size

@@ -19,14 +19,14 @@ Create a file .env and put all s3 credential here
 ```
 .env
 ```
-s3 credentials 
+s3 credentials
 
 ```
 S3_ACCESS_KEY_ID=
 S3_SECRET_ACCESS_KEY=
-S3_REGION = 
-S3_BUCKET = 
-S3_PATH_PREFIX = 
+S3_REGION =
+S3_BUCKET =
+S3_PATH_PREFIX =
 
 ```
 

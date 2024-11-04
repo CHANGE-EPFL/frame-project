@@ -1,5 +1,5 @@
-from fastapi.exceptions import HTTPException
 from fastapi.datastructures import UploadFile
+from fastapi.exceptions import HTTPException
 
 # 100 MB in binary
 max_size = 100 * 1024 * 1024
