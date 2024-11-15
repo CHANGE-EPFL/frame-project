@@ -122,3 +122,7 @@ async def get_model(model_id: int) -> Model:
 
     except IndexError:
         raise HTTPException(status_code=404, detail="Model not found.")
+
+
+async def get_models_short_names() -> list[str]:
+    return [model.short_name for model in models]
