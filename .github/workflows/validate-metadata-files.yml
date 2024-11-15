@@ -15,9 +15,11 @@ jobs:
           python-version: "3.10"
 
       - name: Install package
+        working-directory: backend
         run: |
           pip install -e .[test]
 
       - name: Test with pytest
+        working-directory: backend
         run: |
           pytest tests/test_metadata_files.py
