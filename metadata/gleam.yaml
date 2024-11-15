@@ -9,11 +9,11 @@ hybrid_model:
       - Oscar Baez-Villanueva
       - Akash Koppa
     description: > #Might be important to mention how to do multiline, difference between > and | (> for no multiple lines)
-      GLEAM (Global Land Evaporation Amsterdam Model) 
-      is a set of algorithms that separately estimate the different components of 
-      evapotranspiration. For more information, please consult https://www.gleam.eu/. 
-      GLEAM v4 is the newest version of this algorithm, combining efforts on hybrid modelling, 
-      improved interception and groundwater-sourced evaporation combined, all combined with a 
+      GLEAM (Global Land Evaporation Amsterdam Model)
+      is a set of algorithms that separately estimate the different components of
+      evapotranspiration. For more information, please consult https://www.gleam.eu/.
+      GLEAM v4 is the newest version of this algorithm, combining efforts on hybrid modelling,
+      improved interception and groundwater-sourced evaporation combined, all combined with a
       Penman equation for estimation of potential evaporation.
     documentation: https://gleam2.gitlab.io/pygleam/
     doi: Work In Progress
@@ -31,26 +31,26 @@ hybrid_model:
       - Earth Observation
     license: Copyright (c) 2024 Ghent University
     name: GLEAM (Global Land Evaporation Amsterdam Model)
-    repository: https://gitlab.com/gleam2/pygleam 
-    version: 4.1 
-  ml_process: transpirational stress 
-  host_physics: GLEAM transpiration stress 
+    repository: https://gitlab.com/gleam2/pygleam
+    version: 4.1
+  ml_process: transpirational stress
+  host_physics: GLEAM transpiration stress
   latent_variable: transpiration stress (S, 0 (high) to 1 (low))
 
 # Physics-based Component
 physics_based_component:
   general:
     description: >
-      GLEAM (Global Land Evaporation Amsterdam Model) 
-      is a set of algorithms that separately estimate the different components of 
-      evapotranspiration. For more information, please consult https://www.gleam.eu/. 
-      GLEAM v4 is the newest version of this algorithm, combining efforts on hybrid modelling, 
-      improved interception and groundwater-sourced evaporation combined, all combined with a 
+      GLEAM (Global Land Evaporation Amsterdam Model)
+      is a set of algorithms that separately estimate the different components of
+      evapotranspiration. For more information, please consult https://www.gleam.eu/.
+      GLEAM v4 is the newest version of this algorithm, combining efforts on hybrid modelling,
+      improved interception and groundwater-sourced evaporation combined, all combined with a
       Penman equation for estimation of potential evaporation.
-    documentation: 
-      - https://gitlab.com/gleam2/pygleam 
+    documentation:
+      - https://gitlab.com/gleam2/pygleam
       - https://doi.org/10.5194/gmd-10-1903-2017
-    doi: Work In Progress 
+    doi: Work In Progress
     keywords:
       - Potential evpaoration
       - Soil water balance
@@ -58,8 +58,8 @@ physics_based_component:
       - Soil moisture data assimilation
     license: Copyright (c) 2024 Ghent University
     name: GLEAM (Global Land Evaporation Amsterdam Model)
-    repository: https://gitlab.com/gleam2/pygleam 
-    version: 4.1 
+    repository: https://gitlab.com/gleam2/pygleam
+    version: 4.1
   type: {type: string, required: true}
   parameters:
     number_fixed: {type: integer, required: true}

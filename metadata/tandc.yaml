@@ -19,7 +19,7 @@ hybrid_model:
       - Carbon Cycle
       - Water Cycle
       - Vegetation modelling
-      - Hydrology  
+      - Hydrology
     license: {type: string, required: true}
     name: Tethys- Chloris (T&C)
     repository: https://github.com/simonefatichi/TeC_Source_Code
@@ -31,7 +31,7 @@ hybrid_model:
 # Physics-based Component
 physics_based_component:
   general:
-    description: The physics-based component of T&C includes three main modules, soil biochemistry, vegetation, and hydrology. 
+    description: The physics-based component of T&C includes three main modules, soil biochemistry, vegetation, and hydrology.
     documentation: https://doi.org/10.1029/2011MS000086 https://doi.org/10.1029/2018GB006077
     doi: {type: string, required: false}
     keywords:
@@ -41,7 +41,7 @@ physics_based_component:
       - Carbon Cycle
       - Water Cycle
       - Vegetation modelling
-      - Hydrology  
+      - Hydrology
     license: {type: string, required: true}
     name: Tethys- Chloris (T&C)
     repository: https://github.com/simonefatichi/TeC_Source_Code
@@ -52,9 +52,9 @@ physics_based_component:
     number_tunable: {type: integer, required: true} # too many..
   coverage:
     spatial: T&C can be applied on a plot scale and spatially distributed way. (maybe also add the name of the catchcments)
-    temporal: T&C calculates the hydrological budget hourly and updates vegetation and soil biogeochemistry variables daily. Other components of the model (e.g., water routing and channel water flows) may operate on a sub-hourly scale (e.g., seconds). 
+    temporal: T&C calculates the hydrological budget hourly and updates vegetation and soil biogeochemistry variables daily. Other components of the model (e.g., water routing and channel water flows) may operate on a sub-hourly scale (e.g., seconds).
   vertical_discretization:
-    soil: Discretized to different vertical layers. The top 250 mm of soil is modeled as an active layer for soil biochemistry processes. 
+    soil: Discretized to different vertical layers. The top 250 mm of soil is modeled as an active layer for soil biochemistry processes.
     vegetation: Two layers of vegetation (High and low vegetation) and different PFTs can be simulated in one cell.
   resolution:
     temporal: {type: integer, required: true}
@@ -68,7 +68,7 @@ physics_based_component:
     memory: 96GB
     storage: 1TB
     gpu: Intel(R) UHD Graphics 770
-        cpu: 13th Gen Intel(R) Core(TM) i9-13900K
+    cpu: 13th Gen Intel(R) Core(TM) i9-13900K
     software: MATLAB
 
 # Machine Learning-based Component
@@ -118,7 +118,7 @@ data:
       max: {type: float, required: true}
     source: https://www.wsl.ch/de/ueber-die-wsl/versuchsanlagen-und-labors/naturgefahren-anlagen/wildbachforschung-im-alptal/daten/
     quality: {type: integer, required: true}
-    units: -
+    units: "-"
     precision: {type: string, required: true}
     scale: {type: float, required: true}
     offset: {type: float, required: true}
@@ -138,7 +138,7 @@ data:
     offset: {type: float, required: true}
     resolution:
       spatial: {type: string, required: true}
-      temporal: {type: string, required: true} 
+      temporal: {type: string, required: true}
 
   ## Output Data
   output:

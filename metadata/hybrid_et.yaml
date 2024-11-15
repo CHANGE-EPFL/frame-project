@@ -10,8 +10,8 @@ hybrid_model:
       - Körner, Marco
       - Gentine, Pierre
       - Winkler, Alexander J
-    description: Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning
-    documentation: ElGhawi, R., Kraft, B., Reimers, C., Reichstein, M., Körner, M., Gentine, P., & Winkler, A. J. (2023). Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning. Environmental Research Letters, 18(3), 034039
+    description: "Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning"
+    documentation: "ElGhawi, R., Kraft, B., Reimers, C., Reichstein, M., Körner, M., Gentine, P., & Winkler, A. J. (2023). Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning. Environmental Research Letters, 18(3), 034039"
     doi: https://doi.org/10.1088/1748-9326/ACBBE0
     keywords:
       - hybrid model
@@ -35,7 +35,7 @@ hybrid_model:
 physics_based_component:
   general:
     description: "Penman-Monteith"
-    documentation: 
+    documentation:
       - "Monteith J L 1965 Evaporation and environment Symp. Society for Experimental Biology, the State and Movement ofWater in Living Organisms vol 19, ed G E Fogg pp 205–34"
       - "Penman H L 1948 Natural evaporation from open water, hare soil and grass Proc. R. Soc. A 193 120–45"
     doi: ""
@@ -72,7 +72,7 @@ physics_based_component:
 machine_learning_component:
   general:
     description: Feed-forward Neural Network
-    documentation: ElGhawi, R., Kraft, B., Reimers, C., Reichstein, M., Körner, M., Gentine, P., & Winkler, A. J. (2023). Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning. Environmental Research Letters, 18(3), 034039
+    documentation: "ElGhawi, R., Kraft, B., Reimers, C., Reichstein, M., Körner, M., Gentine, P., & Winkler, A. J. (2023). Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning. Environmental Research Letters, 18(3), 034039"
     doi: https://doi.org/10.1088/1748-9326/ACBBE0
     keywords:
       - latent variables
@@ -93,7 +93,7 @@ machine_learning_component:
   batch_size: 2000
   learning_rate: 0.0005
   number_predictors: 1
-  activation_function: 
+  activation_function:
   - Sofplus
   - ReLU
   input_scaling: Normalization Mean-Std
@@ -102,7 +102,7 @@ machine_learning_component:
   regularization: None
   optimization_method: AdamW
   host_physics_model: Penman-Monteith
-  target_variable: 
+  target_variable:
   - Latent Heat FLux
   - Sensible Heat FLux
   training_requirements: GPU/CPU
@@ -125,7 +125,7 @@ machine_learning_component:
   batch_size: 2000
   learning_rate: 0.0005
   number_predictors: 1
-  activation_function: 
+  activation_function:
   - Sofplus
   - ReLU
   input_scaling: Normalization Mean-Std
@@ -134,7 +134,7 @@ machine_learning_component:
   regularization: None
   optimization_method: AdamW
   host_physics_model: Penman-Monteith
-  target_variable: 
+  target_variable:
   - Latent Heat FLux
   - Sensible Heat FLux
   training_requirements: GPU/CPU
@@ -153,7 +153,7 @@ machine_learning_component:
 data:
   ## Input Data
   input:
-  - name: Net Radiation 
+  - name: Net Radiation
     format: Rn
     extent:
       min: N/A
@@ -205,7 +205,7 @@ data:
     extent:
       min: N/A
       max: N/A
-    source: Calculated 
+    source: Calculated
     quality: Raw data
     units: W/m^2
     precision: ""
@@ -239,10 +239,10 @@ data:
     extent:
       min: N/A
       max: N/A
-    source: Calculated 
+    source: Calculated
     quality: Raw data
-    units: -
-    precision:""
+    units: "-"
+    precision: ""
     scale: ""
     offset: ""
     resolution:
@@ -258,7 +258,7 @@ data:
       max: N/A
     source: FLUXNET2015
     quality: Raw data
-    units: -
+    units: "-"
     precision: ""
     scale: ""
     offset: ""
@@ -299,4 +299,3 @@ data:
     resolution:
       spatial: ""
       temporal: Half-hourly
-
