@@ -8,5 +8,8 @@ install:
 run:
 	poetry run dotenv -f "$(env_path)" run uvicorn api.main:app --reload
 
+test:
+	poetry run dotenv -f "$(env_path)" run pytest
+
 lint:
 	pre-commit run --all-files
