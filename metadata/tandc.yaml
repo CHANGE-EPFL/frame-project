@@ -87,49 +87,17 @@ machine_learning_components: []
 # Data
 data:
   ## Input Data
-  input:
+  inputs:
   - name: Date
     format: MATLAB date number
-    extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
     source: https://www.wsl.ch/de/ueber-die-wsl/versuchsanlagen-und-labors/naturgefahren-anlagen/wildbachforschung-im-alptal/daten/
-    quality: {type: integer, required: true}
-    units: "-"
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
     resolution:
-      spatial: {type: string, required: true}
       temporal: Hourly
   - name: DeltaGMT
     format: int
     extent:
       min: -12
-      max: +14
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: {type: string, required: true}
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
-    resolution:
-      spatial: {type: string, required: true}
-      temporal: {type: string, required: true}
+      max: 14
 
   ## Output Data
-  output:
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
-    extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: {type: string, required: true}
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
-    resolution:
-      spatial: {type: string, required: true}
-      temporal: {type: string, required: true}
+  outputs: []

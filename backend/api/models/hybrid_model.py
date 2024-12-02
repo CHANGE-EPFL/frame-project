@@ -1,4 +1,5 @@
 from .common_metadata import CommonMetadata, CommonMetadataSummary
+from .data import DataIO
 
 
 class HybridModelFromFile(CommonMetadata):
@@ -21,3 +22,4 @@ class HybridModel(HybridModelFromFile, HybridModelSummary):
     id: int
     compatible_machine_learning_component_ids: list[int]
     compatible_physical_based_component_ids: list[int]
+    data: DataIO

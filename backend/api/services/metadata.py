@@ -78,6 +78,7 @@ def add_model_and_components(
         id=model_id,
         compatible_physical_based_component_ids=physics_based_component_ids,
         compatible_machine_learning_component_ids=machine_learning_component_ids,
+        data=metadata.data,
     )
     models.append(model)
 
@@ -105,7 +106,10 @@ def load_models_and_components() -> (
     return models, physics_based_components, machine_learning_components
 
 
-models, physics_based_components, machine_learning_components = load_models_and_components()
+models = []
+model_summaries = []
+physics_based_components = []
+machine_learning_components = []
 
 
 # from datetime import date
@@ -160,25 +164,40 @@ models, physics_based_components, machine_learning_components = load_models_and_
 #     ),
 # ]
 
+metadata_loaded = False
 
-model_summaries = [
-    HybridModelSummary(
-        short_name=model.short_name,
-        id=model.id,
-        created=model.created,
-        description=model.description,
-        keywords=model.keywords,
-        name=model.name,
-    )
-    for model in models
-]
+
+def load_metadata():
+    global models, model_summaries, physics_based_components, machine_learning_components, metadata_loaded
+
+    models, physics_based_components, machine_learning_components = load_models_and_components()
+
+    model_summaries = [
+        HybridModelSummary(
+            short_name=model.short_name,
+            id=model.id,
+            created=model.created,
+            description=model.description,
+            keywords=model.keywords,
+            name=model.name,
+        )
+        for model in models
+    ]
+
+    metadata_loaded = True
 
 
 async def get_models() -> list[HybridModelSummary]:
+    if not metadata_loaded:
+        load_metadata()
+
     return model_summaries
 
 
 async def get_model(model_id: int) -> HybridModel:
+    if not metadata_loaded:
+        load_metadata()
+
     try:
         return models[model_id]
 
