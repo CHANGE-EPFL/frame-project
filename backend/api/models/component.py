@@ -1,13 +1,17 @@
 from .common_metadata import CommonMetadata, CommonMetadataSummary
 
 
+class ComponentFromFile(CommonMetadata):
+    """Component of hybrid model, without assigned id."""
+
+
 class ComponentSummary(CommonMetadataSummary):
     """Essential metadata fields for hybrid model components."""
 
-    id: int
+    short_name: str
 
 
-class Component(CommonMetadata, ComponentSummary):
+class Component(ComponentFromFile, ComponentSummary):
     """Component of hybrid model."""
 
-    short_name: str
+    id: int

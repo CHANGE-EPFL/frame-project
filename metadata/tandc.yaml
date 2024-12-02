@@ -2,110 +2,87 @@
 
 # Hybrid Model
 hybrid_model:
-  general:
-    contributors:
+  contributors:
+    - Simone Fatichi
+    - Athanasios Paschalis
+    - Sara Bonetti
+    - Taiqi Lian
+    - Akash Koppa
+  created: 2020-09-15
+  description: Tethys- Chloris (T&C) is a mechanistic model designed to simulate essential components of the hydrological and carbon cycles, resolving exchanges of energy, water, and CO2 between the land surface and the planetary boundary layer with an hourly time step. Mass and energy fluxes control the temporal dynamics of vegetation (carbon pools) that in turn affect land-atmosphere exchange through its biophysical structure and physiological properties. Plant life-cycle processes, including photosynthesis, phenology, carbon allocation and tissues turnover are explicitly modeled. For instance, Leaf Area Index (LAI) is a prognostic variable, which varies in response to environmental conditions and vegetation leaf phenology. Changes in LAI can affect water and carbon fluxes that in turn can modify vegetation growth in a fully interactive framework.
+  documentation:
+    - https://doi.org/10.1029/2011MS000086
+    - https://doi.org/10.1029/2018GB006077
+  identifier: null
+  keywords:
+    - ecohydrology
+    - terrestrial Biosphere Model
+    - evapotranspiration
+    - carbon Cycle
+    - water Cycle
+    - vegetation modelling
+    - hydrology
+  license: ""
+  name: Tethys-Chloris (T&C)
+  url: https://github.com/simonefatichi/TeC_Source_Code
+  version: TeC_v1.5_July_2024
+  ml_process: ""
+  host_physics: ""
+  latent_variable: ""
+
+# Physics-based Component
+physics_based_components:
+  - contributors:
       - Simone Fatichi
       - Athanasios Paschalis
       - Sara Bonetti
       - Taiqi Lian
       - Akash Koppa
-    description: Tethys- Chloris (T&C) is a mechanistic model designed to simulate essential components of the hydrological and carbon cycles, resolving exchanges of energy, water, and CO2 between the land surface and the planetary boundary layer with an hourly time step. Mass and energy fluxes control the temporal dynamics of vegetation (carbon pools) that in turn affect land-atmosphere exchange through its biophysical structure and physiological properties. Plant life-cycle processes, including photosynthesis, phenology, carbon allocation and tissues turnover are explicitly modeled. For instance, Leaf Area Index (LAI) is a prognostic variable, which varies in response to environmental conditions and vegetation leaf phenology. Changes in LAI can affect water and carbon fluxes that in turn can modify vegetation growth in a fully interactive framework.
-    documentation:  https://doi.org/10.1029/2011MS000086 https://doi.org/10.1029/2018GB006077
-    doi: {type: string, required: false}
-    keywords:
-      - Ecohydrology
-      - Terrestrial Biosphere Model
-      - Evapotranspiration
-      - Carbon Cycle
-      - Water Cycle
-      - Vegetation modelling
-      - Hydrology
-    license: {type: string, required: true}
-    name: Tethys- Chloris (T&C)
-    repository: https://github.com/simonefatichi/TeC_Source_Code
-    version: TeC_v1.5_July_2024
-  ml_process: {type: string, required: true}
-  host_physics: {type: string, required: true}
-  latent_variable: {type: string, required: true}
-
-# Physics-based Component
-physics_based_component:
-  general:
     description: The physics-based component of T&C includes three main modules, soil biochemistry, vegetation, and hydrology.
-    documentation: https://doi.org/10.1029/2011MS000086 https://doi.org/10.1029/2018GB006077
-    doi: {type: string, required: false}
+    created: 2020-09-15
+    documentation:
+      - https://doi.org/10.1029/2011MS000086
+      - https://doi.org/10.1029/2018GB006077
+    identifier: null
     keywords:
-      - Ecohydrology
-      - Terrestrial Biosphere Model
-      - Evapotranspiration
-      - Carbon Cycle
-      - Water Cycle
-      - Vegetation modelling
-      - Hydrology
-    license: {type: string, required: true}
-    name: Tethys- Chloris (T&C)
-    repository: https://github.com/simonefatichi/TeC_Source_Code
+      - ecohydrology
+      - terrestrial Biosphere Model
+      - evapotranspiration
+      - carbon Cycle
+      - water Cycle
+      - vegetation modelling
+      - hydrology
+    license: ""
+    name: Tethys-Chloris (T&C)
+    url: https://github.com/simonefatichi/TeC_Source_Code
     version: TeC_v1.5_July_2024
-  type: {type: string, required: true}
-  parameters:
-    number_fixed: {type: integer, required: true} # too many..
-    number_tunable: {type: integer, required: true} # too many..
-  coverage:
-    spatial: T&C can be applied on a plot scale and spatially distributed way. (maybe also add the name of the catchcments)
-    temporal: T&C calculates the hydrological budget hourly and updates vegetation and soil biogeochemistry variables daily. Other components of the model (e.g., water routing and channel water flows) may operate on a sub-hourly scale (e.g., seconds).
-  vertical_discretization:
-    soil: Discretized to different vertical layers. The top 250 mm of soil is modeled as an active layer for soil biochemistry processes.
-    vegetation: Two layers of vegetation (High and low vegetation) and different PFTs can be simulated in one cell.
-  resolution:
-    temporal: {type: integer, required: true}
-  lateral_flow: {type: boolean, required: true}
-  number_state_variables: {type: integer, required: true}
-  # equations_doi:
-  #   - {type: string, required: true} # too many
-  # Modules
-  resources_tested:
-    compute_time: 7 hours
-    memory: 96GB
-    storage: 1TB
-    gpu: Intel(R) UHD Graphics 770
-    cpu: 13th Gen Intel(R) Core(TM) i9-13900K
-    software: MATLAB
+    type: {type: string, required: true}
+    parameters:
+      number_fixed: {type: integer, required: true} # too many..
+      number_tunable: {type: integer, required: true} # too many..
+    coverage:
+      spatial: T&C can be applied on a plot scale and spatially distributed way. (maybe also add the name of the catchcments)
+      temporal: T&C calculates the hydrological budget hourly and updates vegetation and soil biogeochemistry variables daily. Other components of the model (e.g., water routing and channel water flows) may operate on a sub-hourly scale (e.g., seconds).
+    vertical_discretization:
+      soil: Discretized to different vertical layers. The top 250 mm of soil is modeled as an active layer for soil biochemistry processes.
+      vegetation: Two layers of vegetation (High and low vegetation) and different PFTs can be simulated in one cell.
+    resolution:
+      temporal: {type: integer, required: true}
+    lateral_flow: {type: boolean, required: true}
+    number_state_variables: {type: integer, required: true}
+    # equations_doi:
+    #   - {type: string, required: true} # too many
+    # Modules
+    resources_tested:
+      compute_time: 7 hours
+      memory: 96GB
+      storage: 1TB
+      gpu: Intel(R) UHD Graphics 770
+      cpu: 13th Gen Intel(R) Core(TM) i9-13900K
+      software: MATLAB
 
 # Machine Learning-based Component
-machine_learning_component:
-  general:
-    description: {type: string, required: true}
-    documentation: {type: string, required: true}
-    doi: {type: string, required: false}
-    keywords:
-      - {type: string, required: true}
-    license: {type: string, required: true}
-    name: {type: string, required: true}
-    repository: {type: string, required: true}
-    version: {type: string, required: true}
-  type: {type: string, required: true}
-
-  # If type == "NN"
-  nn_type: {type: string, required: false}
-  number_layers: {type: integer, required: false}
-  number_predictors: {type: integer, required: false}
-  activation_function: {type: string, required: false}
-  input_scaling: {type: string, required: false}
-  initialization: {type: string, required: false}
-  loss_function: {type: string, required: false}
-  regularization: {type: string, required: false}
-  optimization_method: {type: string, required: false}
-  host_physics_model: {type: string, required: false}
-  target_variable: {type: string, required: false}
-  training_requirements: {type: string, required: false}
-  training_resources:
-    compute_time: {type: string, required: true}
-    memory: {type: string, required: true}
-    storage: {type: string, required: true}
-    gpu: {type: string, required: true}
-    cpu: {type: string, required: true}
-    software: {type: string, required: true}
-  # End if type == "NN"
+machine_learning_components: []
 
 # Data
 data:

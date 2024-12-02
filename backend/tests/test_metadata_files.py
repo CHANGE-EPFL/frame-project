@@ -16,8 +16,19 @@ def test_read_yaml(metadata_filename: str) -> None:
 
 @pytest.mark.parametrize("metadata_filename", metadata_filenames)
 def test_schema(metadata_filename: str) -> None:
-    model = metadata.load_model(metadata_filename, id=0)
-    assert isinstance(model, metadata.Model)
+    models = []
+    physics_based_components = []
+    machine_learning_components = []
+    metadata.add_model_and_components(
+        metadata_filename,
+        models,
+        physics_based_components,
+        machine_learning_components,
+    )
+    assert isinstance(models[0], metadata.HybridModel)
+    assert isinstance(physics_based_components[0], metadata.PhysicsBasedComponent)
+    for component in machine_learning_components:
+        assert isinstance(component, metadata.MachineLearningComponent)
 
 
 @pytest.mark.asyncio

@@ -22,8 +22,11 @@ class CommonMetadata(CommonMetadataSummary):
     """Common metadata fields for hybrid models and components."""
 
     contributors: list[str]
-    documentation_url: str | None = None
-    doi: str | None = None
+    #: URLs or DOIs
+    documentation: list[str] | None = None
+    #: DOI
+    identifier: str | None = None
     license: str
-    repository_url: str
-    version: str | None = None
+    #: Repository URL
+    url: str
+    version: str | int | float | None = None
