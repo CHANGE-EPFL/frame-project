@@ -56,30 +56,19 @@ physics_based_components:
     name: Tethys-Chloris (T&C)
     url: https://github.com/simonefatichi/TeC_Source_Code
     version: TeC_v1.5_July_2024
-    type: {type: string, required: true}
-    parameters:
-      number_fixed: {type: integer, required: true} # too many..
-      number_tunable: {type: integer, required: true} # too many..
-    coverage:
-      spatial: T&C can be applied on a plot scale and spatially distributed way. (maybe also add the name of the catchcments)
-      temporal: T&C calculates the hydrological budget hourly and updates vegetation and soil biogeochemistry variables daily. Other components of the model (e.g., water routing and channel water flows) may operate on a sub-hourly scale (e.g., seconds).
+    spatial_coverage: T&C can be applied on a plot scale and spatially distributed way. (maybe also add the name of the catchcments)
+    temporal_coverage: T&C calculates the hydrological budget hourly and updates vegetation and soil biogeochemistry variables daily. Other components of the model (e.g., water routing and channel water flows) may operate on a sub-hourly scale (e.g., seconds).
     vertical_discretization:
       soil: Discretized to different vertical layers. The top 250 mm of soil is modeled as an active layer for soil biochemistry processes.
       vegetation: Two layers of vegetation (High and low vegetation) and different PFTs can be simulated in one cell.
-    resolution:
-      temporal: {type: integer, required: true}
-    lateral_flow: {type: boolean, required: true}
-    number_state_variables: {type: integer, required: true}
-    # equations_doi:
-    #   - {type: string, required: true} # too many
-    # Modules
-    resources_tested:
+    testing_resources:
       compute_time: 7 hours
       memory: 96GB
       storage: 1TB
       gpu: Intel(R) UHD Graphics 770
       cpu: 13th Gen Intel(R) Core(TM) i9-13900K
-      software: MATLAB
+      software:
+        - MATLAB
 
 # Machine Learning-based Component
 machine_learning_components: []
@@ -88,16 +77,14 @@ machine_learning_components: []
 data:
   ## Input Data
   inputs:
-  - name: Date
-    format: MATLAB date number
-    source: https://www.wsl.ch/de/ueber-die-wsl/versuchsanlagen-und-labors/naturgefahren-anlagen/wildbachforschung-im-alptal/daten/
-    resolution:
-      temporal: Hourly
-  - name: DeltaGMT
-    format: int
-    extent:
-      min: -12
-      max: 14
+    - name: Date
+      encoding_format: MATLAB date number
+      source: https://www.wsl.ch/de/ueber-die-wsl/versuchsanlagen-und-labors/naturgefahren-anlagen/wildbachforschung-im-alptal/daten/
+      temporal_resolution: hourly
+    - name: DeltaGMT
+      encoding_format: int
+      min_value: -12
+      max_value: 14
 
   ## Output Data
   outputs: []

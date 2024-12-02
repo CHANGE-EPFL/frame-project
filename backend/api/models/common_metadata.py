@@ -6,10 +6,10 @@ https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
 
 from datetime import date
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Extra
 
 
-class CommonMetadataSummary(BaseModel):
+class CommonMetadataSummary(BaseModel, extra=Extra.forbid):
     """Essential metadata fields for hybrid models and components."""
 
     description: str
