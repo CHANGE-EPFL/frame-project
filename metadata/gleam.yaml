@@ -1,45 +1,47 @@
-# A template for FAIR hybrid models
-
-# Hybrid Model
 hybrid_model:
-  general:
-    contributors:
-      - Diego Miralles
-      - Olivier Bonte
-      - Oscar Baez-Villanueva
-      - Akash Koppa
-    description: > #Might be important to mention how to do multiline, difference between > and | (> for no multiple lines)
-      GLEAM (Global Land Evaporation Amsterdam Model)
-      is a set of algorithms that separately estimate the different components of
-      evapotranspiration. For more information, please consult https://www.gleam.eu/.
-      GLEAM v4 is the newest version of this algorithm, combining efforts on hybrid modelling,
-      improved interception and groundwater-sourced evaporation combined, all combined with a
-      Penman equation for estimation of potential evaporation.
-    documentation: https://gleam2.gitlab.io/pygleam/
-    doi: Work In Progress
-    keywords:
-      - Evaporation
-      - Hybrid
-      - Global
-      - Climate
-      - Evapotranspiration
-      - Latent Heat
-      - Interception
-      - Transpiration
-      - Penman
-      - Satellite
-      - Earth Observation
-    license: Copyright (c) 2024 Ghent University
-    name: GLEAM (Global Land Evaporation Amsterdam Model)
-    repository: https://gitlab.com/gleam2/pygleam
-    version: 4.1
+  contributors:
+    - Diego Miralles
+    - Olivier Bonte
+    - Oscar Baez-Villanueva
+    - Akash Koppa
+  created: null
+  description: > #Might be important to mention how to do multiline, difference between > and | (> for no multiple lines)
+    GLEAM (Global Land Evaporation Amsterdam Model)
+    is a set of algorithms that separately estimate the different components of
+    evapotranspiration. For more information, please consult https://www.gleam.eu/.
+    GLEAM v4 is the newest version of this algorithm, combining efforts on hybrid modelling,
+    improved interception and groundwater-sourced evaporation combined, all combined with a
+    Penman equation for estimation of potential evaporation.
+  documentation:
+    - https://gleam2.gitlab.io/pygleam/
+  identifier: null
+  keywords:
+    - Evaporation
+    - Hybrid
+    - Global
+    - Climate
+    - Evapotranspiration
+    - Latent Heat
+    - Interception
+    - Transpiration
+    - Penman
+    - Satellite
+    - Earth Observation
+  license: Copyright (c) 2024 Ghent University
+  name: GLEAM (Global Land Evaporation Amsterdam Model)
+  url: https://gitlab.com/gleam2/pygleam
+  version: 4.1
   ml_process: transpirational stress
   host_physics: GLEAM transpiration stress
   latent_variable: transpiration stress (S, 0 (high) to 1 (low))
 
-# Physics-based Component
-physics_based_component:
-  general:
+physics_based_components:
+  - contributors:
+      - Diego Miralles
+      - Olivier Bonte
+      - Oscar Baez-Villanueva
+      - Akash Koppa
+    created: null
     description: >
       GLEAM (Global Land Evaporation Amsterdam Model)
       is a set of algorithms that separately estimate the different components of
@@ -50,7 +52,7 @@ physics_based_component:
     documentation:
       - https://gitlab.com/gleam2/pygleam
       - https://doi.org/10.5194/gmd-10-1903-2017
-    doi: Work In Progress
+    identifier: null
     keywords:
       - Potential evpaoration
       - Soil water balance
@@ -58,115 +60,5 @@ physics_based_component:
       - Soil moisture data assimilation
     license: Copyright (c) 2024 Ghent University
     name: GLEAM (Global Land Evaporation Amsterdam Model)
-    repository: https://gitlab.com/gleam2/pygleam
+    url: https://gitlab.com/gleam2/pygleam
     version: 4.1
-  type: {type: string, required: true}
-  parameters:
-    number_fixed: {type: integer, required: true}
-    number_tunable: {type: integer, required: true}
-  coverage:
-    spatial: {type: string, required: true}
-    temporal: {type: string, required: true}
-  vertical_discretization:
-    soil: {type: integer, required: true}
-    vegetation: {type: integer, required: true}
-  resolution:
-    temporal: {type: integer, required: true}
-  lateral_flow: {type: boolean, required: true}
-  number_state_variables: {type: integer, required: true}
-  # equations_doi:
-  #   - {type: string, required: true}
-  # Modules
-  resources_tested:
-    compute_time: {type: string, required: true}
-    memory: {type: string, required: true}
-    storage: {type: string, required: true}
-    gpu: {type: string, required: true}
-    cpu: {type: string, required: true}
-    software: {type: string, required: true}
-
-# Machine Learning-based Component
-machine_learning_component:
-  general:
-    description: {type: string, required: true}
-    documentation: {type: string, required: true}
-    doi: {type: string, required: false}
-    keywords:
-      - {type: string, required: true}
-    license: {type: string, required: true}
-    name: {type: string, required: true}
-    repository: {type: string, required: true}
-    version: {type: string, required: true}
-  type: {type: string, required: true}
-
-  # If type == "NN"
-  nn_type: {type: string, required: false}
-  number_layers: {type: integer, required: false}
-  number_predictors: {type: integer, required: false}
-  activation_function: {type: string, required: false}
-  input_scaling: {type: string, required: false}
-  initialization: {type: string, required: false}
-  loss_function: {type: string, required: false}
-  regularization: {type: string, required: false}
-  optimization_method: {type: string, required: false}
-  host_physics_model: {type: string, required: false}
-  target_variable: {type: string, required: false}
-  training_requirements: {type: string, required: false}
-  training_resources:
-    compute_time: {type: string, required: true}
-    memory: {type: string, required: true}
-    storage: {type: string, required: true}
-    gpu: {type: string, required: true}
-    cpu: {type: string, required: true}
-    software: {type: string, required: true}
-  # End if type == "NN"
-
-# Data
-data:
-  ## Input Data
-  input:
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
-    extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: {type: string, required: true}
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
-    resolution:
-      spatial: {type: string, required: true}
-      temporal: {type: string, required: true}
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
-    extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: {type: string, required: true}
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
-    resolution:
-      spatial: {type: string, required: true}
-      temporal: {type: string, required: true}
-
-  ## Output Data
-  output:
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
-    extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: {type: string, required: true}
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
-    resolution:
-      spatial: {type: string, required: true}
-      temporal: {type: string, required: true}

@@ -30,5 +30,5 @@ class Data(BaseModel):
 class DataIO(BaseModel):
     """Collection of input and output data for a hybrid model."""
 
-    inputs: list[Data]
-    outputs: list[Data]
+    inputs: list[Data] = []
+    outputs: list[Data] = []

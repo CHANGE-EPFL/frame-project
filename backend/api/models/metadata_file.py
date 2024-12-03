@@ -10,6 +10,6 @@ class MetadataFromFile(BaseModel, extra=Extra.forbid):
     """Metadata fields for a metadata file."""
 
     hybrid_model: HybridModelFromFile
-    physics_based_components: list[PhysicsBasedComponentFromFile]
-    machine_learning_components: list[MachineLearningComponentFromFile]
-    data: DataIO
+    physics_based_components: list[PhysicsBasedComponentFromFile] = []
+    machine_learning_components: list[MachineLearningComponentFromFile] = []
+    data: DataIO = DataIO()

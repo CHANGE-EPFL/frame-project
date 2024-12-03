@@ -13,7 +13,7 @@ class CommonMetadataSummary(BaseModel, extra=Extra.forbid):
     """Essential metadata fields for hybrid models and components."""
 
     description: str
-    created: date
+    created: date | None = None
     keywords: list[str]
     name: str
 

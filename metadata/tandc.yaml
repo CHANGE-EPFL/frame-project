@@ -1,6 +1,3 @@
-# A template for FAIR hybrid models
-
-# Hybrid Model
 hybrid_model:
   contributors:
     - Simone Fatichi
@@ -30,7 +27,6 @@ hybrid_model:
   host_physics: ""
   latent_variable: ""
 
-# Physics-based Component
 physics_based_components:
   - contributors:
       - Simone Fatichi
@@ -70,12 +66,7 @@ physics_based_components:
       software:
         - MATLAB
 
-# Machine Learning-based Component
-machine_learning_components: []
-
-# Data
 data:
-  ## Input Data
   inputs:
     - name: Date
       encoding_format: MATLAB date number
@@ -85,6 +76,3 @@ data:
       encoding_format: int
       min_value: -12
       max_value: 14
-
-  ## Output Data
-  outputs: []
