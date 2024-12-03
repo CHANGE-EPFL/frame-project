@@ -1,85 +1,78 @@
-# A template for FAIR hybrid models
-
 hybrid_model:
-  general:
-    contributors:
-      - Reda ElGhawi
-      - Kraft, Basil
-      - Reimers, Christian
-      - Reichstein, Markus
-      - Körner, Marco
-      - Gentine, Pierre
-      - Winkler, Alexander J
-    description: "Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning"
-    documentation: "ElGhawi, R., Kraft, B., Reimers, C., Reichstein, M., Körner, M., Gentine, P., & Winkler, A. J. (2023). Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning. Environmental Research Letters, 18(3), 034039"
-    doi: https://doi.org/10.1088/1748-9326/ACBBE0
-    keywords:
-      - hybrid model
-      - latent variables
-      - machine learning
-    license: MIT
-    name: Hybrid Model
-    repository: https://github.com/relghawi/Hybrid_ET.git
-    version: 1.0.0
+  contributors:
+    - Reda ElGhawi
+    - Kraft, Basil
+    - Reimers, Christian
+    - Reichstein, Markus
+    - Körner, Marco
+    - Gentine, Pierre
+    - Winkler, Alexander J
+  date: null
+  description: "Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning"
+  documentation: "ElGhawi, R., Kraft, B., Reimers, C., Reichstein, M., Körner, M., Gentine, P., & Winkler, A. J. (2023). Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning. Environmental Research Letters, 18(3), 034039"
+  identifier: https://doi.org/10.1088/1748-9326/ACBBE0
+  keywords:
+    - hybrid model
+    - latent variables
+    - machine learning
+  license: MIT
+  name: Hybrid Model
+  url: https://github.com/relghawi/Hybrid_ET.git
+  version: 1.0.0
   ml_process: Feed-forward Nwural Network
   host_physics: Penman Monteith
-  latent_variable:
-    rs:
+  latent_variables:
+    - name: rs
       description: stomatal resistance
-      type: string
-    ra:
+    - name: ra
       description: aerodynamic rsistance
-      type: string
 
-### For multiple Physics Based components
-physics_based_component:
-  general:
-    description: "Penman-Monteith"
-    documentation:
-      - "Monteith J L 1965 Evaporation and environment Symp. Society for Experimental Biology, the State and Movement ofWater in Living Organisms vol 19, ed G E Fogg pp 205–34"
-      - "Penman H L 1948 Natural evaporation from open water, hare soil and grass Proc. R. Soc. A 193 120–45"
-    doi: ""
-    keywords:
-      - "Physics-based"
-    license: ""
-    name: "Penman-Monteith"
-    repository: ""
-    version: ""
-    type: ""
-    parameters:
-      number_fixed: 9
-      number_tunable: 2
-    coverage:
-      spatial: ""
-      temporal: ""
-    vertical_discretization:
-      soil: ""
-      vegetation: ""
-    resolution:
-      temporal: Half-hourly
-    lateral_flow: false
-    number_state_variables: 0
-    resources_tested:
-      compute_time: ""
-      memory: ""
-      storage: ""
-      gpu: ""
-      cpu: ""
-      software: ""
+physics_based_components:
+  - general:
+      description: "Penman-Monteith"
+      documentation:
+        - "Monteith J L 1965 Evaporation and environment Symp. Society for Experimental Biology, the State and Movement ofWater in Living Organisms vol 19, ed G E Fogg pp 205–34"
+        - "Penman H L 1948 Natural evaporation from open water, hare soil and grass Proc. R. Soc. A 193 120–45"
+      identifier: ""
+      keywords:
+        - "Physics-based"
+      license: ""
+      name: "Penman-Monteith"
+      url: ""
+      version: ""
+      type: ""
+      parameters:
+        number_fixed: 9
+        number_tunable: 2
+      coverage:
+        spatial: ""
+        temporal: ""
+      vertical_discretization:
+        soil: ""
+        vegetation: ""
+      resolution:
+        temporal: Half-hourly
+      lateral_flow: false
+      number_state_variables: 0
+      resources_tested:
+        compute_time: ""
+        memory: ""
+        storage: ""
+        gpu: ""
+        cpu: ""
+        software: ""
 
-
-# Machine Learning-based Component
-machine_learning_component:
+machine_learning_components:
   general:
     description: Feed-forward Neural Network
     documentation: "ElGhawi, R., Kraft, B., Reimers, C., Reichstein, M., Körner, M., Gentine, P., & Winkler, A. J. (2023). Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning. Environmental Research Letters, 18(3), 034039"
-    doi: https://doi.org/10.1088/1748-9326/ACBBE0
+    identifier: https://doi.org/10.1088/1748-9326/ACBBE0
     keywords:
       - latent variables
       - machine learning
     license: MIT
     name: FNN
-    repository: https://github.com/relghawi/Hybrid_ET.git
+    url: https://github.com/relghawi/Hybrid_ET.git
     version: 1.0.0
     ml_process: Feed-forward Nwural Network
 

@@ -1,5 +1,5 @@
 from .common_metadata import CommonMetadata, CommonMetadataSummary
-from .data import DataIO
+from .data import Data, DataIO
 
 
 class HybridModelFromFile(CommonMetadata):
@@ -7,7 +7,7 @@ class HybridModelFromFile(CommonMetadata):
 
     ml_process: str
     host_physics: str
-    latent_variable: str
+    latent_variables: list[Data] = []
 
 
 class HybridModelSummary(CommonMetadataSummary):

@@ -25,7 +25,7 @@ hybrid_model:
   version: TeC_v1.5_July_2024
   ml_process: ""
   host_physics: ""
-  latent_variable: ""
+  latent_variables: []
 
 physics_based_components:
   - contributors:

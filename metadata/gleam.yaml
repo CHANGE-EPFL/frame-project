@@ -33,7 +33,11 @@ hybrid_model:
   version: 4.1
   ml_process: transpirational stress
   host_physics: GLEAM transpiration stress
-  latent_variable: transpiration stress (S, 0 (high) to 1 (low))
+  latent_variables:
+    - name: S
+      description: transpiration stress, 0 (high) to 1 (low)
+      min_value: 0
+      max_value: 1
 
 physics_based_components:
   - contributors:

@@ -7,7 +7,7 @@ class Data(BaseModel):
     """Data structure for input and output data."""
 
     name: str
-    encoding_format: str
+    encoding_format: str | None = None
     identifier: str | None = None
     url: str | None = None
     quality: int | str | None = None
@@ -15,6 +15,7 @@ class Data(BaseModel):
     precision: str | None = None
     scale: float | int | None = None
     offset: float | int | None = None
+    description: str | None = None
 
     # Extent
     min_value: float | int | None = None
