@@ -7,10 +7,11 @@ hybrid_model:
     - Körner, Marco
     - Gentine, Pierre
     - Winkler, Alexander J
-  date: null
+  created: null
   description: "Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning"
-  documentation: "ElGhawi, R., Kraft, B., Reimers, C., Reichstein, M., Körner, M., Gentine, P., & Winkler, A. J. (2023). Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning. Environmental Research Letters, 18(3), 034039"
-  identifier: https://doi.org/10.1088/1748-9326/ACBBE0
+  documentation:
+    - https://doi.org/10.1088/1748-9326/acbbe0
+  identifier: https://doi.org/10.1088/1748-9326/acbbe0
   keywords:
     - hybrid model
     - latent variables
@@ -38,14 +39,11 @@ physics_based_components:
     fixed_parameters_count: 9
     tunable_parameters_count: 2
     state_varialbles_count: 0
-    resolution:
-      temporal: Half-hourly
+    temporal_resolution: Half-hourly
     lateral_flow: false
 
 machine_learning_components:
   - description: Feed-forward Neural Network
-    documentation: "ElGhawi, R., Kraft, B., Reimers, C., Reichstein, M., Körner, M., Gentine, P., & Winkler, A. J. (2023). Hybrid modeling of evapotranspiration: inferring stomatal and aerodynamic resistances using combined physics-based and machine learning. Environmental Research Letters, 18(3), 034039"
-    identifier: https://doi.org/10.1088/1748-9326/ACBBE0
     keywords:
       - latent variables
       - machine learning
@@ -55,210 +53,140 @@ machine_learning_components:
     version: 1.0.0
     ml_process: Feed-forward Nwural Network
 
-#### Multiple NNs, for mutliple targets/latents
-    # If type == "NN"
-    nn_type: FNN
-    nn_name: FNN-rs
-    number_layers: 4
-    num_nodes: 32
-    batch_size: 2000
-    learning_rate: 0.0005
-    number_predictors: 1
-    activation_function:
-    - Sofplus
-    - ReLU
-    input_scaling: Normalization Mean-Std
-    initialization: Random initialization
-    loss_function: Mean Absolute Error
-    regularization: None
-    optimization_method: AdamW
-    host_physics_model: Penman-Monteith
-    target_variable:
-    - Latent Heat FLux
-    - Sensible Heat FLux
-    training_requirements: GPU/CPU
-    training_resources:
-      compute_time: N/A
-      memory: N/A
-      storage: N/A
-      gpu_ID: A40 ## parallelization
-      gpu_num : 1
-      cpu_ID: N/A
-      cpu_num: N/A
-      software: Python
-    # End if type == "NN"
+    # Multiple NNs, for mutliple targets/latents
+    neural_networks:
+      - type: FNN
+        name: FNN-rs
+        layer_count: 4
+        node_count: 32
+        batch_size: 2000
+        learning_rate: 0.0005
+        predictor_count: 1
+        activation_functions:
+          - Sofplus
+          - ReLU
+        input_scaling: Normalization Mean-Std
+        initialization: Random initialization
+        loss_function: Mean Absolute Error
+        regularization: None
+        optimization_method: AdamW
+        host_physics_model: Penman-Monteith
+        target_variables:
+          - Latent Heat FLux
+          - Sensible Heat FLux
+        training_requirements:
+          cpu: true
+          gpu: true
+        training_resources:
+          gpus:
+            - model: A40
+              count: 1
+          software:
+            - Python
 
+      - type: FNN
+        name: FNN-ra
+        layer_count: 2
+        node_count: 32
+        batch_size: 2000
+        learning_rate: 0.0005
+        predictor_count: 1
+        activation_functions:
+          - Sofplus
+          - ReLU
+        input_scaling: Normalization Mean-Std
+        initialization: Random initialization
+        loss_function: Mean Absolute Error
+        regularization: None
+        optimization_method: AdamW
+        host_physics_model: Penman-Monteith
+        target_variables:
+          - Latent Heat FLux
+          - Sensible Heat FLux
+        training_requirements:
+          cpu: true
+          gpu: true
+        training_resources:
+          gpus:
+            - model: A40
+              count: 1
+          software:
+            - Python
 
-    nn_type: FNN
-    nn_name: FNN-ra
-    number_layers: 2
-    num_nodes: 32
-    batch_size: 2000
-    learning_rate: 0.0005
-    number_predictors: 1
-    activation_function:
-    - Sofplus
-    - ReLU
-    input_scaling: Normalization Mean-Std
-    initialization: Random initialization
-    loss_function: Mean Absolute Error
-    regularization: None
-    optimization_method: AdamW
-    host_physics_model: Penman-Monteith
-    target_variable:
-    - Latent Heat FLux
-    - Sensible Heat FLux
-    training_requirements: GPU/CPU
-    training_resources:
-      compute_time: N/A
-      memory: N/A
-      storage: N/A
-      gpu_ID: A40 ## parallelization
-      gpu_num : 1
-      cpu_ID: N/A
-      cpu_num: N/A
-      software: Python
-    # End if type == "NN"
-
-# Data
 data:
-  ## Input Data
   inputs:
     - name: Net Radiation
-      format: Rn
-      extent:
-        min: N/A
-        max: N/A
+      encoding_format: Rn
       source: FLUXNET2015
       quality: Raw data
       units: W/m^2
       precision: Raw data
-      scale: ""
-      offset: ""
-      resolution:
-        spatial: ""
-        temporal: Half-hourly
+      temporal_resolution: Half-hourly
 
     - name: Vapor Pressure Deficit
-      format: VPD
-      extent:
-        min: 0
-        max: 5
+      encoding_format: VPD
+      min_value: 0
+      max_value: 5
       source: FLUXNET2015
       quality: Raw data
       units: kPa
-      precision: ""
-      scale: ""
-      offset: ""
-      resolution:
-        spatial: ""
-        temporal: Half-hourly
+      temporal_resolution: Half-hourly
 
     - name: Shortwave Incoming
-      format: SWin
-      extent:
-        min: N/A
-        max: N/A
+      encoding_format: SWin
       source: FLUXNET2015
       quality: Raw data
       units: W/m^2
-      precision: ""
-      scale: ""
-      offset: ""
-      resolution:
-        spatial: ""
-        temporal: Half-hourly
+      temporal_resolution: Half-hourly
 
     - name: mean incoming shortwave potential
-      format: SW_pot_sm
-      extent:
-        min: N/A
-        max: N/A
+      encoding_format: SW_pot_sm
       source: Calculated
       quality: Raw data
       units: W/m^2
-      precision: ""
-      scale: ""
-      offset: ""
-      resolution:
-        spatial: ""
-        temporal: Half-hourly
+      temporal_resolution: Half-hourly
 
 
     - name: Air temperarture
-      format: TA
-      extent:
-        min: N/A
-        max: N/A
+      encoding_format: TA
       source: FLUXNET2015
       quality: Raw data
       units: degrees Celsius
-      precision: ""
-      scale: ""
-      offset: ""
-      resolution:
-        spatial: ""
-        temporal: Half-hourly
+      temporal_resolution: Half-hourly
 
 
     - name: Water Availability Index
-      format: WAI
-      extent:
-        min: N/A
-        max: N/A
+      encoding_format: WAI
       source: Calculated
       quality: Raw data
       units: "-"
-      precision: ""
-      scale: ""
-      offset: ""
-      resolution:
-        spatial: ""
-        temporal: Half-hourly
+      temporal_resolution: Half-hourly
 
 
     - name: Wind Speed
-      format: WS
-      extent:
-        min: N/A
-        max: N/A
+      encoding_format: WS
       source: FLUXNET2015
       quality: Raw data
       units: "-"
-      precision: ""
-      scale: ""
-      offset: ""
-      resolution:
-        spatial: ""
-        temporal: Half-hourly
+      temporal_resolution: Half-hourly
 
   outputs:
     - name: Latent Heat FLux
-      format: LE
+      encoding_format: LE
       extent:
         min: N/A
         max: N/A
       source: FLUXNET2015
       quality: Raw data
       units: W/m^2
-      precision: ""
-      scale: ""
-      offset: ""
-      resolution:
-        spatial: ""
-        temporal: Half-hourly
+      temporal_resolution: Half-hourly
 
     - name: Sensible Heat FLux
-      format: H
+      encoding_format: H
       extent:
         min: N/A
         max: N/A
       source: FLUXNET2015
       quality: Raw data
       units: W/m^2
-      precision: ""
-      scale: ""
-      offset: ""
-      resolution:
-        spatial: ""
-        temporal: Half-hourly
+      temporal_resolution: Half-hourly

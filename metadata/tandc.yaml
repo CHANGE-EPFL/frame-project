@@ -40,8 +40,10 @@ physics_based_components:
       compute_time: 7 hours
       memory: 96GB
       storage: 1TB
-      gpu: Intel(R) UHD Graphics 770
-      cpu: 13th Gen Intel(R) Core(TM) i9-13900K
+      gpus:
+        - model: Intel(R) UHD Graphics 770
+      cpus:
+        - model: 13th Gen Intel(R) Core(TM) i9-13900K
       software:
         - MATLAB
 
