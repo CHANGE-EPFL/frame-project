@@ -1,7 +1,7 @@
-from .common_metadata import CommonMetadata, CommonMetadataSummary
+from .common_metadata import CommonMetadataIncomplete, CommonMetadataSummary
 
 
-class ComponentFromFile(CommonMetadata):
+class ComponentFromFile(CommonMetadataIncomplete):
     """Component of hybrid model, without assigned id."""
 
 

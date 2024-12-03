@@ -5,11 +5,12 @@ Mock data for testing.
 
 import os
 import re
-from typing import Any
+from typing import Any, TypeVar
 
 import yaml
 from fastapi import HTTPException
 
+from ..models.common_metadata import CommonMetadata
 from ..models.hybrid_model import HybridModel, HybridModelSummary
 from ..models.machine_learning_component import MachineLearningComponent
 from ..models.metadata_file import MetadataFromFile
@@ -36,6 +37,39 @@ def generate_short_name(name: str) -> str:
     return re.sub(r"\W", "_", name).lower()
 
 
+T = TypeVar("T", PhysicsBasedComponent, MachineLearningComponent)
+
+
+def add_components(
+    metadata: MetadataFromFile,
+    components: list[T],
+    ComponentType: type[T],
+) -> list[int]:
+    if ComponentType == PhysicsBasedComponent:
+        component_type_name = "physics_based_components"
+    else:
+        component_type_name = "machine_learning_components"
+
+    ids = []
+
+    for component_from_file in getattr(metadata, component_type_name):
+        component_id = len(components)
+        component_short_name = generate_short_name(component_from_file.name)
+        ids.append(component_id)
+        component = ComponentType(
+            **component_from_file.dict(),
+            short_name=component_short_name,
+            id=component_id,
+        )
+        components.append(component)
+
+        for field in CommonMetadata.model_fields.keys():
+            if not getattr(component, field):  # empty or None
+                setattr(component, field, getattr(metadata.hybrid_model, field))
+
+    return ids
+
+
 def add_model_and_components(
     metadata_filename: str,
     models: list[HybridModel],
@@ -46,29 +80,9 @@ def add_model_and_components(
     raw_data = read_yaml(metadata_filepath)
     metadata = MetadataFromFile(**raw_data)
 
-    physics_based_component_ids = []
-    for p in metadata.physics_based_components:
-        component_id = len(physics_based_components)
-        component_short_name = generate_short_name(p.name)
-        physics_based_component_ids.append(component_id)
-        physics_based_component = PhysicsBasedComponent(
-            **p.dict(),
-            short_name=component_short_name,
-            id=component_id,
-        )
-        physics_based_components.append(physics_based_component)
+    physics_based_component_ids = add_components(metadata, physics_based_components, PhysicsBasedComponent)
 
-    machine_learning_component_ids = []
-    for m in metadata.machine_learning_components:
-        component_id = len(machine_learning_components)
-        component_short_name = generate_short_name(m.name)
-        machine_learning_component_ids.append(component_id)
-        machine_learning_component = MachineLearningComponent(
-            **m.dict(),
-            short_name=component_short_name,
-            id=component_id,
-        )
-        machine_learning_components.append(machine_learning_component)
+    machine_learning_component_ids = add_components(metadata, machine_learning_components, MachineLearningComponent)
 
     model_id = len(models)
     model_short_name = metadata_filename.split(".")[0]

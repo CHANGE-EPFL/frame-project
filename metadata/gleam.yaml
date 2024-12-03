@@ -40,13 +40,7 @@ hybrid_model:
       max_value: 1
 
 physics_based_components:
-  - contributors:
-      - Diego Miralles
-      - Olivier Bonte
-      - Oscar Baez-Villanueva
-      - Akash Koppa
-    created: null
-    description: >
+  - description: >
       GLEAM (Global Land Evaporation Amsterdam Model)
       is a set of algorithms that separately estimate the different components of
       evapotranspiration. For more information, please consult https://www.gleam.eu/.
@@ -56,13 +50,10 @@ physics_based_components:
     documentation:
       - https://gitlab.com/gleam2/pygleam
       - https://doi.org/10.5194/gmd-10-1903-2017
-    identifier: null
     keywords:
       - Potential evpaoration
       - Soil water balance
       - Interception loss
       - Soil moisture data assimilation
-    license: Copyright (c) 2024 Ghent University
     name: GLEAM (Global Land Evaporation Amsterdam Model)
     url: https://gitlab.com/gleam2/pygleam
-    version: 4.1

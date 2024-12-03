@@ -28,30 +28,9 @@ hybrid_model:
   latent_variables: []
 
 physics_based_components:
-  - contributors:
-      - Simone Fatichi
-      - Athanasios Paschalis
-      - Sara Bonetti
-      - Taiqi Lian
-      - Akash Koppa
-    description: The physics-based component of T&C includes three main modules, soil biochemistry, vegetation, and hydrology.
-    created: 2020-09-15
-    documentation:
-      - https://doi.org/10.1029/2011MS000086
-      - https://doi.org/10.1029/2018GB006077
-    identifier: null
-    keywords:
-      - ecohydrology
-      - terrestrial Biosphere Model
-      - evapotranspiration
-      - carbon Cycle
-      - water Cycle
-      - vegetation modelling
-      - hydrology
-    license: ""
+  - description: The physics-based component of T&C includes three main modules, soil biochemistry, vegetation, and hydrology.
     name: Tethys-Chloris (T&C)
     url: https://github.com/simonefatichi/TeC_Source_Code
-    version: TeC_v1.5_July_2024
     spatial_coverage: T&C can be applied on a plot scale and spatially distributed way. (maybe also add the name of the catchcments)
     temporal_coverage: T&C calculates the hydrological budget hourly and updates vegetation and soil biogeochemistry variables daily. Other components of the model (e.g., water routing and channel water flows) may operate on a sub-hourly scale (e.g., seconds).
     vertical_discretization:
