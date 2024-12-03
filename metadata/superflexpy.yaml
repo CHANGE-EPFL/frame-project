@@ -1,167 +1,65 @@
-# A template for FAIR hybrid models
-
-# Hybrid Model
 hybrid_model:
-  general:
-    contributors:
-      - Fabrizio Fenicia
-      - Marco Dal Molin
-      - Dmitri Kavetski
-      - {type: string, required: true}
-    description: SuperflexPy is an open-source Python framework for constructing conceptual hydrological models for lumped and semi-distributed applications.
-    documentation: https://superflexpy.readthedocs.io/en/latest/
-    doi_paper: https://doi.org/10.5194/gmd-14-7047-2021
-    doi_model: https://doi.org/10.5281/zenodo.3699124
-    keywords:
-      - Catchment
-      - Conceptual
-      - Modular
-      - Superflex
-    license: LGPL-3.0
+  contributors:
+    - Fabrizio Fenicia
+    - Marco Dal Molin
+    - Dmitri Kavetski
+  description: SuperflexPy is an open-source Python framework for constructing conceptual hydrological models for lumped and semi-distributed applications.
+  documentation:
+    - https://superflexpy.readthedocs.io/en/latest/
+    - https://doi.org/10.5194/gmd-14-7047-2021
+  identifier: https://doi.org/10.5281/zenodo.3699124
+  keywords:
+    - Catchment
+    - Conceptual
+    - Modular
+    - Superflex
+  license: LGPL-3.0
+  name: SuperflexPy
+  url: https://superflexpy.readthedocs.io/en/latest/index.html
+  version: 1.3.2
+
+physics_based_components:
+  - description: SuperflexPy is used to implement conceptual models, using storage and routing elements, intended to represent catchment processes such as interception, surface and subsurface runoff, and river routing. The specific configuration is specified by the user depending on the needs of a particular application.
     name: SuperflexPy
-    repository: https://superflexpy.readthedocs.io/en/latest/index.html
-    version: 1.3.2
-  ml_process: {type: string, required: true}
-  host_physics: {type: string, required: true}
-  latent_variable: {type: string, required: true}
+    # fixed_parameters_count: to be determined (application dependent)
+    # tunable_parameters_count: to be determined (application dependent)
+    temporal_resolution: can be specified, typically hourly or daily
+    lateral_flow: yes
 
-# Physics-based Component
-physics_based_component:
-  general:
-    description: SuperflexPy is used to implement conceptual models, using storage and routing elements, intended to represent catchment processes such as interception, surface and subsurface runoff, and river routing. The specific configuration is specified by the user depending on the needs of a particular application.
-    documentation: https://superflexpy.readthedocs.io/en/latest/
-    doi_paper: https://doi.org/10.5194/gmd-14-7047-2021
-    doi_model: https://doi.org/10.5281/zenodo.3699124
-    keywords:
-      - Catchment
-      - Conceptual
-      - Modular
-      - Superflex
-    license: LGPL-3.0
-    name: SuperflexPy
-    repository: https://superflexpy.readthedocs.io/en/latest/index.html
-    version: 1.3.2
-  type: {type: string, required: true}
-  parameters:
-    number_fixed: to be determined (application dependent)
-    number_tunable: to be determined (application dependent)
-  coverage:
-    spatial: {type: string, required: true}
-    temporal: {type: string, required: true}
-  vertical_discretization:
-    soil: {type: integer, required: true}
-    vegetation: {type: integer, required: true}
-  resolution:
-    temporal: can be specified, typically hourly or daily
-  lateral_flow: yes
-  number_state_variables: {type: integer, required: true}
-  # equations_doi:
-  #   - {type: string, required: true}
-  # Modules
-  resources_tested:
-    compute_time: {type: string, required: true}
-    memory: {type: string, required: true}
-    storage: {type: string, required: true}
-    gpu: {type: string, required: true}
-    cpu: {type: string, required: true}
-    software: {type: string, required: true}
-
-# Machine Learning-based Component
-machine_learning_component:
-  general:
-    description: {type: string, required: true}
-    documentation: {type: string, required: true}
-    doi: {type: string, required: false}
-    keywords:
-      - {type: string, required: true}
-    license: {type: string, required: true}
-    name: {type: string, required: true}
-    repository: {type: string, required: true}
-    version: {type: string, required: true}
-  type: {type: string, required: true}
-
-  # If type == "NN"
-  nn_type: {type: string, required: false}
-  number_layers: {type: integer, required: false}
-  number_predictors: {type: integer, required: false}
-  activation_function: {type: string, required: false}
-  input_scaling: {type: string, required: false}
-  initialization: {type: string, required: false}
-  loss_function: {type: string, required: false}
-  regularization: {type: string, required: false}
-  optimization_method: {type: string, required: false}
-  host_physics_model: {type: string, required: false}
-  target_variable: {type: string, required: false}
-  training_requirements: {type: string, required: false}
-  training_resources:
-    compute_time: {type: string, required: true}
-    memory: {type: string, required: true}
-    storage: {type: string, required: true}
-    gpu: {type: string, required: true}
-    cpu: {type: string, required: true}
-    software: {type: string, required: true}
-  # End if type == "NN"
-
-# Data
 data:
-  ## Input Data
-  input:
-  - name: precipitation
-    format: text
-    extent:
-      min: 0.0
-      max: inf
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: mm/time step
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
-    resolution:
-      spatial: lumped
-      temporal: {type: string, required: true}
-  - name: temperature
-    format: text
-    extent:
-      min: -inf
-      max: +inf
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: mm/time step
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
-    resolution:
-      spatial: lumped
-      temporal: {type: string, required: true}
-  - name: Potential evaporation
-    format: text
-    extent:
-      min: 0.0
-      max: {type: float, required: true}
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: mm/time step
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
-    resolution:
-      spatial: lumped
-      temporal: {type: string, required: true}
+  inputs:
+    - name: precipitation
+      encoding_format: text
+      extent:
+        min: 0.0
+        max: .inf
+      units: mm/time step
+      resolution:
+        spatial: lumped
 
-  ## Output Data
-  output:
-  - name: Streamflow
-    format: text
-    extent:
-      min: 0.0
-      max: +inf
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: mm/time step
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
-    resolution:
-      spatial: lumped
-      temporal: {type: string, required: true}
+    - name: temperature
+      encoding_format: text
+      extent:
+        min: -.inf
+        max: .inf
+      units: mm/time step
+      resolution:
+        spatial: lumped
+
+    - name: Potential evaporation
+      encoding_format: text
+      extent:
+        min: 0.0
+      units: mm/time step
+      resolution:
+        spatial: lumped
+
+  outputs:
+    - name: Streamflow
+      encoding_format: text
+      extent:
+        min: 0.0
+        max: .inf
+      units: mm/time step
+      resolution:
+        spatial: lumped

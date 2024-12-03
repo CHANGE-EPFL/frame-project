@@ -5,8 +5,8 @@ from .data import Data, DataIO
 class HybridModelFromFile(CommonMetadata):
     """Hybrid model, without assigned id."""
 
-    ml_process: str
-    host_physics: str
+    ml_process: str | None = None
+    host_physics: str | None = None
     latent_variables: list[Data] = []
 
 
