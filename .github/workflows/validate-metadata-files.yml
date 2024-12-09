@@ -9,6 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: yamllint
+        if: success() || failure()
+        uses: pre-commit/action@v3.0.1
+        with:
+          extra_args: yamllint --files metadata/*
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
