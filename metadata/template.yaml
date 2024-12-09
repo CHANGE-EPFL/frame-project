@@ -1,6 +1,5 @@
 # A template for FAIR hybrid models
 
-# Hybrid Model
 hybrid_model:
   general:
     contributors:
@@ -18,7 +17,7 @@ hybrid_model:
   ml_process: {type: string, required: true}
   host_physics: {type: string, required: true}
   latent_variable: {type: string, required: true}
-# Physics-based Component
+
 physics_based_component:
   general:
     description: {type: string, required: true}
@@ -54,7 +53,7 @@ physics_based_component:
     gpu: {type: string, required: true}
     cpu: {type: string, required: true}
     software: {type: string, required: true}
-# Machine Learning-based Component
+
 machine_learning_component:
   general:
     description: {type: string, required: true}
@@ -88,9 +87,8 @@ machine_learning_component:
     cpu: {type: string, required: true}
     software: {type: string, required: true}
     # End if type == "NN"
-# Data
+    #
 data:
-  ## Input Data
   input:
     - name: {type: string, required: true}
       format: {type: string, required: true}
@@ -120,7 +118,7 @@ data:
       resolution:
         spatial: {type: string, required: true}
         temporal: {type: string, required: true}
-  ## Output Data
+
   output:
     - name: {type: string, required: true}
       format: {type: string, required: true}

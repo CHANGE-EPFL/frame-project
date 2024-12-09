@@ -6,7 +6,13 @@ hybrid_model:
     - Taiqi Lian
     - Akash Koppa
   created: 2020-09-15
-  description: Tethys- Chloris (T&C) is a mechanistic model designed to simulate essential components of the hydrological and carbon cycles, resolving exchanges of energy, water, and CO2 between the land surface and the planetary boundary layer with an hourly time step. Mass and energy fluxes control the temporal dynamics of vegetation (carbon pools) that in turn affect land-atmosphere exchange through its biophysical structure and physiological properties. Plant life-cycle processes, including photosynthesis, phenology, carbon allocation and tissues turnover are explicitly modeled. For instance, Leaf Area Index (LAI) is a prognostic variable, which varies in response to environmental conditions and vegetation leaf phenology. Changes in LAI can affect water and carbon fluxes that in turn can modify vegetation growth in a fully interactive framework.
+  description: Tethys- Chloris (T&C) is a mechanistic model designed to simulate essential components of the hydrological
+    and carbon cycles, resolving exchanges of energy, water, and CO2 between the land surface and the planetary boundary layer
+    with an hourly time step. Mass and energy fluxes control the temporal dynamics of vegetation (carbon pools) that in turn
+    affect land-atmosphere exchange through its biophysical structure and physiological properties. Plant life-cycle processes,
+    including photosynthesis, phenology, carbon allocation and tissues turnover are explicitly modeled. For instance, Leaf
+    Area Index (LAI) is a prognostic variable, which varies in response to environmental conditions and vegetation leaf phenology.
+    Changes in LAI can affect water and carbon fluxes that in turn can modify vegetation growth in a fully interactive framework.
   documentation:
     - https://doi.org/10.1029/2011MS000086
     - https://doi.org/10.1029/2018GB006077
@@ -26,14 +32,18 @@ hybrid_model:
   ml_process: ""
   host_physics: ""
   latent_variables: []
+
 physics_based_components:
   - description: The physics-based component of T&C includes three main modules, soil biochemistry, vegetation, and hydrology.
     name: Tethys-Chloris (T&C)
     url: https://github.com/simonefatichi/TeC_Source_Code
     spatial_coverage: T&C can be applied on a plot scale and spatially distributed way. (maybe also add the name of the catchcments)
-    temporal_coverage: T&C calculates the hydrological budget hourly and updates vegetation and soil biogeochemistry variables daily. Other components of the model (e.g., water routing and channel water flows) may operate on a sub-hourly scale (e.g., seconds).
+    temporal_coverage: T&C calculates the hydrological budget hourly and updates vegetation and soil biogeochemistry variables
+      daily. Other components of the model (e.g., water routing and channel water flows) may operate on a sub-hourly scale
+      (e.g., seconds).
     vertical_discretization:
-      soil: Discretized to different vertical layers. The top 250 mm of soil is modeled as an active layer for soil biochemistry processes.
+      soil: Discretized to different vertical layers. The top 250 mm of soil is modeled as an active layer for soil biochemistry
+        processes.
       vegetation: Two layers of vegetation (High and low vegetation) and different PFTs can be simulated in one cell.
     testing_resources:
       compute_time: 7 hours
@@ -45,6 +55,7 @@ physics_based_components:
         - model: 13th Gen Intel(R) Core(TM) i9-13900K
       software:
         - MATLAB
+
 data:
   inputs:
     - name: Date

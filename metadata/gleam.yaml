@@ -6,8 +6,10 @@ hybrid_model:
     - Akash Koppa
   created: null
   description: > #Might be important to mention how to do multiline, difference between > and | (> for no multiple lines)
-    GLEAM (Global Land Evaporation Amsterdam Model) is a set of algorithms that separately estimate the different components of evapotranspiration. For more information, please consult https://www.gleam.eu/. GLEAM v4 is the newest version of this algorithm, combining efforts on hybrid modelling, improved interception and groundwater-sourced evaporation combined, all combined with a Penman equation for estimation of potential evaporation.
-
+    GLEAM (Global Land Evaporation Amsterdam Model) is a set of algorithms that separately estimate the different components
+    of evapotranspiration. For more information, please consult https://www.gleam.eu/. GLEAM v4 is the newest version of this
+    algorithm, combining efforts on hybrid modelling, improved interception and groundwater-sourced evaporation combined,
+    all combined with a Penman equation for estimation of potential evaporation. #magic___^_^___line
   documentation:
     - https://gleam2.gitlab.io/pygleam/
   identifier: null
@@ -34,10 +36,13 @@ hybrid_model:
       description: transpiration stress, 0 (high) to 1 (low)
       min_value: 0
       max_value: 1
+
 physics_based_components:
   - description: >
-      GLEAM (Global Land Evaporation Amsterdam Model) is a set of algorithms that separately estimate the different components of evapotranspiration. For more information, please consult https://www.gleam.eu/. GLEAM v4 is the newest version of this algorithm, combining efforts on hybrid modelling, improved interception and groundwater-sourced evaporation combined, all combined with a Penman equation for estimation of potential evaporation.
-
+      GLEAM (Global Land Evaporation Amsterdam Model) is a set of algorithms that separately estimate the different components
+      of evapotranspiration. For more information, please consult https://www.gleam.eu/. GLEAM v4 is the newest version of
+      this algorithm, combining efforts on hybrid modelling, improved interception and groundwater-sourced evaporation combined,
+      all combined with a Penman equation for estimation of potential evaporation. #magic___^_^___line
     documentation:
       - https://gitlab.com/gleam2/pygleam
       - https://doi.org/10.5194/gmd-10-1903-2017

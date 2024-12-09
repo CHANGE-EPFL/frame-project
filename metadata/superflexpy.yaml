@@ -3,7 +3,8 @@ hybrid_model:
     - Fabrizio Fenicia
     - Marco Dal Molin
     - Dmitri Kavetski
-  description: SuperflexPy is an open-source Python framework for constructing conceptual hydrological models for lumped and semi-distributed applications.
+  description: SuperflexPy is an open-source Python framework for constructing conceptual hydrological models for lumped and
+    semi-distributed applications.
   documentation:
     - https://superflexpy.readthedocs.io/en/latest/
     - https://doi.org/10.5194/gmd-14-7047-2021
@@ -17,13 +18,17 @@ hybrid_model:
   name: SuperflexPy
   url: https://superflexpy.readthedocs.io/en/latest/index.html
   version: 1.3.2
+
 physics_based_components:
-  - description: SuperflexPy is used to implement conceptual models, using storage and routing elements, intended to represent catchment processes such as interception, surface and subsurface runoff, and river routing. The specific configuration is specified by the user depending on the needs of a particular application.
+  - description: SuperflexPy is used to implement conceptual models, using storage and routing elements, intended to represent
+      catchment processes such as interception, surface and subsurface runoff, and river routing. The specific configuration
+      is specified by the user depending on the needs of a particular application.
     name: SuperflexPy
     # fixed_parameters_count: to be determined (application dependent)
     # tunable_parameters_count: to be determined (application dependent)
     temporal_resolution: can be specified, typically hourly or daily
-    lateral_flow: yes
+    lateral_flow: true
+
 data:
   inputs:
     - name: precipitation
