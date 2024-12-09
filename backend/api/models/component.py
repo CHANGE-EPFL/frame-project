@@ -4,7 +4,7 @@ from .common_metadata import CommonMetadataIncomplete, CommonMetadataSummary
 class ComponentFromFile(CommonMetadataIncomplete):
     """Component of hybrid model, without assigned id."""
 
-    # short_name: str | None = None
+    short_name: str | None = None
 
 
 class ComponentSummary(CommonMetadataSummary, extra="ignore"):
@@ -16,3 +16,5 @@ class ComponentSummary(CommonMetadataSummary, extra="ignore"):
 
 class Component(ComponentFromFile, ComponentSummary):
     """Component of hybrid model."""
+
+    short_name: str

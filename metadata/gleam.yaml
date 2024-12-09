@@ -52,4 +52,5 @@ physics_based_components:
       - Interception loss
       - Soil moisture data assimilation
     name: GLEAM (Global Land Evaporation Amsterdam Model)
+    short_name: gleam
     url: https://gitlab.com/gleam2/pygleam

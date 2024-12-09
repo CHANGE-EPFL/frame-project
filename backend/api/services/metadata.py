@@ -54,11 +54,10 @@ def add_components(
 
     for component_from_file in getattr(metadata, component_type_name):
         component_id = len(components)
-        component_short_name = generate_short_name(component_from_file.name)
+        component_from_file.short_name = component_from_file.short_name or generate_short_name(component_from_file.name)
         ids.append(component_id)
         component = ComponentType(
             **component_from_file.model_dump(),
-            short_name=component_short_name,
             id=component_id,
         )
         components.append(component)
