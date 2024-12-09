@@ -124,60 +124,6 @@ models = []
 model_summaries = []
 physics_based_components = []
 machine_learning_components = []
-
-
-# from datetime import date
-# models = [
-#     HybridModel(
-#         id=0,
-#         contributors=["Smith, John"],
-#         created=date(2024, 1, 1),
-#         description="A simple model.",
-#         keywords=["simple", "example"],
-#         license="GPL-3.0",
-#         name="HybridModel 1",
-#         url="https://github.com/example/model1",
-#         short_name="model1",
-#         ml_process="",
-#         host_physics="",
-#         latent_variable="",
-#         compatible_machine_learning_component_ids=[0, 1],
-#         compatible_physical_based_component_ids=[0],
-#     ),
-#     HybridModel(
-#         id=1,
-#         contributors=[],
-#         created=date(2024, 2, 1),
-#         description="",
-#         keywords=[],
-#         license="",
-#         name="HybridModel 2",
-#         url="",
-#         short_name="model2",
-#         ml_process="",
-#         host_physics="",
-#         latent_variable="",
-#         compatible_machine_learning_component_ids=[],
-#         compatible_physical_based_component_ids=[],
-#     ),
-#     HybridModel(
-#         id=2,
-#         contributors=[],
-#         created=date(2024, 3, 1),
-#         description="",
-#         keywords=[],
-#         license="",
-#         name="HybridModel 3",
-#         url="",
-#         short_name="model3",
-#         ml_process="",
-#         host_physics="",
-#         latent_variable="",
-#         compatible_machine_learning_component_ids=[],
-#         compatible_physical_based_component_ids=[],
-#     ),
-# ]
-
 metadata_loaded = False
 
 
