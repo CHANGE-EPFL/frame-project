@@ -57,7 +57,7 @@ def add_components(
         component_short_name = generate_short_name(component_from_file.name)
         ids.append(component_id)
         component = ComponentType(
-            **component_from_file.dict(),
+            **component_from_file.model_dump(),
             short_name=component_short_name,
             id=component_id,
         )
@@ -87,7 +87,7 @@ def add_model_and_components(
     model_id = len(models)
     model_short_name = metadata_filename.split(".")[0]
     model = HybridModel(
-        **metadata.hybrid_model.dict(),
+        **metadata.hybrid_model.model_dump(),
         short_name=model_short_name,
         id=model_id,
         compatible_physical_based_component_ids=physics_based_component_ids,

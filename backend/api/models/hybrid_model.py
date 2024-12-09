@@ -13,13 +13,13 @@ class HybridModelFromFile(CommonMetadata):
 class HybridModelSummary(CommonMetadataSummary):
     """Contains essential metadata fields for hybrid models."""
 
+    id: int
     short_name: str
 
 
 class HybridModel(HybridModelFromFile, HybridModelSummary):
     """Hybrid model."""
 
-    id: int
     compatible_machine_learning_component_ids: list[int]
     compatible_physical_based_component_ids: list[int]
     data: DataIO
