@@ -10,7 +10,7 @@ class HybridModelFromFile(CommonMetadata):
     latent_variables: list[Data] = []
 
 
-class HybridModelSummary(CommonMetadataSummary):
+class HybridModelSummary(CommonMetadataSummary, extra="ignore"):
     """Contains essential metadata fields for hybrid models."""
 
     id: int

@@ -7,6 +7,7 @@ from pydantic import BaseModel
 from api.config import config
 
 # from api.views.files import router as files_router
+from api.views.components import router as components_router
 from api.views.hybrid_models import router as hybrid_models_router
 
 basicConfig(level=INFO)
@@ -44,3 +45,4 @@ async def get_health() -> HealthCheck:
 
 # app.include_router(files_router, prefix="/files", tags=["Files"])
 app.include_router(hybrid_models_router, prefix="/hybrid_models", tags=["Hybrid models"])
+app.include_router(components_router, prefix="/components", tags=["Components"])

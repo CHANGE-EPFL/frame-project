@@ -33,5 +33,5 @@ def test_schema(metadata_filename: str) -> None:
 
 @pytest.mark.asyncio
 async def test_unique_short_names() -> None:
-    short_names = await metadata.get_models_short_names()
+    short_names = await metadata.get_hybrid_model_short_names()
     assert len(short_names) == len(set(short_names))
