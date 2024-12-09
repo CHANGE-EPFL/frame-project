@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel
 
 from .data import DataIO
 from .hybrid_model import HybridModelFromFile
@@ -6,7 +6,7 @@ from .machine_learning_component import MachineLearningComponentFromFile
 from .physics_based_component import PhysicsBasedComponentFromFile
 
 
-class MetadataFromFile(BaseModel, extra=Extra.forbid):
+class MetadataFromFile(BaseModel, extra="forbid"):
     """Metadata fields for a metadata file."""
 
     hybrid_model: HybridModelFromFile

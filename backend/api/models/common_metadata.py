@@ -7,7 +7,7 @@ https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
 from datetime import date
 from typing import TYPE_CHECKING
 
-from pydantic import BaseModel, Extra, conlist
+from pydantic import BaseModel, conlist
 
 if TYPE_CHECKING:  # Static type checker may not accept conlist
     NonEmptyList = list[str]
@@ -15,7 +15,7 @@ else:
     NonEmptyList = conlist(str, min_length=1)
 
 
-class CommonMetadataSummary(BaseModel, extra=Extra.forbid):
+class CommonMetadataSummary(BaseModel, extra="forbid"):
     """Essential metadata fields for hybrid models."""
 
     description: str
@@ -24,7 +24,7 @@ class CommonMetadataSummary(BaseModel, extra=Extra.forbid):
     name: str
 
 
-class CommonMetadataSummaryIncomplete(BaseModel, extra=Extra.forbid):
+class CommonMetadataSummaryIncomplete(BaseModel, extra="forbid"):
     """Essential metadata fields for components that allows for missing fields."""
 
     description: str

@@ -1,12 +1,12 @@
 from datetime import date
 
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel
 
 from .component import Component, ComponentFromFile, ComponentSummary
 from .computational_resources import ComputationalResources
 
 
-class VerticalDiscretization(BaseModel, extra=Extra.forbid):
+class VerticalDiscretization(BaseModel, extra="forbid"):
     """Vertical discretization of a physics-based component."""
 
     soil: str | None = None

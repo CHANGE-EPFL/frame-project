@@ -1,17 +1,17 @@
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel
 
 from .component import Component, ComponentFromFile, ComponentSummary
 from .computational_resources import ComputationalResources
 
 
-class TrainingRequirements(BaseModel, extra=Extra.forbid):
+class TrainingRequirements(BaseModel, extra="forbid"):
     """Training requirements for a machine learning component."""
 
     gpu: bool = False
     cpu: bool = False
 
 
-class NeuralNetwork(BaseModel, extra=Extra.forbid):
+class NeuralNetwork(BaseModel, extra="forbid"):
     """Neural network metadata."""
 
     name: str

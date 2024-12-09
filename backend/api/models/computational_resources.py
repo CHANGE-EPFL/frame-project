@@ -1,7 +1,7 @@
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel
 
 
-class Cpu(BaseModel, extra=Extra.forbid):
+class Cpu(BaseModel, extra="forbid"):
     """Central processing unit (CPU) metadata."""
 
     count: int = 1
@@ -13,7 +13,7 @@ class Cpu(BaseModel, extra=Extra.forbid):
     clock_speed: str | None = None
 
 
-class Gpu(BaseModel, extra=Extra.forbid):
+class Gpu(BaseModel, extra="forbid"):
     """Graphics processing unit (GPU) metadata."""
 
     count: int = 1
@@ -28,7 +28,7 @@ class Gpu(BaseModel, extra=Extra.forbid):
     ray_tracing: bool | None = None
 
 
-class ComputationalResources(BaseModel, extra=Extra.forbid):
+class ComputationalResources(BaseModel, extra="forbid"):
     """Computational resources need for a hybrid model or component."""
 
     cpus: list[Cpu] = []
