@@ -18,7 +18,6 @@ hybrid_model:
   ml_process: {type: string, required: true}
   host_physics: {type: string, required: true}
   latent_variable: {type: string, required: true}
-
 # Physics-based Component
 physics_based_component:
   general:
@@ -55,7 +54,6 @@ physics_based_component:
     gpu: {type: string, required: true}
     cpu: {type: string, required: true}
     software: {type: string, required: true}
-
 # Machine Learning-based Component
 machine_learning_component:
   general:
@@ -69,7 +67,6 @@ machine_learning_component:
     repository: {type: string, required: true}
     version: {type: string, required: true}
   type: {type: string, required: true}
-
   # If type == "NN"
   nn_type: {type: string, required: false}
   number_layers: {type: integer, required: false}
@@ -90,54 +87,52 @@ machine_learning_component:
     gpu: {type: string, required: true}
     cpu: {type: string, required: true}
     software: {type: string, required: true}
-  # End if type == "NN"
-
+    # End if type == "NN"
 # Data
 data:
   ## Input Data
   input:
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
-    extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: {type: string, required: true}
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
-    resolution:
-      spatial: {type: string, required: true}
-      temporal: {type: string, required: true}
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
-    extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: {type: string, required: true}
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
-    resolution:
-      spatial: {type: string, required: true}
-      temporal: {type: string, required: true}
-
+    - name: {type: string, required: true}
+      format: {type: string, required: true}
+      extent:
+        min: {type: float, required: true}
+        max: {type: float, required: true}
+      source: {type: string, required: true}
+      quality: {type: integer, required: true}
+      units: {type: string, required: true}
+      precision: {type: string, required: true}
+      scale: {type: float, required: true}
+      offset: {type: float, required: true}
+      resolution:
+        spatial: {type: string, required: true}
+        temporal: {type: string, required: true}
+    - name: {type: string, required: true}
+      format: {type: string, required: true}
+      extent:
+        min: {type: float, required: true}
+        max: {type: float, required: true}
+      source: {type: string, required: true}
+      quality: {type: integer, required: true}
+      units: {type: string, required: true}
+      precision: {type: string, required: true}
+      scale: {type: float, required: true}
+      offset: {type: float, required: true}
+      resolution:
+        spatial: {type: string, required: true}
+        temporal: {type: string, required: true}
   ## Output Data
   output:
-  - name: {type: string, required: true}
-    format: {type: string, required: true}
-    extent:
-      min: {type: float, required: true}
-      max: {type: float, required: true}
-    source: {type: string, required: true}
-    quality: {type: integer, required: true}
-    units: {type: string, required: true}
-    precision: {type: string, required: true}
-    scale: {type: float, required: true}
-    offset: {type: float, required: true}
-    resolution:
-      spatial: {type: string, required: true}
-      temporal: {type: string, required: true}
+    - name: {type: string, required: true}
+      format: {type: string, required: true}
+      extent:
+        min: {type: float, required: true}
+        max: {type: float, required: true}
+      source: {type: string, required: true}
+      quality: {type: integer, required: true}
+      units: {type: string, required: true}
+      precision: {type: string, required: true}
+      scale: {type: float, required: true}
+      offset: {type: float, required: true}
+      resolution:
+        spatial: {type: string, required: true}
+        temporal: {type: string, required: true}

@@ -27,7 +27,6 @@ hybrid_model:
       description: stomatal resistance
     - name: ra
       description: aerodynamic rsistance
-
 physics_based_components:
   - description: "Penman-Monteith"
     documentation:
@@ -41,7 +40,6 @@ physics_based_components:
     state_varialbles_count: 0
     temporal_resolution: Half-hourly
     lateral_flow: false
-
 machine_learning_components:
   - description: Feed-forward Neural Network
     keywords:
@@ -52,8 +50,7 @@ machine_learning_components:
     url: https://github.com/relghawi/Hybrid_ET.git
     version: 1.0.0
     ml_process: Feed-forward Nwural Network
-
-    # Multiple NNs, for mutliple targets/latents
+    # Multiple NNs, for multiple targets/latents
     neural_networks:
       - type: FNN
         name: FNN-rs
@@ -83,7 +80,6 @@ machine_learning_components:
               count: 1
           software:
             - Python
-
       - type: FNN
         name: FNN-ra
         layer_count: 2
@@ -112,7 +108,6 @@ machine_learning_components:
               count: 1
           software:
             - Python
-
 data:
   inputs:
     - name: Net Radiation
@@ -122,7 +117,6 @@ data:
       units: W/m^2
       precision: Raw data
       temporal_resolution: Half-hourly
-
     - name: Vapor Pressure Deficit
       encoding_format: VPD
       min_value: 0
@@ -131,45 +125,36 @@ data:
       quality: Raw data
       units: kPa
       temporal_resolution: Half-hourly
-
     - name: Shortwave Incoming
       encoding_format: SWin
       source: FLUXNET2015
       quality: Raw data
       units: W/m^2
       temporal_resolution: Half-hourly
-
     - name: mean incoming shortwave potential
       encoding_format: SW_pot_sm
       source: Calculated
       quality: Raw data
       units: W/m^2
       temporal_resolution: Half-hourly
-
-
     - name: Air temperarture
       encoding_format: TA
       source: FLUXNET2015
       quality: Raw data
       units: degrees Celsius
       temporal_resolution: Half-hourly
-
-
     - name: Water Availability Index
       encoding_format: WAI
       source: Calculated
       quality: Raw data
       units: "-"
       temporal_resolution: Half-hourly
-
-
     - name: Wind Speed
       encoding_format: WS
       source: FLUXNET2015
       quality: Raw data
       units: "-"
       temporal_resolution: Half-hourly
-
   outputs:
     - name: Latent Heat FLux
       encoding_format: LE
@@ -180,7 +165,6 @@ data:
       quality: Raw data
       units: W/m^2
       temporal_resolution: Half-hourly
-
     - name: Sensible Heat FLux
       encoding_format: H
       extent:

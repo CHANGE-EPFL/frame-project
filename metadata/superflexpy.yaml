@@ -17,7 +17,6 @@ hybrid_model:
   name: SuperflexPy
   url: https://superflexpy.readthedocs.io/en/latest/index.html
   version: 1.3.2
-
 physics_based_components:
   - description: SuperflexPy is used to implement conceptual models, using storage and routing elements, intended to represent catchment processes such as interception, surface and subsurface runoff, and river routing. The specific configuration is specified by the user depending on the needs of a particular application.
     name: SuperflexPy
@@ -25,7 +24,6 @@ physics_based_components:
     # tunable_parameters_count: to be determined (application dependent)
     temporal_resolution: can be specified, typically hourly or daily
     lateral_flow: yes
-
 data:
   inputs:
     - name: precipitation
@@ -36,7 +34,6 @@ data:
       units: mm/time step
       resolution:
         spatial: lumped
-
     - name: temperature
       encoding_format: text
       extent:
@@ -45,7 +42,6 @@ data:
       units: mm/time step
       resolution:
         spatial: lumped
-
     - name: Potential evaporation
       encoding_format: text
       extent:
@@ -53,7 +49,6 @@ data:
       units: mm/time step
       resolution:
         spatial: lumped
-
   outputs:
     - name: Streamflow
       encoding_format: text

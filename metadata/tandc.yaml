@@ -26,7 +26,6 @@ hybrid_model:
   ml_process: ""
   host_physics: ""
   latent_variables: []
-
 physics_based_components:
   - description: The physics-based component of T&C includes three main modules, soil biochemistry, vegetation, and hydrology.
     name: Tethys-Chloris (T&C)
@@ -46,7 +45,6 @@ physics_based_components:
         - model: 13th Gen Intel(R) Core(TM) i9-13900K
       software:
         - MATLAB
-
 data:
   inputs:
     - name: Date
