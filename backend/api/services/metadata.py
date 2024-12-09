@@ -5,7 +5,7 @@ Mock data for testing.
 
 import os
 import re
-from typing import Any, TypeVar
+from typing import Any, Callable, TypeVar
 
 import yaml
 from fastapi import HTTPException
@@ -181,7 +181,8 @@ machine_learning_components = []
 metadata_loaded = False
 
 
-def load_metadata():
+def _load_metadata():
+    """Load models and components metadata in module scope."""
     global models, model_summaries, physics_based_components, machine_learning_components, metadata_loaded
 
     models, physics_based_components, machine_learning_components = load_models_and_components()
@@ -201,17 +202,25 @@ def load_metadata():
     metadata_loaded = True
 
 
-async def get_models() -> list[HybridModelSummary]:
-    if not metadata_loaded:
-        load_metadata()
+def load_metadata(func: Callable):
+    """Decorator to trigger loading metadata."""
 
+    async def wrapped(*args, **kwargs):
+        if not metadata_loaded:
+            _load_metadata()
+
+        return await func(*args, **kwargs)
+
+    return wrapped
+
+
+@load_metadata
+async def get_hybrid_models() -> list[HybridModelSummary]:
     return model_summaries
 
 
-async def get_model(model_id: int) -> HybridModel:
-    if not metadata_loaded:
-        load_metadata()
-
+@load_metadata
+async def get_hybrid_model(model_id: int) -> HybridModel:
     try:
         return models[model_id]
 
