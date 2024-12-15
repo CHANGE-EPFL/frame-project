@@ -801,7 +801,7 @@ all = ["flake8 (>=7.1.1)", "mypy (>=1.11.2)", "pytest (>=8.3.2)", "ruff (>=0.6.2
 name = "iniconfig"
 version = "2.0.0"
 description = "brain-dead simple config-ini parsing"
-optional = false
+optional = true
 python-versions = ">=3.7"
 files = [
     {file = "iniconfig-2.0.0-py3-none-any.whl", hash = "sha256:b6a85871a79d2e3b22d2d1b94ac2824226a63c6b741c88f7ae975f18b6778374"},
@@ -1124,7 +1124,7 @@ files = [
 name = "packaging"
 version = "24.2"
 description = "Core utilities for Python packages"
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "packaging-24.2-py3-none-any.whl", hash = "sha256:09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759"},
@@ -1334,7 +1334,7 @@ type = ["mypy (>=1.11.2)"]
 name = "pluggy"
 version = "1.5.0"
 description = "plugin and hook calling mechanisms for python"
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "pluggy-1.5.0-py3-none-any.whl", hash = "sha256:44e1ad92c8ca002de6377e165f3e0f1be63266ab4d554740532335b9d75ea669"},
@@ -1615,6 +1615,23 @@ toml = ["tomli (>=2.0.1)"]
 yaml = ["pyyaml (>=6.0.1)"]
 
 [[package]]
+name = "pydantic-to-typescript"
+version = "2.0.0"
+description = "Convert pydantic models to typescript interfaces"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "pydantic_to_typescript-2.0.0-py3-none-any.whl", hash = "sha256:5bc5e1a940c1a39e4e3a6124bd3bda1b0fc6df85c673a4781b94a1f4150cae15"},
+    {file = "pydantic_to_typescript-2.0.0.tar.gz", hash = "sha256:06e92e8d10759ffebe3abdd4de14015bbf80809fa9960273be6041d8509662be"},
+]
+
+[package.dependencies]
+pydantic = "*"
+
+[package.extras]
+dev = ["coverage", "pytest", "pytest-cov", "ruff"]
+
+[[package]]
 name = "pygments"
 version = "2.18.0"
 description = "Pygments is a syntax highlighting package written in Python."
@@ -1669,7 +1686,7 @@ certifi = "*"
 name = "pytest"
 version = "8.3.3"
 description = "pytest: simple powerful testing with Python"
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "pytest-8.3.3-py3-none-any.whl", hash = "sha256:a6853c7375b2663155079443d2e45de913a911a11d669df02a50814944db57b2"},
@@ -1691,7 +1708,7 @@ dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "pygments
 name = "pytest-asyncio"
 version = "0.24.0"
 description = "Pytest support for asyncio"
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "pytest_asyncio-0.24.0-py3-none-any.whl", hash = "sha256:a811296ed596b69bf0b6f3dc40f83bcaf341b155a269052d82efa2b25ac7037b"},
@@ -1911,7 +1928,7 @@ full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7
 name = "tomli"
 version = "2.1.0"
 description = "A lil' TOML parser"
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "tomli-2.1.0-py3-none-any.whl", hash = "sha256:a5c57c3d1c56f5ccdf89f6523458f60ef716e210fc47c4cfb188c5ba473e0391"},
@@ -2437,10 +2454,10 @@ multidict = ">=4.0"
 propcache = ">=0.2.0"
 
 [extras]
-dev = ["pre-commit", "pytest"]
-test = ["pytest"]
+dev = ["pre-commit", "pytest", "pytest-asyncio"]
+test = ["pytest", "pytest-asyncio"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "924cf068abb0c92f9e8af3e3d33920a9be17aba3d369dd3ee31fbc5c1adba372"
+content-hash = "2dcbf45569b10c09f258aa4d5738d27c3e057ef01389e84e46ddbf8727d57b7d"

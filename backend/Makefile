@@ -1,4 +1,5 @@
 env_path=../.env
+model_modules=hybrid_model machine_learning_component physics_based_component
 
 install:
 	poetry install
@@ -13,3 +14,8 @@ test:
 
 lint:
 	pre-commit run --all-files
+
+export-ts-models:
+	for module in $(model_modules); do \
+		pydantic2ts --module api.models.$$module --output ../frontend/src/models/$$module.ts --json2ts-cmd ../frontend/node_modules/.bin/json2ts; \
+	done
