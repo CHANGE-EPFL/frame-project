@@ -60,6 +60,7 @@ def add_components(
             **component_from_file.model_dump(),
             id=component_id,
         )
+        component.keywords = [k.lower() for k in component.keywords]
         components.append(component)
 
         for field in CommonMetadata.model_fields.keys():
@@ -93,6 +94,7 @@ def add_model_and_components(
         compatible_machine_learning_component_ids=machine_learning_component_ids,
         data=metadata.data,
     )
+    model.keywords = [k.lower() for k in model.keywords]
     models.append(model)
 
 

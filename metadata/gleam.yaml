@@ -9,7 +9,7 @@ hybrid_model:
     GLEAM (Global Land Evaporation Amsterdam Model) is a set of algorithms that separately estimate the different components
     of evapotranspiration. For more information, please consult https://www.gleam.eu/. GLEAM v4 is the newest version of this
     algorithm, combining efforts on hybrid modelling, improved interception and groundwater-sourced evaporation combined,
-    all combined with a Penman equation for estimation of potential evaporation. #magic___^_^___line
+    all combined with a Penman equation for estimation of potential evaporation.
   documentation:
     - https://gleam2.gitlab.io/pygleam/
   identifier: null
