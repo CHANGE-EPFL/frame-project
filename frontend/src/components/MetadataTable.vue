@@ -5,7 +5,6 @@
     row-key="field"
     class="q-mt-md"
     flat
-    bordered
     hide-header
     hide-pagination
     :rows-per-page-options="[0]"
@@ -55,9 +54,7 @@ const columns = [
 
 const props = defineProps({
   data: {
-    type: Array as PropType<
-      Array<{ property: string; value: string | string[] }>
-    >,
+    type: Array as PropType<Array<{ property: string; value: any }>>,
     required: true,
   },
 });

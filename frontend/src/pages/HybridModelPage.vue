@@ -3,8 +3,52 @@
     <div class="container">
       <q-card v-if="hybridModel" flat class="q-mb-xl">
         <UnitFullAbstract unitType="hybrid_model" :unit="hybridModel" />
-        <MetadataTable :data="otherMetadata" />
+
+        <MetadataTable :data="otherMetadata" class="q-mb-lg" />
+
+        <q-expansion-item
+          v-if="hybridModel.latent_variables?.length"
+          icon="refresh"
+          label="Latent variables"
+        >
+          <template
+            v-for="(variable, index) in hybridModel.latent_variables"
+            :key="index"
+          >
+            <DataProperties :data="variable" />
+          </template>
+          <div class="q-mb-lg" />
+        </q-expansion-item>
+
+        <q-expansion-item
+          v-if="hybridModel.data?.inputs?.length"
+          icon="login"
+          label="Input variables"
+        >
+          <template
+            v-for="(variable, index) in hybridModel.data.inputs"
+            :key="index"
+          >
+            <DataProperties :data="variable" />
+          </template>
+          <div class="q-mb-lg" />
+        </q-expansion-item>
+
+        <q-expansion-item
+          v-if="hybridModel.data?.outputs?.length"
+          icon="logout"
+          label="Output variables"
+        >
+          <template
+            v-for="(variable, index) in hybridModel.data.outputs"
+            :key="index"
+          >
+            <DataProperties :data="variable" />
+          </template>
+          <div class="q-mb-lg" />
+        </q-expansion-item>
       </q-card>
+
       <q-card v-else flat>
         <p><q-spinner /> Loading hybrid model data...</p>
       </q-card>
@@ -42,6 +86,7 @@ import type { PhysicsBasedComponentSummary } from 'src/models/physics_based_comp
 import type { MachineLearningComponentSummary } from 'src/models/machine_learning_component';
 import UnitFullAbstract from 'src/components/UnitFullAbstract.vue';
 import MetadataTable from 'src/components/MetadataTable.vue';
+import DataProperties from 'src/components/DataProperties.vue';
 import UnitList from 'src/components/UnitList.vue';
 
 const route = useRoute();
