@@ -2,6 +2,7 @@
 .container {
   max-width: 700px;
   margin: 0 auto;
+  padding: 0 16px;
   font-size: 1rem;
 }
 
@@ -46,7 +47,7 @@ h4,
 h5,
 h6 {
   font-weight: bold;
-  line-height: 1.2;
+  line-height: 1.1em;
   font-size: 1.2rem;
 }
 
@@ -95,6 +96,16 @@ span .q-icon {
   display: flex;
   align-items: center;
   font-size: 0.8em;
+  color: $grey-6;
+}
+
+.metadata-table-property {
+  color: $grey-9;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.metadata-table-value {
   color: $grey-6;
 }
 

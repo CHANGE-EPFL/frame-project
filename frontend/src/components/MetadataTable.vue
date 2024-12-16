@@ -8,7 +8,9 @@
     bordered
     hide-header
     hide-pagination
+    :rows-per-page-options="[0]"
     dense
+    wrap-cells
   >
     <template v-slot:body-cell-value="props">
       <q-td :props="props">
@@ -41,13 +43,13 @@ const columns = [
     name: 'property',
     align: 'left',
     field: 'property',
-    style: 'font-weight: bold',
+    classes: 'metadata-table-property',
   },
   {
     name: 'value',
     align: 'left',
     field: 'value',
-    style: 'color: grey',
+    classes: 'metadata-table-value',
   },
 ];
 

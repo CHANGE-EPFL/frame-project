@@ -2,8 +2,9 @@
   <q-input
     v-model="inputText"
     readonly
-    dense
     outlined
+    rounded
+    dense
     class="pull-command q-pa-none"
   >
     <template v-slot:append>

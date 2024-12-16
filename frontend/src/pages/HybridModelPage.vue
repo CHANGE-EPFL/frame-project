@@ -47,7 +47,7 @@ import UnitList from 'src/components/UnitList.vue';
 const route = useRoute();
 const modelId = route.params.modelId;
 const hybridModel = ref<HybridModel>();
-const otherMetadata = ref<{ property: string; value: string }[]>([]);
+const otherMetadata = ref<{ property: string; value: any }[]>([]);
 const PhysicsBasedComponents = ref<PhysicsBasedComponentSummary[]>([]);
 const MachineLearningComponents = ref<MachineLearningComponentSummary[]>([]);
 
@@ -57,30 +57,12 @@ const getHybridModel = () => {
     .then((response) => {
       hybridModel.value = response.data;
       otherMetadata.value = [
-        {
-          property: 'Documentation',
-          value: hybridModel.value?.documentation,
-        },
-        {
-          property: 'Identifier',
-          value: hybridModel.value?.identifier,
-        },
-        {
-          property: 'URL',
-          value: hybridModel.value?.url,
-        },
-        {
-          property: 'Version',
-          value: hybridModel.value?.version,
-        },
-        {
-          property: 'Host Physics',
-          value: hybridModel.value?.host_physics,
-        },
-        {
-          property: 'ML Process',
-          value: hybridModel.value?.ml_process,
-        },
+        { property: 'Documentation', value: hybridModel.value?.documentation },
+        { property: 'Identifier', value: hybridModel.value?.identifier },
+        { property: 'URL', value: hybridModel.value?.url },
+        { property: 'Version', value: hybridModel.value?.version },
+        { property: 'Host Physics', value: hybridModel.value?.host_physics },
+        { property: 'ML Process', value: hybridModel.value?.ml_process },
       ];
     })
     .catch((error) => {

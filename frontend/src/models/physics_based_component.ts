@@ -113,7 +113,7 @@ export interface PhysicsBasedComponent {
   type?: string | null;
   fixed_parameters_count?: number | null;
   tunable_parameters_count?: number | null;
-  state_varialbles_count?: number | null;
+  state_variables_count?: number | null;
   temporal_coverage?: string | null;
   spatial_coverage?: string | null;
   spatial_resolution?: string | null;
@@ -149,7 +149,7 @@ export interface PhysicsBasedComponentFromFile {
   type?: string | null;
   fixed_parameters_count?: number | null;
   tunable_parameters_count?: number | null;
-  state_varialbles_count?: number | null;
+  state_variables_count?: number | null;
   temporal_coverage?: string | null;
   spatial_coverage?: string | null;
   spatial_resolution?: string | null;

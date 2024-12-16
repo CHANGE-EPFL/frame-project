@@ -52,7 +52,7 @@ const hoveredClass = computed(() => {
 
 <style scoped lang="scss">
 .unit-description {
-  font-size: 0.9em;
+  font-size: 0.95em;
 }
 
 .unit-name-hovered-primary {

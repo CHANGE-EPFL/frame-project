@@ -19,7 +19,7 @@ class PhysicsBasedComponentFromFile(ComponentFromFile):
     type: str | None = None
     fixed_parameters_count: int | None = None
     tunable_parameters_count: int | None = None
-    state_varialbles_count: int | None = None
+    state_variables_count: int | None = None
     temporal_coverage: str | date | None = None
     spatial_coverage: str | None = None
     spatial_resolution: str | None = None
