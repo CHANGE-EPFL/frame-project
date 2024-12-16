@@ -1,6 +1,6 @@
 <template>
   <q-card v-if="units" flat>
-    <q-list>
+    <q-list class="unit-list">
       <template v-for="(unit, index) in units" :key="unit.id">
         <q-item
           clickable

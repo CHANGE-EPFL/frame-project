@@ -1,20 +1,12 @@
 <template>
   <q-page>
     <div class="container">
-      <q-card v-if="hybridModel" flat>
+      <q-card v-if="hybridModel" flat class="q-mb-xl">
         <h1>{{ hybridModel.name }}</h1>
         <div v-if="hybridModel.contributors" class="unit-contributors">{{ hybridModel.contributors.join(', ') }}</div>
         <div class="unit-description q-mt-md">{{ hybridModel.description }}</div>
         <div class="q-mt-md">
-          <q-chip
-            v-for="keyword in hybridModel.keywords"
-            :key="keyword"
-            class="keyword"
-            color="primary"
-            text-color="white"
-            >
-            {{ keyword }}
-          </q-chip>
+          <KeywordList unitType="hybrid_model" :keywords="hybridModel.keywords" />
         </div>
         <div v-if="hybridModel.created || hybridModel.license" class="q-mt-md unit-details">
             <span v-if="hybridModel.created" class="q-mr-sm"><q-icon name="event" class="q-mr-xs" />Created on {{ hybridModel.created }}</span>
@@ -22,7 +14,7 @@
         </div>
         <div class="q-mt-sm">
         </div>
-        <PullCommand :type="'model'" :short_name="hybridModel.short_name" class="q-mt-md q-mb-lg"/>
+        <PullCommand type="model" :short_name="hybridModel.short_name" class="q-mt-lg q-mb-lg"/>
         <q-table
           :rows="tableData"
           :columns="columns"
@@ -37,7 +29,7 @@
       </q-card>
 
       <q-card v-if="PhysicsBasedComponents.length" flat>
-        <h2 class="q-mt-xl q-mb-none">Physics-Based Components</h2>
+        <h2 class="q-mt-lg q-mb-none"><q-icon name="settings" class="q-mr-sm" />Physics-Based Components</h2>
         <UnitList
           unitType="physics_based_component"
           :units="PhysicsBasedComponents"
@@ -45,7 +37,7 @@
       </q-card>
 
       <q-card v-if="MachineLearningComponents.length" flat>
-        <h2 class="q-mt-xl q-mb-none">Machine Learning Components</h2>
+        <h2 class="q-mt-lg q-mb-none"><q-icon name="psychology" class="q-mr-sm" />Machine Learning Components</h2>
         <UnitList
           unitType="machine_learning_component"
           :units="MachineLearningComponents"
@@ -60,6 +52,7 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { api } from 'src/boot/api';
 import type { HybridModel } from 'src/models/hybrid_model';
+import KeywordList from 'src/components/KeywordList.vue';
 import PullCommand from 'src/components/PullCommand.vue';
 import type { PhysicsBasedComponentSummary } from 'src/models/physics_based_component';
 import type { MachineLearningComponentSummary } from 'src/models/machine_learning_component';

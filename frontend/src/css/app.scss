@@ -53,6 +53,18 @@ h3 {
   font-size: 1.5rem;
 }
 
+h2 .q-icon {
+  transform: translateY(-0.08em);
+}
+
+span .q-icon {
+  transform: translateY(-0.1em);
+}
+
+.unit-list .q-focus-helper {
+  display: none;
+}
+
 .unit-contributors {
   font-size: 1em;
   color: $grey-7;

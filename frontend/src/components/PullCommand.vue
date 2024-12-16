@@ -46,7 +46,7 @@ const copyToClipboard = () => {
 
   $q.notify({
     type: 'positive',
-    message: 'Command copied to clipboard!',
+    message: 'Command copied to clipboard',
   });
 };
 </script>
