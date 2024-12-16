@@ -42,7 +42,7 @@ physics_based_components:
       GLEAM (Global Land Evaporation Amsterdam Model) is a set of algorithms that separately estimate the different components
       of evapotranspiration. For more information, please consult https://www.gleam.eu/. GLEAM v4 is the newest version of
       this algorithm, combining efforts on hybrid modelling, improved interception and groundwater-sourced evaporation combined,
-      all combined with a Penman equation for estimation of potential evaporation. #magic___^_^___line
+      all combined with a Penman equation for estimation of potential evaporation.
     documentation:
       - https://gitlab.com/gleam2/pygleam
       - https://doi.org/10.5194/gmd-10-1903-2017

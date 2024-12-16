@@ -98,9 +98,10 @@ def add_model_and_components(
     metadata_filepath = os.path.join(METADATA_DIR_PATH, metadata_filename)
     raw_data = read_yaml(metadata_filepath)
     metadata = MetadataFromFile(**raw_data)
+    metadata.hybrid_model.contributors = format_contributors(metadata.hybrid_model.contributors)
+    metadata.hybrid_model.keywords = format_keywords(metadata.hybrid_model.keywords)
 
     physics_based_component_ids = add_components(metadata, physics_based_components, PhysicsBasedComponent)
-
     machine_learning_component_ids = add_components(metadata, machine_learning_components, MachineLearningComponent)
 
     model_id = len(models)
@@ -113,8 +114,6 @@ def add_model_and_components(
         compatible_machine_learning_component_ids=machine_learning_component_ids,
         data=metadata.data,
     )
-    model.contributors = format_contributors(model.contributors)
-    model.keywords = format_keywords(model.keywords)
     models.append(model)
 
 

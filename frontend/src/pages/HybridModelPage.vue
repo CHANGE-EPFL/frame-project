@@ -1,28 +1,28 @@
 <template>
   <q-page>
     <div class="container">
-      <q-card v-if="model" flat>
-        <h1>{{ model.name }}</h1>
-        <div v-if="model.contributors" class="model-contributors">{{ model.contributors.join(', ') }}</div>
-        <div class="model-description q-mt-md">{{ model.description }}</div>
+      <q-card v-if="hybridModel" flat>
+        <h1>{{ hybridModel.name }}</h1>
+        <div v-if="hybridModel.contributors" class="unit-contributors">{{ hybridModel.contributors.join(', ') }}</div>
+        <div class="unit-description q-mt-md">{{ hybridModel.description }}</div>
         <div class="q-mt-md">
           <q-chip
-            v-for="keyword in model.keywords"
+            v-for="keyword in hybridModel.keywords"
             :key="keyword"
-            class="q-mr-sm keyword"
+            class="keyword"
             color="primary"
             text-color="white"
             >
             {{ keyword }}
           </q-chip>
         </div>
-        <div v-if="model.created || model.license" class="q-mt-md model-details">
-            <span v-if="model.created" class="q-mr-sm"><q-icon name="event" class="q-mr-xs" />Created on {{ model.created }}</span>
-            <span v-if="model.license"><q-icon name="description" class="q-mr-xs" />License: {{ model.license }}</span>
+        <div v-if="hybridModel.created || hybridModel.license" class="q-mt-md unit-details">
+            <span v-if="hybridModel.created" class="q-mr-sm"><q-icon name="event" class="q-mr-xs" />Created on {{ hybridModel.created }}</span>
+            <span v-if="hybridModel.license"><q-icon name="description" class="q-mr-xs" />License: {{ hybridModel.license }}</span>
         </div>
         <div class="q-mt-sm">
         </div>
-        <PullCommand :type="'model'" :short_name="model.short_name" class="q-mt-md q-mb-lg"/>
+        <PullCommand :type="'model'" :short_name="hybridModel.short_name" class="q-mt-md q-mb-lg"/>
         <q-table
           :rows="tableData"
           :columns="columns"
@@ -33,7 +33,23 @@
       </q-card>
       <q-card v-else flat>
         <q-spinner />
-          <p>Loading model data...</p>
+          <p>Loading hybrid model data...</p>
+      </q-card>
+
+      <q-card v-if="PhysicsBasedComponents.length" flat>
+        <h2 class="q-mt-xl q-mb-none">Physics-Based Components</h2>
+        <UnitList
+          unitType="physics_based_component"
+          :units="PhysicsBasedComponents"
+        />
+      </q-card>
+
+      <q-card v-if="MachineLearningComponents.length" flat>
+        <h2 class="q-mt-xl q-mb-none">Machine Learning Components</h2>
+        <UnitList
+          unitType="machine_learning_component"
+          :units="MachineLearningComponents"
+        />
       </q-card>
     </div>
   </q-page>
@@ -45,10 +61,15 @@ import { useRoute } from 'vue-router';
 import { api } from 'src/boot/api';
 import type { HybridModel } from 'src/models/hybrid_model';
 import PullCommand from 'src/components/PullCommand.vue';
+import type { PhysicsBasedComponentSummary } from 'src/models/physics_based_component';
+import type { MachineLearningComponentSummary } from 'src/models/machine_learning_component';
+import UnitList from 'src/components/UnitList.vue';
 
 const route = useRoute();
 const modelId = route.params.model_id; // Get model ID from route params
-const model = ref<HybridModel | null>(null);
+const hybridModel = ref<HybridModel>();
+const PhysicsBasedComponents = ref<PhysicsBasedComponentSummary[]>([]);
+const MachineLearningComponents = ref<MachineLearningComponentSummary[]>([]);
 
 // Info table
 const columns = [
@@ -68,18 +89,18 @@ const columns = [
 
 const tableData = ref<object[]>([]);
 
-const fetchModel = () => {
+const getHybridModel = () => {
   api.get(`/hybrid_models/${modelId}`)
     .then(response => {
-      model.value = response.data;
+      hybridModel.value = response.data;
       tableData.value = [
         {
           property: 'Host Physics',
-          value: model.value?.host_physics
+          value: hybridModel.value?.host_physics
         },
         {
           property: 'ML Process',
-          value: model.value?.ml_process
+          value: hybridModel.value?.ml_process
         },
       ];
     })
@@ -88,7 +109,29 @@ const fetchModel = () => {
     });
 };
 
+const getPhysicsBasedComponents = () => {
+  api.get(`components/model_physics_based/${modelId}`)
+    .then(response => {
+      PhysicsBasedComponents.value = response.data;
+    })
+    .catch(error => {
+      console.error(`Error fetching physics-based components for model with ID ${modelId}:`, error);
+    });
+};
+
+const getMachineLearningComponents = () => {
+  api.get(`components/model_machine_learning/${modelId}`)
+    .then(response => {
+      MachineLearningComponents.value = response.data;
+    })
+    .catch(error => {
+      console.error(`Error fetching machine learning components for model with ID ${modelId}:`, error);
+    });
+};
+
 onMounted(() => {
-  fetchModel();
+  getHybridModel();
+  getPhysicsBasedComponents();
+  getMachineLearningComponents();
 });
 </script>
