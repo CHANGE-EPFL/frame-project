@@ -6,8 +6,21 @@
           unitType="physics_based_component"
           :unit="physicsBasedComponent"
         />
-        <MetadataTable :data="otherMetadata" />
+
+        <MetadataTable :data="otherMetadata" class="q-mb-lg" />
+
+        <q-expansion-item
+          v-if="physicsBasedComponent.testing_resources"
+          icon="computer"
+          label="Testing resources"
+        >
+          <ComputationalResources
+            :data="physicsBasedComponent.testing_resources"
+          />
+          <div class="q-mb-lg" />
+        </q-expansion-item>
       </q-card>
+
       <q-card v-else flat>
         <p><q-spinner /> Loading component data...</p>
       </q-card>
@@ -22,6 +35,7 @@ import { api } from 'src/boot/api';
 import type { PhysicsBasedComponent } from 'src/models/physics_based_component';
 import UnitFullAbstract from 'src/components/UnitFullAbstract.vue';
 import MetadataTable from 'src/components/MetadataTable.vue';
+import ComputationalResources from 'src/components/ComputationalResources.vue';
 
 const route = useRoute();
 const componentId = route.params.componentId;
@@ -89,10 +103,6 @@ const getPhysicsBasedComponent = () => {
         {
           property: 'Related identifiers',
           value: physicsBasedComponent.value?.related_identifiers,
-        },
-        {
-          property: 'Testing resources',
-          value: physicsBasedComponent.value?.testing_resources,
         },
       ];
     })

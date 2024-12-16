@@ -6,8 +6,10 @@
           unitType="machine_learning_component"
           :unit="machineLearningComponent"
         />
-        <MetadataTable :data="otherMetadata" />
+
+        <MetadataTable :data="otherMetadata" class="q-mb-lg" />
       </q-card>
+
       <q-card v-else flat>
         <p><q-spinner /> Loading component data...</p>
       </q-card>

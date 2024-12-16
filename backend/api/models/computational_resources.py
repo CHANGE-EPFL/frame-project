@@ -4,9 +4,9 @@ from pydantic import BaseModel
 class Cpu(BaseModel, extra="forbid"):
     """Central processing unit (CPU) metadata."""
 
+    model: str
     count: int = 1
     manufacturer: str | None = None
-    model: str | None = None
     cores: int | None = None
     threads: int | None = None
     cache: str | None = None
@@ -16,9 +16,9 @@ class Cpu(BaseModel, extra="forbid"):
 class Gpu(BaseModel, extra="forbid"):
     """Graphics processing unit (GPU) metadata."""
 
+    model: str
     count: int = 1
     manufacturer: str | None = None
-    model: str | None = None
     memory: str | None = None
     memory_bandwidth: str | None = None
     clock_speed: str | None = None

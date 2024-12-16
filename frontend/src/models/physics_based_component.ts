@@ -70,9 +70,9 @@ export interface ComputationalResources {
  * Central processing unit (CPU) metadata.
  */
 export interface Cpu {
+  model: string;
   count?: number;
   manufacturer?: string | null;
-  model?: string | null;
   cores?: number | null;
   threads?: number | null;
   cache?: string | null;
@@ -82,9 +82,9 @@ export interface Cpu {
  * Graphics processing unit (GPU) metadata.
  */
 export interface Gpu {
+  model: string;
   count?: number;
   manufacturer?: string | null;
-  model?: string | null;
   memory?: string | null;
   memory_bandwidth?: string | null;
   clock_speed?: string | null;
