@@ -1,0 +1,1443 @@
+{
+    "$defs": {
+        "ComputationalResources": {
+            "additionalProperties": false,
+            "description": "Computational resources need for a hybrid model or component.",
+            "properties": {
+                "cpus": {
+                    "default": [],
+                    "items": {
+                        "$ref": "#/$defs/Cpu"
+                    },
+                    "title": "Cpus",
+                    "type": "array"
+                },
+                "gpus": {
+                    "default": [],
+                    "items": {
+                        "$ref": "#/$defs/Gpu"
+                    },
+                    "title": "Gpus",
+                    "type": "array"
+                },
+                "memory": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Memory"
+                },
+                "storage": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Storage"
+                },
+                "software": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Software"
+                },
+                "operating_system": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Operating System"
+                },
+                "compute_time": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Compute Time"
+                }
+            },
+            "title": "ComputationalResources",
+            "type": "object"
+        },
+        "Cpu": {
+            "additionalProperties": false,
+            "description": "Central processing unit (CPU) metadata.",
+            "properties": {
+                "model": {
+                    "title": "Model",
+                    "type": "string"
+                },
+                "count": {
+                    "default": 1,
+                    "title": "Count",
+                    "type": "integer"
+                },
+                "manufacturer": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Manufacturer"
+                },
+                "cores": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Cores"
+                },
+                "threads": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Threads"
+                },
+                "cache": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Cache"
+                },
+                "clock_speed": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Clock Speed"
+                }
+            },
+            "required": [
+                "model"
+            ],
+            "title": "Cpu",
+            "type": "object"
+        },
+        "Data": {
+            "description": "Data structure for input and output data.",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "encoding_format": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Encoding Format"
+                },
+                "identifier": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Identifier"
+                },
+                "url": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Url"
+                },
+                "quality": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Quality"
+                },
+                "units": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Units"
+                },
+                "precision": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Precision"
+                },
+                "scale": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Scale"
+                },
+                "offset": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Offset"
+                },
+                "description": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Description"
+                },
+                "min_value": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Min Value"
+                },
+                "max_value": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Max Value"
+                },
+                "temporal_coverage": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Temporal Coverage"
+                },
+                "spatial_coverage": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Spatial Coverage"
+                },
+                "spatial_resolution": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Spatial Resolution"
+                },
+                "temporal_resolution": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Temporal Resolution"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "Data",
+            "type": "object"
+        },
+        "DataIO": {
+            "description": "Collection of input and output data for a hybrid model.",
+            "properties": {
+                "inputs": {
+                    "default": [],
+                    "items": {
+                        "$ref": "#/$defs/Data"
+                    },
+                    "title": "Inputs",
+                    "type": "array"
+                },
+                "outputs": {
+                    "default": [],
+                    "items": {
+                        "$ref": "#/$defs/Data"
+                    },
+                    "title": "Outputs",
+                    "type": "array"
+                }
+            },
+            "title": "DataIO",
+            "type": "object"
+        },
+        "Gpu": {
+            "additionalProperties": false,
+            "description": "Graphics processing unit (GPU) metadata.",
+            "properties": {
+                "model": {
+                    "title": "Model",
+                    "type": "string"
+                },
+                "count": {
+                    "default": 1,
+                    "title": "Count",
+                    "type": "integer"
+                },
+                "manufacturer": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Manufacturer"
+                },
+                "memory": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Memory"
+                },
+                "memory_bandwidth": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Memory Bandwidth"
+                },
+                "clock_speed": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Clock Speed"
+                },
+                "cuda_cores": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Cuda Cores"
+                },
+                "tensor_cores": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Tensor Cores"
+                },
+                "rt_cores": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Rt Cores"
+                },
+                "ray_tracing": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Ray Tracing"
+                }
+            },
+            "required": [
+                "model"
+            ],
+            "title": "Gpu",
+            "type": "object"
+        },
+        "HybridModelFromFile": {
+            "additionalProperties": false,
+            "description": "Hybrid model, without assigned id.",
+            "properties": {
+                "description": {
+                    "title": "Description",
+                    "type": "string"
+                },
+                "created": {
+                    "anyOf": [
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Created"
+                },
+                "keywords": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "title": "Keywords",
+                    "type": "array"
+                },
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "contributors": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "title": "Contributors",
+                    "type": "array"
+                },
+                "documentation": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Documentation"
+                },
+                "identifier": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Identifier"
+                },
+                "license": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "License"
+                },
+                "readme": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Readme"
+                },
+                "url": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Url"
+                },
+                "version": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Version"
+                },
+                "ml_process": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Ml Process"
+                },
+                "host_physics": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Host Physics"
+                },
+                "latent_variables": {
+                    "default": [],
+                    "items": {
+                        "$ref": "#/$defs/Data"
+                    },
+                    "title": "Latent Variables",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "description",
+                "keywords",
+                "name",
+                "contributors"
+            ],
+            "title": "HybridModelFromFile",
+            "type": "object"
+        },
+        "MachineLearningComponentFromFile": {
+            "additionalProperties": false,
+            "description": "Machine learning component, without assigned id.",
+            "properties": {
+                "description": {
+                    "title": "Description",
+                    "type": "string"
+                },
+                "created": {
+                    "anyOf": [
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Created"
+                },
+                "keywords": {
+                    "default": [],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Keywords",
+                    "type": "array"
+                },
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "contributors": {
+                    "default": [],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Contributors",
+                    "type": "array"
+                },
+                "documentation": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Documentation"
+                },
+                "identifier": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Identifier"
+                },
+                "license": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "License"
+                },
+                "readme": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Readme"
+                },
+                "url": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Url"
+                },
+                "version": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Version"
+                },
+                "short_name": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Short Name"
+                },
+                "ml_process": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Ml Process"
+                },
+                "neural_networks": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/NeuralNetwork"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Neural Networks"
+                }
+            },
+            "required": [
+                "description",
+                "name"
+            ],
+            "title": "MachineLearningComponentFromFile",
+            "type": "object"
+        },
+        "NeuralNetwork": {
+            "additionalProperties": false,
+            "description": "Neural network metadata.",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "type": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Type"
+                },
+                "layer_count": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Layer Count"
+                },
+                "node_count": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Node Count"
+                },
+                "batch_size": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Batch Size"
+                },
+                "learning_rate": {
+                    "anyOf": [
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Learning Rate"
+                },
+                "predictor_count": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Predictor Count"
+                },
+                "activation_functions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Activation Functions"
+                },
+                "input_scaling": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Input Scaling"
+                },
+                "initialization": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Initialization"
+                },
+                "loss_function": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Loss Function"
+                },
+                "regularization": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Regularization"
+                },
+                "optimization_method": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Optimization Method"
+                },
+                "host_physics_model": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Host Physics Model"
+                },
+                "target_variables": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Target Variables"
+                },
+                "training_requirements": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/TrainingRequirements"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null
+                },
+                "training_resources": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ComputationalResources"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "NeuralNetwork",
+            "type": "object"
+        },
+        "PhysicsBasedComponentFromFile": {
+            "additionalProperties": false,
+            "description": "Physics-based component, without assigned id.",
+            "properties": {
+                "description": {
+                    "title": "Description",
+                    "type": "string"
+                },
+                "created": {
+                    "anyOf": [
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Created"
+                },
+                "keywords": {
+                    "default": [],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Keywords",
+                    "type": "array"
+                },
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "contributors": {
+                    "default": [],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Contributors",
+                    "type": "array"
+                },
+                "documentation": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Documentation"
+                },
+                "identifier": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Identifier"
+                },
+                "license": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "License"
+                },
+                "readme": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Readme"
+                },
+                "url": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Url"
+                },
+                "version": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Version"
+                },
+                "short_name": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Short Name"
+                },
+                "type": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Type"
+                },
+                "fixed_parameters_count": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Fixed Parameters Count"
+                },
+                "tunable_parameters_count": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Tunable Parameters Count"
+                },
+                "state_variables_count": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "State Variables Count"
+                },
+                "temporal_coverage": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Temporal Coverage"
+                },
+                "spatial_coverage": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Spatial Coverage"
+                },
+                "spatial_resolution": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Spatial Resolution"
+                },
+                "temporal_resolution": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Temporal Resolution"
+                },
+                "vertical_discretization": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/VerticalDiscretization"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null
+                },
+                "lateral_flow": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Lateral Flow"
+                },
+                "related_identifiers": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Related Identifiers"
+                },
+                "testing_resources": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ComputationalResources"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null
+                }
+            },
+            "required": [
+                "description",
+                "name"
+            ],
+            "title": "PhysicsBasedComponentFromFile",
+            "type": "object"
+        },
+        "TrainingRequirements": {
+            "additionalProperties": false,
+            "description": "Training requirements for a machine learning component.",
+            "properties": {
+                "gpu": {
+                    "default": false,
+                    "title": "Gpu",
+                    "type": "boolean"
+                },
+                "cpu": {
+                    "default": false,
+                    "title": "Cpu",
+                    "type": "boolean"
+                }
+            },
+            "title": "TrainingRequirements",
+            "type": "object"
+        },
+        "VerticalDiscretization": {
+            "additionalProperties": false,
+            "description": "Vertical discretization of a physics-based component.",
+            "properties": {
+                "soil": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Soil"
+                },
+                "vegetation": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Vegetation"
+                }
+            },
+            "title": "VerticalDiscretization",
+            "type": "object"
+        }
+    },
+    "additionalProperties": false,
+    "description": "Metadata fields for a metadata file.",
+    "properties": {
+        "hybrid_model": {
+            "$ref": "#/$defs/HybridModelFromFile"
+        },
+        "physics_based_components": {
+            "default": [],
+            "items": {
+                "$ref": "#/$defs/PhysicsBasedComponentFromFile"
+            },
+            "title": "Physics Based Components",
+            "type": "array"
+        },
+        "machine_learning_components": {
+            "default": [],
+            "items": {
+                "$ref": "#/$defs/MachineLearningComponentFromFile"
+            },
+            "title": "Machine Learning Components",
+            "type": "array"
+        },
+        "data": {
+            "$ref": "#/$defs/DataIO",
+            "default": {
+                "inputs": [],
+                "outputs": []
+            }
+        }
+    },
+    "required": [
+        "hybrid_model"
+    ],
+    "title": "MetadataFromFile",
+    "type": "object"
+}

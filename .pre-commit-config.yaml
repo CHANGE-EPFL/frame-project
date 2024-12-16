@@ -32,6 +32,14 @@ repos:
       - id: isort
   - repo: local
     hooks:
+      - id: export-json-schema
+        name: export-json-schema
+        language: system
+        files: ^backend/api/models/.*$
+        entry: |
+          bash -c "cd backend && make export-json-schema"
+  - repo: local
+    hooks:
       - id: export-ts-models
         name: export-ts-models
         language: system

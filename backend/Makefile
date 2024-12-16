@@ -19,3 +19,6 @@ export-ts-models:
 	for module in $(model_modules); do \
 		pydantic2ts --module api.models.$$module --output ../frontend/src/models/$$module.ts --json2ts-cmd ../frontend/node_modules/.bin/json2ts; \
 	done
+
+export-json-schema:
+	poetry run python -c 'from api.models.metadata_file import export_json_schema; export_json_schema("../metadata/schema.json")'
