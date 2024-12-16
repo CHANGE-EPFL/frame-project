@@ -26,6 +26,8 @@
         <span v-else-if="isUrl(props.row.value)">
           <a :href="props.row.value" target="_blank">{{ props.row.value }}</a>
         </span>
+        <span v-else-if="props.row.value === true"> Yes </span>
+        <span v-else-if="props.row.value === false"> No </span>
         <span v-else>
           {{ props.row.value }}
         </span>
@@ -67,7 +69,8 @@ function isUrl(value: string): boolean {
 
 const filteredData = computed(() => {
   return props.data.filter((row) => {
-    if (row.value === null || row.value === '') return false;
+    if (row.value === undefined || row.value === null || row.value === '')
+      return false;
     if (Array.isArray(row.value) && row.value.length === 0) return false;
     return true;
   });
