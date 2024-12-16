@@ -1,8 +1,8 @@
 <template>
-  <h4 class="q-mt-md q-mb-none">
+  <h5 class="q-mt-md q-mb-none">
     {{ data.model
     }}<span v-if="data.manufacturer"> ({{ data.manufacturer }})</span>
-  </h4>
+  </h5>
   <MetadataTable :data="properties" />
 </template>
 

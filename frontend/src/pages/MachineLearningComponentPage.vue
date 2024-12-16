@@ -8,6 +8,21 @@
         />
 
         <MetadataTable :data="otherMetadata" class="q-mb-lg" />
+
+        <template v-if="machineLearningComponent.neural_networks?.length">
+          <h2 class="q-mt-lg q-mb-none">
+            <q-icon name="psychology" class="q-mr-sm" /> Neural Networks
+          </h2>
+
+          <template
+            v-for="(
+              neuralNetwork, index
+            ) in machineLearningComponent.neural_networks || []"
+            :key="index"
+          >
+            <NeuralNetwork :data="neuralNetwork" />
+          </template>
+        </template>
       </q-card>
 
       <q-card v-else flat>
@@ -24,6 +39,7 @@ import { api } from 'src/boot/api';
 import type { MachineLearningComponent } from 'src/models/machine_learning_component';
 import UnitFullAbstract from 'src/components/UnitFullAbstract.vue';
 import MetadataTable from 'src/components/MetadataTable.vue';
+import NeuralNetwork from 'src/components/NeuralNetwork.vue';
 
 const route = useRoute();
 const componentId = route.params.componentId;

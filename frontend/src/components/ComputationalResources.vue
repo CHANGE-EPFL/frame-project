@@ -2,14 +2,14 @@
   <MetadataTable :data="properties" />
 
   <template v-if="props.data.cpus.length">
-    <h3 class="q-mt-md q-mb-none">CPUs</h3>
+    <h4 class="q-mt-md q-mb-none">CPUs</h4>
     <template v-for="(cpu, index) in props.data.cpus" :key="index">
       <CpuResource :data="cpu" />
     </template>
   </template>
 
   <template v-if="props.data.gpus.length">
-    <h3 class="q-mt-md q-mb-none">GPUs</h3>
+    <h4 class="q-mt-md q-mb-none">GPUs</h4>
     <template v-for="(gpu, index) in props.data.gpus" :key="index">
       <GpuResource :data="gpu" />
     </template>
