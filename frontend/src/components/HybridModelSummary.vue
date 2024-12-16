@@ -1,7 +1,7 @@
 <template>
-  <h2 :class="['model-name q-mt-sm q-mb-xs', { 'model-name-hovered': hovered }]">{{ model.name }}</h2>
+  <h3 :class="['model-name q-mt-md q-mb-sm', { 'model-name-hovered': hovered }]">{{ model.name }}</h3>
   <div class="model-description">{{ model.description }}</div>
-  <div class="q-mt-md">
+  <div class="q-mt-sm">
     <q-chip
       v-for="keyword in model.keywords"
       :key="keyword"
@@ -12,11 +12,10 @@
       {{ keyword }}
     </q-chip>
   </div>
-  <div v-if="model.created" class="q-mt-sm model-date">
-    <q-icon name="event" class="q-mr-xs" />
-      <span>Created on {{ model.created }}</span>
+  <div v-if="model.created" class="q-mt-sm model-details">
+    <span v-if="model.created"><q-icon name="event" class="q-mr-xs" />Created on {{ model.created }}</span>
   </div>
-  <div class="q-mt-sm">
+  <div class="q-mt-md">
   </div>
 </template>
 
@@ -36,11 +35,9 @@ const props = defineProps({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .model-name {
-  font-size: 1.5rem;
   font-weight: bold;
-  line-height: 1.5;
 }
 
 .model-name-hovered {
@@ -48,17 +45,7 @@ const props = defineProps({
 }
 
 .model-description {
-  font-size: 1rem;
+  font-size: 0.9em;
 }
 
-.keyword {
-  font-size: 0.8rem;
-}
-
-.model-date {
-  display: flex;
-  align-items: center;
-  font-size: 0.8rem;
-  color: grey;
-}
 </style>

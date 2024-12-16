@@ -37,6 +37,24 @@ def generate_short_name(name: str) -> str:
     return re.sub(r"\W", "_", name).lower()
 
 
+def format_contributors(contributors: list[str]) -> list[str]:
+    """Format contributors to title case. If a comma is found, split the string and exchange the first and last name."""
+    formatted_contributors = []
+    for contributor in contributors:
+        if "," in contributor:
+            last_name, first_name = contributor.split(", ")
+            contributor = f"{first_name} {last_name}"
+
+        formatted_contributors.append(contributor.title())
+
+    return formatted_contributors
+
+
+def format_keywords(keywords: list[str]) -> list[str]:
+    """Format keywords to lowercase."""
+    return [keyword.lower() for keyword in keywords]
+
+
 T = TypeVar("T", PhysicsBasedComponent, MachineLearningComponent)
 
 
@@ -60,7 +78,8 @@ def add_components(
             **component_from_file.model_dump(),
             id=component_id,
         )
-        component.keywords = [k.lower() for k in component.keywords]
+        component.contributors = format_contributors(component.contributors)
+        component.keywords = format_keywords(component.keywords)
         components.append(component)
 
         for field in CommonMetadata.model_fields.keys():
@@ -94,7 +113,8 @@ def add_model_and_components(
         compatible_machine_learning_component_ids=machine_learning_component_ids,
         data=metadata.data,
     )
-    model.keywords = [k.lower() for k in model.keywords]
+    model.contributors = format_contributors(model.contributors)
+    model.keywords = format_keywords(model.keywords)
     models.append(model)
 
 

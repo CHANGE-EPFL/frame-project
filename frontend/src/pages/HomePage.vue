@@ -1,6 +1,9 @@
 <template>
   <q-page>
-    <HybridModelList />
+    <div class="container">
+      <h1>Hybrid Models</h1>
+      <HybridModelList />
+    </div>
   </q-page>
 </template>
 

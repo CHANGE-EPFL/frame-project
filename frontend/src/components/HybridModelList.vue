@@ -1,33 +1,31 @@
 <template>
-  <div class="container">
-    <q-card v-if="models" flat>
-      <q-list>
-        <template v-for="(model, index) in models" :key="model.id">
-          <q-item
-            clickable
-            :to="`/hybrid_model/${model.id}`"
-            @mouseenter="hoveredModel = model.id"
-            @mouseleave="hoveredModel = null"
-            class="model-item"
+  <q-card v-if="models" flat>
+    <q-list>
+      <template v-for="(model, index) in models" :key="model.id">
+        <q-item
+          clickable
+          :to="`/hybrid_model/${model.id}`"
+          @mouseenter="hoveredModel = model.id"
+          @mouseleave="hoveredModel = null"
+          class="model-item"
           >
-            <HybridModelSummaryComponent
-            :model="model"
-            :hovered="hoveredModel === model.id"
+          <HybridModelSummaryComponent
+          :model="model"
+          :hovered="hoveredModel === model.id"
           />
-          </q-item>
+        </q-item>
           <q-separator
             v-if="index < models.length - 1"
             spaced
             color="light-grey"
-          />
-        </template>
-      </q-list>
-    </q-card>
-    <q-card v-else flat>
-      <q-spinner />
+            />
+      </template>
+    </q-list>
+  </q-card>
+  <q-card v-else flat>
+    <q-spinner />
       <p>Loading models data...</p>
-    </q-card>
-  </div>
+  </q-card>
 </template>
 
 <script setup lang="ts">
@@ -54,18 +52,9 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-.container {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 16px;
-}
-
+<style scoped lang="scss">
 .model-item {
   flex-direction: column;
-}
-
-.q-focus-helper {
-  display: none !important;
+  padding: 0;
 }
 </style>

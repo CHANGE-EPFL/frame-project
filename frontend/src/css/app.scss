@@ -1,4 +1,10 @@
 // app global css in SCSS form
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
 a {
   text-decoration: none;
   color: black;
@@ -27,6 +33,44 @@ a:hover.epfl {
 .text-hint {
   color: $grey-8;
   font-size: smaller;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  line-height: 1.2;
+  font-size: 1.2rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+.model-contributors {
+  font-size: 1em;
+  color: $grey-7;
+}
+
+.model-description {
+  font-size: 1em;
+}
+
+.keyword {
+  font-size: 0.75em;
+}
+
+.model-details {
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  color: $grey-6;
 }
 
 li + li {
