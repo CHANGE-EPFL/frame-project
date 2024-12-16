@@ -4,7 +4,7 @@
     readonly
     dense
     outlined
-    class="q-pa-none command"
+    class="pull-command q-pa-none"
   >
     <template v-slot:append>
       <q-icon
@@ -52,12 +52,14 @@ const copyToClipboard = () => {
 </script>
 
 <style scoped>
-.command {
+.pull-command {
   font-family: monospace;
+  font-size: 0.9em;
 }
 
 .q-icon {
   margin-left: 8px;
   cursor: pointer;
+  font-size: 0.9em;
 }
 </style>

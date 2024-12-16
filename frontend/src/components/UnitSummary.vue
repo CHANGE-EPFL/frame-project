@@ -19,7 +19,7 @@
 import { PropType } from 'vue';
 import type { HybridModelSummary } from 'src/models/hybrid_model';
 import type { PhysicsBasedComponentSummary } from 'src/models/physics_based_component';
-import type { MachineLearningComponent } from 'src/models/machine_learning_component';
+import type { MachineLearningComponentSummary } from 'src/models/machine_learning_component';
 import KeywordList from 'src/components/KeywordList.vue';
 
 const props = defineProps({
@@ -33,7 +33,7 @@ const props = defineProps({
     type: Object as PropType<
       | HybridModelSummary
       | PhysicsBasedComponentSummary
-      | MachineLearningComponent
+      | MachineLearningComponentSummary
     >,
     required: true,
   },

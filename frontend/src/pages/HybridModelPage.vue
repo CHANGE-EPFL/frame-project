@@ -2,38 +2,7 @@
   <q-page>
     <div class="container">
       <q-card v-if="hybridModel" flat class="q-mb-xl">
-        <h1>{{ hybridModel.name }}</h1>
-        <div v-if="hybridModel.contributors" class="unit-contributors">
-          {{ hybridModel.contributors.join(', ') }}
-        </div>
-        <div class="unit-description q-mt-md">
-          {{ hybridModel.description }}
-        </div>
-        <div class="q-mt-md">
-          <KeywordList
-            unitType="hybrid_model"
-            :keywords="hybridModel.keywords"
-          />
-        </div>
-        <div
-          v-if="hybridModel.created || hybridModel.license"
-          class="q-mt-md unit-details"
-        >
-          <span v-if="hybridModel.created" class="q-mr-sm"
-            ><q-icon name="event" class="q-mr-xs" />Created on
-            {{ hybridModel.created }}</span
-          >
-          <span v-if="hybridModel.license"
-            ><q-icon name="description" class="q-mr-xs" />License:
-            {{ hybridModel.license }}</span
-          >
-        </div>
-        <div class="q-mt-sm"></div>
-        <PullCommand
-          type="model"
-          :short_name="hybridModel.short_name"
-          class="q-mt-lg q-mb-lg"
-        />
+        <UnitFullAbstract unitType="hybrid_model" :unit="hybridModel" />
         <q-table
           :rows="tableData"
           :columns="columns"
@@ -47,8 +16,7 @@
         />
       </q-card>
       <q-card v-else flat>
-        <q-spinner />
-        <p>Loading hybrid model data...</p>
+        <p><q-spinner /> Loading hybrid model data...</p>
       </q-card>
 
       <q-card v-if="PhysicsBasedComponents.length" flat>
@@ -80,14 +48,13 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { api } from 'src/boot/api';
 import type { HybridModel } from 'src/models/hybrid_model';
-import KeywordList from 'src/components/KeywordList.vue';
-import PullCommand from 'src/components/PullCommand.vue';
 import type { PhysicsBasedComponentSummary } from 'src/models/physics_based_component';
 import type { MachineLearningComponentSummary } from 'src/models/machine_learning_component';
+import UnitFullAbstract from 'src/components/UnitFullAbstract.vue';
 import UnitList from 'src/components/UnitList.vue';
 
 const route = useRoute();
-const modelId = route.params.model_id; // Get model ID from route params
+const modelId = route.params.modelId;
 const hybridModel = ref<HybridModel>();
 const PhysicsBasedComponents = ref<PhysicsBasedComponentSummary[]>([]);
 const MachineLearningComponents = ref<MachineLearningComponentSummary[]>([]);

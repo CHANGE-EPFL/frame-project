@@ -24,8 +24,7 @@
     </q-list>
   </q-card>
   <q-card v-else flat>
-    <q-spinner />
-    <p>Loading models data...</p>
+    <p><q-spinner /> Loading models data...</p>
   </q-card>
 </template>
 

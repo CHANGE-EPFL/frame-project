@@ -10,7 +10,7 @@
       @click="toggleLeftDrawer"
     />
     <a href="https://epfl.ch" target="_blank" class="q-mt-sm">
-      <img src="EPFL_logo.png" style="height: 25px" />
+      <img src="/EPFL_logo.png" style="height: 25px" />
     </a>
     <span class="q-ml-md text-h6">{{ $t('app_title') }}</span>
     <q-space />
