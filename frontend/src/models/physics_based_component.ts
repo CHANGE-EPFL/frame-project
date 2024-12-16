@@ -19,6 +19,7 @@ export interface Component {
   documentation?: string[] | null;
   identifier?: string | null;
   license?: string | null;
+  readme?: string | null;
   url?: string | null;
   version?: string | number | null;
 }
@@ -34,6 +35,7 @@ export interface ComponentFromFile {
   documentation?: string[] | null;
   identifier?: string | null;
   license?: string | null;
+  readme?: string | null;
   url?: string | null;
   version?: string | number | null;
   short_name?: string | null;
@@ -105,6 +107,7 @@ export interface PhysicsBasedComponent {
   documentation?: string[] | null;
   identifier?: string | null;
   license?: string | null;
+  readme?: string | null;
   url?: string | null;
   version?: string | number | null;
   type?: string | null;
@@ -139,6 +142,7 @@ export interface PhysicsBasedComponentFromFile {
   documentation?: string[] | null;
   identifier?: string | null;
   license?: string | null;
+  readme?: string | null;
   url?: string | null;
   version?: string | number | null;
   short_name?: string | null;

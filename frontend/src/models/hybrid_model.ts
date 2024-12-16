@@ -23,6 +23,7 @@ export interface CommonMetadata {
   documentation?: string[] | null;
   identifier?: string | null;
   license?: string | null;
+  readme?: string | null;
   url?: string | null;
   version?: string | number | null;
 }
@@ -86,6 +87,7 @@ export interface HybridModel {
   documentation?: string[] | null;
   identifier?: string | null;
   license?: string | null;
+  readme?: string | null;
   url?: string | null;
   version?: string | number | null;
   ml_process?: string | null;
@@ -113,6 +115,7 @@ export interface HybridModelFromFile {
   documentation?: string[] | null;
   identifier?: string | null;
   license?: string | null;
+  readme?: string | null;
   url?: string | null;
   version?: string | number | null;
   ml_process?: string | null;

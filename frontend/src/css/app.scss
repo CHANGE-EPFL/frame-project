@@ -5,9 +5,13 @@
   font-size: 1rem;
 }
 
-a {
+.q-toolbar a {
   text-decoration: none;
   color: black;
+}
+
+a {
+  color: $accent;
 }
 
 a.q-markdown--link,
@@ -63,7 +67,7 @@ h2 .q-icon {
 }
 
 span .q-icon {
-  transform: translateY(-0.1em);
+  transform: translateY(-0.09em);
 }
 
 .unit-list .q-focus-helper {

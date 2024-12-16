@@ -42,6 +42,8 @@ class CommonMetadata(CommonMetadataSummary):
     #: DOI
     identifier: str | None = None
     license: str | None = None
+    #: Markdown readme URL
+    readme: str | None = None
     #: Repository URL
     url: str | None = None
     version: str | int | float | None = None
@@ -56,6 +58,8 @@ class CommonMetadataIncomplete(CommonMetadataSummaryIncomplete):
     #: DOI
     identifier: str | None = None
     license: str | None = None
+    #: Markdown readme URL
+    readme: str | None = None
     #: Repository URL
     url: str | None = None
     version: str | int | float | None = None

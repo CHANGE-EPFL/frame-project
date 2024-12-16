@@ -19,6 +19,7 @@ export interface Component {
   documentation?: string[] | null;
   identifier?: string | null;
   license?: string | null;
+  readme?: string | null;
   url?: string | null;
   version?: string | number | null;
 }
@@ -34,6 +35,7 @@ export interface ComponentFromFile {
   documentation?: string[] | null;
   identifier?: string | null;
   license?: string | null;
+  readme?: string | null;
   url?: string | null;
   version?: string | number | null;
   short_name?: string | null;
@@ -105,6 +107,7 @@ export interface MachineLearningComponent {
   documentation?: string[] | null;
   identifier?: string | null;
   license?: string | null;
+  readme?: string | null;
   url?: string | null;
   version?: string | number | null;
   ml_process?: string | null;
@@ -151,6 +154,7 @@ export interface MachineLearningComponentFromFile {
   documentation?: string[] | null;
   identifier?: string | null;
   license?: string | null;
+  readme?: string | null;
   url?: string | null;
   version?: string | number | null;
   short_name?: string | null;

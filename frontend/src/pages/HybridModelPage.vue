@@ -3,17 +3,7 @@
     <div class="container">
       <q-card v-if="hybridModel" flat class="q-mb-xl">
         <UnitFullAbstract unitType="hybrid_model" :unit="hybridModel" />
-        <q-table
-          :rows="tableData"
-          :columns="columns"
-          row-key="field"
-          class="q-mt-md"
-          flat
-          bordered
-          hide-header
-          hide-pagination
-          dense
-        />
+        <MetadataTable :data="otherMetadata" />
       </q-card>
       <q-card v-else flat>
         <p><q-spinner /> Loading hybrid model data...</p>
@@ -51,38 +41,38 @@ import type { HybridModel } from 'src/models/hybrid_model';
 import type { PhysicsBasedComponentSummary } from 'src/models/physics_based_component';
 import type { MachineLearningComponentSummary } from 'src/models/machine_learning_component';
 import UnitFullAbstract from 'src/components/UnitFullAbstract.vue';
+import MetadataTable from 'src/components/MetadataTable.vue';
 import UnitList from 'src/components/UnitList.vue';
 
 const route = useRoute();
 const modelId = route.params.modelId;
 const hybridModel = ref<HybridModel>();
+const otherMetadata = ref<{ property: string; value: string }[]>([]);
 const PhysicsBasedComponents = ref<PhysicsBasedComponentSummary[]>([]);
 const MachineLearningComponents = ref<MachineLearningComponentSummary[]>([]);
-
-// Info table
-const columns = [
-  {
-    name: 'property',
-    align: 'left',
-    field: (row) => row.property,
-    style: 'font-weight: bold',
-  },
-  {
-    name: 'value',
-    align: 'left',
-    field: (row) => row.value,
-    style: 'color: grey',
-  },
-];
-
-const tableData = ref<object[]>([]);
 
 const getHybridModel = () => {
   api
     .get(`/hybrid_models/${modelId}`)
     .then((response) => {
       hybridModel.value = response.data;
-      tableData.value = [
+      otherMetadata.value = [
+        {
+          property: 'Documentation',
+          value: hybridModel.value?.documentation,
+        },
+        {
+          property: 'Identifier',
+          value: hybridModel.value?.identifier,
+        },
+        {
+          property: 'URL',
+          value: hybridModel.value?.url,
+        },
+        {
+          property: 'Version',
+          value: hybridModel.value?.version,
+        },
         {
           property: 'Host Physics',
           value: hybridModel.value?.host_physics,
