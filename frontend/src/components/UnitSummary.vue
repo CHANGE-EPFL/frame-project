@@ -1,5 +1,5 @@
 <template>
-  <h3 :class="['unit-name q-mt-md q-mb-sm', { 'unit-name-hovered': hovered }]">{{ unit.name }}</h3>
+  <h3 :class="['unit-name q-mt-md q-mb-sm', { [hoveredClass]: hovered }]">{{ unit.name }}</h3>
   <div class="unit-description">{{ unit.description }}</div>
   <div class="q-mt-sm">
     <KeywordList :unitType="unitType" :keywords="unit.keywords" />
@@ -32,14 +32,22 @@ const props = defineProps({
     default: false
   }
 });
+
+const hoveredClass = computed(() => {
+  return props.unitType === 'hybrid_model' ? 'unit-name-hovered-primary' : 'unit-name-hovered-secondary';
+});
 </script>
 
 <style scoped lang="scss">
-.unit-name-hovered {
-  text-decoration: underline;
-}
-
 .unit-description {
   font-size: 0.9em;
+}
+
+.unit-name-hovered-primary {
+  color: $primary;
+}
+
+.unit-name-hovered-secondary {
+  color: $secondary;
 }
 </style>
