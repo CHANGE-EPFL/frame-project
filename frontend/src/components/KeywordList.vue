@@ -5,7 +5,7 @@
     class="keyword"
     :color="unitType === 'hybrid_model' ? 'primary' : 'secondary'"
     text-color="white"
-    >
+  >
     {{ keyword }}
   </q-chip>
 </template>
@@ -15,12 +15,14 @@ import { PropType } from 'vue';
 
 const props = defineProps({
   unitType: {
-    type: String as PropType<'hybrid_model' | 'physics_based_component' | 'machine_learning_component'>,
-    required: true
+    type: String as PropType<
+      'hybrid_model' | 'physics_based_component' | 'machine_learning_component'
+    >,
+    required: true,
   },
   keywords: {
     type: Array as PropType<string[]>,
-    required: true
+    required: true,
   },
 });
 </script>

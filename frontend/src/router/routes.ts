@@ -8,8 +8,8 @@ const routes: RouteRecordRaw[] = [
       { path: '', component: () => import('src/pages/HomePage.vue') },
       {
         path: '/hybrid_model/:model_id',
-        component: () => import('pages/HybridModelPage.vue')
-      }
+        component: () => import('pages/HybridModelPage.vue'),
+      },
     ],
   },
 

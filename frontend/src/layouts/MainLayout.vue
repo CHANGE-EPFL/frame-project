@@ -8,11 +8,7 @@
       </q-tabs>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      overlay
-      bordered
-    >
+    <q-drawer v-model="leftDrawerOpen" overlay bordered>
       <layers-drawer />
       <div class="absolute" style="top: 10px; right: 10px">
         <q-btn dense round unelevated icon="close" @click="toggleLeftDrawer" />

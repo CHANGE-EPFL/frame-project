@@ -8,24 +8,24 @@
           @mouseenter="hoveredUnit = unit.id"
           @mouseleave="hoveredUnit = null"
           class="unit-item"
-          >
+        >
           <UnitSummary
-          :unitType="unitType"
-          :unit="unit"
-          :hovered="hoveredUnit === unit.id"
+            :unitType="unitType"
+            :unit="unit"
+            :hovered="hoveredUnit === unit.id"
           />
         </q-item>
-          <q-separator
-            v-if="index < units.length - 1"
-            spaced
-            color="light-grey"
-            />
+        <q-separator
+          v-if="index < units.length - 1"
+          spaced
+          color="light-grey"
+        />
       </template>
     </q-list>
   </q-card>
   <q-card v-else flat>
     <q-spinner />
-      <p>Loading models data...</p>
+    <p>Loading models data...</p>
   </q-card>
 </template>
 
@@ -40,15 +40,20 @@ const hoveredUnit = ref<number | null>(null);
 
 const props = defineProps({
   unitType: {
-    type: String as PropType<'hybrid_model' | 'physics_based_component' | 'machine_learning_component'>,
-    required: true
+    type: String as PropType<
+      'hybrid_model' | 'physics_based_component' | 'machine_learning_component'
+    >,
+    required: true,
   },
   units: {
-    type: Object as PropType<HybridModelSummary | PhysicsBasedComponentSummary | MachineLearningComponent>,
-    required: true
+    type: Object as PropType<
+      | HybridModelSummary
+      | PhysicsBasedComponentSummary
+      | MachineLearningComponent
+    >,
+    required: true,
   },
 });
-
 </script>
 
 <style scoped lang="scss">

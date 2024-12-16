@@ -30,7 +30,10 @@ export function notifyError(error) {
     console.error(error);
     message = error.message;
     if (error.response?.data && error.response.data?.status) {
-      message = t(`error.${error.response?.data.status}`, error.response?.data.arguments);
+      message = t(
+        `error.${error.response?.data.status}`,
+        error.response?.data.arguments,
+      );
     }
   }
   Notify.create({
