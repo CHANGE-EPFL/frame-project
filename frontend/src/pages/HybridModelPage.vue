@@ -3,6 +3,7 @@
     <div class="container">
       <q-card v-if="model" flat>
         <HybridModelSummaryComponent :model="model" />
+        <PullCommand :type="'model'" :short_name="model.short_name" class="q-mt-md q-mb-md"/>
       </q-card>
       <q-card v-else flat>
         <q-spinner />
@@ -18,6 +19,7 @@ import { useRoute } from 'vue-router';
 import { api } from 'src/boot/api';
 import type { HybridModelSummary as HybridModel } from 'src/models/hybrid_model';
 import HybridModelSummaryComponent from 'src/components/HybridModelSummary.vue';
+import PullCommand from 'src/components/PullCommand.vue';
 
 const route = useRoute();
 const modelId = route.params.model_id; // Get model ID from route params
