@@ -2,6 +2,10 @@
   <q-layout view="hHh lpR fFf">
     <q-header bordered class="bg-white text-grey-10">
       <app-toolbar @toggle="toggleLeftDrawer" />
+
+      <q-tabs align="left">
+        <q-route-tab to="/" label="Models Library" exact />
+      </q-tabs>
     </q-header>
 
     <q-drawer
