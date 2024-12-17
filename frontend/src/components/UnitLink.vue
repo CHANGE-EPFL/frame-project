@@ -1,7 +1,7 @@
 <template>
   <span>
     <q-icon :name="iconName" class="q-mr-xs" />
-    <a :href="`${unitType}/${unit.id}`" :class="linkClass">{{ unit.name }}</a>
+    <a :href="`/${unitType}/${unit.id}`" :class="linkClass">{{ unit.name }}</a>
   </span>
 </template>
 
