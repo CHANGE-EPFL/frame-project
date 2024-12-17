@@ -1,9 +1,8 @@
-# EPFL ENAC IT4R webmap
+# Quasar webapp
 
-A web application template that displays data on a map in a mobile-fiendly way, based on:
+A web application based on:
 
 - [quasar.dev](https://quasar.dev/)
-- [maplibre.org](https://maplibre.org/)
 
 ### Install the dependencies
 

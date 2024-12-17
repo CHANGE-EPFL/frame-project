@@ -1618,7 +1618,7 @@ yaml = ["pyyaml (>=6.0.1)"]
 name = "pydantic-to-typescript"
 version = "2.0.0"
 description = "Convert pydantic models to typescript interfaces"
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "pydantic_to_typescript-2.0.0-py3-none-any.whl", hash = "sha256:5bc5e1a940c1a39e4e3a6124bd3bda1b0fc6df85c673a4781b94a1f4150cae15"},
@@ -2454,10 +2454,10 @@ multidict = ">=4.0"
 propcache = ">=0.2.0"
 
 [extras]
-dev = ["pre-commit", "pytest", "pytest-asyncio"]
+dev = ["pre-commit", "pydantic-to-typescript", "pytest", "pytest-asyncio"]
 test = ["pytest", "pytest-asyncio"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "2dcbf45569b10c09f258aa4d5738d27c3e057ef01389e84e46ddbf8727d57b7d"
+content-hash = "22fc33333f609fc4d9e904ad6cb917485b2acc27e995aad26a2ff1f6f3152962"

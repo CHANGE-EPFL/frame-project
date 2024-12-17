@@ -3,8 +3,6 @@ model_modules=hybrid_model machine_learning_component physics_based_component
 
 install:
 	poetry install
-	pip install pre-commit
-	pre-commit install -t pre-commit -t commit-msg
 
 run:
 	poetry run dotenv -f "$(env_path)" run uvicorn api.main:app --reload
