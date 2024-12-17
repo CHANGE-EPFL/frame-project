@@ -25,7 +25,7 @@
         </q-expansion-item>
       </q-card>
 
-      <q-card v-else flat>
+      <q-card v-else flat class="q-mt-md">
         <p><q-spinner /> Loading component data...</p>
       </q-card>
     </div>

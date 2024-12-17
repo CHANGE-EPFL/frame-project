@@ -23,7 +23,7 @@
       </template>
     </q-list>
   </q-card>
-  <q-card v-else flat>
+  <q-card v-else flat class="q-mt-md">
     <p><q-spinner /> Loading models data...</p>
   </q-card>
 </template>

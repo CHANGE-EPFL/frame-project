@@ -49,12 +49,12 @@
         </q-expansion-item>
       </q-card>
 
-      <q-card v-else flat>
+      <q-card v-else flat class="q-mt-md">
         <p><q-spinner /> Loading hybrid model data...</p>
       </q-card>
 
       <q-card v-if="PhysicsBasedComponents.length" flat>
-        <h2 class="q-mt-lg q-mb-none">
+        <h2 class="q-mt-lg q-mb-sm">
           <q-icon name="settings" class="q-mr-sm" />Physics-Based Components
         </h2>
         <UnitList
@@ -64,7 +64,7 @@
       </q-card>
 
       <q-card v-if="MachineLearningComponents.length" flat>
-        <h2 class="q-mt-lg q-mb-none">
+        <h2 class="q-mt-lg q-mb-sm">
           <q-icon name="psychology" class="q-mr-sm" />Machine Learning
           Components
         </h2>

@@ -1,5 +1,5 @@
 <template>
-  <h3 :class="['unit-name q-mt-md q-mb-sm', { [hoveredClass]: hovered }]">
+  <h3 :class="['unit-name q-mt-lg q-mb-sm', { [hoveredClass]: hovered }]">
     {{ unit.name }}
   </h3>
   <div class="unit-description">{{ unit.description }}</div>
@@ -12,7 +12,7 @@
       {{ unit.created }}</span
     >
   </div>
-  <div class="q-mt-md"></div>
+  <div class="q-mt-lg"></div>
 </template>
 
 <script setup lang="ts">
@@ -53,6 +53,7 @@ const hoveredClass = computed(() => {
 <style scoped lang="scss">
 .unit-description {
   font-size: 0.95em;
+  color: $grey-9;
 }
 
 .unit-name-hovered-primary {
