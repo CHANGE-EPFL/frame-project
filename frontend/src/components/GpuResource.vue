@@ -1,9 +1,11 @@
 <template>
-  <h5 class="q-mt-md q-mb-none">
-    {{ data.model
-    }}<span v-if="data.manufacturer"> ({{ data.manufacturer }})</span>
-  </h5>
-  <MetadataTable :data="properties" />
+  <div>
+    <h5 class="q-mt-md q-mb-none">
+      {{ data.model
+      }}<span v-if="data.manufacturer"> ({{ data.manufacturer }})</span>
+    </h5>
+    <MetadataTable :data="properties" />
+  </div>
 </template>
 
 <script setup lang="ts">

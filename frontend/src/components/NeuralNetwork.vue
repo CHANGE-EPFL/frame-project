@@ -1,16 +1,18 @@
 <template>
-  <h3 class="q-mb-md">{{ props.data.name }}</h3>
+  <div>
+    <h3 class="q-mb-md">{{ props.data.name }}</h3>
 
-  <MetadataTable :data="properties" class="q-mb-lg" />
+    <MetadataTable :data="properties" class="q-mb-lg" />
 
-  <q-expansion-item
-    v-if="data.training_resources"
-    icon="train"
-    label="Training resources"
-  >
-    <ComputationalResources :data="data.training_resources" />
-    <div class="q-mb-lg" />
-  </q-expansion-item>
+    <q-expansion-item
+      v-if="data.training_resources"
+      icon="train"
+      label="Training resources"
+    >
+      <ComputationalResources :data="data.training_resources" />
+      <div class="q-mb-lg" />
+    </q-expansion-item>
+  </div>
 </template>
 
 <script setup lang="ts">

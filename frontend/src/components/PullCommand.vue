@@ -1,20 +1,22 @@
 <template>
-  <q-input
-    v-model="inputText"
-    readonly
-    outlined
-    rounded
-    dense
-    class="pull-command q-pa-none"
-  >
-    <template v-slot:append>
-      <q-icon
-        name="content_copy"
-        @click="copyToClipboard"
-        class="cursor-pointer"
-      />
-    </template>
-  </q-input>
+  <div>
+    <q-input
+      v-model="inputText"
+      readonly
+      outlined
+      rounded
+      dense
+      class="pull-command q-pa-none"
+    >
+      <template v-slot:append>
+        <q-icon
+          name="content_copy"
+          @click="copyToClipboard"
+          class="cursor-pointer"
+        />
+      </template>
+    </q-input>
+  </div>
 </template>
 
 <script setup lang="ts">

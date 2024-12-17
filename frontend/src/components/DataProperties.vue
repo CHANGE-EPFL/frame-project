@@ -1,6 +1,8 @@
 <template>
-  <h4 class="q-mt-md q-mb-none">{{ data.name }}</h4>
-  <MetadataTable :data="properties" />
+  <div>
+    <h4 class="q-mt-md q-mb-none">{{ data.name }}</h4>
+    <MetadataTable :data="properties" />
+  </div>
 </template>
 
 <script setup lang="ts">

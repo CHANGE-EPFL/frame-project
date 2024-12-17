@@ -1,19 +1,21 @@
 <template>
-  <MetadataTable :data="properties" />
+  <div>
+    <MetadataTable :data="properties" />
 
-  <template v-if="props.data.cpus.length">
-    <h4 class="q-mt-md q-mb-none">CPUs</h4>
-    <template v-for="(cpu, index) in props.data.cpus" :key="index">
-      <CpuResource :data="cpu" />
+    <template v-if="props.data.cpus.length">
+      <h4 class="q-mt-md q-mb-none">CPUs</h4>
+      <template v-for="(cpu, index) in props.data.cpus" :key="index">
+        <CpuResource :data="cpu" />
+      </template>
     </template>
-  </template>
 
-  <template v-if="props.data.gpus.length">
-    <h4 class="q-mt-md q-mb-none">GPUs</h4>
-    <template v-for="(gpu, index) in props.data.gpus" :key="index">
-      <GpuResource :data="gpu" />
+    <template v-if="props.data.gpus.length">
+      <h4 class="q-mt-md q-mb-none">GPUs</h4>
+      <template v-for="(gpu, index) in props.data.gpus" :key="index">
+        <GpuResource :data="gpu" />
+      </template>
     </template>
-  </template>
+  </div>
 </template>
 
 <script setup lang="ts">

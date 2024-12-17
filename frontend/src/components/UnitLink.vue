@@ -1,6 +1,8 @@
 <template>
-  <q-icon :name="iconName" class="q-mr-xs" />
-  <a :href="`${unitType}/${unit.id}`" :class="linkClass">{{ unit.name }}</a>
+  <span>
+    <q-icon :name="iconName" class="q-mr-xs" />
+    <a :href="`${unitType}/${unit.id}`" :class="linkClass">{{ unit.name }}</a>
+  </span>
 </template>
 
 <script setup lang="ts">
