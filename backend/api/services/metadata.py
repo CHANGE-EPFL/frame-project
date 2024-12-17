@@ -202,6 +202,36 @@ async def get_hybrid_model_short_names() -> list[str]:
 
 
 @load_metadata
+async def get_physics_based_component_models(component_id: int) -> list[HybridModelSummary]:
+    try:
+        component = physics_based_components[component_id]
+
+    except IndexError:
+        raise HTTPException(status_code=404, detail="PhysicsBasedComponent not found.")
+
+    return [
+        model_summaries[model_id]
+        for model_id in range(len(models))
+        if component.id in models[model_id].compatible_physical_based_component_ids
+    ]
+
+
+@load_metadata
+async def get_machine_learning_component_models(component_id: int) -> list[HybridModelSummary]:
+    try:
+        component = machine_learning_components[component_id]
+
+    except IndexError:
+        raise HTTPException(status_code=404, detail="MachineLearningComponent not found.")
+
+    return [
+        model_summaries[model_id]
+        for model_id in range(len(models))
+        if component.id in models[model_id].compatible_machine_learning_component_ids
+    ]
+
+
+@load_metadata
 async def get_model_physics_based_components(model_id: int) -> list[PhysicsBasedComponentSummary]:
     try:
         model = models[model_id]

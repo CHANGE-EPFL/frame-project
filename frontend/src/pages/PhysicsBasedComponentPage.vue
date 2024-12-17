@@ -7,6 +7,10 @@
           :unit="physicsBasedComponent"
         />
 
+        <template v-for="(unit, index) in hybridModels" :key="index">
+          <UnitLink unitType="hybrid_model" :unit="unit" />
+        </template>
+
         <MetadataTable :data="otherMetadata" class="q-mb-lg" />
 
         <q-expansion-item
@@ -34,12 +38,15 @@ import { useRoute } from 'vue-router';
 import { api } from 'src/boot/api';
 import type { PhysicsBasedComponent } from 'src/models/physics_based_component';
 import UnitFullAbstract from 'src/components/UnitFullAbstract.vue';
+import type { HybridModelSummary } from 'src/models/hybrid_model';
+import UnitLink from 'src/components/UnitLink.vue';
 import MetadataTable from 'src/components/MetadataTable.vue';
 import ComputationalResources from 'src/components/ComputationalResources.vue';
 
 const route = useRoute();
 const componentId = route.params.componentId;
 const physicsBasedComponent = ref<PhysicsBasedComponent>();
+const hybridModels = ref<HybridModelSummary[]>([]);
 const otherMetadata = ref<{ property: string; value: any }[]>([]);
 
 const getPhysicsBasedComponent = () => {
@@ -111,7 +118,22 @@ const getPhysicsBasedComponent = () => {
     });
 };
 
+const getHybridModels = () => {
+  api
+    .get(`/hybrid_models/physics_based/${componentId}`)
+    .then((response) => {
+      hybridModels.value = response.data;
+    })
+    .catch((error) => {
+      console.error(
+        `Error fetching hybrid models for component with ID ${componentId}:`,
+        error,
+      );
+    });
+};
+
 onMounted(() => {
   getPhysicsBasedComponent();
+  getHybridModels();
 });
 </script>

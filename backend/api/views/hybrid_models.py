@@ -22,3 +22,15 @@ async def get_hybrid_model(model_id: int) -> HybridModel:
 async def get_hybrid_model_short_names() -> list[str]:
     """Get a list of hybrid model short names."""
     return await metadata.get_hybrid_model_short_names()
+
+
+@router.get("/physics_based/{component_id}")
+async def get_physics_based_component_models(component_id: int) -> list[HybridModelSummary]:
+    """Get a summarized list of all hybrid models for a given physics based component."""
+    return await metadata.get_physics_based_component_models(component_id)
+
+
+@router.get("/machine_learning/{component_id}")
+async def get_machine_learning_component_models(component_id: int) -> list[HybridModelSummary]:
+    """Get a summarized list of all hybrid models for a given machine learning component."""
+    return await metadata.get_machine_learning_component_models(component_id)
