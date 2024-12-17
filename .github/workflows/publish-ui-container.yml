@@ -11,7 +11,7 @@ on:
       - v*
 
 env:
-  IMAGE_NAME: frame-ui
+  IMAGE_NAME: frontend
 
 jobs:
   # Push image to GitHub Packages.
