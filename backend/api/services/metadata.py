@@ -16,7 +16,7 @@ from ..models.machine_learning_component import MachineLearningComponent, Machin
 from ..models.metadata_file import MetadataFromFile
 from ..models.physics_based_component import PhysicsBasedComponent, PhysicsBasedComponentSummary
 
-METADATA_DIR_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "..", "metadata")
+METADATA_DIR_PATH = os.path.join(os.path.dirname(__file__), "..", "metadata_files")
 METADATA_TEMPLATE_FILENAME = "template.yaml"
 
 

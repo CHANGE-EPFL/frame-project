@@ -21,4 +21,4 @@ export-ts-models:
 	done
 
 export-json-schema:
-	poetry run python -c 'from api.models.metadata_file import export_json_schema; export_json_schema("../metadata/schema.json")'
+	poetry run python -c 'from api.models.metadata_file import export_json_schema; export_json_schema("api/metadata_files/schema.json")'
