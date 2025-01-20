@@ -1,5 +1,5 @@
 FROM python:3.11.7-bullseye
-ENV POETRY_VERSION=1.7.1
+ENV POETRY_VERSION=1.8.2
 RUN pip install "poetry==$POETRY_VERSION"
 ENV PYTHONPATH="$PYTHONPATH:/app"
 
@@ -11,6 +11,7 @@ RUN poetry config virtualenvs.create false
 RUN apt-get update && apt-get install -y g++ libpq-dev libgl1 gdal-bin libgdal-dev
 RUN poetry install --no-interaction --no-root
 
+COPY start.sh /app/
 COPY api /app/api
 
 ENTRYPOINT sh start.sh
