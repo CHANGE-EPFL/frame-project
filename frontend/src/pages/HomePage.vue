@@ -17,7 +17,7 @@ const hybridModels = ref<HybridModelSummary[]>([]);
 
 const getHybridModels = () => {
   api
-    .get('/hybrid_models')
+    .get('/hybrid_models/')
     .then((response) => {
       hybridModels.value = response.data;
     })
