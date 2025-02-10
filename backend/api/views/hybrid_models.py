@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 
 from ..models.hybrid_model import HybridModel, HybridModelSummary
 from ..services import metadata
@@ -7,8 +7,11 @@ router = APIRouter()
 
 
 @router.get("/")
-async def get_hybrid_models() -> list[HybridModelSummary]:
-    """Get a summarized list of all hybrid models."""
+async def get_hybrid_models(query: str | None = Query(None)) -> list[HybridModelSummary]:
+    """Get a summarized list of all hybrid models, optionally filtered by a query."""
+    if query:
+        return await metadata.get_filtered_hybrid_models(query)
+
     return await metadata.get_hybrid_models()
 
 
