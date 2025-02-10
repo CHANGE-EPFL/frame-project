@@ -40,6 +40,12 @@ export interface ComponentFromFile {
   id: string;
 }
 /**
+ * Reference to an existing component of a hybrid model.
+ */
+export interface ComponentReference {
+  id: string;
+}
+/**
  * Essential metadata fields for hybrid model components.
  */
 export interface ComponentSummary {
@@ -128,7 +134,7 @@ export interface VerticalDiscretization {
   vegetation?: string | null;
 }
 /**
- * Physics-based component, without assigned id.
+ * Physics-based component.
  */
 export interface PhysicsBasedComponentFromFile {
   description: string;
@@ -155,6 +161,12 @@ export interface PhysicsBasedComponentFromFile {
   lateral_flow?: boolean | null;
   related_identifiers?: string[] | null;
   testing_resources?: ComputationalResources | null;
+}
+/**
+ * Reference to an existing physics-based component.
+ */
+export interface PhysicsBasedComponentReference {
+  id: string;
 }
 /**
  * Essential metadata fields for physics-based components.

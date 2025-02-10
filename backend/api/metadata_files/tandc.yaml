@@ -36,7 +36,8 @@ hybrid_model:
   latent_variables: []
 
 physics_based_components:
-  - description: The physics-based component of T&C includes three main modules, soil biochemistry, vegetation, and hydrology.
+  - description: "The physics-based component of T&C, an ecohydrological model simulating hydrological and carbon cycles.
+      The component includes three main modules: soil biochemistry, vegetation, and hydrology."
     id: tandc
     name: Tethys-Chloris (T&C)
     url: https://github.com/simonefatichi/TeC_Source_Code
