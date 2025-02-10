@@ -29,7 +29,9 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <transition name="fade" mode="out-in" appear>
+        <router-view />
+      </transition>
     </q-page-container>
   </q-layout>
 </template>
