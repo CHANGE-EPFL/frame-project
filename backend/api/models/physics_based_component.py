@@ -2,7 +2,7 @@ from datetime import date
 
 from pydantic import BaseModel
 
-from .component import Component, ComponentFromFile, ComponentSummary
+from .component import Component, ComponentFromFile, ComponentReference, ComponentSummary
 from .computational_resources import ComputationalResources
 
 
@@ -14,7 +14,7 @@ class VerticalDiscretization(BaseModel, extra="forbid"):
 
 
 class PhysicsBasedComponentFromFile(ComponentFromFile):
-    """Physics-based component, without assigned id."""
+    """Physics-based component."""
 
     type: str | None = None
     fixed_parameters_count: int | None = None
@@ -36,3 +36,7 @@ class PhysicsBasedComponentSummary(ComponentSummary):
 
 class PhysicsBasedComponent(Component, PhysicsBasedComponentFromFile, PhysicsBasedComponentSummary):
     """Physics-based component."""
+
+
+class PhysicsBasedComponentReference(ComponentReference):
+    """Reference to an existing physics-based component."""

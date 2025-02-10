@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from .component import Component, ComponentFromFile, ComponentSummary
+from .component import Component, ComponentFromFile, ComponentReference, ComponentSummary
 from .computational_resources import ComputationalResources
 
 
@@ -34,7 +34,7 @@ class NeuralNetwork(BaseModel, extra="forbid"):
 
 
 class MachineLearningComponentFromFile(ComponentFromFile):
-    """Machine learning component, without assigned id."""
+    """Machine learning component."""
 
     ml_process: str | None = None
     neural_networks: list[NeuralNetwork] | None = None
@@ -46,3 +46,7 @@ class MachineLearningComponentSummary(ComponentSummary):
 
 class MachineLearningComponent(Component, MachineLearningComponentFromFile, MachineLearningComponentSummary):
     """Machine learning component."""
+
+
+class MachineLearningComponentReference(ComponentReference):
+    """Reference to an existing machine learning component."""

@@ -40,6 +40,12 @@ export interface ComponentFromFile {
   id: string;
 }
 /**
+ * Reference to an existing component of a hybrid model.
+ */
+export interface ComponentReference {
+  id: string;
+}
+/**
  * Essential metadata fields for hybrid model components.
  */
 export interface ComponentSummary {
@@ -140,7 +146,7 @@ export interface TrainingRequirements {
   cpu?: boolean;
 }
 /**
- * Machine learning component, without assigned id.
+ * Machine learning component.
  */
 export interface MachineLearningComponentFromFile {
   description: string;
@@ -157,6 +163,12 @@ export interface MachineLearningComponentFromFile {
   id: string;
   ml_process?: string | null;
   neural_networks?: NeuralNetwork[] | null;
+}
+/**
+ * Reference to an existing machine learning component.
+ */
+export interface MachineLearningComponentReference {
+  id: string;
 }
 /**
  * Essential metadata fields for machine learning components.

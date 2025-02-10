@@ -685,7 +685,7 @@
         },
         "MachineLearningComponentFromFile": {
             "additionalProperties": false,
-            "description": "Machine learning component, without assigned id.",
+            "description": "Machine learning component.",
             "properties": {
                 "description": {
                     "title": "Description",
@@ -843,6 +843,21 @@
                 "id"
             ],
             "title": "MachineLearningComponentFromFile",
+            "type": "object"
+        },
+        "MachineLearningComponentReference": {
+            "additionalProperties": false,
+            "description": "Reference to an existing machine learning component.",
+            "properties": {
+                "id": {
+                    "title": "Id",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "MachineLearningComponentReference",
             "type": "object"
         },
         "NeuralNetwork": {
@@ -1058,7 +1073,7 @@
         },
         "PhysicsBasedComponentFromFile": {
             "additionalProperties": false,
-            "description": "Physics-based component, without assigned id.",
+            "description": "Physics-based component.",
             "properties": {
                 "description": {
                     "title": "Description",
@@ -1340,6 +1355,21 @@
             "title": "PhysicsBasedComponentFromFile",
             "type": "object"
         },
+        "PhysicsBasedComponentReference": {
+            "additionalProperties": false,
+            "description": "Reference to an existing physics-based component.",
+            "properties": {
+                "id": {
+                    "title": "Id",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "PhysicsBasedComponentReference",
+            "type": "object"
+        },
         "TrainingRequirements": {
             "additionalProperties": false,
             "description": "Training requirements for a machine learning component.",
@@ -1400,7 +1430,14 @@
         "physics_based_components": {
             "default": [],
             "items": {
-                "$ref": "#/$defs/PhysicsBasedComponentFromFile"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/PhysicsBasedComponentFromFile"
+                    },
+                    {
+                        "$ref": "#/$defs/PhysicsBasedComponentReference"
+                    }
+                ]
             },
             "title": "Physics Based Components",
             "type": "array"
@@ -1408,7 +1445,14 @@
         "machine_learning_components": {
             "default": [],
             "items": {
-                "$ref": "#/$defs/MachineLearningComponentFromFile"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/MachineLearningComponentFromFile"
+                    },
+                    {
+                        "$ref": "#/$defs/MachineLearningComponentReference"
+                    }
+                ]
             },
             "title": "Machine Learning Components",
             "type": "array"

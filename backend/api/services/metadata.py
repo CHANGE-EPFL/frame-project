@@ -10,6 +10,7 @@ import yaml
 from fastapi import HTTPException
 
 from ..models.common_metadata import CommonMetadata
+from ..models.component import ComponentReference
 from ..models.hybrid_model import HybridModel, HybridModelSummary
 from ..models.machine_learning_component import MachineLearningComponent, MachineLearningComponentSummary
 from ..models.metadata_file import MetadataFromFile
@@ -57,7 +58,7 @@ def add_components(
     metadata: MetadataFromFile,
     components: dict[str, T],
     ComponentType: type[T],
-) -> list[int]:
+) -> list[str]:
     if ComponentType == PhysicsBasedComponent:
         component_type_name = "physics_based_components"
     else:
@@ -67,9 +68,12 @@ def add_components(
 
     for component_from_file in getattr(metadata, component_type_name):
         component_id = component_from_file.id
+        ids.append(component_id)
+        if isinstance(component_from_file, ComponentReference):
+            continue
+
         if component_id in components:
             raise ValueError(f"Duplicate {ComponentType.__name__} ID: {component_id}")
-        ids.append(component_id)
         component = ComponentType(
             **component_from_file.model_dump(),
         )
