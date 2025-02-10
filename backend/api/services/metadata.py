@@ -107,7 +107,7 @@ def add_model_and_components(
     model = HybridModel(
         **metadata.hybrid_model.model_dump(),
         id=model_id,
-        compatible_physical_based_component_ids=physics_based_component_ids,
+        compatible_physics_based_component_ids=physics_based_component_ids,
         compatible_machine_learning_component_ids=machine_learning_component_ids,
         data=metadata.data,
     )
@@ -179,7 +179,7 @@ def check_component_references(
 
     for model in models.values():
         for component_type, components in [
-            ("physical_based", physics_based_components),
+            ("physics_based", physics_based_components),
             ("machine_learning", machine_learning_components),
         ]:
             for component_id in getattr(model, f"compatible_{component_type}_component_ids"):
@@ -255,7 +255,7 @@ async def get_physics_based_component_models(component_id: str) -> list[HybridMo
     return [
         model_summaries[model_id]
         for model_id, model in models.items()
-        if component.id in model.compatible_physical_based_component_ids
+        if component.id in model.compatible_physics_based_component_ids
     ]
 
 
@@ -284,7 +284,7 @@ async def get_model_physics_based_components(model_id: str) -> list[PhysicsBased
 
     return [
         physics_based_components_summaries[component_id]
-        for component_id in model.compatible_physical_based_component_ids
+        for component_id in model.compatible_physics_based_component_ids
     ]
 
 
