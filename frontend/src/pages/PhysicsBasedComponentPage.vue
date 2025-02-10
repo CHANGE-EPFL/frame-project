@@ -9,6 +9,7 @@
 
         <template v-for="(unit, index) in hybridModels" :key="index">
           <UnitLink unitType="hybrid_model" :unit="unit" />
+          <br />
         </template>
 
         <MetadataTable :data="otherMetadata" class="q-mb-lg" />
