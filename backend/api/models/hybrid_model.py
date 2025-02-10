@@ -20,5 +20,5 @@ class HybridModel(HybridModelFromFile, HybridModelSummary):
     """Hybrid model."""
 
     compatible_machine_learning_component_ids: list[str]
-    compatible_physical_based_component_ids: list[str]
+    compatible_physics_based_component_ids: list[str]
     data: DataIO

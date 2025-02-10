@@ -93,7 +93,7 @@ export interface HybridModel {
   host_physics?: string | null;
   latent_variables?: Data[];
   compatible_machine_learning_component_ids: string[];
-  compatible_physical_based_component_ids: string[];
+  compatible_physics_based_component_ids: string[];
   data: DataIO;
 }
 /**
