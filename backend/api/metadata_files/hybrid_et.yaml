@@ -34,7 +34,7 @@ hybrid_model:
 physics_based_components:
   - description: "Penman-Monteith"
     documentation:
-      - "Monteith J L 1965 Evaporation and environment Symp. Society for Experimental Biology, the State and Movement ofWater
+      - "Monteith J L 1965 Evaporation and environment Symp. Society for Experimental Biology, the State and Movement of Water
         in Living Organisms vol 19, ed G E Fogg pp 205–34"
       - "Penman H L 1948 Natural evaporation from open water, hare soil and grass Proc. R. Soc. A 193 120–45"
     id: penman_monteith
