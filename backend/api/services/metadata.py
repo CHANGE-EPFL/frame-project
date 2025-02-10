@@ -73,7 +73,7 @@ def add_components(
             continue
 
         if component_id in components:
-            raise ValueError(f"Duplicate {ComponentType.__name__} ID: {component_id}")
+            raise ValueError(f'Duplicate {ComponentType.__name__} ID "{component_id}"')
         component = ComponentType(
             **component_from_file.model_dump(),
         )
@@ -146,6 +146,47 @@ machine_learning_components_summaries: dict[str, MachineLearningComponentSummary
 metadata_loaded = False
 
 
+def check_non_duplicated_component_ids(
+    physics_based_components: dict[str, PhysicsBasedComponent],
+    machine_learning_components: dict[str, MachineLearningComponent],
+) -> None:
+    """Check if component IDs are duplicated between physics-based and machine-learning components.
+
+    Raises:
+        ValueError: If some component IDs are duplicated.
+    """
+
+    physics_based_component_ids = list(physics_based_components.keys())
+    machine_learning_component_ids = list(machine_learning_components.keys())
+    intersection = set(physics_based_component_ids) & set(machine_learning_component_ids)
+
+    if intersection:
+        raise ValueError(
+            f"Some component IDs are duplicated between physics-based and machine-learning components: {intersection}"
+        )
+
+
+def check_component_references(
+    models: dict[str, HybridModel],
+    physics_based_components: dict[str, PhysicsBasedComponent],
+    machine_learning_components: dict[str, MachineLearningComponent],
+) -> None:
+    """Check that component references in models are valid.
+
+    Raises:
+        ValueError: If a component ID is not found in the corresponding components dictionary.
+    """
+
+    for model in models.values():
+        for component_type, components in [
+            ("physical_based", physics_based_components),
+            ("machine_learning", machine_learning_components),
+        ]:
+            for component_id in getattr(model, f"compatible_{component_type}_component_ids"):
+                if component_id not in components:
+                    raise ValueError(f'{component_type} component ID "{component_id}" does not exist.')
+
+
 def _load_metadata():
     """Load models and components metadata in module scope."""
     global models
@@ -156,6 +197,9 @@ def _load_metadata():
     global machine_learning_components_summaries, metadata_loaded
 
     models, physics_based_components, machine_learning_components = load_models_and_components()
+    check_non_duplicated_component_ids(physics_based_components, machine_learning_components)
+    check_component_references(models, physics_based_components, machine_learning_components)
+
     model_summaries = {model_id: HybridModelSummary(**model.model_dump()) for model_id, model in models.items()}
     physics_based_components_summaries = {
         component_id: PhysicsBasedComponentSummary(**component.model_dump())
@@ -280,11 +324,4 @@ async def get_machine_learning_component(component_id: str) -> MachineLearningCo
 async def get_component_ids() -> list[str]:
     physics_based_component_ids = list(physics_based_components.keys())
     machine_learning_component_ids = list(machine_learning_components.keys())
-    intersection = set(physics_based_component_ids) & set(machine_learning_component_ids)
-
-    if intersection:
-        raise ValueError(
-            f"Some component IDs are duplicated between physics-based and machine-learning components: {intersection}"
-        )
-
     return physics_based_component_ids + machine_learning_component_ids
