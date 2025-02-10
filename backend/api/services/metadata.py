@@ -270,3 +270,17 @@ async def get_machine_learning_component(component_id: str) -> MachineLearningCo
 
     except KeyError:
         raise HTTPException(status_code=404, detail="MachineLearningComponent not found.")
+
+
+@load_metadata
+async def get_component_ids() -> list[str]:
+    physics_based_component_ids = list(physics_based_components.keys())
+    machine_learning_component_ids = list(machine_learning_components.keys())
+    intersection = set(physics_based_component_ids) & set(machine_learning_component_ids)
+
+    if intersection:
+        raise ValueError(
+            f"Some component IDs are duplicated between physics-based and machine-learning components: {intersection}"
+        )
+
+    return physics_based_component_ids + machine_learning_component_ids

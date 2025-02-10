@@ -36,3 +36,4 @@ def test_schema(metadata_filename: str) -> None:
 async def test_unique_ids() -> None:
     """Test that the call runs without raising an exception."""
     await metadata.get_hybrid_model_ids()
+    await metadata.get_component_ids()
