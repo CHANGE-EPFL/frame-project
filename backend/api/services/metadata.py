@@ -137,15 +137,6 @@ def load_models_and_components() -> (
     return models, physics_based_components, machine_learning_components
 
 
-models: dict[str, HybridModel] = {}
-model_summaries: dict[str, HybridModelSummary] = {}
-physics_based_components: dict[str, PhysicsBasedComponent] = {}
-physics_based_components_summaries: dict[str, PhysicsBasedComponentSummary] = {}
-machine_learning_components: dict[str, MachineLearningComponent] = {}
-machine_learning_components_summaries: dict[str, MachineLearningComponentSummary] = {}
-metadata_loaded = False
-
-
 def check_non_duplicated_component_ids(
     physics_based_components: dict[str, PhysicsBasedComponent],
     machine_learning_components: dict[str, MachineLearningComponent],
@@ -187,10 +178,52 @@ def check_component_references(
                     raise ValueError(f'{component_type} component ID "{component_id}" does not exist.')
 
 
+def get_model_keywords(
+    models: dict[str, HybridModel],
+    physics_based_components: dict[str, PhysicsBasedComponent],
+    machine_learning_components: dict[str, MachineLearningComponent],
+) -> dict[str, set[str]]:
+    """Get a dictionary of model IDs and their keywords."""
+
+    model_keywords = {}
+
+    for model_id, model in models.items():
+        s = set(model.keywords)
+        s.add(model_id)
+        s.update(model.name.lower().split())
+        for contributor in model.contributors:
+            s.update(contributor.lower().split())
+
+        for component_type, components in [
+            ("physics_based", physics_based_components),
+            ("machine_learning", machine_learning_components),
+        ]:
+            for component_id in getattr(model, f"compatible_{component_type}_component_ids"):
+                component = components[component_id]
+                for keyword in component.keywords:
+                    s.update(keyword.split(" "))
+
+        model_keywords[model_id] = s
+
+    print(model_keywords)
+    return model_keywords
+
+
+models: dict[str, HybridModel] = {}
+model_summaries: dict[str, HybridModelSummary] = {}
+model_keywords: dict[str, set[str]] = {}
+physics_based_components: dict[str, PhysicsBasedComponent] = {}
+physics_based_components_summaries: dict[str, PhysicsBasedComponentSummary] = {}
+machine_learning_components: dict[str, MachineLearningComponent] = {}
+machine_learning_components_summaries: dict[str, MachineLearningComponentSummary] = {}
+metadata_loaded = False
+
+
 def _load_metadata():
     """Load models and components metadata in module scope."""
     global models
     global model_summaries
+    global model_keywords
     global physics_based_components
     global physics_based_components_summaries
     global machine_learning_components
@@ -201,6 +234,7 @@ def _load_metadata():
     check_component_references(models, physics_based_components, machine_learning_components)
 
     model_summaries = {model_id: HybridModelSummary(**model.model_dump()) for model_id, model in models.items()}
+    model_keywords = get_model_keywords(models, physics_based_components, machine_learning_components)
     physics_based_components_summaries = {
         component_id: PhysicsBasedComponentSummary(**component.model_dump())
         for component_id, component in physics_based_components.items()
@@ -228,6 +262,26 @@ def load_metadata(func: Callable):
 @load_metadata
 async def get_hybrid_models() -> list[HybridModelSummary]:
     return list(model_summaries.values())
+
+
+@load_metadata
+async def get_filtered_hybrid_models(query: str) -> list[HybridModelSummary]:
+    query_keywords = query.lower().split()
+    model_ids = []
+
+    for model_id, keywords in model_keywords.items():
+        full_query_match = True
+
+        for query_keyword in query_keywords:
+            match = any(keyword.startswith(query_keyword) for keyword in keywords)  # allow partial match
+            if not match:  # all query keywords must match
+                full_query_match = False
+                break
+
+        if full_query_match:
+            model_ids.append(model_id)
+
+    return [model_summaries[model_id] for model_id in model_ids]
 
 
 @load_metadata

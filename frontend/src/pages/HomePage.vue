@@ -2,6 +2,13 @@
   <q-page>
     <div class="container">
       <h1>Hybrid Models</h1>
+      <q-input
+        v-model="searchQuery"
+        placeholder="Search"
+        class="q-mb-md"
+        rounded
+        outlined
+      />
       <UnitList unitType="hybrid_model" :units="hybridModels" />
     </div>
   </q-page>
@@ -14,10 +21,13 @@ import type { HybridModelSummary } from 'src/models/hybrid_model';
 import UnitList from 'src/components/UnitList.vue';
 
 const hybridModels = ref<HybridModelSummary[]>([]);
+const searchQuery = ref<string>('');
 
 const getHybridModels = () => {
   api
-    .get('/hybrid_models/')
+    .get('/hybrid_models/', {
+      params: { query: searchQuery.value || undefined },
+    })
     .then((response) => {
       hybridModels.value = response.data;
     })
@@ -26,7 +36,6 @@ const getHybridModels = () => {
     });
 };
 
-onMounted(() => {
-  getHybridModels();
-});
+watch(searchQuery, getHybridModels);
+onMounted(getHybridModels);
 </script>
