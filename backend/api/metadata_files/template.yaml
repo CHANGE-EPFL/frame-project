@@ -10,11 +10,13 @@ hybrid_model:
     - ""
 
 physics_based_components:
-  - name: ""
+  - id: ""
+    name: ""
     description: ""
 
 machine_learning_components:
-  - name: ""
+  - id: ""
+    name: ""
     description: ""
 
 data:

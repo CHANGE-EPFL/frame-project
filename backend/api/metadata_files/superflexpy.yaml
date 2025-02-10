@@ -25,6 +25,7 @@ physics_based_components:
   - description: SuperflexPy is used to implement conceptual models, using storage and routing elements, intended to represent
       catchment processes such as interception, surface and subsurface runoff, and river routing. The specific configuration
       is specified by the user depending on the needs of a particular application.
+    id: superflexpy
     name: SuperflexPy
     # fixed_parameters_count: to be determined (application dependent)
     # tunable_parameters_count: to be determined (application dependent)
