@@ -805,17 +805,9 @@
                     "default": null,
                     "title": "Version"
                 },
-                "short_name": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "title": "Short Name"
+                "id": {
+                    "title": "Id",
+                    "type": "string"
                 },
                 "ml_process": {
                     "anyOf": [
@@ -847,7 +839,8 @@
             },
             "required": [
                 "description",
-                "name"
+                "name",
+                "id"
             ],
             "title": "MachineLearningComponentFromFile",
             "type": "object"
@@ -1185,17 +1178,9 @@
                     "default": null,
                     "title": "Version"
                 },
-                "short_name": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "title": "Short Name"
+                "id": {
+                    "title": "Id",
+                    "type": "string"
                 },
                 "type": {
                     "anyOf": [
@@ -1349,7 +1334,8 @@
             },
             "required": [
                 "description",
-                "name"
+                "name",
+                "id"
             ],
             "title": "PhysicsBasedComponentFromFile",
             "type": "object"

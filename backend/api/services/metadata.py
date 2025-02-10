@@ -4,7 +4,6 @@ Mock data for testing.
 """
 
 import os
-import re
 from typing import Any, Callable, TypeVar
 
 import yaml
@@ -33,10 +32,6 @@ def get_all_metadata_filenames() -> list[str]:
     ]
 
 
-def generate_short_name(name: str) -> str:
-    return re.sub(r"\W", "_", name).lower()
-
-
 def format_contributors(contributors: list[str]) -> list[str]:
     """Format contributors to title case. If a comma is found, split the string and exchange the first and last name."""
     formatted_contributors = []
@@ -60,7 +55,7 @@ T = TypeVar("T", PhysicsBasedComponent, MachineLearningComponent)
 
 def add_components(
     metadata: MetadataFromFile,
-    components: list[T],
+    components: dict[str, T],
     ComponentType: type[T],
 ) -> list[int]:
     if ComponentType == PhysicsBasedComponent:
@@ -71,16 +66,16 @@ def add_components(
     ids = []
 
     for component_from_file in getattr(metadata, component_type_name):
-        component_id = len(components)
-        component_from_file.short_name = component_from_file.short_name or generate_short_name(component_from_file.name)
+        component_id = component_from_file.id
+        if component_id in components:
+            raise ValueError(f"Duplicate {ComponentType.__name__} ID: {component_id}")
         ids.append(component_id)
         component = ComponentType(
             **component_from_file.model_dump(),
-            id=component_id,
         )
         component.contributors = format_contributors(component.contributors)
         component.keywords = format_keywords(component.keywords)
-        components.append(component)
+        components[component_id] = component
 
         for field in CommonMetadata.model_fields.keys():
             if not getattr(component, field):  # empty or None
@@ -91,9 +86,9 @@ def add_components(
 
 def add_model_and_components(
     metadata_filename: str,
-    models: list[HybridModel],
-    physics_based_components: list[PhysicsBasedComponent],
-    machine_learning_components: list[MachineLearningComponent],
+    models: dict[str, HybridModel],
+    physics_based_components: dict[str, PhysicsBasedComponent],
+    machine_learning_components: dict[str, MachineLearningComponent],
 ) -> None:
     metadata_filepath = os.path.join(METADATA_DIR_PATH, metadata_filename)
     raw_data = read_yaml(metadata_filepath)
@@ -104,30 +99,28 @@ def add_model_and_components(
     physics_based_component_ids = add_components(metadata, physics_based_components, PhysicsBasedComponent)
     machine_learning_component_ids = add_components(metadata, machine_learning_components, MachineLearningComponent)
 
-    model_id = len(models)
-    model_short_name = metadata_filename.split(".")[0]
+    model_id = metadata_filename.split(".")[0]
     model = HybridModel(
         **metadata.hybrid_model.model_dump(),
-        short_name=model_short_name,
         id=model_id,
         compatible_physical_based_component_ids=physics_based_component_ids,
         compatible_machine_learning_component_ids=machine_learning_component_ids,
         data=metadata.data,
     )
-    models.append(model)
+    models[model_id] = model
 
 
 def load_models_and_components() -> (
-    tuple[list[HybridModel], list[PhysicsBasedComponent], list[MachineLearningComponent]]
+    tuple[dict[str, HybridModel], dict[str, PhysicsBasedComponent], dict[str, MachineLearningComponent]]
 ):
     """Load metadata for all models and components.
 
     Raises:
     """
 
-    models = []
-    physics_based_components = []
-    machine_learning_components = []
+    models = {}
+    physics_based_components = {}
+    machine_learning_components = {}
 
     for metadata_filename in get_all_metadata_filenames():
         add_model_and_components(
@@ -140,12 +133,12 @@ def load_models_and_components() -> (
     return models, physics_based_components, machine_learning_components
 
 
-models = []
-model_summaries = []
-physics_based_components = []
-physics_based_components_summaries = []
-machine_learning_components = []
-machine_learning_components_summaries = []
+models: dict[str, HybridModel] = {}
+model_summaries: dict[str, HybridModelSummary] = {}
+physics_based_components: dict[str, PhysicsBasedComponent] = {}
+physics_based_components_summaries: dict[str, PhysicsBasedComponentSummary] = {}
+machine_learning_components: dict[str, MachineLearningComponent] = {}
+machine_learning_components_summaries: dict[str, MachineLearningComponentSummary] = {}
 metadata_loaded = False
 
 
@@ -159,13 +152,15 @@ def _load_metadata():
     global machine_learning_components_summaries, metadata_loaded
 
     models, physics_based_components, machine_learning_components = load_models_and_components()
-    model_summaries = [HybridModelSummary(**model.model_dump()) for model in models]
-    physics_based_components_summaries = [
-        PhysicsBasedComponentSummary(**component.model_dump()) for component in physics_based_components
-    ]
-    machine_learning_components_summaries = [
-        MachineLearningComponentSummary(**component.model_dump()) for component in machine_learning_components
-    ]
+    model_summaries = {model_id: HybridModelSummary(**model.model_dump()) for model_id, model in models.items()}
+    physics_based_components_summaries = {
+        component_id: PhysicsBasedComponentSummary(**component.model_dump())
+        for component_id, component in physics_based_components.items()
+    }
+    machine_learning_components_summaries = {
+        component_id: MachineLearningComponentSummary(**component.model_dump())
+        for component_id, component in machine_learning_components.items()
+    }
 
     metadata_loaded = True
 
@@ -184,59 +179,59 @@ def load_metadata(func: Callable):
 
 @load_metadata
 async def get_hybrid_models() -> list[HybridModelSummary]:
-    return model_summaries
+    return list(model_summaries.values())
 
 
 @load_metadata
-async def get_hybrid_model(model_id: int) -> HybridModel:
+async def get_hybrid_model(model_id: str) -> HybridModel:
     try:
         return models[model_id]
 
-    except IndexError:
+    except KeyError:
         raise HTTPException(status_code=404, detail="HybridModel not found.")
 
 
 @load_metadata
-async def get_hybrid_model_short_names() -> list[str]:
-    return [model.short_name for model in models]
+async def get_hybrid_model_ids() -> list[str]:
+    return list(models.keys())
 
 
 @load_metadata
-async def get_physics_based_component_models(component_id: int) -> list[HybridModelSummary]:
+async def get_physics_based_component_models(component_id: str) -> list[HybridModelSummary]:
     try:
         component = physics_based_components[component_id]
 
-    except IndexError:
+    except KeyError:
         raise HTTPException(status_code=404, detail="PhysicsBasedComponent not found.")
 
     return [
         model_summaries[model_id]
-        for model_id in range(len(models))
-        if component.id in models[model_id].compatible_physical_based_component_ids
+        for model_id, model in models.items()
+        if component.id in model.compatible_physical_based_component_ids
     ]
 
 
 @load_metadata
-async def get_machine_learning_component_models(component_id: int) -> list[HybridModelSummary]:
+async def get_machine_learning_component_models(component_id: str) -> list[HybridModelSummary]:
     try:
         component = machine_learning_components[component_id]
 
-    except IndexError:
+    except KeyError:
         raise HTTPException(status_code=404, detail="MachineLearningComponent not found.")
 
     return [
         model_summaries[model_id]
-        for model_id in range(len(models))
-        if component.id in models[model_id].compatible_machine_learning_component_ids
+        for model_id, model in models.items()
+        if component.id in model.compatible_machine_learning_component_ids
     ]
 
 
 @load_metadata
-async def get_model_physics_based_components(model_id: int) -> list[PhysicsBasedComponentSummary]:
+async def get_model_physics_based_components(model_id: str) -> list[PhysicsBasedComponentSummary]:
     try:
         model = models[model_id]
 
-    except IndexError:
+    except KeyError:
         raise HTTPException(status_code=404, detail="HybridModel not found.")
 
     return [
@@ -246,20 +241,20 @@ async def get_model_physics_based_components(model_id: int) -> list[PhysicsBased
 
 
 @load_metadata
-async def get_physics_based_component(component_id: int) -> PhysicsBasedComponent:
+async def get_physics_based_component(component_id: str) -> PhysicsBasedComponent:
     try:
         return physics_based_components[component_id]
 
-    except IndexError:
+    except KeyError:
         raise HTTPException(status_code=404, detail="PhysicsBasedComponent not found.")
 
 
 @load_metadata
-async def get_model_machine_learning_components(model_id: int) -> list[MachineLearningComponentSummary]:
+async def get_model_machine_learning_components(model_id: str) -> list[MachineLearningComponentSummary]:
     try:
         model = models[model_id]
 
-    except IndexError:
+    except KeyError:
         raise HTTPException(status_code=404, detail="HybridModel not found.")
 
     return [
@@ -269,9 +264,9 @@ async def get_model_machine_learning_components(model_id: int) -> list[MachineLe
 
 
 @load_metadata
-async def get_machine_learning_component(component_id: int) -> MachineLearningComponent:
+async def get_machine_learning_component(component_id: str) -> MachineLearningComponent:
     try:
         return machine_learning_components[component_id]
 
-    except IndexError:
+    except KeyError:
         raise HTTPException(status_code=404, detail="MachineLearningComponent not found.")

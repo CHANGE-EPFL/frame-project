@@ -37,8 +37,8 @@ hybrid_model:
 
 physics_based_components:
   - description: The physics-based component of T&C includes three main modules, soil biochemistry, vegetation, and hydrology.
+    id: tandc
     name: Tethys-Chloris (T&C)
-    short_name: tandc
     url: https://github.com/simonefatichi/TeC_Source_Code
     spatial_coverage: T&C can be applied on a plot scale and spatially distributed way. (maybe also add the name of the catchcments)
     temporal_coverage: T&C calculates the hydrological budget hourly and updates vegetation and soil biogeochemistry variables

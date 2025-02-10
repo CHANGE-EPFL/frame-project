@@ -24,13 +24,13 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  short_name: {
+  id: {
     type: String,
     required: true,
   },
 });
 
-const inputText = ref(`frame pull ${props.type} ${props.short_name}`);
+const inputText = ref(`frame pull ${props.type} ${props.id}`);
 
 function copy() {
   copyToClipboard(inputText.value)

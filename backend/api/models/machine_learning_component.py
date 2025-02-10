@@ -46,5 +46,3 @@ class MachineLearningComponentSummary(ComponentSummary):
 
 class MachineLearningComponent(Component, MachineLearningComponentFromFile, MachineLearningComponentSummary):
     """Machine learning component."""
-
-    id: int

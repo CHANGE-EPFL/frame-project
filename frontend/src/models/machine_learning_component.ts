@@ -13,8 +13,7 @@ export interface Component {
   created?: string | null;
   keywords?: string[];
   name: string;
-  id: number;
-  short_name: string;
+  id: string;
   contributors?: string[];
   documentation?: string[] | null;
   identifier?: string | null;
@@ -24,7 +23,7 @@ export interface Component {
   version?: string | number | null;
 }
 /**
- * Component of hybrid model, without assigned id.
+ * Component of hybrid model.
  */
 export interface ComponentFromFile {
   description: string;
@@ -38,7 +37,7 @@ export interface ComponentFromFile {
   readme?: string | null;
   url?: string | null;
   version?: string | number | null;
-  short_name?: string | null;
+  id: string;
 }
 /**
  * Essential metadata fields for hybrid model components.
@@ -51,8 +50,7 @@ export interface ComponentSummary {
    */
   keywords: [string, ...string[]];
   name: string;
-  id: number;
-  short_name: string;
+  id: string;
 }
 /**
  * Computational resources need for a hybrid model or component.
@@ -101,8 +99,7 @@ export interface MachineLearningComponent {
   created?: string | null;
   keywords?: string[];
   name: string;
-  id: number;
-  short_name: string;
+  id: string;
   contributors?: string[];
   documentation?: string[] | null;
   identifier?: string | null;
@@ -157,7 +154,7 @@ export interface MachineLearningComponentFromFile {
   readme?: string | null;
   url?: string | null;
   version?: string | number | null;
-  short_name?: string | null;
+  id: string;
   ml_process?: string | null;
   neural_networks?: NeuralNetwork[] | null;
 }
@@ -172,6 +169,5 @@ export interface MachineLearningComponentSummary {
    */
   keywords: [string, ...string[]];
   name: string;
-  id: number;
-  short_name: string;
+  id: string;
 }

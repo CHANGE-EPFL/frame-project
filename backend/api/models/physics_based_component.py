@@ -36,5 +36,3 @@ class PhysicsBasedComponentSummary(ComponentSummary):
 
 class PhysicsBasedComponent(Component, PhysicsBasedComponentFromFile, PhysicsBasedComponentSummary):
     """Physics-based component."""
-
-    id: int

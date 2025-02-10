@@ -37,6 +37,7 @@ physics_based_components:
       - "Monteith J L 1965 Evaporation and environment Symp. Society for Experimental Biology, the State and Movement ofWater
         in Living Organisms vol 19, ed G E Fogg pp 205–34"
       - "Penman H L 1948 Natural evaporation from open water, hare soil and grass Proc. R. Soc. A 193 120–45"
+    id: penman_monteith
     keywords:
       - "Physics-based"
     name: "Penman-Monteith"
@@ -48,6 +49,7 @@ physics_based_components:
 
 machine_learning_components:
   - description: Feed-forward Neural Network
+    id: hybrid_et_fnn
     keywords:
       - latent variables
       - machine learning

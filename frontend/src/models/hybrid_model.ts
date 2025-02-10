@@ -78,8 +78,7 @@ export interface HybridModel {
    */
   keywords: [string, ...string[]];
   name: string;
-  id: number;
-  short_name: string;
+  id: string;
   /**
    * @minItems 1
    */
@@ -93,8 +92,8 @@ export interface HybridModel {
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
-  compatible_machine_learning_component_ids: number[];
-  compatible_physical_based_component_ids: number[];
+  compatible_machine_learning_component_ids: string[];
+  compatible_physical_based_component_ids: string[];
   data: DataIO;
 }
 /**
@@ -133,6 +132,5 @@ export interface HybridModelSummary {
    */
   keywords: [string, ...string[]];
   name: string;
-  id: number;
-  short_name: string;
+  id: string;
 }

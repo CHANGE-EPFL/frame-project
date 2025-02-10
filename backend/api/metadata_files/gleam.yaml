@@ -48,11 +48,11 @@ physics_based_components:
     documentation:
       - https://gitlab.com/gleam2/pygleam
       - https://doi.org/10.5194/gmd-10-1903-2017
+    id: gleam
     keywords:
       - Potential evpaoration
       - Soil water balance
       - Interception loss
       - Soil moisture data assimilation
     name: GLEAM (Global Land Evaporation Amsterdam Model)
-    short_name: gleam
     url: https://gitlab.com/gleam2/pygleam
