@@ -29,3 +29,9 @@ async def get_model_machine_learning_components(model_id: str) -> list[MachineLe
 async def get_machine_learning_component(component_id: str) -> MachineLearningComponent:
     """Get a detailed view of a specific machine learning component."""
     return await metadata.get_machine_learning_component(component_id)
+
+
+@router.get("/ids/")
+async def get_component_ids() -> list[str]:
+    """Get a list of component short names."""
+    return await metadata.get_component_ids()
