@@ -30,7 +30,7 @@ const props = defineProps({
   },
 });
 
-const inputText = ref(`frame pull ${props.type} ${props.id}`);
+const inputText = ref(`frame-cli pull ${props.type} ${props.id}`);
 
 function copy() {
   copyToClipboard(inputText.value)
