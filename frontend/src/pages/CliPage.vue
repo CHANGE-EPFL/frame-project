@@ -21,18 +21,13 @@
           >conda</a
         >. To install, run the following command in your terminal:
       </p>
-      <q-card class="code" dark>
-        <code
-          >pip install
-          git+https://gitlab.com/CHANGE-EPFL/frame-project-cli.git</code
-        >
-      </q-card>
+      <CopyCommand
+        command="pip install git+https://gitlab.com/CHANGE-EPFL/frame-project-cli.git"
+      />
 
       <h2>Usage</h2>
       <p>To get hints on how to use the CLI tool, run:</p>
-      <q-card class="code" dark>
-        <code>frame-cli --help</code>
-      </q-card>
+      <CopyCommand command="frame-cli --help" />
       <p>
         Hybrid model and component pages show which command must be run to
         download and setup specific elements.
@@ -40,6 +35,10 @@
     </div>
   </q-page>
 </template>
+
+<script setup lang="ts">
+import CopyCommand from 'src/components/CopyCommand.vue';
+</script>
 
 <style>
 .code {

@@ -30,11 +30,20 @@
       >
     </div>
     <div class="q-mt-sm"></div>
-    <PullCommand
-      :type="unitType === 'hybrid_model' ? 'hybrid-model' : 'component'"
-      :id="unit.id"
-      class="q-mt-lg q-mb-lg"
-    />
+    <div class="row items-center">
+      <CopyCommand
+        :command="`frame-cli pull ${unitType === 'hybrid_model' ? 'hybrid-model' : 'component'} ${unit.id}`"
+        class="q-mt-lg q-mb-lg col"
+      />
+      <router-link to="/cli" class="q-ml-sm">
+        <q-icon name="info" size="1.5em" color="grey-8">
+          <q-tooltip>
+            Run this command after installing the FRAME CLI tool. Click for
+            instructions.
+          </q-tooltip>
+        </q-icon>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -44,7 +53,7 @@ import type { HybridModel } from 'src/models/hybrid_model';
 import type { PhysicsBasedComponent } from 'src/models/physics_based_component';
 import type { MachineLearningComponent } from 'src/models/machine_learning_component';
 import KeywordList from 'src/components/KeywordList.vue';
-import PullCommand from 'src/components/PullCommand.vue';
+import CopyCommand from 'src/components/CopyCommand.vue';
 
 const props = defineProps({
   unitType: {

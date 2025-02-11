@@ -205,7 +205,6 @@ def get_model_keywords(
 
         model_keywords[model_id] = s
 
-    print(model_keywords)
     return model_keywords
 
 

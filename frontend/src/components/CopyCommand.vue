@@ -1,25 +1,19 @@
 <template>
-  <div class="row items-center">
+  <div class="copy-command-container">
     <q-input
       v-model="inputText"
       readonly
-      outlined
+      standout
       rounded
       dense
-      class="pull-command q-pa-none col"
+      bg-color="grey-9"
+      dark
+      class="command q-pa-none"
     >
       <template v-slot:append>
         <q-icon name="content_copy" @click="copy" class="cursor-pointer" />
       </template>
     </q-input>
-    <router-link to="/cli">
-      <q-icon name="info" size="1.5em" color="grey-7">
-        <q-tooltip>
-          Run this command after installing the FRAME CLI tool. Click for
-          instructions.
-        </q-tooltip>
-      </q-icon>
-    </router-link>
   </div>
 </template>
 
@@ -28,17 +22,13 @@ import { defineProps, ref } from 'vue';
 import { copyToClipboard, Notify } from 'quasar';
 
 const props = defineProps({
-  type: {
-    type: String,
-    required: true,
-  },
-  id: {
+  command: {
     type: String,
     required: true,
   },
 });
 
-const inputText = ref(`frame-cli pull ${props.type} ${props.id}`);
+const inputText = ref(props.command);
 
 function copy() {
   copyToClipboard(inputText.value)
@@ -58,7 +48,11 @@ function copy() {
 </script>
 
 <style scoped lang="scss">
-.pull-command {
+.copy-command-container {
+  margin: 1em 0;
+}
+
+.command {
   font-family: monospace;
   font-size: 0.9em;
 }
