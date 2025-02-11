@@ -35,3 +35,15 @@ async def get_machine_learning_component(component_id: str) -> MachineLearningCo
 async def get_component_ids() -> list[str]:
     """Get a list of component short names."""
     return await metadata.get_component_ids()
+
+
+@router.get("/physics_based_ids/")
+async def get_physics_based_component_ids() -> list[str]:
+    """Get a list of physics-based component short names."""
+    return await metadata.get_physics_based_component_ids()
+
+
+@router.get("/machine_learning_ids/")
+async def get_machine_learning_component_ids() -> list[str]:
+    """Get a list of machine learning component short names."""
+    return await metadata.get_machine_learning_component_ids()

@@ -379,3 +379,13 @@ async def get_component_ids() -> list[str]:
     physics_based_component_ids = list(physics_based_components.keys())
     machine_learning_component_ids = list(machine_learning_components.keys())
     return physics_based_component_ids + machine_learning_component_ids
+
+
+@load_metadata
+async def get_physics_based_component_ids() -> list[str]:
+    return list(physics_based_components.keys())
+
+
+@load_metadata
+async def get_machine_learning_component_ids() -> list[str]:
+    return list(machine_learning_components.keys())
