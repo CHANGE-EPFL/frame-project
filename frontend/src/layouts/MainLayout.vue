@@ -5,6 +5,8 @@
 
       <q-tabs align="left">
         <q-route-tab to="/" label="Models Library" exact />
+        <q-route-tab to="/cli" label="Download CLI" exact />
+        <q-route-tab to="/contribute" label="Contribute" exact />
       </q-tabs>
     </q-header>
 

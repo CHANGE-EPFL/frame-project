@@ -18,6 +18,11 @@ const routes: RouteRecordRaw[] = [
         path: '/machine_learning_component/:componentId',
         component: () => import('pages/MachineLearningComponentPage.vue'),
       },
+      { path: '/cli', component: () => import('src/pages/CliPage.vue') },
+      {
+        path: '/contribute',
+        component: () => import('src/pages/ContributePage.vue'),
+      },
     ],
   },
 
