@@ -31,7 +31,7 @@
     </div>
     <div class="q-mt-sm"></div>
     <PullCommand
-      :type="unitType === 'hybrid_model' ? 'model' : 'component'"
+      :type="unitType === 'hybrid_model' ? 'hybrid-model' : 'component'"
       :id="unit.id"
       class="q-mt-lg q-mb-lg"
     />
