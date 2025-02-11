@@ -1,3 +1,1 @@
-Beatae cupiditate modi quia dolor facilis dolor. Accusantium ut dolorum laboriosam ratione tenetur et. Aspernatur ut aliquid aut dolorem eaque quasi voluptatem quia. Sit nemo asperiores qui. Et molestias velit quisquam natus eveniet unde vel. Laudantium nam quia magnam ad error magnam.
-
-In error sunt ut. Id voluptas et sint enim. Inventore vel qui dolorem aut autem eligendi. Ipsa explicabo accusamus impedit et et. Exercitationem assumenda voluptate fuga eum doloremque.
+This is an interactive library of hybrid models of hydrology, where you can browse models and components (physics-based or machine learning). You will also find instructions to install the the command-line tool, used to download and setup models, as well a instructions to contribute with your own entries.
