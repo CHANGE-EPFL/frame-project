@@ -8,6 +8,7 @@
         class="q-mb-md"
         rounded
         outlined
+        dense
       />
       <UnitList unitType="hybrid_model" :units="hybridModels" />
     </div>

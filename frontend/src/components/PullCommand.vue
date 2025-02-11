@@ -1,17 +1,25 @@
 <template>
-  <div>
+  <div class="row items-center">
     <q-input
       v-model="inputText"
       readonly
       outlined
       rounded
       dense
-      class="pull-command q-pa-none"
+      class="pull-command q-pa-none col"
     >
       <template v-slot:append>
         <q-icon name="content_copy" @click="copy" class="cursor-pointer" />
       </template>
     </q-input>
+    <router-link to="/cli">
+      <q-icon name="info" size="1.5em" color="grey-7">
+        <q-tooltip>
+          Run this command after installing the FRAME CLI tool. Click for
+          instructions.
+        </q-tooltip>
+      </q-icon>
+    </router-link>
   </div>
 </template>
 
