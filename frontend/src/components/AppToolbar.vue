@@ -1,14 +1,5 @@
 <template>
   <q-toolbar>
-    <q-btn
-      v-if="!noMenu"
-      flat
-      dense
-      round
-      icon="menu"
-      class="on-left"
-      @click="toggleLeftDrawer"
-    />
     <a href="https://epfl.ch" target="_blank" class="q-mt-sm">
       <img src="/EPFL_logo.png" style="height: 25px" />
     </a>
@@ -89,8 +80,6 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   noMenu: false,
 });
-const emit = defineEmits(['toggle']);
-
 const settingsStore = useSettingsStore();
 
 const showIntro = ref(false);
@@ -102,8 +91,4 @@ onMounted(() => {
     settingsStore.saveSettings({ intro_shown: true } as Settings);
   }
 });
-
-function toggleLeftDrawer() {
-  emit('toggle');
-}
 </script>
