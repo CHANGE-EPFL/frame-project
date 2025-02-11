@@ -1,0 +1,84 @@
+# yaml-language-server: $schema=schema.json
+
+hybrid_model:
+  name: "Hybrid Modeling of Stomatal Resistance"
+  description: "A hybrid pipeline combining the physics-based ecohydrological model Tethys-Chloris (T&C) with a deep learning
+    model to estimate stomatal resistance (rs) and predict latent heat flux (QLE)."
+  created: "2025-01-01"
+  keywords:
+    - "stomatal resistance"
+    - "hybrid modeling"
+    - "ecohydrology"
+    - "machine learning"
+    - "latent heat flux"
+  contributors:
+    - "Ismaïl Sahbane"
+  documentation:
+    - "https://github.com/TalosSources/change_automatic_differentiation"
+  readme: "https://github.com/TalosSources/change_automatic_differentiation/blob/main/README.md"
+  url: "https://github.com/TalosSources/change_automatic_differentiation"
+  ml_process: "Supervised learning with differentiable hybrid modeling"
+  host_physics: "Tethys-Chloris (T&C)"
+  latent_variables:
+    - name: "stomatal resistance (rs)"
+      description: "Stomatal resistance estimated using a deep learning model trained on QLE predictions."
+
+data:
+  inputs:
+    - name: "FLUXNET dataset"
+      encoding_format: "CSV"
+      description: "Environmental variable measurements at half-hourly resolution."
+      url: "https://fluxnet.org/"
+    - name: "Tethys-Chloris (T&C) model outputs"
+      encoding_format: "MATLAB"
+      description: "Empirical estimations of aerodynamic resistance and other parameters."
+  outputs:
+    - name: "Estimated stomatal resistance (rs)"
+      encoding_format: "CSV"
+      description: "Predicted rs values from the trained neural network."
+    - name: "Predicted latent heat flux (QLE)"
+      encoding_format: "CSV"
+      description: "Model-predicted values for evapotranspiration latent heat flux."
+
+physics_based_components:
+  - id: tandc
+
+machine_learning_components:
+  - name: "Deep Learning Stomatal Resistance Model"
+    id: dl_rs_model
+    description: "A fully connected neural network trained to predict stomatal resistance (rs) from environmental data."
+    created: "2025-01-01"
+    keywords:
+      - "deep learning"
+      - "stomatal resistance modeling"
+    contributors:
+      - "Ismaïl Sahbane"
+    documentation:
+      - "https://github.com/TalosSources/change_automatic_differentiation"
+    url: "https://github.com/TalosSources/change_automatic_differentiation"
+    ml_process: "Supervised learning with differentiable hybrid modeling"
+    neural_networks:
+      - name: "Stomatal Resistance Predictor"
+        type: "Fully Connected Neural Network"
+        layer_count: 4
+        node_count: 128
+        batch_size: 1000
+        learning_rate: 0.0004
+        predictor_count: 10
+        activation_functions:
+          - "ReLU"
+        input_scaling: "Normalized"
+        initialization: "He initialization"
+        loss_function: "Mean Absolute Error (MAE)"
+        regularization: "L2 (weight decay 1e-6)"
+        optimization_method: "Adam"
+        host_physics_model: "Tethys-Chloris (T&C) model"
+        target_variables:
+          - "stomatal resistance (rs)"
+        training_resources:
+          cpus:
+            - model: "Intel Core i7-9700K"
+              cores: 8
+              threads: 8
+          memory: "16GB RAM"
+          compute_time: "~313s for 4000 epochs (CPU-based)"
