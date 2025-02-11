@@ -3,7 +3,10 @@
 _Contains the raw metadata files of FAIR hybrid models, as well as the source code of the library website for the ETH ORD Explore project FRAME._
 
 
-## Contributing
+## Adding your own metadata
+
+The existing models' and components' metadata files are all stored in [`backend/api/metadata_files/`](https://github.com/CHANGE-EPFL/frame-project/tree/main/backend/api/metadata_files). To contribute with your own metadata, follow these steps.
+
 
 ### Requirements
 
@@ -14,7 +17,7 @@ _Contains the raw metadata files of FAIR hybrid models, as well as the source co
 
 ### Steps
 
-To add a new hybrid model or component to the FRAME library, follow these steps:
+To add new hybrid model or component metadata to the FRAME library, follow these steps:
 
 1. Fork and clone the repository.
 2. Setup the development environment. This will enable automatic formatting and validation of metadata files.
@@ -23,18 +26,26 @@ To add a new hybrid model or component to the FRAME library, follow these steps:
 make install
 ```
 
-3. Add or edit metadata files in the `backend/api/metadata_files/` directory.
+3. Add or edit metadata files in the [`backend/api/metadata_files/`](https://github.com/CHANGE-EPFL/frame-project/tree/main/backend/api/metadata_files) directory. The files must follow the provided [`backend/api/metadata_files/schema.json`](https://github.com/CHANGE-EPFL/frame-project/blob/main/backend/api/metadata_files/schema.json). Be sure to add this header on top of your `.yaml` for your text editor to provide you with error checks and hints:
+
+```yaml
+# yaml-language-server: $schema=schema.json
+```
+
 4. Check the validity of the metadata files.
 
 ```bash
 make test
 ```
 
-5. Commit your changes. Metadata files will be formatted automatically.
+5. Commit your changes. Metadata files will be re-formatted automatically (line breaks, white spaces...).
 6. Push your changes to your fork and create a pull request to the `main` branch of the original repository.
 
 
 ## Deploying the website locally
+
+Follow these instructions to run the FRAME website locally and see your changes before deploying.
+
 
 ### Backend
 
