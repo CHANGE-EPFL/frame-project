@@ -31,9 +31,10 @@ const props = defineProps({
 });
 
 const linkClass = computed(() => {
-  return props.unitType === 'hybrid_model'
-    ? 'unit-link-model'
-    : 'unit-link-component';
+  return
+    props.unitType === 'hybrid_model' ? 'unit-link-primary'
+    : props.unitType === 'physics_based_component' ? 'unit-link-secondary'
+    : 'unit-link-accent';
 });
 
 const iconName = computed(() => {
@@ -47,18 +48,23 @@ const iconName = computed(() => {
 </script>
 
 <style scoped lang="scss">
-.unit-link-model,
-.unit-link-component {
+.unit-link-primary,
+.unit-link-secondary,
+.unit-link-accent {
   color: black;
   font-weight: bold;
   transition: color 0.3s;
 }
 
-.unit-link-model:hover {
+.unit-link-primary:hover {
   color: $primary;
 }
 
-.unit-link-component:hover {
+.unit-link-secondary:hover {
   color: $secondary;
+}
+
+.unit-link-accent:hover {
+  color: $accent;
 }
 </style>
