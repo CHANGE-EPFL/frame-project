@@ -2,7 +2,7 @@ name: 🐞 Bug
 description: File a bug/issue
 title: "[BUG] <title>"
 labels: [bug, triage]
-assignees: ymarcon
+assignees: sphamba
 body:
   - type: checkboxes
     attributes:
