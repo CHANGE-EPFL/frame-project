@@ -46,9 +46,10 @@ const props = defineProps({
 });
 
 const hoveredClass = computed(() => {
-  return props.unitType === 'hybrid_model'
-    ? 'unit-name-hovered-primary'
-    : 'unit-name-hovered-secondary';
+  return
+    props.unitType === 'hybrid_model' ? 'unit-name-hovered-primary'
+    : props.unitType === 'physics_based_component' ? 'unit-name-hovered-secondary'
+    : 'unit-name-hovered-accent';
 });
 </script>
 
@@ -64,5 +65,9 @@ const hoveredClass = computed(() => {
 
 .unit-name-hovered-secondary {
   color: $secondary;
+}
+
+.unit-name-hovered-accent {
+  color: $accent;
 }
 </style>
