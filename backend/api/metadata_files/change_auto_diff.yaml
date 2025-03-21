@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=schema.json
 
 hybrid_model:
+  id: change_auto_diff
   name: "Hybrid Modeling of Stomatal Resistance"
   description: "A hybrid pipeline combining the physics-based ecohydrological model Tethys-Chloris (T&C) with a deep learning
     model to estimate stomatal resistance (rs) and predict latent heat flux (QLE)."

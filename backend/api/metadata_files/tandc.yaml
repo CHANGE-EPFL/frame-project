@@ -28,6 +28,7 @@ hybrid_model:
     - vegetation modelling
     - hydrology
   license: ""
+  id: tandc
   name: Tethys-Chloris (T&C)
   url: https://github.com/simonefatichi/TeC_Source_Code
   version: TeC_v1.5_July_2024

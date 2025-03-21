@@ -20,6 +20,7 @@ hybrid_model:
     - latent variables
     - machine learning
   license: MIT
+  id: hybrid_et
   name: Hybrid Model of Evapotranspiration
   url: https://github.com/relghawi/Hybrid_ET.git
   version: 1.0.0
