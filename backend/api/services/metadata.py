@@ -97,13 +97,18 @@ def add_model_and_components(
     metadata_filepath = os.path.join(METADATA_DIR_PATH, metadata_filename)
     raw_data = read_yaml(metadata_filepath)
     metadata = MetadataFromFile(**raw_data)
+    model_id = metadata.hybrid_model.id
+
+    if model_id in models:
+        # TODO: Allow multiple versions of the same model
+        raise ValueError(f'Duplicate model ID "{model_id}"')
+
     metadata.hybrid_model.contributors = format_contributors(metadata.hybrid_model.contributors)
     metadata.hybrid_model.keywords = format_keywords(metadata.hybrid_model.keywords)
 
     physics_based_component_ids = add_components(metadata, physics_based_components, PhysicsBasedComponent)
     machine_learning_component_ids = add_components(metadata, machine_learning_components, MachineLearningComponent)
 
-    model_id = metadata.hybrid_model.id
     model = HybridModel(
         **metadata.hybrid_model.model_dump(),
         compatible_physics_based_component_ids=physics_based_component_ids,
