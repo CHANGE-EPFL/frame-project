@@ -103,10 +103,9 @@ def add_model_and_components(
     physics_based_component_ids = add_components(metadata, physics_based_components, PhysicsBasedComponent)
     machine_learning_component_ids = add_components(metadata, machine_learning_components, MachineLearningComponent)
 
-    model_id = metadata_filename.split(".")[0]
+    model_id = metadata.hybrid_model.id
     model = HybridModel(
         **metadata.hybrid_model.model_dump(),
-        id=model_id,
         compatible_physics_based_component_ids=physics_based_component_ids,
         compatible_machine_learning_component_ids=machine_learning_component_ids,
         data=metadata.data,

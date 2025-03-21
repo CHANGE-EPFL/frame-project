@@ -11,6 +11,7 @@
 export interface CommonMetadata {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
@@ -33,6 +34,7 @@ export interface CommonMetadata {
 export interface CommonMetadataSummary {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
@@ -80,12 +82,12 @@ export interface DataIO {
 export interface HybridModel {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
   keywords: [string, ...string[]];
   name: string;
-  id: string;
   /**
    * @minItems 1
    */
@@ -110,6 +112,7 @@ export interface HybridModel {
 export interface HybridModelFromFile {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
@@ -136,10 +139,10 @@ export interface HybridModelFromFile {
 export interface HybridModelSummary {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
   keywords: [string, ...string[]];
   name: string;
-  id: string;
 }

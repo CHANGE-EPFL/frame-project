@@ -2,6 +2,7 @@
 # A template for FAIR hybrid models
 
 hybrid_model:
+  id: ""
   name: ""
   description: ""
   contributors:

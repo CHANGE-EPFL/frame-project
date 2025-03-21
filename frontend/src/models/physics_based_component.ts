@@ -11,9 +11,9 @@
 export interface Component {
   description: string;
   created?: string | null;
+  id: string;
   keywords?: string[];
   name: string;
-  id: string;
   contributors?: string[];
   documentation?: string[] | null;
   identifier?: string | null;
@@ -28,6 +28,7 @@ export interface Component {
 export interface ComponentFromFile {
   description: string;
   created?: string | null;
+  id: string;
   keywords?: string[];
   name: string;
   contributors?: string[];
@@ -37,7 +38,6 @@ export interface ComponentFromFile {
   readme?: string | null;
   url?: string | null;
   version?: string | number | null;
-  id: string;
 }
 /**
  * Reference to an existing component of a hybrid model.
@@ -51,12 +51,12 @@ export interface ComponentReference {
 export interface ComponentSummary {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
   keywords: [string, ...string[]];
   name: string;
-  id: string;
 }
 /**
  * Computational resources need for a hybrid model or component.
@@ -103,9 +103,9 @@ export interface Gpu {
 export interface PhysicsBasedComponent {
   description: string;
   created?: string | null;
+  id: string;
   keywords?: string[];
   name: string;
-  id: string;
   contributors?: string[];
   documentation?: string[] | null;
   identifier?: string | null;
@@ -139,6 +139,7 @@ export interface VerticalDiscretization {
 export interface PhysicsBasedComponentFromFile {
   description: string;
   created?: string | null;
+  id: string;
   keywords?: string[];
   name: string;
   contributors?: string[];
@@ -148,7 +149,6 @@ export interface PhysicsBasedComponentFromFile {
   readme?: string | null;
   url?: string | null;
   version?: string | number | null;
-  id: string;
   type?: string | null;
   fixed_parameters_count?: number | null;
   tunable_parameters_count?: number | null;
@@ -174,10 +174,10 @@ export interface PhysicsBasedComponentReference {
 export interface PhysicsBasedComponentSummary {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
   keywords: [string, ...string[]];
   name: string;
-  id: string;
 }

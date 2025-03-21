@@ -15,8 +15,6 @@ class HybridModelFromFile(CommonMetadata):
 class HybridModelSummary(CommonMetadataSummary, extra="ignore"):
     """Contains essential metadata fields for hybrid models."""
 
-    id: str
-
 
 class HybridModel(HybridModelFromFile, HybridModelSummary):
     """Hybrid model."""

@@ -28,6 +28,7 @@ hybrid_model:
     - Satellite
     - Earth Observation
   license: Copyright (c) 2024 Ghent University
+  id: gleam
   name: GLEAM (Global Land Evaporation Amsterdam Model)
   url: https://gitlab.com/gleam2/pygleam
   version: 4.1

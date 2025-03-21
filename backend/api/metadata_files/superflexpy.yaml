@@ -17,6 +17,7 @@ hybrid_model:
     - Modular
     - Superflex
   license: LGPL-3.0
+  id: superflexpy
   name: SuperflexPy
   url: https://superflexpy.readthedocs.io/en/latest/index.html
   version: 1.3.2

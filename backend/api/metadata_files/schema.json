@@ -568,6 +568,10 @@
                     "default": null,
                     "title": "Created"
                 },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
+                },
                 "keywords": {
                     "items": {
                         "type": "string"
@@ -719,6 +723,7 @@
             },
             "required": [
                 "description",
+                "id",
                 "keywords",
                 "name",
                 "contributors"
@@ -746,6 +751,10 @@
                     ],
                     "default": null,
                     "title": "Created"
+                },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
                 },
                 "keywords": {
                     "default": [],
@@ -848,10 +857,6 @@
                     "default": null,
                     "title": "Version"
                 },
-                "id": {
-                    "title": "Id",
-                    "type": "string"
-                },
                 "ml_process": {
                     "anyOf": [
                         {
@@ -882,8 +887,8 @@
             },
             "required": [
                 "description",
-                "name",
-                "id"
+                "id",
+                "name"
             ],
             "title": "MachineLearningComponentFromFile",
             "type": "object"
@@ -1135,6 +1140,10 @@
                     "default": null,
                     "title": "Created"
                 },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
+                },
                 "keywords": {
                     "default": [],
                     "items": {
@@ -1235,10 +1244,6 @@
                     ],
                     "default": null,
                     "title": "Version"
-                },
-                "id": {
-                    "title": "Id",
-                    "type": "string"
                 },
                 "type": {
                     "anyOf": [
@@ -1392,8 +1397,8 @@
             },
             "required": [
                 "description",
-                "name",
-                "id"
+                "id",
+                "name"
             ],
             "title": "PhysicsBasedComponentFromFile",
             "type": "object"

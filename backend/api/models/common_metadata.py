@@ -20,6 +20,7 @@ class CommonMetadataSummary(BaseModel, extra="forbid"):
 
     description: str
     created: date | None = None
+    id: str
     keywords: NonEmptyList
     name: str
 
@@ -29,6 +30,7 @@ class CommonMetadataSummaryIncomplete(BaseModel, extra="forbid"):
 
     description: str
     created: date | None = None
+    id: str
     keywords: list[str] = []
     name: str
 
