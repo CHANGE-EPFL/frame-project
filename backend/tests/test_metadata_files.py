@@ -1,26 +1,24 @@
-import os
-
 import pytest
 
 from api.services import metadata
 
-metadata_filenames = metadata.get_all_metadata_filenames()
+metadata_paths = metadata.get_all_metadata_paths()
 
 
-@pytest.mark.parametrize("metadata_filename", metadata_filenames)
-def test_read_yaml(metadata_filename: str) -> None:
-    path = os.path.join(metadata.METADATA_DIR_PATH, metadata_filename)
-    data = metadata.read_yaml(path)
-    assert isinstance(data, dict)
+@pytest.mark.parametrize("metadata_path", metadata_paths)
+def test_read_yaml(metadata_path: str) -> None:
+    raw_data = metadata.load_metadata_yaml(metadata_path)
+    assert isinstance(raw_data, dict)
 
 
-@pytest.mark.parametrize("metadata_filename", metadata_filenames)
-def test_schema(metadata_filename: str) -> None:
+@pytest.mark.parametrize("metadata_path", metadata_paths)
+def test_schema(metadata_path: str) -> None:
     models = {}
     physics_based_components = {}
     machine_learning_components = {}
+    raw_data = metadata.load_metadata_yaml(metadata_path)
     metadata.add_model_and_components(
-        metadata_filename,
+        raw_data,
         models,
         physics_based_components,
         machine_learning_components,
