@@ -3,7 +3,13 @@
     v-for="keyword in keywords"
     :key="keyword"
     class="keyword"
-    :color="unitType === 'hybrid_model' ? 'primary' : unitType === 'physics_based_component' ? 'secondary' : 'accent'"
+    :color="
+      unitType === 'hybrid_model'
+        ? 'primary'
+        : unitType === 'physics_based_component'
+          ? 'secondary'
+          : 'accent'
+    "
     text-color="white"
   >
     {{ keyword }}

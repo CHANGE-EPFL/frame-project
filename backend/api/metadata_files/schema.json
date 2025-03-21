@@ -1,5 +1,33 @@
 {
     "$defs": {
+        "ComputationalEnvironment": {
+            "additionalProperties": false,
+            "description": "Description of a computational environment.",
+            "properties": {
+                "type": {
+                    "enum": [
+                        "conda",
+                        "python_requirements",
+                        "pyproject_toml"
+                    ],
+                    "title": "Type",
+                    "type": "string"
+                },
+                "file_paths": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "File Paths",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "type",
+                "file_paths"
+            ],
+            "title": "ComputationalEnvironment",
+            "type": "object"
+        },
         "ComputationalResources": {
             "additionalProperties": false,
             "description": "Computational resources need for a hybrid model or component.",
@@ -672,6 +700,21 @@
                     },
                     "title": "Latent Variables",
                     "type": "array"
+                },
+                "computational_environment": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/ComputationalEnvironment"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Computational Environment"
                 }
             },
             "required": [
