@@ -6,6 +6,7 @@ Mock data for testing.
 import os
 from typing import Any, Callable, TypeVar
 
+import requests
 import yaml
 from fastapi import HTTPException
 
@@ -16,8 +17,9 @@ from ..models.machine_learning_component import MachineLearningComponent, Machin
 from ..models.metadata_file import MetadataFromFile
 from ..models.physics_based_component import PhysicsBasedComponent, PhysicsBasedComponentSummary
 
-METADATA_DIR_PATH = os.path.join(os.path.dirname(__file__), "..", "metadata_files")
+METADATA_DIR_PATH = os.path.relpath(os.path.join(os.path.dirname(__file__), "..", "metadata_files"))
 METADATA_TEMPLATE_FILENAME = "template.yaml"
+EXTERNAL_METADATA_FILENAME: str = "external_metadata_files.yaml"
 
 
 def read_yaml(path: str) -> Any:
@@ -25,12 +27,35 @@ def read_yaml(path: str) -> Any:
         return yaml.safe_load(f.read())
 
 
-def get_all_metadata_filenames() -> list[str]:
+def get_all_local_metadata_filenames() -> list[str]:
     return [
         filename
         for filename in os.listdir(METADATA_DIR_PATH)
-        if filename != METADATA_TEMPLATE_FILENAME and filename.endswith(".yaml")
+        if filename != METADATA_TEMPLATE_FILENAME
+        and filename != EXTERNAL_METADATA_FILENAME
+        and filename.endswith(".yaml")
     ]
+
+
+def get_all_external_metadata_urls() -> list[str]:
+    external_metadata_filepath = os.path.join(METADATA_DIR_PATH, EXTERNAL_METADATA_FILENAME)
+    return read_yaml(external_metadata_filepath)
+
+
+def get_all_metadata_paths() -> list[str]:
+    local_metadata_filepaths = [
+        os.path.join(METADATA_DIR_PATH, filename) for filename in get_all_local_metadata_filenames()
+    ]
+    return local_metadata_filepaths + get_all_external_metadata_urls()
+
+
+def load_metadata_yaml(metadata_path: str) -> dict[str, Any]:
+    if metadata_path.startswith("http"):
+        response = requests.get(metadata_path)
+        response.raise_for_status()
+        return yaml.safe_load(response.text)
+
+    return read_yaml(metadata_path)
 
 
 def format_contributors(contributors: list[str]) -> list[str]:
@@ -89,13 +114,11 @@ def add_components(
 
 
 def add_model_and_components(
-    metadata_filename: str,
+    raw_data: dict[str, Any],
     models: dict[str, HybridModel],
     physics_based_components: dict[str, PhysicsBasedComponent],
     machine_learning_components: dict[str, MachineLearningComponent],
 ) -> None:
-    metadata_filepath = os.path.join(METADATA_DIR_PATH, metadata_filename)
-    raw_data = read_yaml(metadata_filepath)
     metadata = MetadataFromFile(**raw_data)
     model_id = metadata.hybrid_model.id
 
@@ -130,9 +153,11 @@ def load_models_and_components() -> (
     physics_based_components = {}
     machine_learning_components = {}
 
-    for metadata_filename in get_all_metadata_filenames():
+    for metadata_path in get_all_metadata_paths():
+        raw_data = load_metadata_yaml(metadata_path)
+
         add_model_and_components(
-            metadata_filename,
+            raw_data,
             models,
             physics_based_components,
             machine_learning_components,
