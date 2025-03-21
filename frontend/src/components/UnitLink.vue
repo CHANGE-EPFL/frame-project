@@ -31,10 +31,12 @@ const props = defineProps({
 });
 
 const linkClass = computed(() => {
-  return
-    props.unitType === 'hybrid_model' ? 'unit-link-primary'
-    : props.unitType === 'physics_based_component' ? 'unit-link-secondary'
-    : 'unit-link-accent';
+  return;
+  props.unitType === 'hybrid_model'
+    ? 'unit-link-primary'
+    : props.unitType === 'physics_based_component'
+      ? 'unit-link-secondary'
+      : 'unit-link-accent';
 });
 
 const iconName = computed(() => {

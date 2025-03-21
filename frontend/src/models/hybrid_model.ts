@@ -40,6 +40,13 @@ export interface CommonMetadataSummary {
   name: string;
 }
 /**
+ * Description of a computational environment.
+ */
+export interface ComputationalEnvironment {
+  type: 'conda' | 'python_requirements' | 'pyproject_toml';
+  file_paths: string[];
+}
+/**
  * Data structure for input and output data.
  */
 export interface Data {
@@ -92,6 +99,7 @@ export interface HybridModel {
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
+  computational_environment?: ComputationalEnvironment[] | null;
   compatible_machine_learning_component_ids: string[];
   compatible_physics_based_component_ids: string[];
   data: DataIO;
@@ -120,6 +128,7 @@ export interface HybridModelFromFile {
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
+  computational_environment?: ComputationalEnvironment[] | null;
 }
 /**
  * Contains essential metadata fields for hybrid models.

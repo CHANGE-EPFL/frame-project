@@ -1,4 +1,5 @@
 from .common_metadata import CommonMetadata, CommonMetadataSummary
+from .computational_environment import ComputationalEnvironment
 from .data import Data, DataIO
 
 
@@ -8,6 +9,7 @@ class HybridModelFromFile(CommonMetadata):
     ml_process: str | None = None
     host_physics: str | None = None
     latent_variables: list[Data] = []
+    computational_environment: list[ComputationalEnvironment] | None = None
 
 
 class HybridModelSummary(CommonMetadataSummary, extra="ignore"):
