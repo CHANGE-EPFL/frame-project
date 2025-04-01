@@ -11,7 +11,6 @@
 export interface CommonMetadata {
   description: string;
   created?: string | null;
-  id: string;
   /**
    * @minItems 1
    */
@@ -22,6 +21,7 @@ export interface CommonMetadata {
    */
   contributors: [string, ...string[]];
   documentation?: string[] | null;
+  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
@@ -34,7 +34,6 @@ export interface CommonMetadata {
 export interface CommonMetadataSummary {
   description: string;
   created?: string | null;
-  id: string;
   /**
    * @minItems 1
    */
@@ -45,7 +44,7 @@ export interface CommonMetadataSummary {
  * Description of a computational environment.
  */
 export interface ComputationalEnvironment {
-  type: 'conda' | 'python_requirements' | 'pyproject_toml';
+  type: "conda" | "python_requirements" | "pyproject_toml";
   file_paths: string[];
 }
 /**
@@ -82,7 +81,6 @@ export interface DataIO {
 export interface HybridModel {
   description: string;
   created?: string | null;
-  id: string;
   /**
    * @minItems 1
    */
@@ -93,6 +91,7 @@ export interface HybridModel {
    */
   contributors: [string, ...string[]];
   documentation?: string[] | null;
+  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
@@ -112,7 +111,6 @@ export interface HybridModel {
 export interface HybridModelFromFile {
   description: string;
   created?: string | null;
-  id: string;
   /**
    * @minItems 1
    */
@@ -123,6 +121,7 @@ export interface HybridModelFromFile {
    */
   contributors: [string, ...string[]];
   documentation?: string[] | null;
+  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
@@ -139,7 +138,6 @@ export interface HybridModelFromFile {
 export interface HybridModelSummary {
   description: string;
   created?: string | null;
-  id: string;
   /**
    * @minItems 1
    */

@@ -11,11 +11,11 @@
 export interface Component {
   description: string;
   created?: string | null;
-  id: string;
   keywords?: string[];
   name: string;
   contributors?: string[];
   documentation?: string[] | null;
+  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
@@ -28,11 +28,11 @@ export interface Component {
 export interface ComponentFromFile {
   description: string;
   created?: string | null;
-  id: string;
   keywords?: string[];
   name: string;
   contributors?: string[];
   documentation?: string[] | null;
+  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
@@ -51,7 +51,6 @@ export interface ComponentReference {
 export interface ComponentSummary {
   description: string;
   created?: string | null;
-  id: string;
   /**
    * @minItems 1
    */
@@ -103,11 +102,11 @@ export interface Gpu {
 export interface PhysicsBasedComponent {
   description: string;
   created?: string | null;
-  id: string;
   keywords?: string[];
   name: string;
   contributors?: string[];
   documentation?: string[] | null;
+  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
@@ -139,11 +138,11 @@ export interface VerticalDiscretization {
 export interface PhysicsBasedComponentFromFile {
   description: string;
   created?: string | null;
-  id: string;
   keywords?: string[];
   name: string;
   contributors?: string[];
   documentation?: string[] | null;
+  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
@@ -174,7 +173,6 @@ export interface PhysicsBasedComponentReference {
 export interface PhysicsBasedComponentSummary {
   description: string;
   created?: string | null;
-  id: string;
   /**
    * @minItems 1
    */
