@@ -31,7 +31,7 @@ hybrid_model:
   id: gleam
   name: GLEAM (Global Land Evaporation Amsterdam Model)
   url: https://gitlab.com/gleam2/pygleam
-  version: 4.1
+  version: "4.1"
   ml_process: transpirational stress
   host_physics: GLEAM transpiration stress
   latent_variables:

@@ -20,6 +20,7 @@ pillow = "^10.4.0"
 pydantic-settings = "^2.4.0"
 pyproj = "^3.6.1"
 requests = "^2.32.3"
+packaging = "^24.2"
 
 [tool.poetry.extras]
 dev = [

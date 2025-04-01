@@ -23,11 +23,13 @@ def test_schema(metadata_path: str) -> None:
         physics_based_components,
         machine_learning_components,
     )
-    assert isinstance(list(models.values())[0], metadata.HybridModel)
-    for component in physics_based_components.values():
-        assert isinstance(component, metadata.PhysicsBasedComponent)
-    for component in machine_learning_components.values():
-        assert isinstance(component, metadata.MachineLearningComponent)
+    assert isinstance(next(iter(next(iter(models.values())).values())), metadata.HybridModel)
+    for component_family in physics_based_components.values():
+        for component in component_family.values():
+            assert isinstance(component, metadata.PhysicsBasedComponent)
+    for component_family in machine_learning_components.values():
+        for component in component_family.values():
+            assert isinstance(component, metadata.MachineLearningComponent)
 
 
 @pytest.mark.asyncio

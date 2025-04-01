@@ -568,10 +568,6 @@
                     "default": null,
                     "title": "Created"
                 },
-                "id": {
-                    "title": "Id",
-                    "type": "string"
-                },
                 "keywords": {
                     "items": {
                         "type": "string"
@@ -606,6 +602,10 @@
                     ],
                     "default": null,
                     "title": "Documentation"
+                },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
                 },
                 "identifier": {
                     "anyOf": [
@@ -723,10 +723,10 @@
             },
             "required": [
                 "description",
-                "id",
                 "keywords",
                 "name",
-                "contributors"
+                "contributors",
+                "id"
             ],
             "title": "HybridModelFromFile",
             "type": "object"
@@ -751,10 +751,6 @@
                     ],
                     "default": null,
                     "title": "Created"
-                },
-                "id": {
-                    "title": "Id",
-                    "type": "string"
                 },
                 "keywords": {
                     "default": [],
@@ -790,6 +786,10 @@
                     ],
                     "default": null,
                     "title": "Documentation"
+                },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
                 },
                 "identifier": {
                     "anyOf": [
@@ -887,8 +887,8 @@
             },
             "required": [
                 "description",
-                "id",
-                "name"
+                "name",
+                "id"
             ],
             "title": "MachineLearningComponentFromFile",
             "type": "object"
@@ -1140,10 +1140,6 @@
                     "default": null,
                     "title": "Created"
                 },
-                "id": {
-                    "title": "Id",
-                    "type": "string"
-                },
                 "keywords": {
                     "default": [],
                     "items": {
@@ -1178,6 +1174,10 @@
                     ],
                     "default": null,
                     "title": "Documentation"
+                },
+                "id": {
+                    "title": "Id",
+                    "type": "string"
                 },
                 "identifier": {
                     "anyOf": [
@@ -1397,8 +1397,8 @@
             },
             "required": [
                 "description",
-                "id",
-                "name"
+                "name",
+                "id"
             ],
             "title": "PhysicsBasedComponentFromFile",
             "type": "object"

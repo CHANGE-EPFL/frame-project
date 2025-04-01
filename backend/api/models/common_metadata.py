@@ -38,6 +38,7 @@ class CommonMetadataSummaryIncomplete(BaseModel, extra="forbid"):
 class CommonMetadata(CommonMetadataSummary):
     """Common metadata fields for hybrid models."""
 
+    #: List of contributor names
     contributors: NonEmptyList
     #: URLs or DOIs
     documentation: list[str] | None = None
@@ -48,12 +49,16 @@ class CommonMetadata(CommonMetadataSummary):
     readme: str | None = None
     #: Repository URL
     url: str | None = None
-    version: str | int | float | None = None
+    #: Semantic version
+    version: str | None = None
+    #: Whether version is latest
+    latest: bool = False
 
 
 class CommonMetadataIncomplete(CommonMetadataSummaryIncomplete):
     """Common metadata fields for components that allows for missing fields."""
 
+    #: List of contributor names
     contributors: list[str] = []
     #: URLs or DOIs
     documentation: list[str] | None = None
@@ -64,4 +69,7 @@ class CommonMetadataIncomplete(CommonMetadataSummaryIncomplete):
     readme: str | None = None
     #: Repository URL
     url: str | None = None
-    version: str | int | float | None = None
+    #: Semantic version
+    version: str | None = None
+    #: Whether version is latest
+    latest: bool = False
