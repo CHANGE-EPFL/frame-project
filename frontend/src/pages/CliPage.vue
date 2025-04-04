@@ -35,6 +35,10 @@
         Hybrid model and component pages show which command must be run to
         download and setup specific elements.
       </p>
+
+      <h2>Uninstall</h2>
+      <p>To remove the CLI tool from your system, run the following command:</p>
+      <CopyCommand command="uv tool uninstall frame-cli" />
     </div>
   </q-page>
 </template>

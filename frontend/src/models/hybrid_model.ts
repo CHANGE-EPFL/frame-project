@@ -26,7 +26,8 @@ export interface CommonMetadata {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
 }
 /**
  * Essential metadata fields for hybrid models.
@@ -97,7 +98,8 @@ export interface HybridModel {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
@@ -127,7 +129,8 @@ export interface HybridModelFromFile {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];

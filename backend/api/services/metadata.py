@@ -9,6 +9,7 @@ from typing import Any, Callable, TypeVar
 import requests
 import yaml
 from fastapi import HTTPException
+from packaging.version import InvalidVersion, Version
 
 from ..models.common_metadata import CommonMetadata
 from ..models.component import ComponentReference
@@ -20,6 +21,7 @@ from ..models.physics_based_component import PhysicsBasedComponent, PhysicsBased
 METADATA_DIR_PATH = os.path.relpath(os.path.join(os.path.dirname(__file__), "..", "metadata_files"))
 METADATA_TEMPLATE_FILENAME = "template.yaml"
 EXTERNAL_METADATA_FILENAME: str = "external_metadata_files.yaml"
+DEFAULT_VERSION = "none"
 
 
 def read_yaml(path: str) -> Any:
@@ -76,56 +78,61 @@ def format_keywords(keywords: list[str]) -> list[str]:
     return [keyword.lower() for keyword in keywords]
 
 
-T = TypeVar("T", PhysicsBasedComponent, MachineLearningComponent)
+C = TypeVar("C", PhysicsBasedComponent, MachineLearningComponent)
+U = TypeVar("U", HybridModel, PhysicsBasedComponent, MachineLearningComponent)
 
 
 def add_components(
     metadata: MetadataFromFile,
-    components: dict[str, T],
-    ComponentType: type[T],
+    components: dict[str, dict[str, C]],
+    ComponentType: type[C],
 ) -> list[str]:
     if ComponentType == PhysicsBasedComponent:
-        component_type_name = "physics_based_components"
+        component_type_name = "physics_based"
     else:
-        component_type_name = "machine_learning_components"
+        component_type_name = "machine_learning"
 
     ids = []
 
-    for component_from_file in getattr(metadata, component_type_name):
+    for component_from_file in getattr(metadata, f"{component_type_name}_components"):
         component_id = component_from_file.id
         ids.append(component_id)
         if isinstance(component_from_file, ComponentReference):
             continue
 
-        if component_id in components:
-            raise ValueError(f'Duplicate {ComponentType.__name__} ID "{component_id}"')
         component = ComponentType(
             **component_from_file.model_dump(),
         )
         component.contributors = format_contributors(component.contributors)
         component.keywords = format_keywords(component.keywords)
-        components[component_id] = component
+
+        if component_id not in components:
+            components[component_id] = {}
 
         for field in CommonMetadata.model_fields.keys():
             if not getattr(component, field):  # empty or None
                 setattr(component, field, getattr(metadata.hybrid_model, field))
+
+        component.version = component.version or DEFAULT_VERSION
+        component_version = component.version
+        if component_version in components[component_id]:
+            raise ValueError(
+                f'Duplicate {ComponentType.__name__} version "{component_version}" for ID "{component_id}"'
+            )
+
+        components[component_id][component_version] = component
 
     return ids
 
 
 def add_model_and_components(
     raw_data: dict[str, Any],
-    models: dict[str, HybridModel],
-    physics_based_components: dict[str, PhysicsBasedComponent],
-    machine_learning_components: dict[str, MachineLearningComponent],
+    models: dict[str, dict[str, HybridModel]],
+    physics_based_components: dict[str, dict[str, PhysicsBasedComponent]],
+    machine_learning_components: dict[str, dict[str, MachineLearningComponent]],
 ) -> None:
     metadata = MetadataFromFile(**raw_data)
     model_id = metadata.hybrid_model.id
-
-    if model_id in models:
-        # TODO: Allow multiple versions of the same model
-        raise ValueError(f'Duplicate model ID "{model_id}"')
-
     metadata.hybrid_model.contributors = format_contributors(metadata.hybrid_model.contributors)
     metadata.hybrid_model.keywords = format_keywords(metadata.hybrid_model.keywords)
 
@@ -138,12 +145,40 @@ def add_model_and_components(
         compatible_machine_learning_component_ids=machine_learning_component_ids,
         data=metadata.data,
     )
-    models[model_id] = model
+
+    if model_id not in models:
+        models[model_id] = {}
+
+    model.version = model.version or DEFAULT_VERSION
+    model_version = model.version
+    if model_version in models[model_id]:
+        raise ValueError(f'Duplicate model version "{model_version}" for model ID "{model_id}"')
+
+    models[model_id][model_version] = model
 
 
-def load_models_and_components() -> (
-    tuple[dict[str, HybridModel], dict[str, PhysicsBasedComponent], dict[str, MachineLearningComponent]]
-):
+def sort_by_version(units: dict[str, dict[str, U]]) -> dict[str, dict[str, U]]:
+    units = units.copy()
+
+    for unit_id in units.keys():
+        unit_family = units[unit_id]
+        try:
+            unit_family = dict(sorted(unit_family.items(), key=lambda item: Version(item[0]), reverse=True))
+        except InvalidVersion:
+            unit_family = dict(sorted(unit_family.items(), key=lambda item: item[0], reverse=True))
+        units[unit_id] = unit_family
+
+        latest_model = next(iter(unit_family.values()))
+        latest_model.latest = True
+
+    return units
+
+
+def load_models_and_components() -> tuple[
+    dict[str, dict[str, HybridModel]],
+    dict[str, dict[str, PhysicsBasedComponent]],
+    dict[str, dict[str, MachineLearningComponent]],
+]:
     """Load metadata for all models and components.
 
     Raises:
@@ -163,12 +198,16 @@ def load_models_and_components() -> (
             machine_learning_components,
         )
 
+    models = sort_by_version(models)
+    physics_based_components = sort_by_version(physics_based_components)
+    machine_learning_components = sort_by_version(machine_learning_components)
+
     return models, physics_based_components, machine_learning_components
 
 
 def check_non_duplicated_component_ids(
-    physics_based_components: dict[str, PhysicsBasedComponent],
-    machine_learning_components: dict[str, MachineLearningComponent],
+    physics_based_components: dict[str, dict[str, PhysicsBasedComponent]],
+    machine_learning_components: dict[str, dict[str, MachineLearningComponent]],
 ) -> None:
     """Check if component IDs are duplicated between physics-based and machine-learning components.
 
@@ -187,9 +226,9 @@ def check_non_duplicated_component_ids(
 
 
 def check_component_references(
-    models: dict[str, HybridModel],
-    physics_based_components: dict[str, PhysicsBasedComponent],
-    machine_learning_components: dict[str, MachineLearningComponent],
+    models: dict[str, dict[str, HybridModel]],
+    physics_based_components: dict[str, dict[str, PhysicsBasedComponent]],
+    machine_learning_components: dict[str, dict[str, MachineLearningComponent]],
 ) -> None:
     """Check that component references in models are valid.
 
@@ -197,52 +236,57 @@ def check_component_references(
         ValueError: If a component ID is not found in the corresponding components dictionary.
     """
 
-    for model in models.values():
-        for component_type, components in [
-            ("physics_based", physics_based_components),
-            ("machine_learning", machine_learning_components),
-        ]:
-            for component_id in getattr(model, f"compatible_{component_type}_component_ids"):
-                if component_id not in components:
-                    raise ValueError(f'{component_type} component ID "{component_id}" does not exist.')
+    for model_family in models.values():
+        for model in model_family.values():
+            for component_type, components in [
+                ("physics_based", physics_based_components),
+                ("machine_learning", machine_learning_components),
+            ]:
+                for component_id in getattr(model, f"compatible_{component_type}_component_ids"):
+                    if component_id not in components:
+                        raise ValueError(f'{component_type} component ID "{component_id}" does not exist.')
 
 
 def get_model_keywords(
-    models: dict[str, HybridModel],
-    physics_based_components: dict[str, PhysicsBasedComponent],
-    machine_learning_components: dict[str, MachineLearningComponent],
+    models: dict[str, dict[str, HybridModel]],
+    physics_based_components: dict[str, dict[str, PhysicsBasedComponent]],
+    machine_learning_components: dict[str, dict[str, MachineLearningComponent]],
 ) -> dict[str, set[str]]:
     """Get a dictionary of model IDs and their keywords."""
 
     model_keywords = {}
 
-    for model_id, model in models.items():
-        s = set(model.keywords)
-        s.add(model_id)
-        s.update(model.name.lower().split())
-        for contributor in model.contributors:
-            s.update(contributor.lower().split())
+    for model_id, model_family in models.items():
+        s = set()
 
-        for component_type, components in [
-            ("physics_based", physics_based_components),
-            ("machine_learning", machine_learning_components),
-        ]:
-            for component_id in getattr(model, f"compatible_{component_type}_component_ids"):
-                component = components[component_id]
-                for keyword in component.keywords:
-                    s.update(keyword.split(" "))
+        for model in model_family.values():
+            s.update(model.keywords)
+            s.add(model_id)
+            s.update(model.name.lower().split())
+
+            for contributor in model.contributors:
+                s.update(contributor.lower().split())
+
+            for component_type, components in [
+                ("physics_based", physics_based_components),
+                ("machine_learning", machine_learning_components),
+            ]:
+                for component_id in getattr(model, f"compatible_{component_type}_component_ids"):
+                    component = next(iter(components[component_id].values()))
+                    for keyword in component.keywords:
+                        s.update(keyword.split(" "))
 
         model_keywords[model_id] = s
 
     return model_keywords
 
 
-models: dict[str, HybridModel] = {}
-model_summaries: dict[str, HybridModelSummary] = {}
+models: dict[str, dict[str, HybridModel]] = {}  # First key is model ID, second key is version
+model_summaries: dict[str, HybridModelSummary] = {}  # Key is model ID
 model_keywords: dict[str, set[str]] = {}
-physics_based_components: dict[str, PhysicsBasedComponent] = {}
+physics_based_components: dict[str, dict[str, PhysicsBasedComponent]] = {}
 physics_based_components_summaries: dict[str, PhysicsBasedComponentSummary] = {}
-machine_learning_components: dict[str, MachineLearningComponent] = {}
+machine_learning_components: dict[str, dict[str, MachineLearningComponent]] = {}
 machine_learning_components_summaries: dict[str, MachineLearningComponentSummary] = {}
 metadata_loaded = False
 
@@ -255,21 +299,26 @@ def _load_metadata():
     global physics_based_components
     global physics_based_components_summaries
     global machine_learning_components
-    global machine_learning_components_summaries, metadata_loaded
+    global machine_learning_components_summaries
+    global metadata_loaded
 
     models, physics_based_components, machine_learning_components = load_models_and_components()
     check_non_duplicated_component_ids(physics_based_components, machine_learning_components)
     check_component_references(models, physics_based_components, machine_learning_components)
 
-    model_summaries = {model_id: HybridModelSummary(**model.model_dump()) for model_id, model in models.items()}
+    # Summary of latest version of each model
+    model_summaries = {
+        model_id: HybridModelSummary(**next(iter(model_family.values())).model_dump())
+        for model_id, model_family in models.items()
+    }
     model_keywords = get_model_keywords(models, physics_based_components, machine_learning_components)
     physics_based_components_summaries = {
-        component_id: PhysicsBasedComponentSummary(**component.model_dump())
-        for component_id, component in physics_based_components.items()
+        component_id: PhysicsBasedComponentSummary(**next(iter(component_family.values())).model_dump())
+        for component_id, component_family in physics_based_components.items()
     }
     machine_learning_components_summaries = {
-        component_id: MachineLearningComponentSummary(**component.model_dump())
-        for component_id, component in machine_learning_components.items()
+        component_id: MachineLearningComponentSummary(**next(iter(component_family.values())).model_dump())
+        for component_id, component_family in machine_learning_components.items()
     }
 
     metadata_loaded = True
@@ -278,22 +327,22 @@ def _load_metadata():
 def load_metadata(func: Callable):
     """Decorator to trigger loading metadata."""
 
-    async def wrapped(*args, **kwargs):
+    def wrapped(*args, **kwargs):
         if not metadata_loaded:
             _load_metadata()
 
-        return await func(*args, **kwargs)
+        return func(*args, **kwargs)
 
     return wrapped
 
 
 @load_metadata
-async def get_hybrid_models() -> list[HybridModelSummary]:
+def get_hybrid_models() -> list[HybridModelSummary]:
     return list(model_summaries.values())
 
 
 @load_metadata
-async def get_filtered_hybrid_models(query: str) -> list[HybridModelSummary]:
+def get_filtered_hybrid_models(query: str) -> list[HybridModelSummary]:
     query_keywords = query.lower().split()
     model_ids = []
 
@@ -312,57 +361,70 @@ async def get_filtered_hybrid_models(query: str) -> list[HybridModelSummary]:
     return [model_summaries[model_id] for model_id in model_ids]
 
 
+def get_unit(unit_id: str, unit_version: str | None, units: dict[str, dict[str, U]], UnitType: type[U]) -> U:
+    if unit_id not in units:
+        raise HTTPException(status_code=404, detail=f"{UnitType.__name__} ID not found.")
+
+    if unit_version is None:
+        unit_version = next(iter(units[unit_id].keys()))
+
+    elif unit_version not in units[unit_id]:
+        raise HTTPException(status_code=404, detail=f"{UnitType.__name__} version not found.")
+
+    return units[unit_id][unit_version]
+
+
 @load_metadata
-async def get_hybrid_model(model_id: str) -> HybridModel:
-    try:
-        return models[model_id]
-
-    except KeyError:
-        raise HTTPException(status_code=404, detail="HybridModel not found.")
+def get_hybrid_model(model_id: str, model_version: str | None) -> HybridModel:
+    return get_unit(model_id, model_version, models, HybridModel)
 
 
 @load_metadata
-async def get_hybrid_model_ids() -> list[str]:
+def get_hybrid_model_ids() -> list[str]:
     return list(models.keys())
 
 
 @load_metadata
-async def get_physics_based_component_models(component_id: str) -> list[HybridModelSummary]:
-    try:
-        component = physics_based_components[component_id]
+def get_hybrid_model_versions(model_id: str) -> list[str]:
+    if model_id not in models:
+        raise HTTPException(status_code=404, detail="HybridModel ID not found.")
 
-    except KeyError:
-        raise HTTPException(status_code=404, detail="PhysicsBasedComponent not found.")
-
-    return [
-        model_summaries[model_id]
-        for model_id, model in models.items()
-        if component.id in model.compatible_physics_based_component_ids
-    ]
+    return list(models[model_id].keys())
 
 
-@load_metadata
-async def get_machine_learning_component_models(component_id: str) -> list[HybridModelSummary]:
-    try:
-        component = machine_learning_components[component_id]
+def get_component_models(
+    component_id: str,
+    component_version: str | None,
+    components: dict[str, dict[str, C]],
+    ComponentType: type[C],
+) -> list[HybridModelSummary]:
+    if ComponentType == PhysicsBasedComponent:
+        component_type_name = "physics_based"
+    else:
+        component_type_name = "machine_learning"
 
-    except KeyError:
-        raise HTTPException(status_code=404, detail="MachineLearningComponent not found.")
+    component = get_unit(component_id, component_version, components, ComponentType)
 
     return [
         model_summaries[model_id]
         for model_id, model in models.items()
-        if component.id in model.compatible_machine_learning_component_ids
+        if component.id in model.get(f"compatible_{component_type_name}_component_ids", {})
     ]
 
 
 @load_metadata
-async def get_model_physics_based_components(model_id: str) -> list[PhysicsBasedComponentSummary]:
-    try:
-        model = models[model_id]
+def get_physics_based_component_models(component_id: str, component_version: str | None) -> list[HybridModelSummary]:
+    return get_component_models(component_id, component_version, physics_based_components, PhysicsBasedComponent)
 
-    except KeyError:
-        raise HTTPException(status_code=404, detail="HybridModel not found.")
+
+@load_metadata
+def get_machine_learning_component_models(component_id: str, component_version: str | None) -> list[HybridModelSummary]:
+    return get_component_models(component_id, component_version, machine_learning_components, MachineLearningComponent)
+
+
+@load_metadata
+def get_model_physics_based_components(model_id: str, model_version: str | None) -> list[PhysicsBasedComponentSummary]:
+    model = get_hybrid_model(model_id, model_version)
 
     return [
         physics_based_components_summaries[component_id]
@@ -371,21 +433,15 @@ async def get_model_physics_based_components(model_id: str) -> list[PhysicsBased
 
 
 @load_metadata
-async def get_physics_based_component(component_id: str) -> PhysicsBasedComponent:
-    try:
-        return physics_based_components[component_id]
-
-    except KeyError:
-        raise HTTPException(status_code=404, detail="PhysicsBasedComponent not found.")
+def get_physics_based_component(component_id: str, component_version: str | None) -> PhysicsBasedComponent:
+    return get_unit(component_id, component_version, physics_based_components, PhysicsBasedComponent)
 
 
 @load_metadata
-async def get_model_machine_learning_components(model_id: str) -> list[MachineLearningComponentSummary]:
-    try:
-        model = models[model_id]
-
-    except KeyError:
-        raise HTTPException(status_code=404, detail="HybridModel not found.")
+def get_model_machine_learning_components(
+    model_id: str, model_version: str | None
+) -> list[MachineLearningComponentSummary]:
+    model = get_hybrid_model(model_id, model_version)
 
     return [
         machine_learning_components_summaries[component_id]
@@ -394,26 +450,38 @@ async def get_model_machine_learning_components(model_id: str) -> list[MachineLe
 
 
 @load_metadata
-async def get_machine_learning_component(component_id: str) -> MachineLearningComponent:
-    try:
-        return machine_learning_components[component_id]
-
-    except KeyError:
-        raise HTTPException(status_code=404, detail="MachineLearningComponent not found.")
+def get_machine_learning_component(component_id: str, component_version: str | None) -> MachineLearningComponent:
+    return get_unit(component_id, component_version, machine_learning_components, MachineLearningComponent)
 
 
 @load_metadata
-async def get_component_ids() -> list[str]:
+def get_component_ids() -> list[str]:
     physics_based_component_ids = list(physics_based_components.keys())
     machine_learning_component_ids = list(machine_learning_components.keys())
     return physics_based_component_ids + machine_learning_component_ids
 
 
 @load_metadata
-async def get_physics_based_component_ids() -> list[str]:
+def get_physics_based_component_ids() -> list[str]:
     return list(physics_based_components.keys())
 
 
 @load_metadata
-async def get_machine_learning_component_ids() -> list[str]:
+def get_machine_learning_component_ids() -> list[str]:
     return list(machine_learning_components.keys())
+
+
+@load_metadata
+def get_physics_based_component_versions(component_id: str) -> list[str]:
+    if component_id not in physics_based_components:
+        raise HTTPException(status_code=404, detail="PhysicsBasedComponent ID not found.")
+
+    return list(physics_based_components[component_id].keys())
+
+
+@load_metadata
+def get_machine_learning_component_versions(component_id: str) -> list[str]:
+    if component_id not in machine_learning_components:
+        raise HTTPException(status_code=404, detail="MachineLearningComponent ID not found.")
+
+    return list(machine_learning_components[component_id].keys())

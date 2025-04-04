@@ -23,15 +23,16 @@ def test_schema(metadata_path: str) -> None:
         physics_based_components,
         machine_learning_components,
     )
-    assert isinstance(list(models.values())[0], metadata.HybridModel)
-    for component in physics_based_components.values():
-        assert isinstance(component, metadata.PhysicsBasedComponent)
-    for component in machine_learning_components.values():
-        assert isinstance(component, metadata.MachineLearningComponent)
+    assert isinstance(next(iter(next(iter(models.values())).values())), metadata.HybridModel)
+    for component_family in physics_based_components.values():
+        for component in component_family.values():
+            assert isinstance(component, metadata.PhysicsBasedComponent)
+    for component_family in machine_learning_components.values():
+        for component in component_family.values():
+            assert isinstance(component, metadata.MachineLearningComponent)
 
 
-@pytest.mark.asyncio
-async def test_unique_ids() -> None:
+def test_unique_ids() -> None:
     """Test that the call runs without raising an exception."""
-    await metadata.get_hybrid_model_ids()
-    await metadata.get_component_ids()
+    metadata.get_hybrid_model_ids()
+    metadata.get_component_ids()
