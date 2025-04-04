@@ -32,8 +32,7 @@ def test_schema(metadata_path: str) -> None:
             assert isinstance(component, metadata.MachineLearningComponent)
 
 
-@pytest.mark.asyncio
-async def test_unique_ids() -> None:
+def test_unique_ids() -> None:
     """Test that the call runs without raising an exception."""
-    await metadata.get_hybrid_model_ids()
-    await metadata.get_component_ids()
+    metadata.get_hybrid_model_ids()
+    metadata.get_component_ids()

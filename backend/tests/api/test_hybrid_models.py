@@ -1,5 +1,3 @@
-import asyncio
-
 from fastapi.testclient import TestClient
 
 from api.main import app
@@ -12,19 +10,30 @@ from api.services.metadata import (
 
 client = TestClient(app)
 
-test_model_id = asyncio.run(get_hybrid_model_ids())[0]
-test_model_version = asyncio.run(get_hybrid_model_versions(test_model_id))[-1]
-test_physics_based_component_id = asyncio.run(get_physics_based_component_ids())[0]
-test_machine_learning_component_id = asyncio.run(get_machine_learning_component_ids())[0]
+test_model_id = get_hybrid_model_ids()[0]
+test_model_version = get_hybrid_model_versions(test_model_id)[-1]
+test_physics_based_component_id = get_physics_based_component_ids()[0]
+test_machine_learning_component_id = get_machine_learning_component_ids()[0]
 
 
-def test_get_hybrid_models() -> None:
+class TestGetHybridModels:
     """Test the get_hybrid_models endpoint."""
 
-    response = client.get("hybrid_models/")
-    assert response.status_code == 200
-    data = response.json()
-    assert isinstance(data, list)
+    def test_no_query(self) -> None:
+        """Test without filtering by query."""
+
+        response = client.get("hybrid_models/")
+        assert response.status_code == 200
+        data = response.json()
+        assert isinstance(data, list)
+
+    def test_with_query(self) -> None:
+        """Test with filtering by query."""
+
+        response = client.get("hybrid_models/", params={"query": "hybrid"})
+        assert response.status_code == 200
+        data = response.json()
+        assert isinstance(data, list)
 
 
 class TestGetHybridModel:

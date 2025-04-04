@@ -1,5 +1,3 @@
-import asyncio
-
 import pytest
 from fastapi.testclient import TestClient
 
@@ -15,16 +13,14 @@ from api.services.metadata import (
 
 client = TestClient(app)
 
-test_model_id = asyncio.run(get_hybrid_model_ids())[0]
-test_model_version = asyncio.run(get_hybrid_model_versions(test_model_id))[-1]
-test_physics_based_component_id = asyncio.run(get_physics_based_component_ids())[0]
-test_physics_based_component_version = asyncio.run(
-    get_physics_based_component_versions(test_physics_based_component_id)
-)[-1]
-test_machine_learning_component_id = asyncio.run(get_machine_learning_component_ids())[0]
-test_machine_learning_component_version = asyncio.run(
-    get_machine_learning_component_versions(test_machine_learning_component_id)
-)[-1]
+test_model_id = get_hybrid_model_ids()[0]
+test_model_version = get_hybrid_model_versions(test_model_id)[-1]
+test_physics_based_component_id = get_physics_based_component_ids()[0]
+test_physics_based_component_version = get_physics_based_component_versions(test_physics_based_component_id)[-1]
+test_machine_learning_component_id = get_machine_learning_component_ids()[0]
+test_machine_learning_component_version = get_machine_learning_component_versions(test_machine_learning_component_id)[
+    -1
+]
 
 
 @pytest.mark.parametrize("component_type_name", ["physics_based", "machine_learning"])
