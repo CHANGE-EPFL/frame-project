@@ -78,8 +78,8 @@ def format_keywords(keywords: list[str]) -> list[str]:
     return [keyword.lower() for keyword in keywords]
 
 
-E = TypeVar("E", HybridModel, PhysicsBasedComponent, MachineLearningComponent)
 C = TypeVar("C", PhysicsBasedComponent, MachineLearningComponent)
+U = TypeVar("U", HybridModel, PhysicsBasedComponent, MachineLearningComponent)
 
 
 def add_components(
@@ -157,21 +157,21 @@ def add_model_and_components(
     models[model_id][model_version] = model
 
 
-def sort_by_version(elements: dict[str, dict[str, E]]) -> dict[str, dict[str, E]]:
-    elements = elements.copy()
+def sort_by_version(units: dict[str, dict[str, U]]) -> dict[str, dict[str, U]]:
+    units = units.copy()
 
-    for element_id in elements.keys():
-        element_family = elements[element_id]
+    for unit_id in units.keys():
+        unit_family = units[unit_id]
         try:
-            element_family = dict(sorted(element_family.items(), key=lambda item: Version(item[0]), reverse=True))
+            unit_family = dict(sorted(unit_family.items(), key=lambda item: Version(item[0]), reverse=True))
         except InvalidVersion:
-            element_family = dict(sorted(element_family.items(), key=lambda item: item[0], reverse=True))
-        elements[element_id] = element_family
+            unit_family = dict(sorted(unit_family.items(), key=lambda item: item[0], reverse=True))
+        units[unit_id] = unit_family
 
-        latest_model = next(iter(element_family.values()))
+        latest_model = next(iter(unit_family.values()))
         latest_model.latest = True
 
-    return elements
+    return units
 
 
 def load_models_and_components() -> tuple[
@@ -361,24 +361,22 @@ def get_filtered_hybrid_models(query: str) -> list[HybridModelSummary]:
     return [model_summaries[model_id] for model_id in model_ids]
 
 
-def get_element(
-    element_id: str, element_version: str | None, elements: dict[str, dict[str, E]], ElementType: type[E]
-) -> E:
-    if element_id not in elements:
-        raise HTTPException(status_code=404, detail=f"{ElementType.__name__} ID not found.")
+def get_unit(unit_id: str, unit_version: str | None, units: dict[str, dict[str, U]], UnitType: type[U]) -> U:
+    if unit_id not in units:
+        raise HTTPException(status_code=404, detail=f"{UnitType.__name__} ID not found.")
 
-    if element_version is None:
-        element_version = next(iter(elements[element_id].keys()))
+    if unit_version is None:
+        unit_version = next(iter(units[unit_id].keys()))
 
-    elif element_version not in elements[element_id]:
-        raise HTTPException(status_code=404, detail=f"{ElementType.__name__} version not found.")
+    elif unit_version not in units[unit_id]:
+        raise HTTPException(status_code=404, detail=f"{UnitType.__name__} version not found.")
 
-    return elements[element_id][element_version]
+    return units[unit_id][unit_version]
 
 
 @load_metadata
 def get_hybrid_model(model_id: str, model_version: str | None) -> HybridModel:
-    return get_element(model_id, model_version, models, HybridModel)
+    return get_unit(model_id, model_version, models, HybridModel)
 
 
 @load_metadata
@@ -405,7 +403,7 @@ def get_component_models(
     else:
         component_type_name = "machine_learning"
 
-    component = get_element(component_id, component_version, components, ComponentType)
+    component = get_unit(component_id, component_version, components, ComponentType)
 
     return [
         model_summaries[model_id]
@@ -436,7 +434,7 @@ def get_model_physics_based_components(model_id: str, model_version: str | None)
 
 @load_metadata
 def get_physics_based_component(component_id: str, component_version: str | None) -> PhysicsBasedComponent:
-    return get_element(component_id, component_version, physics_based_components, PhysicsBasedComponent)
+    return get_unit(component_id, component_version, physics_based_components, PhysicsBasedComponent)
 
 
 @load_metadata
@@ -453,7 +451,7 @@ def get_model_machine_learning_components(
 
 @load_metadata
 def get_machine_learning_component(component_id: str, component_version: str | None) -> MachineLearningComponent:
-    return get_element(component_id, component_version, machine_learning_components, MachineLearningComponent)
+    return get_unit(component_id, component_version, machine_learning_components, MachineLearningComponent)
 
 
 @load_metadata
