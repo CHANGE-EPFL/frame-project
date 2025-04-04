@@ -32,7 +32,7 @@
     <div class="q-mt-sm"></div>
     <div class="row items-center">
       <CopyCommand
-        :command="`frame-cli pull ${unitType === 'hybrid_model' ? 'hybrid-model' : 'component'} ${unit.id}`"
+        :command="`frame-cli pull ${unitType === 'hybrid_model' ? 'hybrid-model' : 'component'} ${unit.id}${unit.latest ? '' : `:${unit.version}`}`"
         class="q-mt-lg q-mb-lg col"
       />
       <router-link to="/cli" class="q-ml-sm">
