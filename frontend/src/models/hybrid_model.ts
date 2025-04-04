@@ -11,6 +11,7 @@
 export interface CommonMetadata {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
@@ -21,12 +22,12 @@ export interface CommonMetadata {
    */
   contributors: [string, ...string[]];
   documentation?: string[] | null;
-  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
 }
 /**
  * Essential metadata fields for hybrid models.
@@ -34,6 +35,7 @@ export interface CommonMetadata {
 export interface CommonMetadataSummary {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
@@ -81,6 +83,7 @@ export interface DataIO {
 export interface HybridModel {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
@@ -91,12 +94,12 @@ export interface HybridModel {
    */
   contributors: [string, ...string[]];
   documentation?: string[] | null;
-  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
@@ -111,6 +114,7 @@ export interface HybridModel {
 export interface HybridModelFromFile {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
@@ -121,12 +125,12 @@ export interface HybridModelFromFile {
    */
   contributors: [string, ...string[]];
   documentation?: string[] | null;
-  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
@@ -138,6 +142,7 @@ export interface HybridModelFromFile {
 export interface HybridModelSummary {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */

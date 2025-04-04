@@ -11,16 +11,17 @@
 export interface Component {
   description: string;
   created?: string | null;
+  id: string;
   keywords?: string[];
   name: string;
   contributors?: string[];
   documentation?: string[] | null;
-  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
 }
 /**
  * Component of hybrid model.
@@ -28,16 +29,17 @@ export interface Component {
 export interface ComponentFromFile {
   description: string;
   created?: string | null;
+  id: string;
   keywords?: string[];
   name: string;
   contributors?: string[];
   documentation?: string[] | null;
-  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
 }
 /**
  * Reference to an existing component of a hybrid model.
@@ -51,6 +53,7 @@ export interface ComponentReference {
 export interface ComponentSummary {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
@@ -102,16 +105,17 @@ export interface Gpu {
 export interface MachineLearningComponent {
   description: string;
   created?: string | null;
+  id: string;
   keywords?: string[];
   name: string;
   contributors?: string[];
   documentation?: string[] | null;
-  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
   ml_process?: string | null;
   neural_networks?: NeuralNetwork[] | null;
 }
@@ -150,16 +154,17 @@ export interface TrainingRequirements {
 export interface MachineLearningComponentFromFile {
   description: string;
   created?: string | null;
+  id: string;
   keywords?: string[];
   name: string;
   contributors?: string[];
   documentation?: string[] | null;
-  id: string;
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
   ml_process?: string | null;
   neural_networks?: NeuralNetwork[] | null;
 }
@@ -175,6 +180,7 @@ export interface MachineLearningComponentReference {
 export interface MachineLearningComponentSummary {
   description: string;
   created?: string | null;
+  id: string;
   /**
    * @minItems 1
    */
