@@ -7,15 +7,15 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: '', component: () => import('src/pages/HomePage.vue') },
       {
-        path: '/hybrid_model/:modelId',
+        path: '/hybrid_model/:modelId/:modelVersion?',
         component: () => import('pages/HybridModelPage.vue'),
       },
       {
-        path: '/physics_based_component/:componentId',
+        path: '/physics_based_component/:componentId/:componentVersion?',
         component: () => import('pages/PhysicsBasedComponentPage.vue'),
       },
       {
-        path: '/machine_learning_component/:componentId',
+        path: '/machine_learning_component/:componentId/:componentVersion?',
         component: () => import('pages/MachineLearningComponentPage.vue'),
       },
       { path: '/cli', component: () => import('src/pages/CliPage.vue') },

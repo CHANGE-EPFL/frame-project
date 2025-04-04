@@ -44,6 +44,13 @@
         </q-icon>
       </router-link>
     </div>
+    <div class="q-mt-md">
+      <VersionSelector
+        :unitType="unitType"
+        :unitId="unit.id"
+        :unitVersion="unit.version"
+      />
+    </div>
   </div>
 </template>
 
@@ -54,6 +61,7 @@ import type { PhysicsBasedComponent } from 'src/models/physics_based_component';
 import type { MachineLearningComponent } from 'src/models/machine_learning_component';
 import KeywordList from 'src/components/KeywordList.vue';
 import CopyCommand from 'src/components/CopyCommand.vue';
+import VersionSelector from 'src/components/VersionSelector.vue';
 
 const props = defineProps({
   unitType: {
