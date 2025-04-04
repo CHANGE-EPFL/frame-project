@@ -327,22 +327,22 @@ def _load_metadata():
 def load_metadata(func: Callable):
     """Decorator to trigger loading metadata."""
 
-    async def wrapped(*args, **kwargs):
+    def wrapped(*args, **kwargs):
         if not metadata_loaded:
             _load_metadata()
 
-        return await func(*args, **kwargs)
+        return func(*args, **kwargs)
 
     return wrapped
 
 
 @load_metadata
-async def get_hybrid_models() -> list[HybridModelSummary]:
+def get_hybrid_models() -> list[HybridModelSummary]:
     return list(model_summaries.values())
 
 
 @load_metadata
-async def get_filtered_hybrid_models(query: str) -> list[HybridModelSummary]:
+def get_filtered_hybrid_models(query: str) -> list[HybridModelSummary]:
     query_keywords = query.lower().split()
     model_ids = []
 
@@ -377,17 +377,17 @@ def get_element(
 
 
 @load_metadata
-async def get_hybrid_model(model_id: str, model_version: str | None) -> HybridModel:
+def get_hybrid_model(model_id: str, model_version: str | None) -> HybridModel:
     return get_element(model_id, model_version, models, HybridModel)
 
 
 @load_metadata
-async def get_hybrid_model_ids() -> list[str]:
+def get_hybrid_model_ids() -> list[str]:
     return list(models.keys())
 
 
 @load_metadata
-async def get_hybrid_model_versions(model_id: str) -> list[str]:
+def get_hybrid_model_versions(model_id: str) -> list[str]:
     if model_id not in models:
         raise HTTPException(status_code=404, detail="HybridModel ID not found.")
 
@@ -415,24 +415,18 @@ def get_component_models(
 
 
 @load_metadata
-async def get_physics_based_component_models(
-    component_id: str, component_version: str | None
-) -> list[HybridModelSummary]:
+def get_physics_based_component_models(component_id: str, component_version: str | None) -> list[HybridModelSummary]:
     return get_component_models(component_id, component_version, physics_based_components, PhysicsBasedComponent)
 
 
 @load_metadata
-async def get_machine_learning_component_models(
-    component_id: str, component_version: str | None
-) -> list[HybridModelSummary]:
+def get_machine_learning_component_models(component_id: str, component_version: str | None) -> list[HybridModelSummary]:
     return get_component_models(component_id, component_version, machine_learning_components, MachineLearningComponent)
 
 
 @load_metadata
-async def get_model_physics_based_components(
-    model_id: str, model_version: str | None
-) -> list[PhysicsBasedComponentSummary]:
-    model = await get_hybrid_model(model_id, model_version)
+def get_model_physics_based_components(model_id: str, model_version: str | None) -> list[PhysicsBasedComponentSummary]:
+    model = get_hybrid_model(model_id, model_version)
 
     return [
         physics_based_components_summaries[component_id]
@@ -441,15 +435,15 @@ async def get_model_physics_based_components(
 
 
 @load_metadata
-async def get_physics_based_component(component_id: str, component_version: str | None) -> PhysicsBasedComponent:
+def get_physics_based_component(component_id: str, component_version: str | None) -> PhysicsBasedComponent:
     return get_element(component_id, component_version, physics_based_components, PhysicsBasedComponent)
 
 
 @load_metadata
-async def get_model_machine_learning_components(
+def get_model_machine_learning_components(
     model_id: str, model_version: str | None
 ) -> list[MachineLearningComponentSummary]:
-    model = await get_hybrid_model(model_id, model_version)
+    model = get_hybrid_model(model_id, model_version)
 
     return [
         machine_learning_components_summaries[component_id]
@@ -458,29 +452,29 @@ async def get_model_machine_learning_components(
 
 
 @load_metadata
-async def get_machine_learning_component(component_id: str, component_version: str | None) -> MachineLearningComponent:
+def get_machine_learning_component(component_id: str, component_version: str | None) -> MachineLearningComponent:
     return get_element(component_id, component_version, machine_learning_components, MachineLearningComponent)
 
 
 @load_metadata
-async def get_component_ids() -> list[str]:
+def get_component_ids() -> list[str]:
     physics_based_component_ids = list(physics_based_components.keys())
     machine_learning_component_ids = list(machine_learning_components.keys())
     return physics_based_component_ids + machine_learning_component_ids
 
 
 @load_metadata
-async def get_physics_based_component_ids() -> list[str]:
+def get_physics_based_component_ids() -> list[str]:
     return list(physics_based_components.keys())
 
 
 @load_metadata
-async def get_machine_learning_component_ids() -> list[str]:
+def get_machine_learning_component_ids() -> list[str]:
     return list(machine_learning_components.keys())
 
 
 @load_metadata
-async def get_physics_based_component_versions(component_id: str) -> list[str]:
+def get_physics_based_component_versions(component_id: str) -> list[str]:
     if component_id not in physics_based_components:
         raise HTTPException(status_code=404, detail="PhysicsBasedComponent ID not found.")
 
@@ -488,7 +482,7 @@ async def get_physics_based_component_versions(component_id: str) -> list[str]:
 
 
 @load_metadata
-async def get_machine_learning_component_versions(component_id: str) -> list[str]:
+def get_machine_learning_component_versions(component_id: str) -> list[str]:
     if component_id not in machine_learning_components:
         raise HTTPException(status_code=404, detail="MachineLearningComponent ID not found.")
 
