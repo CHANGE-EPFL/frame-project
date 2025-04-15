@@ -3,6 +3,7 @@
 Mock data for testing.
 """
 
+import datetime
 import os
 from typing import Any, Callable, TypeVar
 
@@ -157,7 +158,7 @@ def add_model_and_components(
     models[model_id][model_version] = model
 
 
-def sort_by_version(units: dict[str, dict[str, U]]) -> dict[str, dict[str, U]]:
+def sort_versions(units: dict[str, dict[str, U]]) -> dict[str, dict[str, U]]:
     units = units.copy()
 
     for unit_id in units.keys():
@@ -172,6 +173,16 @@ def sort_by_version(units: dict[str, dict[str, U]]) -> dict[str, dict[str, U]]:
         latest_model.latest = True
 
     return units
+
+
+def sort_by_date(units: dict[str, dict[str, U]]) -> dict[str, dict[str, U]]:
+    return dict(
+        sorted(
+            units.items(),
+            key=lambda item: next(iter(item[1].values())).created or datetime.date.fromisoformat("2000-01-01"),
+            reverse=True,
+        )
+    )
 
 
 def load_models_and_components() -> tuple[
@@ -198,9 +209,12 @@ def load_models_and_components() -> tuple[
             machine_learning_components,
         )
 
-    models = sort_by_version(models)
-    physics_based_components = sort_by_version(physics_based_components)
-    machine_learning_components = sort_by_version(machine_learning_components)
+    models = sort_versions(models)
+    models = sort_by_date(models)
+    physics_based_components = sort_versions(physics_based_components)
+    physics_based_components = sort_by_date(physics_based_components)
+    machine_learning_components = sort_versions(machine_learning_components)
+    machine_learning_components = sort_by_date(machine_learning_components)
 
     return models, physics_based_components, machine_learning_components
 
