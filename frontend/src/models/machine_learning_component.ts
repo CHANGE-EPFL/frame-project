@@ -20,7 +20,8 @@ export interface Component {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
 }
 /**
  * Component of hybrid model.
@@ -37,7 +38,8 @@ export interface ComponentFromFile {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
 }
 /**
  * Reference to an existing component of a hybrid model.
@@ -112,7 +114,8 @@ export interface MachineLearningComponent {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
   ml_process?: string | null;
   neural_networks?: NeuralNetwork[] | null;
 }
@@ -160,7 +163,8 @@ export interface MachineLearningComponentFromFile {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
   ml_process?: string | null;
   neural_networks?: NeuralNetwork[] | null;
 }

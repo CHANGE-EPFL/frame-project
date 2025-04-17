@@ -661,17 +661,16 @@
                             "type": "string"
                         },
                         {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
                             "type": "null"
                         }
                     ],
                     "default": null,
                     "title": "Version"
+                },
+                "latest": {
+                    "default": false,
+                    "title": "Latest",
+                    "type": "boolean"
                 },
                 "ml_process": {
                     "anyOf": [
@@ -845,17 +844,16 @@
                             "type": "string"
                         },
                         {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
                             "type": "null"
                         }
                     ],
                     "default": null,
                     "title": "Version"
+                },
+                "latest": {
+                    "default": false,
+                    "title": "Latest",
+                    "type": "boolean"
                 },
                 "ml_process": {
                     "anyOf": [
@@ -1233,17 +1231,16 @@
                             "type": "string"
                         },
                         {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
                             "type": "null"
                         }
                     ],
                     "default": null,
                     "title": "Version"
+                },
+                "latest": {
+                    "default": false,
+                    "title": "Latest",
+                    "type": "boolean"
                 },
                 "type": {
                     "anyOf": [

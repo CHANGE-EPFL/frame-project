@@ -1179,10 +1179,10 @@ files = [
 name = "packaging"
 version = "24.2"
 description = "Core utilities for Python packages"
-optional = true
+optional = false
 python-versions = ">=3.8"
 groups = ["main"]
-markers = "python_version <= \"3.11\" and extra == \"dev\" or python_version <= \"3.11\" and extra == \"test\" or python_version >= \"3.12\" and extra == \"dev\" or python_version >= \"3.12\" and extra == \"test\""
+markers = "python_version <= \"3.11\" or python_version >= \"3.12\""
 files = [
     {file = "packaging-24.2-py3-none-any.whl", hash = "sha256:09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759"},
     {file = "packaging-24.2.tar.gz", hash = "sha256:c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f"},
@@ -2611,4 +2611,4 @@ test = ["pytest", "pytest-asyncio"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "22fc33333f609fc4d9e904ad6cb917485b2acc27e995aad26a2ff1f6f3152962"
+content-hash = "33ee706ce1c4426fb5a17001412f17f0d4b8d7a4f5a22fab6ba96b4d1b8b687f"

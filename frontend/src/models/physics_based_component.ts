@@ -20,7 +20,8 @@ export interface Component {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
 }
 /**
  * Component of hybrid model.
@@ -37,7 +38,8 @@ export interface ComponentFromFile {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
 }
 /**
  * Reference to an existing component of a hybrid model.
@@ -112,7 +114,8 @@ export interface PhysicsBasedComponent {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
   type?: string | null;
   fixed_parameters_count?: number | null;
   tunable_parameters_count?: number | null;
@@ -148,7 +151,8 @@ export interface PhysicsBasedComponentFromFile {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
+  latest?: boolean;
   type?: string | null;
   fixed_parameters_count?: number | null;
   tunable_parameters_count?: number | null;
