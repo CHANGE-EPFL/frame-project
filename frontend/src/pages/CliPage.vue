@@ -20,21 +20,26 @@
       <p>
         Frame CLI relies on <a href="https://docs.astral.sh/uv/">uv</a> to
         manage Python virtual environments. You need to install it first if you
-        don't already have it:
+        don't already have it. Refer to the official
+        <a href="https://docs.astral.sh/uv/getting-started/installation/"
+          >uv documentation</a
+        >.
       </p>
-      <CopyCommand command="wget -qO- https://astral.sh/uv/install.sh | sh" />
       <p>Then, run the following command to install Frame CLI:</p>
-      <CopyCommand
-        command="uv tool install git+https://github.com/CHANGE-EPFL/frame-project-cli.git"
-      />
+      <CopyCommand command="uv tool install frame-cli" />
 
       <h2>Usage</h2>
       <p>To see the list of available commands, run:</p>
-      <CopyCommand command="frame-cli --help" />
+      <CopyCommand command="frame --help" />
       <p>
         Hybrid model and component pages show which command must be run to
-        download and setup specific elements.
+        download and setup specific units.
       </p>
+
+      <p>
+        You may want to install autocompletion for easier usage. To do so, run:
+      </p>
+      <CopyCommand command="frame --install-completion" />
 
       <h2>Uninstall</h2>
       <p>To remove the CLI tool from your system, run the following command:</p>
