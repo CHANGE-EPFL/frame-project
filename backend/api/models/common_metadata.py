@@ -51,8 +51,6 @@ class CommonMetadata(CommonMetadataSummary):
     url: str | None = None
     #: Semantic version
     version: str | None = None
-    #: Whether version is latest
-    latest: bool = False
 
 
 class CommonMetadataIncomplete(CommonMetadataSummaryIncomplete):
@@ -71,5 +69,3 @@ class CommonMetadataIncomplete(CommonMetadataSummaryIncomplete):
     url: str | None = None
     #: Semantic version
     version: str | None = None
-    #: Whether version is latest
-    latest: bool = False

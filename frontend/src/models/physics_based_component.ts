@@ -39,7 +39,6 @@ export interface ComponentFromFile {
   readme?: string | null;
   url?: string | null;
   version?: string | null;
-  latest?: boolean;
 }
 /**
  * Reference to an existing component of a hybrid model.
@@ -115,7 +114,6 @@ export interface PhysicsBasedComponent {
   readme?: string | null;
   url?: string | null;
   version?: string | null;
-  latest?: boolean;
   type?: string | null;
   fixed_parameters_count?: number | null;
   tunable_parameters_count?: number | null;
@@ -128,6 +126,7 @@ export interface PhysicsBasedComponent {
   lateral_flow?: boolean | null;
   related_identifiers?: string[] | null;
   testing_resources?: ComputationalResources | null;
+  latest?: boolean;
 }
 /**
  * Vertical discretization of a physics-based component.
@@ -152,7 +151,6 @@ export interface PhysicsBasedComponentFromFile {
   readme?: string | null;
   url?: string | null;
   version?: string | null;
-  latest?: boolean;
   type?: string | null;
   fixed_parameters_count?: number | null;
   tunable_parameters_count?: number | null;

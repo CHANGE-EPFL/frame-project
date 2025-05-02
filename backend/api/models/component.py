@@ -14,6 +14,9 @@ class ComponentSummary(CommonMetadataSummary, extra="ignore"):
 class Component(ComponentFromFile, ComponentSummary):
     """Component of hybrid model."""
 
+    #: Whether version is latest
+    latest: bool = False
+
 
 class ComponentReference(BaseModel, extra="forbid"):
     """Reference to an existing component of a hybrid model."""

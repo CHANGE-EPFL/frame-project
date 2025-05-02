@@ -27,7 +27,6 @@ export interface CommonMetadata {
   readme?: string | null;
   url?: string | null;
   version?: string | null;
-  latest?: boolean;
 }
 /**
  * Essential metadata fields for hybrid models.
@@ -46,7 +45,7 @@ export interface CommonMetadataSummary {
  * Description of a computational environment.
  */
 export interface ComputationalEnvironment {
-  type: 'conda' | 'python_requirements' | 'pyproject_toml';
+  type: "conda" | "python_requirements" | "pyproject_toml";
   file_paths: string[];
 }
 /**
@@ -99,7 +98,6 @@ export interface HybridModel {
   readme?: string | null;
   url?: string | null;
   version?: string | null;
-  latest?: boolean;
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
@@ -107,6 +105,7 @@ export interface HybridModel {
   compatible_machine_learning_component_ids: string[];
   compatible_physics_based_component_ids: string[];
   data: DataIO;
+  latest?: boolean;
 }
 /**
  * Hybrid model, without assigned id.
@@ -130,7 +129,6 @@ export interface HybridModelFromFile {
   readme?: string | null;
   url?: string | null;
   version?: string | null;
-  latest?: boolean;
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
