@@ -39,7 +39,6 @@ export interface ComponentFromFile {
   readme?: string | null;
   url?: string | null;
   version?: string | null;
-  latest?: boolean;
 }
 /**
  * Reference to an existing component of a hybrid model.
@@ -115,9 +114,9 @@ export interface MachineLearningComponent {
   readme?: string | null;
   url?: string | null;
   version?: string | null;
-  latest?: boolean;
   ml_process?: string | null;
   neural_networks?: NeuralNetwork[] | null;
+  latest?: boolean;
 }
 /**
  * Neural network metadata.
@@ -164,7 +163,6 @@ export interface MachineLearningComponentFromFile {
   readme?: string | null;
   url?: string | null;
   version?: string | null;
-  latest?: boolean;
   ml_process?: string | null;
   neural_networks?: NeuralNetwork[] | null;
 }

@@ -22,3 +22,5 @@ class HybridModel(HybridModelFromFile, HybridModelSummary):
     compatible_machine_learning_component_ids: list[str]
     compatible_physics_based_component_ids: list[str]
     data: DataIO
+    #: Whether version is latest
+    latest: bool = False
