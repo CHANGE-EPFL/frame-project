@@ -1,27 +1,83 @@
-# yaml-language-server: $schema=schema.json
-# A template for FAIR hybrid models
+# yaml-language-server: $schema=https://raw.githubusercontent.com/CHANGE-EPFL/frame-project/refs/heads/dev/backend/api/metadata_files/schema.json
 
 hybrid_model:
-  id: ""
-  name: ""
-  description: ""
-  contributors:
-    - ""
-  keywords:
-    - ""
+  description: "" # string
+  created: # date, optional
+  id: "" # string
+  keywords: # list
+    - "" # string
+  name: "" # string
+  contributors: # list
+    - "" # string
+  documentation: # list, optional
+    - "" # string
+  identifier: "" # string, optional
+  license: "" # string, optional
+  readme: "" # string, optional
+  url: "" # string, optional
+  version: "" # string, optional
+  ml_process: "" # string, optional
+  host_physics: "" # string, optional
+  latent_variables: # list, optional
+    - name: "" # string
+      encoding_format: "" # string, optional
+      identifier: "" # string, optional
+      url: "" # string, optional
+      quality: # int | str, optional
+      units: "" # string, optional
+      precision: "" # string, optional
+      scale: # float | int, optional
+      offset: # float | int, optional
+      description: "" # string, optional
+      min_value: # float | int, optional
+      max_value: # float | int, optional
+      temporal_coverage: # str | date, optional
+      spatial_coverage: "" # string, optional
+      spatial_resolution: "" # string, optional
+      temporal_resolution: "" # string, optional
+  computational_environment: # list, optional
+    - type:
+      file_paths: # list
+        - "" # string
 
-physics_based_components:
-  - id: ""
-    name: ""
-    description: ""
+physics_based_components: # list, optional
+  - # PhysicsBasedComponentFromFile | PhysicsBasedComponentReference
 
-machine_learning_components:
-  - id: ""
-    name: ""
-    description: ""
+machine_learning_components: # list, optional
+  - # MachineLearningComponentFromFile | MachineLearningComponentReference
 
-data:
-  inputs:
-    - name: ""
-  outputs:
-    - name: ""
+data: # optional
+  inputs: # list, optional
+    - name: "" # string
+      encoding_format: "" # string, optional
+      identifier: "" # string, optional
+      url: "" # string, optional
+      quality: # int | str, optional
+      units: "" # string, optional
+      precision: "" # string, optional
+      scale: # float | int, optional
+      offset: # float | int, optional
+      description: "" # string, optional
+      min_value: # float | int, optional
+      max_value: # float | int, optional
+      temporal_coverage: # str | date, optional
+      spatial_coverage: "" # string, optional
+      spatial_resolution: "" # string, optional
+      temporal_resolution: "" # string, optional
+  outputs: # list, optional
+    - name: "" # string
+      encoding_format: "" # string, optional
+      identifier: "" # string, optional
+      url: "" # string, optional
+      quality: # int | str, optional
+      units: "" # string, optional
+      precision: "" # string, optional
+      scale: # float | int, optional
+      offset: # float | int, optional
+      description: "" # string, optional
+      min_value: # float | int, optional
+      max_value: # float | int, optional
+      temporal_coverage: # str | date, optional
+      spatial_coverage: "" # string, optional
+      spatial_resolution: "" # string, optional
+      temporal_resolution: "" # string, optional
