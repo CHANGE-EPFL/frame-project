@@ -60,6 +60,7 @@ repos:
         name: prettier
         language: system
         files: ^frontend/.*$
+        exclude: ^frontend/src/models/.*$
         entry: |
           bash -c "cd frontend && npm run format"
   - repo: https://github.com/codespell-project/codespell
