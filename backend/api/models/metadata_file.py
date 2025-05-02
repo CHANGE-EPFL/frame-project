@@ -1,3 +1,4 @@
+import datetime
 import inspect
 import json
 import types
@@ -67,7 +68,13 @@ def get_annotation_template(model, current_level: int = 0, optional: bool = Fals
         return template
 
     if model is bool:
-        template += " true # boolean"
+        template += " false # boolean"
+        if optional:
+            template += ", optional"
+        return template
+
+    if model is datetime.date:
+        template += " 2000-01-01 # date"
         if optional:
             template += ", optional"
         return template
@@ -79,9 +86,16 @@ def get_annotation_template(model, current_level: int = 0, optional: bool = Fals
                 template += ", optional"
             template += f"\n{indent}- "
             template += get_annotation_template(typing.get_args(model)[0], current_level + 1).lstrip()
-        return template
+            return template
 
-    if not isinstance(model, types.GenericAlias) and inspect.isclass(model) and issubclass(model, BaseModel):
+        if typing.get_origin(model) is typing.Literal:
+            values = typing.get_args(model)
+            template += f" {values[0]} # " + " | ".join([f'"{str(v)}"' for v in values])
+            if optional:
+                template += ", optional"
+            return template
+
+    elif inspect.isclass(model) and issubclass(model, BaseModel):
         if optional:
             template += " # optional"
 
@@ -97,6 +111,6 @@ def get_annotation_template(model, current_level: int = 0, optional: bool = Fals
     template += f" # {model.__name__}"
     if optional:
         template += ", optional"
-    print(f"Unsupported type: {model}.")
+    print(f"WARNING: Unsupported type: {model}")
     return template
-    # raise TypeError(f"Unsupported type: {model}.")
+    # raise TypeError(f"Unsupported type: {model}")

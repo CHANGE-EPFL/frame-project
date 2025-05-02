@@ -2,7 +2,7 @@
 
 hybrid_model:
   description: "" # string
-  created: # date, optional
+  created: 2000-01-01 # date, optional
   id: "" # string
   keywords: # list
     - "" # string
@@ -36,7 +36,7 @@ hybrid_model:
       spatial_resolution: "" # string, optional
       temporal_resolution: "" # string, optional
   computational_environment: # list, optional
-    - type:
+    - type: conda # "conda" | "python_requirements" | "pyproject_toml"
       file_paths: # list
         - "" # string
 
