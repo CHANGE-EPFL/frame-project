@@ -108,7 +108,7 @@ export interface HybridModel {
   latest?: boolean;
 }
 /**
- * Hybrid model, without assigned id.
+ * Hybrid model.
  */
 export interface HybridModelFromFile {
   description: string;
