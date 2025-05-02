@@ -20,3 +20,6 @@ export-ts-models:
 
 export-json-schema:
 	poetry run python -c 'from api.models.metadata_file import export_json_schema; export_json_schema("api/metadata_files/schema.json")'
+
+export-yaml-template:
+	poetry run python -c 'from api.models.metadata_file import export_yaml_template; export_yaml_template("api/metadata_files/template.yaml")'

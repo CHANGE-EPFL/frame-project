@@ -667,11 +667,6 @@
                     "default": null,
                     "title": "Version"
                 },
-                "latest": {
-                    "default": false,
-                    "title": "Latest",
-                    "type": "boolean"
-                },
                 "ml_process": {
                     "anyOf": [
                         {
@@ -849,11 +844,6 @@
                     ],
                     "default": null,
                     "title": "Version"
-                },
-                "latest": {
-                    "default": false,
-                    "title": "Latest",
-                    "type": "boolean"
                 },
                 "ml_process": {
                     "anyOf": [
@@ -1236,11 +1226,6 @@
                     ],
                     "default": null,
                     "title": "Version"
-                },
-                "latest": {
-                    "default": false,
-                    "title": "Latest",
-                    "type": "boolean"
                 },
                 "type": {
                     "anyOf": [

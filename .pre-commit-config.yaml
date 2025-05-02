@@ -40,6 +40,14 @@ repos:
           bash -c "cd backend && make export-json-schema"
   - repo: local
     hooks:
+      - id: export-yaml-template
+        name: export-yaml-template
+        language: system
+        files: ^backend/api/models/.*$
+        entry: |
+          bash -c "cd backend && make export-yaml-template"
+  - repo: local
+    hooks:
       - id: export-ts-models
         name: export-ts-models
         language: system
