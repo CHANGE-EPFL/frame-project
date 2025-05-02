@@ -1,83 +1,201 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/CHANGE-EPFL/frame-project/refs/heads/dev/backend/api/metadata_files/schema.json
 
 hybrid_model:
-  description: "" # string
+  description: "" # str
   created: 2000-01-01 # date, optional
-  id: "" # string
+  id: "" # str
   keywords: # list
-    - "" # string
-  name: "" # string
+    - "" # str
+  name: "" # str
   contributors: # list
-    - "" # string
+    - "" # str
   documentation: # list, optional
-    - "" # string
-  identifier: "" # string, optional
-  license: "" # string, optional
-  readme: "" # string, optional
-  url: "" # string, optional
-  version: "" # string, optional
-  ml_process: "" # string, optional
-  host_physics: "" # string, optional
+    - "" # str
+  identifier: "" # str, optional
+  license: "" # str, optional
+  readme: "" # str, optional
+  url: "" # str, optional
+  version: "" # str, optional
+  ml_process: "" # str, optional
+  host_physics: "" # str, optional
   latent_variables: # list, optional
-    - name: "" # string
-      encoding_format: "" # string, optional
-      identifier: "" # string, optional
-      url: "" # string, optional
+    - name: "" # str
+      encoding_format: "" # str, optional
+      identifier: "" # str, optional
+      url: "" # str, optional
       quality: # int | str, optional
-      units: "" # string, optional
-      precision: "" # string, optional
-      scale: # float | int, optional
-      offset: # float | int, optional
-      description: "" # string, optional
-      min_value: # float | int, optional
-      max_value: # float | int, optional
+      units: "" # str, optional
+      precision: "" # str, optional
+      scale: 0 # float | int, optional
+      offset: 0 # float | int, optional
+      description: "" # str, optional
+      min_value: 0 # float | int, optional
+      max_value: 0 # float | int, optional
       temporal_coverage: # str | date, optional
-      spatial_coverage: "" # string, optional
-      spatial_resolution: "" # string, optional
-      temporal_resolution: "" # string, optional
+      spatial_coverage: "" # str, optional
+      spatial_resolution: "" # str, optional
+      temporal_resolution: "" # str, optional
   computational_environment: # list, optional
     - type: conda # "conda" | "python_requirements" | "pyproject_toml"
       file_paths: # list
-        - "" # string
+        - "" # str
 
-physics_based_components: # list, optional
-  - # PhysicsBasedComponentFromFile | PhysicsBasedComponentReference
+physics_based_components: # list (multiple possible types), optional
+  - id: "" # str
+  - description: "" # str
+    created: 2000-01-01 # date, optional
+    id: "" # str
+    keywords: # list, optional
+      - "" # str
+    name: "" # str
+    contributors: # list, optional
+      - "" # str
+    documentation: # list, optional
+      - "" # str
+    identifier: "" # str, optional
+    license: "" # str, optional
+    readme: "" # str, optional
+    url: "" # str, optional
+    version: "" # str, optional
+    type: "" # str, optional
+    fixed_parameters_count: 0 # int, optional
+    tunable_parameters_count: 0 # int, optional
+    state_variables_count: 0 # int, optional
+    temporal_coverage: # str | date, optional
+    spatial_coverage: "" # str, optional
+    spatial_resolution: "" # str, optional
+    temporal_resolution: "" # str, optional
+    vertical_discretization: # optional
+      soil: "" # str, optional
+      vegetation: "" # str, optional
+    lateral_flow: false # bool, optional
+    related_identifiers: # list, optional
+      - "" # str
+    testing_resources: # optional
+      cpus: # list, optional
+        - model: "" # str
+          count: 0 # int, optional
+          manufacturer: "" # str, optional
+          cores: 0 # int, optional
+          threads: 0 # int, optional
+          cache: "" # str, optional
+          clock_speed: "" # str, optional
+      gpus: # list, optional
+        - model: "" # str
+          count: 0 # int, optional
+          manufacturer: "" # str, optional
+          memory: "" # str, optional
+          memory_bandwidth: "" # str, optional
+          clock_speed: "" # str, optional
+          cuda_cores: 0 # int, optional
+          tensor_cores: 0 # int, optional
+          rt_cores: 0 # int, optional
+          ray_tracing: false # bool, optional
+      memory: "" # str, optional
+      storage: "" # str, optional
+      software: # list, optional
+        - "" # str
+      operating_system: "" # str, optional
+      compute_time: "" # str, optional
 
-machine_learning_components: # list, optional
-  - # MachineLearningComponentFromFile | MachineLearningComponentReference
+machine_learning_components: # list (multiple possible types), optional
+  - id: "" # str
+  - description: "" # str
+    created: 2000-01-01 # date, optional
+    id: "" # str
+    keywords: # list, optional
+      - "" # str
+    name: "" # str
+    contributors: # list, optional
+      - "" # str
+    documentation: # list, optional
+      - "" # str
+    identifier: "" # str, optional
+    license: "" # str, optional
+    readme: "" # str, optional
+    url: "" # str, optional
+    version: "" # str, optional
+    ml_process: "" # str, optional
+    neural_networks: # list, optional
+      - name: "" # str
+        type: "" # str, optional
+        layer_count: 0 # int, optional
+        node_count: 0 # int, optional
+        batch_size: 0 # int, optional
+        learning_rate: 0.0 # float, optional
+        predictor_count: 0 # int, optional
+        activation_functions: # list, optional
+          - "" # str
+        input_scaling: "" # str, optional
+        initialization: "" # str, optional
+        loss_function: "" # str, optional
+        regularization: "" # str, optional
+        optimization_method: "" # str, optional
+        host_physics_model: "" # str, optional
+        target_variables: # list, optional
+          - "" # str
+        training_requirements: # optional
+          gpu: false # bool, optional
+          cpu: false # bool, optional
+        training_resources: # optional
+          cpus: # list, optional
+            - model: "" # str
+              count: 0 # int, optional
+              manufacturer: "" # str, optional
+              cores: 0 # int, optional
+              threads: 0 # int, optional
+              cache: "" # str, optional
+              clock_speed: "" # str, optional
+          gpus: # list, optional
+            - model: "" # str
+              count: 0 # int, optional
+              manufacturer: "" # str, optional
+              memory: "" # str, optional
+              memory_bandwidth: "" # str, optional
+              clock_speed: "" # str, optional
+              cuda_cores: 0 # int, optional
+              tensor_cores: 0 # int, optional
+              rt_cores: 0 # int, optional
+              ray_tracing: false # bool, optional
+          memory: "" # str, optional
+          storage: "" # str, optional
+          software: # list, optional
+            - "" # str
+          operating_system: "" # str, optional
+          compute_time: "" # str, optional
 
 data: # optional
   inputs: # list, optional
-    - name: "" # string
-      encoding_format: "" # string, optional
-      identifier: "" # string, optional
-      url: "" # string, optional
+    - name: "" # str
+      encoding_format: "" # str, optional
+      identifier: "" # str, optional
+      url: "" # str, optional
       quality: # int | str, optional
-      units: "" # string, optional
-      precision: "" # string, optional
-      scale: # float | int, optional
-      offset: # float | int, optional
-      description: "" # string, optional
-      min_value: # float | int, optional
-      max_value: # float | int, optional
+      units: "" # str, optional
+      precision: "" # str, optional
+      scale: 0 # float | int, optional
+      offset: 0 # float | int, optional
+      description: "" # str, optional
+      min_value: 0 # float | int, optional
+      max_value: 0 # float | int, optional
       temporal_coverage: # str | date, optional
-      spatial_coverage: "" # string, optional
-      spatial_resolution: "" # string, optional
-      temporal_resolution: "" # string, optional
+      spatial_coverage: "" # str, optional
+      spatial_resolution: "" # str, optional
+      temporal_resolution: "" # str, optional
   outputs: # list, optional
-    - name: "" # string
-      encoding_format: "" # string, optional
-      identifier: "" # string, optional
-      url: "" # string, optional
+    - name: "" # str
+      encoding_format: "" # str, optional
+      identifier: "" # str, optional
+      url: "" # str, optional
       quality: # int | str, optional
-      units: "" # string, optional
-      precision: "" # string, optional
-      scale: # float | int, optional
-      offset: # float | int, optional
-      description: "" # string, optional
-      min_value: # float | int, optional
-      max_value: # float | int, optional
+      units: "" # str, optional
+      precision: "" # str, optional
+      scale: 0 # float | int, optional
+      offset: 0 # float | int, optional
+      description: "" # str, optional
+      min_value: 0 # float | int, optional
+      max_value: 0 # float | int, optional
       temporal_coverage: # str | date, optional
-      spatial_coverage: "" # string, optional
-      spatial_resolution: "" # string, optional
-      temporal_resolution: "" # string, optional
+      spatial_coverage: "" # str, optional
+      spatial_resolution: "" # str, optional
+      temporal_resolution: "" # str, optional

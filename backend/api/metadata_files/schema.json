@@ -549,7 +549,7 @@
         },
         "HybridModelFromFile": {
             "additionalProperties": false,
-            "description": "Hybrid model, without assigned id.",
+            "description": "Hybrid model.",
             "properties": {
                 "description": {
                     "title": "Description",
@@ -1462,10 +1462,10 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "#/$defs/PhysicsBasedComponentFromFile"
+                        "$ref": "#/$defs/PhysicsBasedComponentReference"
                     },
                     {
-                        "$ref": "#/$defs/PhysicsBasedComponentReference"
+                        "$ref": "#/$defs/PhysicsBasedComponentFromFile"
                     }
                 ]
             },
@@ -1477,10 +1477,10 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "#/$defs/MachineLearningComponentFromFile"
+                        "$ref": "#/$defs/MachineLearningComponentReference"
                     },
                     {
-                        "$ref": "#/$defs/MachineLearningComponentReference"
+                        "$ref": "#/$defs/MachineLearningComponentFromFile"
                     }
                 ]
             },

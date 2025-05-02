@@ -4,7 +4,7 @@ from .data import Data, DataIO
 
 
 class HybridModelFromFile(CommonMetadata):
-    """Hybrid model, without assigned id."""
+    """Hybrid model."""
 
     ml_process: str | None = None
     host_physics: str | None = None
