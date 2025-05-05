@@ -10,6 +10,7 @@ from typing import Any, Callable, TypeVar
 import requests
 import yaml
 from fastapi import HTTPException
+from git import cmd
 from packaging.version import InvalidVersion, Version
 
 from ..models.common_metadata import CommonMetadata
@@ -21,7 +22,8 @@ from ..models.physics_based_component import PhysicsBasedComponent, PhysicsBased
 
 METADATA_DIR_PATH = os.path.relpath(os.path.join(os.path.dirname(__file__), "..", "metadata_files"))
 METADATA_TEMPLATE_FILENAME = "template.yaml"
-EXTERNAL_METADATA_FILENAME: str = "external_metadata_files.yaml"
+EXTERNAL_REFERENCES_FILENAME = "external_references.yaml"
+EXTERNAL_METADATA_FILENAME = "frame_metadata.yaml"
 DEFAULT_VERSION = "none"
 
 
@@ -35,14 +37,71 @@ def get_all_local_metadata_filenames() -> list[str]:
         filename
         for filename in os.listdir(METADATA_DIR_PATH)
         if filename != METADATA_TEMPLATE_FILENAME
-        and filename != EXTERNAL_METADATA_FILENAME
+        and filename != EXTERNAL_REFERENCES_FILENAME
         and filename.endswith(".yaml")
     ]
 
 
+def get_git_base_raw_url(repo_url: str) -> str:
+    base_raw_url = repo_url.replace("git@", "https://")
+
+    if base_raw_url.endswith(".git"):
+        base_raw_url = base_raw_url[:-4]
+
+    if "github.com" in repo_url:
+        base_raw_url = base_raw_url.replace("github.com", "raw.githubusercontent.com")
+    elif "gitlab" in repo_url:
+        base_raw_url = f"{base_raw_url}/-/raw"
+    else:
+        raise ValueError(f"Unsupported Git repository URL: {repo_url}")
+
+    return base_raw_url
+
+
+def get_tagged_metadata_urls_from_git(repo_url: str) -> list[str]:
+    git_cmd = cmd.Git()
+    remote_refs = git_cmd.ls_remote("--tags", repo_url)
+    tags = [
+        line.split("refs/tags/")[-1].strip()
+        for line in remote_refs.splitlines()
+        if "refs/tags/" in line and not line.endswith("^{}")
+    ]
+
+    base_raw_url = get_git_base_raw_url(repo_url)
+    urls = []
+
+    for tag in tags:
+        url = f"{base_raw_url}/{tag}/{EXTERNAL_METADATA_FILENAME}"
+        try:
+            response = requests.head(url)
+            if response.status_code != 200:
+                continue
+        except requests.RequestException:
+            continue
+
+        urls.append(url)
+
+    if len(urls) == 0:
+        raise ValueError(f"No valid Frame metadata URLs found for repository: {repo_url}")
+
+    return urls
+
+
 def get_all_external_metadata_urls() -> list[str]:
-    external_metadata_filepath = os.path.join(METADATA_DIR_PATH, EXTERNAL_METADATA_FILENAME)
-    return read_yaml(external_metadata_filepath)
+    external_metadata_filepath = os.path.join(METADATA_DIR_PATH, EXTERNAL_REFERENCES_FILENAME)
+    references = read_yaml(external_metadata_filepath)
+    urls = []
+
+    for reference in references:
+        # Path to .yaml file
+        if reference.endswith(".yaml"):
+            urls.append(reference)
+            continue
+
+        # URL of Git repository
+        urls += get_tagged_metadata_urls_from_git(reference)
+
+    return urls
 
 
 def get_all_metadata_paths() -> list[str]:
