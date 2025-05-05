@@ -74,17 +74,36 @@ def get_tagged_metadata_urls_from_git(repo_url: str) -> list[str]:
         url = f"{base_raw_url}/{tag}/{EXTERNAL_METADATA_FILENAME}"
         try:
             response = requests.head(url)
-            if response.status_code != 200:
-                continue
         except requests.RequestException:
+            continue
+        if response.status_code != 200:
             continue
 
         urls.append(url)
 
-    if len(urls) == 0:
-        raise ValueError(f"No valid Frame metadata URLs found for repository: {repo_url}")
-
     return urls
+
+
+def get_default_metadata_url_from_git(repo_url: str) -> str:
+    git_cmd = cmd.Git()
+    remote_symrefs = git_cmd.ls_remote("--symref", repo_url, "HEAD")
+    default_branch = [
+        line.split("refs/heads/")[-1].strip().replace("\tHEAD", "")
+        for line in remote_symrefs.splitlines()
+        if "ref:" in line and "refs/heads/" in line
+    ][0]
+
+    base_raw_url = get_git_base_raw_url(repo_url)
+    url = f"{base_raw_url}/{default_branch}/{EXTERNAL_METADATA_FILENAME}"
+    error_message = f"No valid Frame metadata URLs found for repository: {repo_url}"
+    try:
+        response = requests.head(url)
+    except requests.RequestException:
+        raise ValueError(error_message)
+    if response.status_code != 200:
+        raise ValueError(error_message)
+
+    return url
 
 
 def get_all_external_metadata_urls() -> list[str]:
@@ -99,7 +118,12 @@ def get_all_external_metadata_urls() -> list[str]:
             continue
 
         # URL of Git repository
-        urls += get_tagged_metadata_urls_from_git(reference)
+        tagged_metadata_urls = get_tagged_metadata_urls_from_git(reference)
+        if len(tagged_metadata_urls) > 0:
+            urls.extend(tagged_metadata_urls)
+            continue
+
+        urls.append(get_default_metadata_url_from_git(reference))
 
     return urls
 
