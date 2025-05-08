@@ -69,7 +69,12 @@ function isUrl(value: string): boolean {
 
 const filteredData = computed(() => {
   return props.data.filter((row) => {
-    if (row.value === undefined || row.value === null || row.value === '')
+    if (
+      row.value === undefined ||
+      row.value === null ||
+      row.value === '' ||
+      row.property === 'Version'
+    )
       return false;
     if (Array.isArray(row.value) && row.value.length === 0) return false;
     return true;

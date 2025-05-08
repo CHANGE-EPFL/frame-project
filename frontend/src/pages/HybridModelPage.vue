@@ -91,6 +91,7 @@ import UnitList from 'src/components/UnitList.vue';
 
 const route = useRoute();
 const modelId = route.params.modelId;
+const modelVersion = route.params.modelVersion;
 const hybridModel = ref<HybridModel>();
 const otherMetadata = ref<{ property: string; value: any }[]>([]);
 const PhysicsBasedComponents = ref<PhysicsBasedComponentSummary[]>([]);
@@ -98,7 +99,11 @@ const MachineLearningComponents = ref<MachineLearningComponentSummary[]>([]);
 
 const getHybridModel = () => {
   api
-    .get(`/hybrid_models/${modelId}`)
+    .get(`/hybrid_models/${modelId}`, {
+      params: {
+        model_version: modelVersion || undefined,
+      },
+    })
     .then((response) => {
       hybridModel.value = response.data;
       otherMetadata.value = [

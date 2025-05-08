@@ -49,13 +49,18 @@ import NeuralNetwork from 'src/components/NeuralNetwork.vue';
 
 const route = useRoute();
 const componentId = route.params.componentId;
+const componentVersion = route.params.componentVersion;
 const machineLearningComponent = ref<MachineLearningComponent>();
 const hybridModels = ref<HybridModelSummary[]>([]);
 const otherMetadata = ref<{ property: string; value: any }[]>([]);
 
 const getMachineLearningComponent = () => {
   api
-    .get(`/components/machine_learning/${componentId}`)
+    .get(`/components/machine_learning/${componentId}`, {
+      params: {
+        component_version: componentVersion || undefined,
+      },
+    })
     .then((response) => {
       machineLearningComponent.value = response.data;
       otherMetadata.value = [

@@ -40,6 +40,14 @@ repos:
           bash -c "cd backend && make export-json-schema"
   - repo: local
     hooks:
+      - id: export-yaml-template
+        name: export-yaml-template
+        language: system
+        files: ^backend/api/models/.*$
+        entry: |
+          bash -c "cd backend && make export-yaml-template"
+  - repo: local
+    hooks:
       - id: export-ts-models
         name: export-ts-models
         language: system
@@ -52,6 +60,7 @@ repos:
         name: prettier
         language: system
         files: ^frontend/.*$
+        exclude: ^frontend/src/models/.*$
         entry: |
           bash -c "cd frontend && npm run format"
   - repo: https://github.com/codespell-project/codespell

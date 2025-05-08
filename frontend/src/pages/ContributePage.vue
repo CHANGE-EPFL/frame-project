@@ -4,8 +4,9 @@
       <h1>Add your own metadata</h1>
 
       <p>
-        To add your own models' and components' metadata to this library, you
-        must file a Pull Request on the
+        You can use the <router-link to="/cli">CLI tool</router-link> to create
+        and add your own models' and components' metadata to this library. You
+        can also manually file a Pull Request on the
         <a href="https://github.com/CHANGE-EPFL/frame-project"
           >GitHub repository</a
         >

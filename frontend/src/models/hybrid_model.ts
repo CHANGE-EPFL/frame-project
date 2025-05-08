@@ -26,7 +26,7 @@ export interface CommonMetadata {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
 }
 /**
  * Essential metadata fields for hybrid models.
@@ -97,7 +97,7 @@ export interface HybridModel {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
@@ -105,9 +105,10 @@ export interface HybridModel {
   compatible_machine_learning_component_ids: string[];
   compatible_physics_based_component_ids: string[];
   data: DataIO;
+  latest?: boolean;
 }
 /**
- * Hybrid model, without assigned id.
+ * Hybrid model.
  */
 export interface HybridModelFromFile {
   description: string;
@@ -127,7 +128,7 @@ export interface HybridModelFromFile {
   license?: string | null;
   readme?: string | null;
   url?: string | null;
-  version?: string | number | null;
+  version?: string | null;
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
