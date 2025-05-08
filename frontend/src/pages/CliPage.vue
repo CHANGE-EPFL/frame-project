@@ -10,13 +10,17 @@
       </p>
 
       <h2>Installation</h2>
-      <p>
-        <i
-          ><u>Requirements</u>:
+
+      <h3>Requirements</h3>
+
+      <ul>
+        <li>
           <a href="https://docs.astral.sh/uv/">uv</a> Python package and project
-          manager.</i
-        >
-      </p>
+          manager
+        </li>
+        <li><a href="https://git-scm.com/">git</a> version control system</li>
+      </ul>
+
       <p>
         Frame CLI relies on <a href="https://docs.astral.sh/uv/">uv</a> to
         manage Python virtual environments. You need to install it first if you
