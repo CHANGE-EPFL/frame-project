@@ -549,7 +549,7 @@
         },
         "HybridModelFromFile": {
             "additionalProperties": false,
-            "description": "Hybrid model, without assigned id.",
+            "description": "Hybrid model.",
             "properties": {
                 "description": {
                     "title": "Description",
@@ -659,12 +659,6 @@
                     "anyOf": [
                         {
                             "type": "string"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
                         },
                         {
                             "type": "null"
@@ -843,12 +837,6 @@
                     "anyOf": [
                         {
                             "type": "string"
-                        },
-                        {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
                         },
                         {
                             "type": "null"
@@ -1233,12 +1221,6 @@
                             "type": "string"
                         },
                         {
-                            "type": "integer"
-                        },
-                        {
-                            "type": "number"
-                        },
-                        {
                             "type": "null"
                         }
                     ],
@@ -1480,10 +1462,10 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "#/$defs/PhysicsBasedComponentFromFile"
+                        "$ref": "#/$defs/PhysicsBasedComponentReference"
                     },
                     {
-                        "$ref": "#/$defs/PhysicsBasedComponentReference"
+                        "$ref": "#/$defs/PhysicsBasedComponentFromFile"
                     }
                 ]
             },
@@ -1495,10 +1477,10 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "#/$defs/MachineLearningComponentFromFile"
+                        "$ref": "#/$defs/MachineLearningComponentReference"
                     },
                     {
-                        "$ref": "#/$defs/MachineLearningComponentReference"
+                        "$ref": "#/$defs/MachineLearningComponentFromFile"
                     }
                 ]
             },

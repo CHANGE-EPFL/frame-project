@@ -46,13 +46,18 @@ import ComputationalResources from 'src/components/ComputationalResources.vue';
 
 const route = useRoute();
 const componentId = route.params.componentId;
+const componentVersion = route.params.componentVersion;
 const physicsBasedComponent = ref<PhysicsBasedComponent>();
 const hybridModels = ref<HybridModelSummary[]>([]);
 const otherMetadata = ref<{ property: string; value: any }[]>([]);
 
 const getPhysicsBasedComponent = () => {
   api
-    .get(`/components/physics_based/${componentId}`)
+    .get(`/components/physics_based/${componentId}`, {
+      params: {
+        component_version: componentVersion || undefined,
+      },
+    })
     .then((response) => {
       physicsBasedComponent.value = response.data;
       otherMetadata.value = [

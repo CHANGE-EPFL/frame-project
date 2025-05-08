@@ -25,7 +25,28 @@ export default route(function (/* { store, ssrContext } */) {
       : createWebHashHistory;
 
   const Router = createRouter({
-    scrollBehavior: () => ({ left: 0, top: 0 }),
+    scrollBehavior: (to, from, savedPosition) => {
+      // Scroll between page transitions
+      return new Promise((resolve) => {
+        const scrollTriggerEvent = 'after-leave'; // Custom event name
+
+        const scrollHandler = () => {
+          window.removeEventListener(scrollTriggerEvent, scrollHandler);
+
+          setTimeout(() => {
+            resolve(savedPosition || { top: 0 });
+          }, 50); // Small delay to ensure we're between transitions
+        };
+
+        window.addEventListener(scrollTriggerEvent, scrollHandler);
+
+        // Fallback in case the event never fires
+        setTimeout(() => {
+          window.removeEventListener(scrollTriggerEvent, scrollHandler);
+          resolve(savedPosition || { top: 0 });
+        }, 350);
+      });
+    },
     routes,
 
     // Leave this as is and make changes in quasar.conf.js instead!

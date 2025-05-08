@@ -4,7 +4,7 @@ from .data import Data, DataIO
 
 
 class HybridModelFromFile(CommonMetadata):
-    """Hybrid model, without assigned id."""
+    """Hybrid model."""
 
     ml_process: str | None = None
     host_physics: str | None = None
@@ -22,3 +22,5 @@ class HybridModel(HybridModelFromFile, HybridModelSummary):
     compatible_machine_learning_component_ids: list[str]
     compatible_physics_based_component_ids: list[str]
     data: DataIO
+    #: Whether version is latest
+    latest: bool = False
