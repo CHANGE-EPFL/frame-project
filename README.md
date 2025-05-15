@@ -11,7 +11,7 @@ The existing models' and components' metadata files are all stored in [`backend/
 ### Requirements
 
 - Python 3.10 or higher
-- [Poetry](https://python-poetry.org/) (`pip install poetry`)
+- [uv](https://docs.astral.sh/uv/getting-started/installation/) Python package and project manager
 - Make
 
 

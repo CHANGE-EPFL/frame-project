@@ -71,7 +71,7 @@ repos:
           - tomli
         exclude: >
           (?x)^(
-            .*poetry\.lock|
+            .*uv\.lock|
             .*package-lock\.json
           )$
   - repo: https://github.com/compilerla/conventional-pre-commit

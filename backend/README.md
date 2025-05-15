@@ -3,7 +3,7 @@ Based loosely on https://github.com/gauravgola96/FastAPI-Example
 
 ## Requirements
 - python 3.10.9
-- poetry
+- uv
 - Make
 - Docker with docker compose
 - OS:
@@ -27,6 +27,3 @@ To provide .env use Dockerfile.
 ```
 Path : ./Dockerfile
 ```
-
-## Install
-Don't forget to install libwebp-dev on the machine (cf Dockerfile)
