@@ -34,13 +34,11 @@ test = [
 ]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=80.0.0"]
+build-backend = "setuptools.build_meta"
 
-[tool.poetry]
-packages = [
-	{ include = "api" },
-]
+[tool.setuptools]
+packages = ["api"]
 
 [tool.black]
 line-length = 120
@@ -51,4 +49,4 @@ line_length = 120
 profile = "black"
 
 [tool.codespell]
-skip = 'poetry.lock'
+skip = 'uv.lock'
