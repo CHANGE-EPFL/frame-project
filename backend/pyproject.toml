@@ -1,43 +1,46 @@
-[tool.poetry]
+[project]
 name = "frame-api"
 version = "0.1.0"
 description = ""
-authors = ["Son Pham-Ba <son.phamba@epfl.ch>"]
+authors = [
+    { name = "Son Pham-Ba", email = "son.phamba@epfl.ch" },
+]
 readme = "README.md"
-packages = [{include = "api"}]
+requires-python = ">=3.10"
 
-[tool.poetry.dependencies]
-python = "^3.10"
-pre-commit = {version = "^4.0.1", optional = true}
-pytest = {version = "^8.3.3", optional = true}
-pytest-asyncio = {version = "^0.24.0", optional = true}
-pydantic-to-typescript = {version = "^2.0.0", optional = true}
-aiobotocore = "^2.13.3"
-dynaconf = "^3.2.6"
-fastapi = "^0.111.0"
-pandas = "^2.2.2"
-pillow = "^10.4.0"
-pydantic-settings = "^2.4.0"
-pyproj = "^3.6.1"
-requests = "^2.32.3"
-packaging = "^24.2"
-gitpython = "^3.1.44"
+dependencies = [
+	"aiobotocore~=2.13.3",
+	"dynaconf~=3.2.6",
+	"fastapi~=0.111.0",
+	"pandas~=2.2.2",
+	"pillow~=10.4.0",
+	"pydantic~=2.4.0",
+	"pyproj~=3.6.1",
+	"requests~=2.32.3",
+	"packaging~=24.2",
+	"gitpython~=3.1.44",
+]
 
-[tool.poetry.extras]
+[project.optional-dependencies]
 dev = [
-    "pre-commit",
-	"pytest",
-	"pytest-asyncio",
-	"pydantic-to-typescript",
+	"pre-commit~=4.0.1",
+	"pytest~=8.3.3",
+	"pytest-asyncio~=0.24.0",
+	"pydantic-to-typescript~=2.0.0",
 ]
 test = [
-	"pytest",
-	"pytest-asyncio",
+	"pytest~=8.3.3",
+	"pytest-asyncio~=0.24.0",
 ]
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+packages = [
+	{ include = "api" },
+]
 
 [tool.black]
 line-length = 120
