@@ -1,3 +1,5 @@
+from pydantic import Field
+
 from .common_metadata import CommonMetadata, CommonMetadataSummary
 from .computational_environment import ComputationalEnvironment
 from .data import Data, DataIO
@@ -6,6 +8,8 @@ from .data import Data, DataIO
 class HybridModelFromFile(CommonMetadata):
     """Hybrid model."""
 
+    #: Repository URL
+    url: str = Field(..., min_length=1)
     ml_process: str | None = None
     host_physics: str | None = None
     latent_variables: list[Data] = []

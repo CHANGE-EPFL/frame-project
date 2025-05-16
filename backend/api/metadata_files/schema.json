@@ -569,6 +569,7 @@
                     "title": "Created"
                 },
                 "id": {
+                    "minLength": 1,
                     "title": "Id",
                     "type": "string"
                 },
@@ -643,18 +644,6 @@
                     "default": null,
                     "title": "Readme"
                 },
-                "url": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "title": "Url"
-                },
                 "version": {
                     "anyOf": [
                         {
@@ -666,6 +655,11 @@
                     ],
                     "default": null,
                     "title": "Version"
+                },
+                "url": {
+                    "minLength": 1,
+                    "title": "Url",
+                    "type": "string"
                 },
                 "ml_process": {
                     "anyOf": [
@@ -720,7 +714,8 @@
                 "id",
                 "keywords",
                 "name",
-                "contributors"
+                "contributors",
+                "url"
             ],
             "title": "HybridModelFromFile",
             "type": "object"
@@ -747,6 +742,7 @@
                     "title": "Created"
                 },
                 "id": {
+                    "minLength": 1,
                     "title": "Id",
                     "type": "string"
                 },
@@ -821,18 +817,6 @@
                     "default": null,
                     "title": "Readme"
                 },
-                "url": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "title": "Url"
-                },
                 "version": {
                     "anyOf": [
                         {
@@ -844,6 +828,18 @@
                     ],
                     "default": null,
                     "title": "Version"
+                },
+                "url": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Url"
                 },
                 "ml_process": {
                     "anyOf": [
@@ -1129,6 +1125,7 @@
                     "title": "Created"
                 },
                 "id": {
+                    "minLength": 1,
                     "title": "Id",
                     "type": "string"
                 },
@@ -1203,18 +1200,6 @@
                     "default": null,
                     "title": "Readme"
                 },
-                "url": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "title": "Url"
-                },
                 "version": {
                     "anyOf": [
                         {
@@ -1226,6 +1211,18 @@
                     ],
                     "default": null,
                     "title": "Version"
+                },
+                "url": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Url"
                 },
                 "type": {
                     "anyOf": [

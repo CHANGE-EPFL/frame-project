@@ -19,8 +19,8 @@ export interface Component {
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
-  url?: string | null;
   version?: string | null;
+  url?: string | null;
   latest?: boolean;
 }
 /**
@@ -37,8 +37,8 @@ export interface ComponentFromFile {
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
-  url?: string | null;
   version?: string | null;
+  url?: string | null;
 }
 /**
  * Reference to an existing component of a hybrid model.
@@ -112,8 +112,8 @@ export interface MachineLearningComponent {
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
-  url?: string | null;
   version?: string | null;
+  url?: string | null;
   ml_process?: string | null;
   neural_networks?: NeuralNetwork[] | null;
   latest?: boolean;
@@ -161,8 +161,8 @@ export interface MachineLearningComponentFromFile {
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
-  url?: string | null;
   version?: string | null;
+  url?: string | null;
   ml_process?: string | null;
   neural_networks?: NeuralNetwork[] | null;
 }

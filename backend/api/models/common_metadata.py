@@ -7,7 +7,7 @@ https://www.dublincore.org/specifications/dublin-core/dcmi-terms/
 from datetime import date
 from typing import TYPE_CHECKING
 
-from pydantic import BaseModel, conlist
+from pydantic import BaseModel, Field, conlist
 
 if TYPE_CHECKING:  # Static type checker may not accept conlist
     NonEmptyList = list[str]
@@ -20,7 +20,7 @@ class CommonMetadataSummary(BaseModel, extra="forbid"):
 
     description: str
     created: date | None = None
-    id: str
+    id: str = Field(..., min_length=1)
     keywords: NonEmptyList
     name: str
 
@@ -30,7 +30,7 @@ class CommonMetadataSummaryIncomplete(BaseModel, extra="forbid"):
 
     description: str
     created: date | None = None
-    id: str
+    id: str = Field(..., min_length=1)
     keywords: list[str] = []
     name: str
 
@@ -47,8 +47,6 @@ class CommonMetadata(CommonMetadataSummary):
     license: str | None = None
     #: Markdown readme URL
     readme: str | None = None
-    #: Repository URL
-    url: str | None = None
     #: Semantic version
     version: str | None = None
 
@@ -65,7 +63,5 @@ class CommonMetadataIncomplete(CommonMetadataSummaryIncomplete):
     license: str | None = None
     #: Markdown readme URL
     readme: str | None = None
-    #: Repository URL
-    url: str | None = None
     #: Semantic version
     version: str | None = None

@@ -25,7 +25,6 @@ export interface CommonMetadata {
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
-  url?: string | null;
   version?: string | null;
 }
 /**
@@ -45,7 +44,7 @@ export interface CommonMetadataSummary {
  * Description of a computational environment.
  */
 export interface ComputationalEnvironment {
-  type: 'conda' | 'python_requirements' | 'pyproject_toml';
+  type: "conda" | "python_requirements" | "pyproject_toml";
   file_paths: string[];
 }
 /**
@@ -96,8 +95,8 @@ export interface HybridModel {
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
-  url?: string | null;
   version?: string | null;
+  url: string;
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
@@ -127,8 +126,8 @@ export interface HybridModelFromFile {
   identifier?: string | null;
   license?: string | null;
   readme?: string | null;
-  url?: string | null;
   version?: string | null;
+  url: string;
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];

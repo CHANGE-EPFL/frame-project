@@ -14,8 +14,8 @@ hybrid_model:
   identifier: "" # str, optional
   license: "" # str, optional
   readme: "" # str, optional
-  url: "" # str, optional
   version: "" # str, optional
+  url: "" # str
   ml_process: "" # str, optional
   host_physics: "" # str, optional
   latent_variables: # list, optional
@@ -55,8 +55,8 @@ physics_based_components: # list (multiple possible types), optional
     identifier: "" # str, optional
     license: "" # str, optional
     readme: "" # str, optional
-    url: "" # str, optional
     version: "" # str, optional
+    url: "" # str, optional
     type: "" # str, optional
     fixed_parameters_count: 0 # int, optional
     tunable_parameters_count: 0 # int, optional
@@ -113,8 +113,8 @@ machine_learning_components: # list (multiple possible types), optional
     identifier: "" # str, optional
     license: "" # str, optional
     readme: "" # str, optional
-    url: "" # str, optional
     version: "" # str, optional
+    url: "" # str, optional
     ml_process: "" # str, optional
     neural_networks: # list, optional
       - name: "" # str
