@@ -30,10 +30,6 @@
   </q-page>
 </template>
 
-<script setup lang="ts">
-import CopyCommand from 'src/components/CopyCommand.vue';
-</script>
-
 <style>
 .code {
   margin: 1em 0;
