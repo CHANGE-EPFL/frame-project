@@ -66,3 +66,24 @@ make run-frontend
 ```
 
 The website will be available at [http://localhost:9000](http://localhost:9000).
+
+
+# Deployment details
+
+The following redirections must be set up in the web server:
+- `/schema` → https://raw.githubusercontent.com/CHANGE-EPFL/frame-project/refs/heads/main/backend/api/metadata_files/schema.json
+- `/cli-doc*` → https://change-epfl.github.io/frame-project-cli*
+
+For example, in Kubernetes, yon can add the following to the `ingress.yaml` file:
+
+```yaml
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/server-snippet: |
+      location ~* ^/schema(/|$) {
+        return 301 https://raw.githubusercontent.com/CHANGE-EPFL/frame-project/refs/heads/main/backend/api/metadata_files/schema.json;
+      }
+      location ~* ^/cli-doc(.*) {
+        return 301 https://change-epfl.github.io/frame-project-cli$1;
+      }
+```
