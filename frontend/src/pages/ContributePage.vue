@@ -13,6 +13,15 @@
         of the FRAME project. In both cases, your submission will be reviewed by
         the project's maintainers.
       </p>
+
+      <p>
+        See the
+        <a
+          href="https://change-epfl.github.io/frame-project-cli/src/user/adding_units.html"
+          >CLI tool documentation</a
+        >
+        for more details.
+      </p>
     </div>
   </q-page>
 </template>
