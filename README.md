@@ -74,7 +74,7 @@ The following redirections must be set up in the web server:
 - `/schema` → https://raw.githubusercontent.com/CHANGE-EPFL/frame-project/refs/heads/main/backend/api/metadata_files/schema.json
 - `/cli-doc*` → https://change-epfl.github.io/frame-project-cli*
 
-For example, in Kubernetes, yon can add the following to the `ingress.yaml` file:
+For example, in Kubernetes, you can add the following to the `ingress.yaml` file:
 
 ```yaml
 metadata:

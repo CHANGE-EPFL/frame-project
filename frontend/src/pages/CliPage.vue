@@ -6,7 +6,7 @@
       <p>
         To download models and components, and to setup environments to run
         those, your can use the dedicated CLI (command-line interface)
-        <a href="https://github.com/CHANGE-EPFL/frame-project-cli"></a>.
+        <a href="https://github.com/CHANGE-EPFL/frame-project-cli">tool</a>.
       </p>
 
       <p>
