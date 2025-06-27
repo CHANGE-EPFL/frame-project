@@ -20,6 +20,10 @@ const routes: RouteRecordRaw[] = [
       },
       { path: '/cli', component: () => import('src/pages/CliPage.vue') },
       {
+        path: '/protocol',
+        component: () => import('src/pages/ProtocolPage.vue'),
+      },
+      {
         path: '/contribute',
         component: () => import('src/pages/ContributePage.vue'),
       },
