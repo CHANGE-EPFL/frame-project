@@ -24,6 +24,15 @@
         >Barker et al. (2022)</a
       >.
 
+      <div style="text-align: center" class="q-mt-lg q-mb-lg">
+        <img
+          src="/protocol.png"
+          alt="FRAME Protocol Diagram"
+          style="max-width: 25rem"
+        />
+        <p><b>Figure 1.</b> Conceptual representation of the FRAME protocol.</p>
+      </div>
+
       <h2>1.2 Guidelines</h2>
 
       <h3>1.2.1. Code and Data Standards</h3>
