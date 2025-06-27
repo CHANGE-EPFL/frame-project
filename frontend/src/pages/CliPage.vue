@@ -29,11 +29,3 @@
     </div>
   </q-page>
 </template>
-
-<style>
-.code {
-  margin: 1em 0;
-  padding: 0.7em;
-  font-size: 0.9em;
-}
-</style>
