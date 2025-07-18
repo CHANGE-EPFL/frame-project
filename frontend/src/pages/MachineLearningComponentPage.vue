@@ -5,6 +5,7 @@
         <UnitFullAbstract
           unitType="machine_learning_component"
           :unit="machineLearningComponent"
+          class="q-mb-md"
         />
 
         <template v-for="(unit, index) in hybridModels" :key="index">

@@ -36,7 +36,7 @@
         class="q-mt-lg q-mb-lg col"
       />
       <router-link to="/cli" class="q-ml-sm">
-        <q-icon name="info" size="1.5em" color="grey-8">
+        <q-icon name="info" size="1.5em" color="grey-9">
           <q-tooltip>
             Run this command after installing the FRAME CLI tool. Click for
             instructions.
