@@ -22,6 +22,17 @@
         >
         for more details.
       </p>
+
+      <h1>Share your suggestions and report issues</h1>
+
+      <p>
+        This project is still under active development. If you come across any
+        issues or have ideas for improvements or new features, please open an
+        issue on the project's
+        <a href="https://github.com/CHANGE-EPFL/frame-project/issues"
+          >GitHub repository</a
+        >.
+      </p>
     </div>
   </q-page>
 </template>
