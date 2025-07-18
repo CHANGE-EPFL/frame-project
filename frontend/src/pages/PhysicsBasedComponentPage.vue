@@ -5,6 +5,7 @@
         <UnitFullAbstract
           unitType="physics_based_component"
           :unit="physicsBasedComponent"
+          class="q-mb-md"
         />
 
         <template v-for="(unit, index) in hybridModels" :key="index">

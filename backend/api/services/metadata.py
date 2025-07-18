@@ -496,16 +496,19 @@ def get_component_models(
     ComponentType: type[C],
 ) -> list[HybridModelSummary]:
     if ComponentType == PhysicsBasedComponent:
-        component_type_name = "physics_based"
+        component_type = "physics_based"
     else:
-        component_type_name = "machine_learning"
-
-    component = get_unit(component_id, component_version, components, ComponentType)
+        component_type = "machine_learning"
 
     return [
         model_summaries[model_id]
-        for model_id, model in models.items()
-        if component.id in model.get(f"compatible_{component_type_name}_component_ids", {})
+        for model_id, model_family in models.items()
+        if any(
+            [
+                component_id in getattr(model, f"compatible_{component_type}_component_ids", {})
+                for model in model_family.values()
+            ]
+        )
     ]
 
 

@@ -45,7 +45,7 @@ export interface CommonMetadataSummary {
  * Description of a computational environment.
  */
 export interface ComputationalEnvironment {
-  type: "conda" | "python_requirements" | "pyproject_toml";
+  type: 'conda' | 'python_requirements' | 'pyproject_toml';
   file_paths: string[];
 }
 /**
