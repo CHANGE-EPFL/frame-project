@@ -644,6 +644,11 @@
                     "default": null,
                     "title": "Readme"
                 },
+                "url": {
+                    "minLength": 1,
+                    "title": "Url",
+                    "type": "string"
+                },
                 "version": {
                     "anyOf": [
                         {
@@ -655,11 +660,6 @@
                     ],
                     "default": null,
                     "title": "Version"
-                },
-                "url": {
-                    "minLength": 1,
-                    "title": "Url",
-                    "type": "string"
                 },
                 "ml_process": {
                     "anyOf": [
@@ -817,18 +817,6 @@
                     "default": null,
                     "title": "Readme"
                 },
-                "version": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "title": "Version"
-                },
                 "url": {
                     "anyOf": [
                         {
@@ -840,6 +828,18 @@
                     ],
                     "default": null,
                     "title": "Url"
+                },
+                "version": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Version"
                 },
                 "ml_process": {
                     "anyOf": [
@@ -1200,18 +1200,6 @@
                     "default": null,
                     "title": "Readme"
                 },
-                "version": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "title": "Version"
-                },
                 "url": {
                     "anyOf": [
                         {
@@ -1223,6 +1211,18 @@
                     ],
                     "default": null,
                     "title": "Url"
+                },
+                "version": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Version"
                 },
                 "type": {
                     "anyOf": [
