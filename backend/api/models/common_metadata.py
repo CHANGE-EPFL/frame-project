@@ -47,6 +47,8 @@ class CommonMetadata(CommonMetadataSummary):
     license: str | None = None
     #: Markdown readme URL
     readme: str | None = None
+    #: Repository URL
+    url: str = Field(..., min_length=1)
     #: Semantic version
     version: str | None = None
 
@@ -63,5 +65,7 @@ class CommonMetadataIncomplete(CommonMetadataSummaryIncomplete):
     license: str | None = None
     #: Markdown readme URL
     readme: str | None = None
+    #: Repository URL
+    url: str | None = None
     #: Semantic version
     version: str | None = None
