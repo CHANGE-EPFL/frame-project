@@ -95,7 +95,7 @@ def get_default_metadata_url_from_git(repo_url: str) -> str:
 
     base_raw_url = get_git_base_raw_url(repo_url)
     url = f"{base_raw_url}/{default_branch}/{EXTERNAL_METADATA_FILENAME}"
-    error_message = f"No valid Frame metadata URLs found for repository: {repo_url}"
+    error_message = f"No valid FRAME metadata URLs found for repository: {repo_url}"
     try:
         response = requests.head(url)
     except requests.RequestException:
