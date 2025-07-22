@@ -5,6 +5,7 @@
             "description": "Description of a computational environment.",
             "properties": {
                 "type": {
+                    "description": "Type of the computational environment that could be automatically setup after downloading the model.",
                     "enum": [
                         "conda",
                         "python_requirements",
@@ -14,6 +15,7 @@
                     "type": "string"
                 },
                 "file_paths": {
+                    "description": "List of file paths that contain the environment description, relative to the repository root.",
                     "items": {
                         "type": "string"
                     },
@@ -552,7 +554,7 @@
             "description": "Hybrid model.",
             "properties": {
                 "description": {
-                    "description": "Summarized description of the unit.",
+                    "description": "Summarized description of the hybrid model.",
                     "minLength": 1,
                     "title": "Description",
                     "type": "string"
@@ -568,18 +570,18 @@
                         }
                     ],
                     "default": null,
-                    "description": "Date when the unit was created. E.g. 2000-12-31.",
+                    "description": "Date when the hybrid was created. (e.g. 2000-12-31).",
                     "title": "Created"
                 },
                 "id": {
-                    "description": "Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use \"_\" instead) or special characters.",
+                    "description": "Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use \"_\" instead) or special characters.",
                     "minLength": 1,
                     "pattern": "^[a-z0-9_]+$",
                     "title": "Id",
                     "type": "string"
                 },
                 "keywords": {
-                    "description": "List of keywords that describe the unit.",
+                    "description": "List of keywords that describe the hybrid model.",
                     "items": {
                         "type": "string"
                     },
@@ -588,12 +590,13 @@
                     "type": "array"
                 },
                 "name": {
-                    "description": "Full name of the unit.",
+                    "description": "Full name of the hybrid model.",
                     "minLength": 1,
                     "title": "Name",
                     "type": "string"
                 },
                 "contributors": {
+                    "description": "List of contributor names.",
                     "items": {
                         "type": "string"
                     },
@@ -614,6 +617,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "List of URLs or DOIs for documentation.",
                     "title": "Documentation"
                 },
                 "identifier": {
@@ -626,6 +630,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "Digital Object Identifier (DOI).",
                     "title": "Identifier"
                 },
                 "license": {
@@ -638,6 +643,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "License name.",
                     "title": "License"
                 },
                 "readme": {
@@ -650,9 +656,11 @@
                         }
                     ],
                     "default": null,
+                    "description": "URL to a Markdown README file.",
                     "title": "Readme"
                 },
                 "url": {
+                    "description": "Repository URL.",
                     "minLength": 1,
                     "title": "Url",
                     "type": "string"
@@ -667,6 +675,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "Semantic version.",
                     "title": "Version"
                 },
                 "ml_process": {
@@ -733,7 +742,8 @@
             "description": "Machine learning component.",
             "properties": {
                 "description": {
-                    "description": "Summarized description of the unit.",
+                    "description": "Summarized description of the component.",
+                    "minLength": 1,
                     "title": "Description",
                     "type": "string"
                 },
@@ -748,18 +758,19 @@
                         }
                     ],
                     "default": null,
-                    "description": "Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.",
+                    "description": "Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.",
                     "title": "Created"
                 },
                 "id": {
-                    "description": "Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use \"_\" instead) or special characters.",
+                    "description": "Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use \"_\" instead) or special characters.",
                     "minLength": 1,
+                    "pattern": "^[a-z0-9_]+$",
                     "title": "Id",
                     "type": "string"
                 },
                 "keywords": {
                     "default": [],
-                    "description": "List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.",
+                    "description": "List of keywords that describe the hybrid model. If not provided, will be filled with the associated hybrid model's keywords.",
                     "items": {
                         "type": "string"
                     },
@@ -767,13 +778,14 @@
                     "type": "array"
                 },
                 "name": {
-                    "description": "Full name of the unit.",
+                    "description": "Full name of the component.",
                     "minLength": 1,
                     "title": "Name",
                     "type": "string"
                 },
                 "contributors": {
                     "default": [],
+                    "description": "List of contributor names. If not provided, will be filled with the associated hybrid model's contributors.",
                     "items": {
                         "type": "string"
                     },
@@ -793,6 +805,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "List of URLs or DOIs for documentation. If not provided, will be filled with the associated hybrid model's list of documentation.",
                     "title": "Documentation"
                 },
                 "identifier": {
@@ -805,6 +818,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "Digital Object Identifier (DOI). If not provided, will be filled with the associated hybrid model's DOI.",
                     "title": "Identifier"
                 },
                 "license": {
@@ -817,6 +831,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "License name. If not provided, will be filled with the associated hybrid model's license.",
                     "title": "License"
                 },
                 "readme": {
@@ -829,6 +844,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README URL.",
                     "title": "Readme"
                 },
                 "url": {
@@ -841,6 +857,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "Repository URL. If not provided, will be filled with the associated hybrid model's repository URL.",
                     "title": "Url"
                 },
                 "version": {
@@ -853,6 +870,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "Semantic version. If not provided, will be filled with the associated hybrid model's version.",
                     "title": "Version"
                 },
                 "ml_process": {
@@ -896,6 +914,7 @@
             "description": "Reference to an existing machine learning component.",
             "properties": {
                 "id": {
+                    "description": "ID of a component defined in another metadata file, that is compatible with the hybrid model defined in this file. Only the ID is required, the other fields should not be set.",
                     "title": "Id",
                     "type": "string"
                 }
@@ -1122,7 +1141,8 @@
             "description": "Physics-based component.",
             "properties": {
                 "description": {
-                    "description": "Summarized description of the unit.",
+                    "description": "Summarized description of the component.",
+                    "minLength": 1,
                     "title": "Description",
                     "type": "string"
                 },
@@ -1137,18 +1157,19 @@
                         }
                     ],
                     "default": null,
-                    "description": "Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.",
+                    "description": "Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.",
                     "title": "Created"
                 },
                 "id": {
-                    "description": "Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use \"_\" instead) or special characters.",
+                    "description": "Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use \"_\" instead) or special characters.",
                     "minLength": 1,
+                    "pattern": "^[a-z0-9_]+$",
                     "title": "Id",
                     "type": "string"
                 },
                 "keywords": {
                     "default": [],
-                    "description": "List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.",
+                    "description": "List of keywords that describe the hybrid model. If not provided, will be filled with the associated hybrid model's keywords.",
                     "items": {
                         "type": "string"
                     },
@@ -1156,13 +1177,14 @@
                     "type": "array"
                 },
                 "name": {
-                    "description": "Full name of the unit.",
+                    "description": "Full name of the component.",
                     "minLength": 1,
                     "title": "Name",
                     "type": "string"
                 },
                 "contributors": {
                     "default": [],
+                    "description": "List of contributor names. If not provided, will be filled with the associated hybrid model's contributors.",
                     "items": {
                         "type": "string"
                     },
@@ -1182,6 +1204,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "List of URLs or DOIs for documentation. If not provided, will be filled with the associated hybrid model's list of documentation.",
                     "title": "Documentation"
                 },
                 "identifier": {
@@ -1194,6 +1217,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "Digital Object Identifier (DOI). If not provided, will be filled with the associated hybrid model's DOI.",
                     "title": "Identifier"
                 },
                 "license": {
@@ -1206,6 +1230,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "License name. If not provided, will be filled with the associated hybrid model's license.",
                     "title": "License"
                 },
                 "readme": {
@@ -1218,6 +1243,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README URL.",
                     "title": "Readme"
                 },
                 "url": {
@@ -1230,6 +1256,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "Repository URL. If not provided, will be filled with the associated hybrid model's repository URL.",
                     "title": "Url"
                 },
                 "version": {
@@ -1242,6 +1269,7 @@
                         }
                     ],
                     "default": null,
+                    "description": "Semantic version. If not provided, will be filled with the associated hybrid model's version.",
                     "title": "Version"
                 },
                 "type": {
@@ -1407,6 +1435,7 @@
             "description": "Reference to an existing physics-based component.",
             "properties": {
                 "id": {
+                    "description": "ID of a component defined in another metadata file, that is compatible with the hybrid model defined in this file. Only the ID is required, the other fields should not be set.",
                     "title": "Id",
                     "type": "string"
                 }

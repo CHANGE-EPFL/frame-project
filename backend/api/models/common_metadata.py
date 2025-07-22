@@ -18,32 +18,39 @@ else:
 class CommonMetadataSummary(BaseModel, extra="forbid"):
     """Essential metadata fields for hybrid models."""
 
-    description: str = Field(min_length=1, description="Summarized description of the unit.")
-    created: date | None = Field(None, description="Date when the unit was created. E.g. 2000-12-31.")
+    description: str = Field(min_length=1, description="Summarized description of the hybrid model.")
+    created: date | None = Field(None, description="Date when the hybrid was created. (e.g. 2000-12-31).")
     id: str = Field(
         min_length=1,
         pattern="^[a-z0-9_]+$",
         description=(
-            "Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces"
-            '(use "_" instead) or special characters.'
+            "Short name that serves as unique identifier for the hybrid model. Should be all lowercase and"
+            ' contain no spaces (use "_" instead) or special characters.'
         ),
     )
-    keywords: NonEmptyList = Field(description="List of keywords that describe the unit.")
-    name: str = Field(min_length=1, description="Full name of the unit.")
+    keywords: NonEmptyList = Field(description="List of keywords that describe the hybrid model.")
+    name: str = Field(min_length=1, description="Full name of the hybrid model.")
 
 
 class CommonMetadataSummaryIncomplete(BaseModel, extra="forbid"):
     """Essential metadata fields for components that allows for missing fields."""
 
-    description: str = Field(description=CommonMetadataSummary.model_fields["description"].description)
+    description: str = Field(min_length=1, description="Summarized description of the component.")
     created: date | None = Field(
         None,
         description=(
-            f"{CommonMetadataSummary.model_fields['created'].description}"
+            "Date when the component was created (e.g. 2000-12-31)."
             " If not provided, will be filled with the associated hybrid model's creation date."
         ),
     )
-    id: str = Field(min_length=1, description=CommonMetadataSummary.model_fields["id"].description)
+    id: str = Field(
+        min_length=1,
+        pattern="^[a-z0-9_]+$",
+        description=(
+            "Short name that serves as unique identifier for the component. Should be all lowercase and contain no"
+            ' spaces (use "_" instead) or special characters.'
+        ),
+    )
     keywords: list[str] = Field(
         [],
         description=(
@@ -51,40 +58,62 @@ class CommonMetadataSummaryIncomplete(BaseModel, extra="forbid"):
             " If not provided, will be filled with the associated hybrid model's keywords."
         ),
     )
-    name: str = Field(min_length=1, description=CommonMetadataSummary.model_fields["name"].description)
+    name: str = Field(min_length=1, description="Full name of the component.")
 
 
 class CommonMetadata(CommonMetadataSummary):
     """Common metadata fields for hybrid models."""
 
-    #: List of contributor names
-    contributors: NonEmptyList
-    #: URLs or DOIs
-    documentation: list[str] | None = None
-    #: DOI
-    identifier: str | None = None
-    license: str | None = None
-    #: Markdown readme URL
-    readme: str | None = None
-    #: Repository URL
-    url: str = Field(..., min_length=1)
-    #: Semantic version
-    version: str | None = None
+    contributors: NonEmptyList = Field(description="List of contributor names.")
+    documentation: list[str] | None = Field(None, description="List of URLs or DOIs for documentation.")
+    identifier: str | None = Field(None, description="Digital Object Identifier (DOI).")
+    license: str | None = Field(None, description="License name.")
+    readme: str | None = Field(None, description="URL to a Markdown README file.")
+    url: str = Field(min_length=1, description="Repository URL.")
+    version: str | None = Field(None, description="Semantic version.")
 
 
 class CommonMetadataIncomplete(CommonMetadataSummaryIncomplete):
     """Common metadata fields for components that allows for missing fields."""
 
-    #: List of contributor names
-    contributors: list[str] = []
-    #: URLs or DOIs
-    documentation: list[str] | None = None
-    #: DOI
-    identifier: str | None = None
-    license: str | None = None
-    #: Markdown readme URL
-    readme: str | None = None
-    #: Repository URL
-    url: str | None = None
-    #: Semantic version
-    version: str | None = None
+    contributors: list[str] = Field(
+        [],
+        description=(
+            "List of contributor names. If not provided, will be filled with the associated hybrid model's"
+            " contributors."
+        ),
+    )
+    documentation: list[str] | None = Field(
+        None,
+        description=(
+            "List of URLs or DOIs for documentation. If not provided, will be filled with the associated hybrid model's"
+            " list of documentation."
+        ),
+    )
+    identifier: str | None = Field(
+        None,
+        description=(
+            "Digital Object Identifier (DOI). If not provided, will be filled with the associated hybrid model's DOI."
+        ),
+    )
+    license: str | None = Field(
+        None,
+        description=("License name. If not provided, will be filled with the associated hybrid model's license."),
+    )
+    readme: str | None = Field(
+        None,
+        description=(
+            "URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README"
+            " URL."
+        ),
+    )
+    url: str | None = Field(
+        None,
+        description=(
+            "Repository URL. If not provided, will be filled with the associated hybrid model's repository URL."
+        ),
+    )
+    version: str | None = Field(
+        None,
+        description="Semantic version. If not provided, will be filled with the associated hybrid model's version.",
+    )

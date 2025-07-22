@@ -10,32 +10,56 @@
  */
 export interface Component {
   /**
-   * Summarized description of the unit.
+   * Summarized description of the component.
    */
   description: string;
   /**
-   * Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.
+   * Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.
    */
   created?: string | null;
   /**
-   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   * Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
   id: string;
   /**
-   * List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.
+   * List of keywords that describe the hybrid model. If not provided, will be filled with the associated hybrid model's keywords.
    */
   keywords?: string[];
   /**
-   * Full name of the unit.
+   * Full name of the component.
    */
   name: string;
+  /**
+   * List of contributor names. If not provided, will be filled with the associated hybrid model's contributors.
+   */
   contributors?: string[];
+  /**
+   * List of URLs or DOIs for documentation. If not provided, will be filled with the associated hybrid model's list of documentation.
+   */
   documentation?: string[] | null;
+  /**
+   * Digital Object Identifier (DOI). If not provided, will be filled with the associated hybrid model's DOI.
+   */
   identifier?: string | null;
+  /**
+   * License name. If not provided, will be filled with the associated hybrid model's license.
+   */
   license?: string | null;
+  /**
+   * URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README URL.
+   */
   readme?: string | null;
+  /**
+   * Repository URL. If not provided, will be filled with the associated hybrid model's repository URL.
+   */
   url?: string | null;
+  /**
+   * Semantic version. If not provided, will be filled with the associated hybrid model's version.
+   */
   version?: string | null;
+  /**
+   * Whether this version is the latest one. Automatically inferred.
+   */
   latest?: boolean;
 }
 /**
@@ -43,37 +67,61 @@ export interface Component {
  */
 export interface ComponentFromFile {
   /**
-   * Summarized description of the unit.
+   * Summarized description of the component.
    */
   description: string;
   /**
-   * Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.
+   * Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.
    */
   created?: string | null;
   /**
-   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   * Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
   id: string;
   /**
-   * List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.
+   * List of keywords that describe the hybrid model. If not provided, will be filled with the associated hybrid model's keywords.
    */
   keywords?: string[];
   /**
-   * Full name of the unit.
+   * Full name of the component.
    */
   name: string;
+  /**
+   * List of contributor names. If not provided, will be filled with the associated hybrid model's contributors.
+   */
   contributors?: string[];
+  /**
+   * List of URLs or DOIs for documentation. If not provided, will be filled with the associated hybrid model's list of documentation.
+   */
   documentation?: string[] | null;
+  /**
+   * Digital Object Identifier (DOI). If not provided, will be filled with the associated hybrid model's DOI.
+   */
   identifier?: string | null;
+  /**
+   * License name. If not provided, will be filled with the associated hybrid model's license.
+   */
   license?: string | null;
+  /**
+   * URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README URL.
+   */
   readme?: string | null;
+  /**
+   * Repository URL. If not provided, will be filled with the associated hybrid model's repository URL.
+   */
   url?: string | null;
+  /**
+   * Semantic version. If not provided, will be filled with the associated hybrid model's version.
+   */
   version?: string | null;
 }
 /**
  * Reference to an existing component of a hybrid model.
  */
 export interface ComponentReference {
+  /**
+   * ID of a component defined in another metadata file, that is compatible with the hybrid model defined in this file. Only the ID is required, the other fields should not be set.
+   */
   id: string;
 }
 /**
@@ -81,25 +129,25 @@ export interface ComponentReference {
  */
 export interface ComponentSummary {
   /**
-   * Summarized description of the unit.
+   * Summarized description of the hybrid model.
    */
   description: string;
   /**
-   * Date when the unit was created. E.g. 2000-12-31.
+   * Date when the hybrid was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
-   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
   id: string;
   /**
-   * List of keywords that describe the unit.
+   * List of keywords that describe the hybrid model.
    *
    * @minItems 1
    */
   keywords: [string, ...string[]];
   /**
-   * Full name of the unit.
+   * Full name of the hybrid model.
    */
   name: string;
 }
@@ -147,34 +195,58 @@ export interface Gpu {
  */
 export interface MachineLearningComponent {
   /**
-   * Summarized description of the unit.
+   * Summarized description of the component.
    */
   description: string;
   /**
-   * Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.
+   * Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.
    */
   created?: string | null;
   /**
-   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   * Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
   id: string;
   /**
-   * List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.
+   * List of keywords that describe the hybrid model. If not provided, will be filled with the associated hybrid model's keywords.
    */
   keywords?: string[];
   /**
-   * Full name of the unit.
+   * Full name of the component.
    */
   name: string;
+  /**
+   * List of contributor names. If not provided, will be filled with the associated hybrid model's contributors.
+   */
   contributors?: string[];
+  /**
+   * List of URLs or DOIs for documentation. If not provided, will be filled with the associated hybrid model's list of documentation.
+   */
   documentation?: string[] | null;
+  /**
+   * Digital Object Identifier (DOI). If not provided, will be filled with the associated hybrid model's DOI.
+   */
   identifier?: string | null;
+  /**
+   * License name. If not provided, will be filled with the associated hybrid model's license.
+   */
   license?: string | null;
+  /**
+   * URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README URL.
+   */
   readme?: string | null;
+  /**
+   * Repository URL. If not provided, will be filled with the associated hybrid model's repository URL.
+   */
   url?: string | null;
+  /**
+   * Semantic version. If not provided, will be filled with the associated hybrid model's version.
+   */
   version?: string | null;
   ml_process?: string | null;
   neural_networks?: NeuralNetwork[] | null;
+  /**
+   * Whether this version is the latest one. Automatically inferred.
+   */
   latest?: boolean;
 }
 /**
@@ -211,31 +283,52 @@ export interface TrainingRequirements {
  */
 export interface MachineLearningComponentFromFile {
   /**
-   * Summarized description of the unit.
+   * Summarized description of the component.
    */
   description: string;
   /**
-   * Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.
+   * Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.
    */
   created?: string | null;
   /**
-   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   * Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
   id: string;
   /**
-   * List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.
+   * List of keywords that describe the hybrid model. If not provided, will be filled with the associated hybrid model's keywords.
    */
   keywords?: string[];
   /**
-   * Full name of the unit.
+   * Full name of the component.
    */
   name: string;
+  /**
+   * List of contributor names. If not provided, will be filled with the associated hybrid model's contributors.
+   */
   contributors?: string[];
+  /**
+   * List of URLs or DOIs for documentation. If not provided, will be filled with the associated hybrid model's list of documentation.
+   */
   documentation?: string[] | null;
+  /**
+   * Digital Object Identifier (DOI). If not provided, will be filled with the associated hybrid model's DOI.
+   */
   identifier?: string | null;
+  /**
+   * License name. If not provided, will be filled with the associated hybrid model's license.
+   */
   license?: string | null;
+  /**
+   * URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README URL.
+   */
   readme?: string | null;
+  /**
+   * Repository URL. If not provided, will be filled with the associated hybrid model's repository URL.
+   */
   url?: string | null;
+  /**
+   * Semantic version. If not provided, will be filled with the associated hybrid model's version.
+   */
   version?: string | null;
   ml_process?: string | null;
   neural_networks?: NeuralNetwork[] | null;
@@ -244,6 +337,9 @@ export interface MachineLearningComponentFromFile {
  * Reference to an existing machine learning component.
  */
 export interface MachineLearningComponentReference {
+  /**
+   * ID of a component defined in another metadata file, that is compatible with the hybrid model defined in this file. Only the ID is required, the other fields should not be set.
+   */
   id: string;
 }
 /**
@@ -251,25 +347,25 @@ export interface MachineLearningComponentReference {
  */
 export interface MachineLearningComponentSummary {
   /**
-   * Summarized description of the unit.
+   * Summarized description of the hybrid model.
    */
   description: string;
   /**
-   * Date when the unit was created. E.g. 2000-12-31.
+   * Date when the hybrid was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
-   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
   id: string;
   /**
-   * List of keywords that describe the unit.
+   * List of keywords that describe the hybrid model.
    *
    * @minItems 1
    */
   keywords: [string, ...string[]];
   /**
-   * Full name of the unit.
+   * Full name of the hybrid model.
    */
   name: string;
 }
