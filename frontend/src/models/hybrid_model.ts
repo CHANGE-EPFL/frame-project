@@ -10,36 +10,56 @@
  */
 export interface CommonMetadata {
   /**
-   * Summarized description of the unit.
+   * Summarized description of the hybrid model.
    */
   description: string;
   /**
-   * Date when the unit was created. E.g. 2000-12-31.
+   * Date when the hybrid was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
-   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
   id: string;
   /**
-   * List of keywords that describe the unit.
+   * List of keywords that describe the hybrid model.
    *
    * @minItems 1
    */
   keywords: [string, ...string[]];
   /**
-   * Full name of the unit.
+   * Full name of the hybrid model.
    */
   name: string;
   /**
+   * List of contributor names.
+   *
    * @minItems 1
    */
   contributors: [string, ...string[]];
+  /**
+   * List of URLs or DOIs for documentation.
+   */
   documentation?: string[] | null;
+  /**
+   * Digital Object Identifier (DOI).
+   */
   identifier?: string | null;
+  /**
+   * License name.
+   */
   license?: string | null;
+  /**
+   * URL to a Markdown README file.
+   */
   readme?: string | null;
+  /**
+   * Repository URL.
+   */
   url: string;
+  /**
+   * Semantic version.
+   */
   version?: string | null;
 }
 /**
@@ -47,25 +67,25 @@ export interface CommonMetadata {
  */
 export interface CommonMetadataSummary {
   /**
-   * Summarized description of the unit.
+   * Summarized description of the hybrid model.
    */
   description: string;
   /**
-   * Date when the unit was created. E.g. 2000-12-31.
+   * Date when the hybrid was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
-   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
   id: string;
   /**
-   * List of keywords that describe the unit.
+   * List of keywords that describe the hybrid model.
    *
    * @minItems 1
    */
   keywords: [string, ...string[]];
   /**
-   * Full name of the unit.
+   * Full name of the hybrid model.
    */
   name: string;
 }
@@ -73,7 +93,13 @@ export interface CommonMetadataSummary {
  * Description of a computational environment.
  */
 export interface ComputationalEnvironment {
+  /**
+   * Type of the computational environment that could be automatically setup after downloading the model.
+   */
   type: "conda" | "python_requirements" | "pyproject_toml";
+  /**
+   * List of file paths that contain the environment description, relative to the repository root.
+   */
   file_paths: string[];
 }
 /**
@@ -109,36 +135,56 @@ export interface DataIO {
  */
 export interface HybridModel {
   /**
-   * Summarized description of the unit.
+   * Summarized description of the hybrid model.
    */
   description: string;
   /**
-   * Date when the unit was created. E.g. 2000-12-31.
+   * Date when the hybrid was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
-   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
   id: string;
   /**
-   * List of keywords that describe the unit.
+   * List of keywords that describe the hybrid model.
    *
    * @minItems 1
    */
   keywords: [string, ...string[]];
   /**
-   * Full name of the unit.
+   * Full name of the hybrid model.
    */
   name: string;
   /**
+   * List of contributor names.
+   *
    * @minItems 1
    */
   contributors: [string, ...string[]];
+  /**
+   * List of URLs or DOIs for documentation.
+   */
   documentation?: string[] | null;
+  /**
+   * Digital Object Identifier (DOI).
+   */
   identifier?: string | null;
+  /**
+   * License name.
+   */
   license?: string | null;
+  /**
+   * URL to a Markdown README file.
+   */
   readme?: string | null;
+  /**
+   * Repository URL.
+   */
   url: string;
+  /**
+   * Semantic version.
+   */
   version?: string | null;
   ml_process?: string | null;
   host_physics?: string | null;
@@ -154,36 +200,56 @@ export interface HybridModel {
  */
 export interface HybridModelFromFile {
   /**
-   * Summarized description of the unit.
+   * Summarized description of the hybrid model.
    */
   description: string;
   /**
-   * Date when the unit was created. E.g. 2000-12-31.
+   * Date when the hybrid was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
-   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
   id: string;
   /**
-   * List of keywords that describe the unit.
+   * List of keywords that describe the hybrid model.
    *
    * @minItems 1
    */
   keywords: [string, ...string[]];
   /**
-   * Full name of the unit.
+   * Full name of the hybrid model.
    */
   name: string;
   /**
+   * List of contributor names.
+   *
    * @minItems 1
    */
   contributors: [string, ...string[]];
+  /**
+   * List of URLs or DOIs for documentation.
+   */
   documentation?: string[] | null;
+  /**
+   * Digital Object Identifier (DOI).
+   */
   identifier?: string | null;
+  /**
+   * License name.
+   */
   license?: string | null;
+  /**
+   * URL to a Markdown README file.
+   */
   readme?: string | null;
+  /**
+   * Repository URL.
+   */
   url: string;
+  /**
+   * Semantic version.
+   */
   version?: string | null;
   ml_process?: string | null;
   host_physics?: string | null;
@@ -195,25 +261,25 @@ export interface HybridModelFromFile {
  */
 export interface HybridModelSummary {
   /**
-   * Summarized description of the unit.
+   * Summarized description of the hybrid model.
    */
   description: string;
   /**
-   * Date when the unit was created. E.g. 2000-12-31.
+   * Date when the hybrid was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
-   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
   id: string;
   /**
-   * List of keywords that describe the unit.
+   * List of keywords that describe the hybrid model.
    *
    * @minItems 1
    */
   keywords: [string, ...string[]];
   /**
-   * Full name of the unit.
+   * Full name of the hybrid model.
    */
   name: string;
 }
