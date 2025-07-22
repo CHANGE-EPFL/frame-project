@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from .common_metadata import CommonMetadataIncomplete, CommonMetadataSummary
 
@@ -14,11 +14,15 @@ class ComponentSummary(CommonMetadataSummary, extra="ignore"):
 class Component(ComponentFromFile, ComponentSummary):
     """Component of hybrid model."""
 
-    #: Whether version is latest
-    latest: bool = False
+    latest: bool = Field(False, description="Whether this version is the latest one. Automatically inferred.")
 
 
 class ComponentReference(BaseModel, extra="forbid"):
     """Reference to an existing component of a hybrid model."""
 
-    id: str
+    id: str = Field(
+        description=(
+            "ID of a component defined in another metadata file, that is compatible with the hybrid model defined in"
+            " this file. Only the ID is required, the other fields should not be set."
+        )
+    )

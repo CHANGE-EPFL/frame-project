@@ -102,7 +102,7 @@ def get_annotation_template(
 
             template += " # (list"
             if len(models) > 1:
-                template += ", multiple possible types"
+                template += ", multiple possible types shown below"
             if optional:
                 template += ", optional"
             template += ")"

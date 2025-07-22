@@ -1,21 +1,21 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/CHANGE-EPFL/frame-project/refs/heads/dev/backend/api/metadata_files/schema.json
 
 hybrid_model:
-  description: "" # (str) Summarized description of the unit.
-  created: 2000-12-31 # (date, optional) Date when the unit was created. E.g. 2000-12-31.
-  id: "" # (str) Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
-  keywords: # (list) List of keywords that describe the unit.
+  description: "" # (str) Summarized description of the hybrid model.
+  created: 2000-12-31 # (date, optional) Date when the hybrid was created. (e.g. 2000-12-31).
+  id: "" # (str) Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
+  keywords: # (list) List of keywords that describe the hybrid model.
     - "" # (str)
-  name: "" # (str) Full name of the unit.
-  contributors: # (list)
+  name: "" # (str) Full name of the hybrid model.
+  contributors: # (list) List of contributor names.
     - "" # (str)
-  documentation: # (list, optional)
+  documentation: # (list, optional) List of URLs or DOIs for documentation.
     - "" # (str)
-  identifier: "" # (str, optional)
-  license: "" # (str, optional)
-  readme: "" # (str, optional)
-  url: "" # (str)
-  version: "" # (str, optional)
+  identifier: "" # (str, optional) Digital Object Identifier (DOI).
+  license: "" # (str, optional) License name.
+  readme: "" # (str, optional) URL to a Markdown README file.
+  url: "" # (str) Repository URL.
+  version: "" # (str, optional) Semantic version.
   ml_process: "" # (str, optional)
   host_physics: "" # (str, optional)
   latent_variables: # (list, optional)
@@ -37,26 +37,26 @@ hybrid_model:
       temporal_resolution: "" # (str, optional)
   computational_environment: # (list, optional)
     - type: conda # "conda" | "python_requirements" | "pyproject_toml"
-      file_paths: # (list)
+      file_paths: # (list) List of file paths that contain the environment description, relative to the repository root.
         - "" # (str)
 
-physics_based_components: # (list, multiple possible types, optional)
-  - id: "" # (str)
-  - description: "" # (str) Summarized description of the unit.
-    created: 2000-12-31 # (date, optional) Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.
-    id: "" # (str) Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
-    keywords: # (list, optional) List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.
+physics_based_components: # (list, multiple possible types shown below, optional)
+  - id: "" # (str) ID of a component defined in another metadata file, that is compatible with the hybrid model defined in this file. Only the ID is required, the other fields should not be set.
+  - description: "" # (str) Summarized description of the component.
+    created: 2000-12-31 # (date, optional) Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.
+    id: "" # (str) Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
+    keywords: # (list, optional) List of keywords that describe the hybrid model. If not provided, will be filled with the associated hybrid model's keywords.
       - "" # (str)
-    name: "" # (str) Full name of the unit.
-    contributors: # (list, optional)
+    name: "" # (str) Full name of the component.
+    contributors: # (list, optional) List of contributor names. If not provided, will be filled with the associated hybrid model's contributors.
       - "" # (str)
-    documentation: # (list, optional)
+    documentation: # (list, optional) List of URLs or DOIs for documentation. If not provided, will be filled with the associated hybrid model's list of documentation.
       - "" # (str)
-    identifier: "" # (str, optional)
-    license: "" # (str, optional)
-    readme: "" # (str, optional)
-    url: "" # (str, optional)
-    version: "" # (str, optional)
+    identifier: "" # (str, optional) Digital Object Identifier (DOI). If not provided, will be filled with the associated hybrid model's DOI.
+    license: "" # (str, optional) License name. If not provided, will be filled with the associated hybrid model's license.
+    readme: "" # (str, optional) URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README URL.
+    url: "" # (str, optional) Repository URL. If not provided, will be filled with the associated hybrid model's repository URL.
+    version: "" # (str, optional) Semantic version. If not provided, will be filled with the associated hybrid model's version.
     type: "" # (str, optional)
     fixed_parameters_count: 0 # (int, optional)
     tunable_parameters_count: 0 # (int, optional)
@@ -98,23 +98,23 @@ physics_based_components: # (list, multiple possible types, optional)
       operating_system: "" # (str, optional)
       compute_time: "" # (str, optional)
 
-machine_learning_components: # (list, multiple possible types, optional)
-  - id: "" # (str)
-  - description: "" # (str) Summarized description of the unit.
-    created: 2000-12-31 # (date, optional) Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.
-    id: "" # (str) Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
-    keywords: # (list, optional) List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.
+machine_learning_components: # (list, multiple possible types shown below, optional)
+  - id: "" # (str) ID of a component defined in another metadata file, that is compatible with the hybrid model defined in this file. Only the ID is required, the other fields should not be set.
+  - description: "" # (str) Summarized description of the component.
+    created: 2000-12-31 # (date, optional) Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.
+    id: "" # (str) Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
+    keywords: # (list, optional) List of keywords that describe the hybrid model. If not provided, will be filled with the associated hybrid model's keywords.
       - "" # (str)
-    name: "" # (str) Full name of the unit.
-    contributors: # (list, optional)
+    name: "" # (str) Full name of the component.
+    contributors: # (list, optional) List of contributor names. If not provided, will be filled with the associated hybrid model's contributors.
       - "" # (str)
-    documentation: # (list, optional)
+    documentation: # (list, optional) List of URLs or DOIs for documentation. If not provided, will be filled with the associated hybrid model's list of documentation.
       - "" # (str)
-    identifier: "" # (str, optional)
-    license: "" # (str, optional)
-    readme: "" # (str, optional)
-    url: "" # (str, optional)
-    version: "" # (str, optional)
+    identifier: "" # (str, optional) Digital Object Identifier (DOI). If not provided, will be filled with the associated hybrid model's DOI.
+    license: "" # (str, optional) License name. If not provided, will be filled with the associated hybrid model's license.
+    readme: "" # (str, optional) URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README URL.
+    url: "" # (str, optional) Repository URL. If not provided, will be filled with the associated hybrid model's repository URL.
+    version: "" # (str, optional) Semantic version. If not provided, will be filled with the associated hybrid model's version.
     ml_process: "" # (str, optional)
     neural_networks: # (list, optional)
       - name: "" # (str)
