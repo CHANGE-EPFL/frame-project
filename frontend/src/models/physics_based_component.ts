@@ -9,10 +9,25 @@
  * Component of hybrid model.
  */
 export interface Component {
+  /**
+   * Summarized description of the unit.
+   */
   description: string;
+  /**
+   * Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.
+   */
   created?: string | null;
+  /**
+   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   */
   id: string;
+  /**
+   * List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.
+   */
   keywords?: string[];
+  /**
+   * Full name of the unit.
+   */
   name: string;
   contributors?: string[];
   documentation?: string[] | null;
@@ -27,10 +42,25 @@ export interface Component {
  * Component of hybrid model.
  */
 export interface ComponentFromFile {
+  /**
+   * Summarized description of the unit.
+   */
   description: string;
+  /**
+   * Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.
+   */
   created?: string | null;
+  /**
+   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   */
   id: string;
+  /**
+   * List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.
+   */
   keywords?: string[];
+  /**
+   * Full name of the unit.
+   */
   name: string;
   contributors?: string[];
   documentation?: string[] | null;
@@ -50,13 +80,27 @@ export interface ComponentReference {
  * Essential metadata fields for hybrid model components.
  */
 export interface ComponentSummary {
+  /**
+   * Summarized description of the unit.
+   */
   description: string;
+  /**
+   * Date when the unit was created. E.g. 2000-12-31.
+   */
   created?: string | null;
+  /**
+   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   */
   id: string;
   /**
+   * List of keywords that describe the unit.
+   *
    * @minItems 1
    */
   keywords: [string, ...string[]];
+  /**
+   * Full name of the unit.
+   */
   name: string;
 }
 /**
@@ -102,10 +146,25 @@ export interface Gpu {
  * Physics-based component.
  */
 export interface PhysicsBasedComponent {
+  /**
+   * Summarized description of the unit.
+   */
   description: string;
+  /**
+   * Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.
+   */
   created?: string | null;
+  /**
+   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   */
   id: string;
+  /**
+   * List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.
+   */
   keywords?: string[];
+  /**
+   * Full name of the unit.
+   */
   name: string;
   contributors?: string[];
   documentation?: string[] | null;
@@ -139,10 +198,25 @@ export interface VerticalDiscretization {
  * Physics-based component.
  */
 export interface PhysicsBasedComponentFromFile {
+  /**
+   * Summarized description of the unit.
+   */
   description: string;
+  /**
+   * Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.
+   */
   created?: string | null;
+  /**
+   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   */
   id: string;
+  /**
+   * List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.
+   */
   keywords?: string[];
+  /**
+   * Full name of the unit.
+   */
   name: string;
   contributors?: string[];
   documentation?: string[] | null;
@@ -174,12 +248,26 @@ export interface PhysicsBasedComponentReference {
  * Essential metadata fields for physics-based components.
  */
 export interface PhysicsBasedComponentSummary {
+  /**
+   * Summarized description of the unit.
+   */
   description: string;
+  /**
+   * Date when the unit was created. E.g. 2000-12-31.
+   */
   created?: string | null;
+  /**
+   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   */
   id: string;
   /**
+   * List of keywords that describe the unit.
+   *
    * @minItems 1
    */
   keywords: [string, ...string[]];
+  /**
+   * Full name of the unit.
+   */
   name: string;
 }

@@ -42,7 +42,9 @@ def export_yaml_template(output_path: str) -> None:
         file.write(template)
 
 
-def get_annotation_template(model, current_level: int = 0, optional: bool = False) -> str:
+def get_annotation_template(
+    model, current_level: int = 0, optional: bool = False, description: str | None = None
+) -> str:
     template = ""
     indent = "  " * current_level
 
@@ -59,39 +61,31 @@ def get_annotation_template(model, current_level: int = 0, optional: bool = Fals
         else:
             if set(models) == {float, int}:
                 template += " 0"
-            template += f" # {' | '.join([m.__name__ for m in models])}"
+            template += f" # ({' | '.join([m.__name__ for m in models])}"
             if optional:
                 template += ", optional"
+            template += ")"
+            if description:
+                template += f" {description}"
             return template
 
-    if model is str:
-        template += ' "" # str'
-        if optional:
-            template += ", optional"
-        return template
+    type_templates = {
+        str: ' "" # (str',
+        bool: " false # (bool",
+        int: " 0 # (int",
+        float: " 0.0 # (float",
+        datetime.date: " 2000-12-31 # (date",
+    }
 
-    if model is bool:
-        template += " false # bool"
+    for type_, type_template in type_templates.items():
+        if model is not type_:
+            continue
+        template += type_template
         if optional:
             template += ", optional"
-        return template
-
-    if model is int:
-        template += " 0 # int"
-        if optional:
-            template += ", optional"
-        return template
-
-    if model is float:
-        template += " 0.0 # float"
-        if optional:
-            template += ", optional"
-        return template
-
-    if model is datetime.date:
-        template += " 2000-01-01 # date"
-        if optional:
-            template += ", optional"
+        template += ")"
+        if description:
+            template += f" {description}"
         return template
 
     if isinstance(model, types.GenericAlias) or isinstance(model, typing._GenericAlias):
@@ -106,11 +100,14 @@ def get_annotation_template(model, current_level: int = 0, optional: bool = Fals
             else:
                 models = [model]
 
-            template += " # list"
+            template += " # (list"
             if len(models) > 1:
-                template += " (multiple possible types)"
+                template += ", multiple possible types"
             if optional:
                 template += ", optional"
+            template += ")"
+            if description:
+                template += f" {description}"
 
             for model in models:
                 template += f"\n{indent}- "
@@ -126,15 +123,24 @@ def get_annotation_template(model, current_level: int = 0, optional: bool = Fals
             return template
 
     elif inspect.isclass(model) and issubclass(model, BaseModel):
+        if optional or description:
+            template += " #"
         if optional:
-            template += " # optional"
+            template += " (optional)"
+        if description:
+            template += f" {description}"
 
         for name, field in model.model_fields.items():
             if current_level == 0:
                 template += "\n"
 
             template += f"\n{indent}{name}:"
-            template += get_annotation_template(field.annotation, current_level + 1, optional=not field.is_required())
+            field_description = getattr(field, "description", None)
+            # if field_description is None:
+            #     field_description = getattr(field.annotation, "__doc__", None)
+            template += get_annotation_template(
+                field.annotation, current_level + 1, optional=not field.is_required(), description=field_description
+            )
 
         return template
 
