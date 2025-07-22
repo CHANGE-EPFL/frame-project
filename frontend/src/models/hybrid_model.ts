@@ -9,13 +9,27 @@
  * Common metadata fields for hybrid models.
  */
 export interface CommonMetadata {
+  /**
+   * Summarized description of the unit.
+   */
   description: string;
+  /**
+   * Date when the unit was created. E.g. 2000-12-31.
+   */
   created?: string | null;
+  /**
+   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   */
   id: string;
   /**
+   * List of keywords that describe the unit.
+   *
    * @minItems 1
    */
   keywords: [string, ...string[]];
+  /**
+   * Full name of the unit.
+   */
   name: string;
   /**
    * @minItems 1
@@ -32,20 +46,34 @@ export interface CommonMetadata {
  * Essential metadata fields for hybrid models.
  */
 export interface CommonMetadataSummary {
+  /**
+   * Summarized description of the unit.
+   */
   description: string;
+  /**
+   * Date when the unit was created. E.g. 2000-12-31.
+   */
   created?: string | null;
+  /**
+   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   */
   id: string;
   /**
+   * List of keywords that describe the unit.
+   *
    * @minItems 1
    */
   keywords: [string, ...string[]];
+  /**
+   * Full name of the unit.
+   */
   name: string;
 }
 /**
  * Description of a computational environment.
  */
 export interface ComputationalEnvironment {
-  type: 'conda' | 'python_requirements' | 'pyproject_toml';
+  type: "conda" | "python_requirements" | "pyproject_toml";
   file_paths: string[];
 }
 /**
@@ -80,13 +108,27 @@ export interface DataIO {
  * Hybrid model.
  */
 export interface HybridModel {
+  /**
+   * Summarized description of the unit.
+   */
   description: string;
+  /**
+   * Date when the unit was created. E.g. 2000-12-31.
+   */
   created?: string | null;
+  /**
+   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   */
   id: string;
   /**
+   * List of keywords that describe the unit.
+   *
    * @minItems 1
    */
   keywords: [string, ...string[]];
+  /**
+   * Full name of the unit.
+   */
   name: string;
   /**
    * @minItems 1
@@ -111,13 +153,27 @@ export interface HybridModel {
  * Hybrid model.
  */
 export interface HybridModelFromFile {
+  /**
+   * Summarized description of the unit.
+   */
   description: string;
+  /**
+   * Date when the unit was created. E.g. 2000-12-31.
+   */
   created?: string | null;
+  /**
+   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   */
   id: string;
   /**
+   * List of keywords that describe the unit.
+   *
    * @minItems 1
    */
   keywords: [string, ...string[]];
+  /**
+   * Full name of the unit.
+   */
   name: string;
   /**
    * @minItems 1
@@ -138,12 +194,26 @@ export interface HybridModelFromFile {
  * Contains essential metadata fields for hybrid models.
  */
 export interface HybridModelSummary {
+  /**
+   * Summarized description of the unit.
+   */
   description: string;
+  /**
+   * Date when the unit was created. E.g. 2000-12-31.
+   */
   created?: string | null;
+  /**
+   * Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use "_" instead) or special characters.
+   */
   id: string;
   /**
+   * List of keywords that describe the unit.
+   *
    * @minItems 1
    */
   keywords: [string, ...string[]];
+  /**
+   * Full name of the unit.
+   */
   name: string;
 }
