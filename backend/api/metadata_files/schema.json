@@ -552,6 +552,8 @@
             "description": "Hybrid model.",
             "properties": {
                 "description": {
+                    "description": "Summarized description of the unit.",
+                    "minLength": 1,
                     "title": "Description",
                     "type": "string"
                 },
@@ -566,14 +568,18 @@
                         }
                     ],
                     "default": null,
+                    "description": "Date when the unit was created. E.g. 2000-12-31.",
                     "title": "Created"
                 },
                 "id": {
+                    "description": "Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use \"_\" instead) or special characters.",
                     "minLength": 1,
+                    "pattern": "^[a-z0-9_]+$",
                     "title": "Id",
                     "type": "string"
                 },
                 "keywords": {
+                    "description": "List of keywords that describe the unit.",
                     "items": {
                         "type": "string"
                     },
@@ -582,6 +588,8 @@
                     "type": "array"
                 },
                 "name": {
+                    "description": "Full name of the unit.",
+                    "minLength": 1,
                     "title": "Name",
                     "type": "string"
                 },
@@ -725,6 +733,7 @@
             "description": "Machine learning component.",
             "properties": {
                 "description": {
+                    "description": "Summarized description of the unit.",
                     "title": "Description",
                     "type": "string"
                 },
@@ -739,15 +748,18 @@
                         }
                     ],
                     "default": null,
+                    "description": "Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.",
                     "title": "Created"
                 },
                 "id": {
+                    "description": "Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use \"_\" instead) or special characters.",
                     "minLength": 1,
                     "title": "Id",
                     "type": "string"
                 },
                 "keywords": {
                     "default": [],
+                    "description": "List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.",
                     "items": {
                         "type": "string"
                     },
@@ -755,6 +767,8 @@
                     "type": "array"
                 },
                 "name": {
+                    "description": "Full name of the unit.",
+                    "minLength": 1,
                     "title": "Name",
                     "type": "string"
                 },
@@ -1108,6 +1122,7 @@
             "description": "Physics-based component.",
             "properties": {
                 "description": {
+                    "description": "Summarized description of the unit.",
                     "title": "Description",
                     "type": "string"
                 },
@@ -1122,15 +1137,18 @@
                         }
                     ],
                     "default": null,
+                    "description": "Date when the unit was created. E.g. 2000-12-31. If not provided, will be filled with the associated hybrid model's creation date.",
                     "title": "Created"
                 },
                 "id": {
+                    "description": "Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces(use \"_\" instead) or special characters.",
                     "minLength": 1,
                     "title": "Id",
                     "type": "string"
                 },
                 "keywords": {
                     "default": [],
+                    "description": "List of keywords that describe the unit. If not provided, will be filled with the associated hybrid model's keywords.",
                     "items": {
                         "type": "string"
                     },
@@ -1138,6 +1156,8 @@
                     "type": "array"
                 },
                 "name": {
+                    "description": "Full name of the unit.",
+                    "minLength": 1,
                     "title": "Name",
                     "type": "string"
                 },

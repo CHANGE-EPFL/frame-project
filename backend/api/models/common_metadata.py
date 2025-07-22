@@ -18,21 +18,40 @@ else:
 class CommonMetadataSummary(BaseModel, extra="forbid"):
     """Essential metadata fields for hybrid models."""
 
-    description: str
-    created: date | None = None
-    id: str = Field(..., min_length=1)
-    keywords: NonEmptyList
-    name: str
+    description: str = Field(min_length=1, description="Summarized description of the unit.")
+    created: date | None = Field(None, description="Date when the unit was created. E.g. 2000-12-31.")
+    id: str = Field(
+        min_length=1,
+        pattern="^[a-z0-9_]+$",
+        description=(
+            "Short name that serves as unique identifier for the unit. Should be all lowercase and contain no spaces"
+            '(use "_" instead) or special characters.'
+        ),
+    )
+    keywords: NonEmptyList = Field(description="List of keywords that describe the unit.")
+    name: str = Field(min_length=1, description="Full name of the unit.")
 
 
 class CommonMetadataSummaryIncomplete(BaseModel, extra="forbid"):
     """Essential metadata fields for components that allows for missing fields."""
 
-    description: str
-    created: date | None = None
-    id: str = Field(..., min_length=1)
-    keywords: list[str] = []
-    name: str
+    description: str = Field(description=CommonMetadataSummary.model_fields["description"].description)
+    created: date | None = Field(
+        None,
+        description=(
+            f"{CommonMetadataSummary.model_fields['created'].description}"
+            " If not provided, will be filled with the associated hybrid model's creation date."
+        ),
+    )
+    id: str = Field(min_length=1, description=CommonMetadataSummary.model_fields["id"].description)
+    keywords: list[str] = Field(
+        [],
+        description=(
+            f"{CommonMetadataSummary.model_fields['keywords'].description}"
+            " If not provided, will be filled with the associated hybrid model's keywords."
+        ),
+    )
+    name: str = Field(min_length=1, description=CommonMetadataSummary.model_fields["name"].description)
 
 
 class CommonMetadata(CommonMetadataSummary):
