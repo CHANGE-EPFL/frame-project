@@ -96,7 +96,7 @@ export interface ComputationalEnvironment {
   /**
    * Type of the computational environment that could be automatically setup after downloading the model.
    */
-  type: "conda" | "python_requirements" | "pyproject_toml";
+  type: 'conda' | 'python_requirements' | 'pyproject_toml';
   /**
    * List of file paths that contain the environment description, relative to the repository root.
    */
