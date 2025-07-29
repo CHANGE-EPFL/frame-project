@@ -5,6 +5,7 @@ Mock data for testing.
 
 import datetime
 import os
+from operator import attrgetter
 from typing import Any, Callable, TypeVar
 
 import requests
@@ -25,6 +26,29 @@ METADATA_TEMPLATE_FILENAME = "template.yaml"
 EXTERNAL_REFERENCES_FILENAME = "external_references.yaml"
 EXTERNAL_METADATA_FILENAME = "frame_metadata.yaml"
 DEFAULT_VERSION = "none"
+FAIR_LEVEL_PROPERTIES = [
+    [  # level 1
+        "created",
+        "description",
+        "identifier",
+        "license",
+        "url",
+    ],
+    [  # level 2
+        "host_physics",
+        "latent_variables",
+        "ml_process",
+        "readme",
+    ],
+    [  # level 3
+        "computational_environment",
+        "data.inputs",
+        "data.outputs",
+    ],
+    [  # level 4
+        "documentation",
+    ],
+]
 
 
 def read_yaml(path: str) -> Any:
@@ -209,6 +233,21 @@ def add_components(
     return ids
 
 
+def compute_fair_level(model: HybridModel) -> int:
+    for level in range(len(FAIR_LEVEL_PROPERTIES)):
+        for prop in FAIR_LEVEL_PROPERTIES[level]:
+            try:
+                value = attrgetter(prop)(model)
+                if value is None:
+                    return level
+                if isinstance(value, list) and len(value) == 0:
+                    return level
+            except AttributeError:
+                return level
+
+    return len(FAIR_LEVEL_PROPERTIES)
+
+
 def add_model_and_components(
     raw_data: dict[str, Any],
     models: dict[str, dict[str, HybridModel]],
@@ -229,6 +268,8 @@ def add_model_and_components(
         compatible_machine_learning_component_ids=machine_learning_component_ids,
         data=metadata.data,
     )
+
+    model.fair_level = compute_fair_level(model)
 
     if model_id not in models:
         models[model_id] = {}
