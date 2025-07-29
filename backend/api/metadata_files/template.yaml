@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/CHANGE-EPFL/frame-project/refs/heads/dev/backend/api/metadata_files/schema.json
+# yaml-language-server: $schema=https://frame.epfl.ch/schema
 
 hybrid_model:
   description: "" # (str) Summarized description of the hybrid model.
