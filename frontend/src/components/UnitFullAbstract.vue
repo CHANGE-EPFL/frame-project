@@ -9,6 +9,28 @@
           machine_learning_component: 'Machine Learning Component',
         }[unitType]
       }}
+      <a
+        class="unit-fair-level q-ml-xs"
+        href="https://www.nature.com/articles/s41597-022-01710-x"
+        target="_blank"
+      >
+        <q-icon
+          v-for="n in unit.fair_level"
+          :key="n"
+          name="star"
+          :color="
+            unitType === 'hybrid_model'
+              ? 'primary'
+              : unitType === 'physics_based_component'
+                ? 'secondary'
+                : 'accent'
+          "
+        />
+        <q-tooltip>
+          Indication of the FAIR level of this unit. Clic for more information
+          (external link).
+        </q-tooltip>
+      </a>
     </div>
     <div v-if="unit.contributors" class="unit-contributors">
       {{ unit.contributors.join(', ') }}
@@ -87,6 +109,16 @@ h1 {
 .unit-type {
   font-size: 1.2em;
   color: $grey-7;
-  margin-bottom: 0.7em;
+}
+
+.unit-fair-level {
+  font-size: 1.1em;
+  line-height: 1.2em;
+  display: inline-block;
+  transform: translateY(-0.08em);
+}
+
+.unit-contributors {
+  margin-top: 0.7em;
 }
 </style>
