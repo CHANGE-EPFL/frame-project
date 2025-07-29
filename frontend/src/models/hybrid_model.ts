@@ -193,6 +193,7 @@ export interface HybridModel {
   compatible_machine_learning_component_ids: string[];
   compatible_physics_based_component_ids: string[];
   data: DataIO;
+  fair_level?: number;
   latest?: boolean;
 }
 /**
