@@ -1,5 +1,5 @@
 import pytest
-import yaml.scanner
+import yaml
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
 
@@ -25,7 +25,7 @@ try:
         test_machine_learning_component_id
     )[-1]
 
-except yaml.scanner.ScannerError as e:
+except yaml.YAMLError as e:
     raise RuntimeError("Failed to load metadata files. Ensure that all metadata files are valid YAML.") from e
 
 except ValidationError as e:

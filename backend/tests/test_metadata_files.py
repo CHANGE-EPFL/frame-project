@@ -1,5 +1,5 @@
 import pytest
-import yaml.scanner
+import yaml
 from pydantic import ValidationError
 
 from api.services import metadata
@@ -21,7 +21,7 @@ def test_schema(metadata_path: str) -> None:
 
     try:
         raw_data = metadata.load_metadata_yaml(metadata_path)
-    except yaml.scanner.ScannerError as e:
+    except yaml.YAMLError as e:
         raise RuntimeError(f"Failed to load metadata file {metadata_path}. Ensure that the file is valid YAML.") from e
 
     try:
@@ -52,7 +52,7 @@ def test_unique_ids() -> None:
         metadata.get_hybrid_model_ids()
         metadata.get_component_ids()
 
-    except yaml.scanner.ScannerError as e:
+    except yaml.YAMLError as e:
         raise RuntimeError("Failed to load metadata files. Ensure that all metadata files are valid YAML.") from e
 
     except ValidationError as e:
