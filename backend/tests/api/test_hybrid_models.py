@@ -1,4 +1,6 @@
+import yaml.scanner
 from fastapi.testclient import TestClient
+from pydantic import ValidationError
 
 from api.main import app
 from api.services.metadata import (
@@ -10,10 +12,19 @@ from api.services.metadata import (
 
 client = TestClient(app)
 
-test_model_id = get_hybrid_model_ids()[0]
-test_model_version = get_hybrid_model_versions(test_model_id)[-1]
-test_physics_based_component_id = get_physics_based_component_ids()[0]
-test_machine_learning_component_id = get_machine_learning_component_ids()[0]
+try:
+    test_model_id = get_hybrid_model_ids()[0]
+    test_model_version = get_hybrid_model_versions(test_model_id)[-1]
+    test_physics_based_component_id = get_physics_based_component_ids()[0]
+    test_machine_learning_component_id = get_machine_learning_component_ids()[0]
+
+except yaml.scanner.ScannerError as e:
+    raise RuntimeError("Failed to load metadata files. Ensure that all metadata files are valid YAML.") from e
+
+except ValidationError as e:
+    raise RuntimeError(
+        "Validation error in metadata files. Ensure that all metadata files follow the expected schema."
+    ) from e
 
 
 class TestGetHybridModels:

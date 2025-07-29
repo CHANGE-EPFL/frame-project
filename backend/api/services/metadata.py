@@ -273,10 +273,7 @@ def load_models_and_components() -> tuple[
     dict[str, dict[str, PhysicsBasedComponent]],
     dict[str, dict[str, MachineLearningComponent]],
 ]:
-    """Load metadata for all models and components.
-
-    Raises:
-    """
+    """Load metadata for all models and components."""
 
     models = {}
     physics_based_components = {}
