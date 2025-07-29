@@ -32,10 +32,7 @@ def export_json_schema(output_path: str) -> None:
 def export_yaml_template(output_path: str) -> None:
     """Export YAML template for MetadataFromFile."""
 
-    template = (
-        "# yaml-language-server: $schema=https://raw.githubusercontent.com/CHANGE-EPFL/frame-project/"
-        "refs/heads/dev/backend/api/metadata_files/schema.json"
-    )
+    template = "# yaml-language-server: $schema=https://frame.epfl.ch/schema"
     template += get_annotation_template(MetadataFromFile)
 
     with open(output_path, "w") as file:
