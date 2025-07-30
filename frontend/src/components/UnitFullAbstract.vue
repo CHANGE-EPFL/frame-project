@@ -35,9 +35,10 @@
     <div v-if="unit.contributors" class="unit-contributors">
       {{ unit.contributors.join(', ') }}
     </div>
-    <div class="unit-description q-mt-md">
-      {{ unit.description }}
-    </div>
+    <div
+      class="unit-description q-mt-md"
+      v-html="unit.description.replace(/(?:\r\n|\r|\n)/g, '<br>')"
+    ></div>
     <div class="q-mt-md">
       <KeywordList :unitType="unitType" :keywords="unit.keywords" />
     </div>
