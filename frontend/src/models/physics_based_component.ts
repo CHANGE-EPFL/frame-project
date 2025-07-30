@@ -10,7 +10,7 @@
  */
 export interface Component {
   /**
-   * Summarized description of the component.
+   * Summarized description of the component. Can be formatted with HTML tags.
    */
   description: string;
   /**
@@ -42,7 +42,7 @@ export interface Component {
    */
   identifier?: string | null;
   /**
-   * License name. If not provided, will be filled with the associated hybrid model's license.
+   * License short name. If not provided, will be filled with the associated hybrid model's license.
    */
   license?: string | null;
   /**
@@ -67,7 +67,7 @@ export interface Component {
  */
 export interface ComponentFromFile {
   /**
-   * Summarized description of the component.
+   * Summarized description of the component. Can be formatted with HTML tags.
    */
   description: string;
   /**
@@ -99,7 +99,7 @@ export interface ComponentFromFile {
    */
   identifier?: string | null;
   /**
-   * License name. If not provided, will be filled with the associated hybrid model's license.
+   * License short name. If not provided, will be filled with the associated hybrid model's license.
    */
   license?: string | null;
   /**
@@ -129,7 +129,7 @@ export interface ComponentReference {
  */
 export interface ComponentSummary {
   /**
-   * Summarized description of the hybrid model.
+   * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**
@@ -195,7 +195,7 @@ export interface Gpu {
  */
 export interface PhysicsBasedComponent {
   /**
-   * Summarized description of the component.
+   * Summarized description of the component. Can be formatted with HTML tags.
    */
   description: string;
   /**
@@ -227,7 +227,7 @@ export interface PhysicsBasedComponent {
    */
   identifier?: string | null;
   /**
-   * License name. If not provided, will be filled with the associated hybrid model's license.
+   * License short name. If not provided, will be filled with the associated hybrid model's license.
    */
   license?: string | null;
   /**
@@ -271,7 +271,7 @@ export interface VerticalDiscretization {
  */
 export interface PhysicsBasedComponentFromFile {
   /**
-   * Summarized description of the component.
+   * Summarized description of the component. Can be formatted with HTML tags.
    */
   description: string;
   /**
@@ -303,7 +303,7 @@ export interface PhysicsBasedComponentFromFile {
    */
   identifier?: string | null;
   /**
-   * License name. If not provided, will be filled with the associated hybrid model's license.
+   * License short name. If not provided, will be filled with the associated hybrid model's license.
    */
   license?: string | null;
   /**
@@ -345,7 +345,7 @@ export interface PhysicsBasedComponentReference {
  */
 export interface PhysicsBasedComponentSummary {
   /**
-   * Summarized description of the hybrid model.
+   * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**

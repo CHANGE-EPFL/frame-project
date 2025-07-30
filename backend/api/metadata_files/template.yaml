@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://frame.epfl.ch/schema
 
 hybrid_model:
-  description: "" # (str) Summarized description of the hybrid model.
+  description: "" # (str) Summarized description of the hybrid model. Can be formatted with HTML tags.
   created: 2000-12-31 # (date, optional) Date when the hybrid was created. (e.g. 2000-12-31).
   id: "" # (str) Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
   keywords: # (list) List of keywords that describe the hybrid model.
@@ -12,7 +12,7 @@ hybrid_model:
   documentation: # (list, optional) List of URLs or DOIs for documentation.
     - "" # (str)
   identifier: "" # (str, optional) Digital Object Identifier (DOI).
-  license: "" # (str, optional) License name.
+  license: "" # (str, optional) License short name.
   readme: "" # (str, optional) URL to a Markdown README file.
   url: "" # (str) Repository URL.
   version: "" # (str, optional) Semantic version.
@@ -42,7 +42,7 @@ hybrid_model:
 
 physics_based_components: # (list, multiple possible types shown below, optional)
   - id: "" # (str) ID of a component defined in another metadata file, that is compatible with the hybrid model defined in this file. Only the ID is required, the other fields should not be set.
-  - description: "" # (str) Summarized description of the component.
+  - description: "" # (str) Summarized description of the component. Can be formatted with HTML tags.
     created: 2000-12-31 # (date, optional) Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.
     id: "" # (str) Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
     keywords: # (list, optional) List of keywords that describe the hybrid model. If not provided, will be filled with the associated hybrid model's keywords.
@@ -53,7 +53,7 @@ physics_based_components: # (list, multiple possible types shown below, optional
     documentation: # (list, optional) List of URLs or DOIs for documentation. If not provided, will be filled with the associated hybrid model's list of documentation.
       - "" # (str)
     identifier: "" # (str, optional) Digital Object Identifier (DOI). If not provided, will be filled with the associated hybrid model's DOI.
-    license: "" # (str, optional) License name. If not provided, will be filled with the associated hybrid model's license.
+    license: "" # (str, optional) License short name. If not provided, will be filled with the associated hybrid model's license.
     readme: "" # (str, optional) URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README URL.
     url: "" # (str, optional) Repository URL. If not provided, will be filled with the associated hybrid model's repository URL.
     version: "" # (str, optional) Semantic version. If not provided, will be filled with the associated hybrid model's version.
@@ -100,7 +100,7 @@ physics_based_components: # (list, multiple possible types shown below, optional
 
 machine_learning_components: # (list, multiple possible types shown below, optional)
   - id: "" # (str) ID of a component defined in another metadata file, that is compatible with the hybrid model defined in this file. Only the ID is required, the other fields should not be set.
-  - description: "" # (str) Summarized description of the component.
+  - description: "" # (str) Summarized description of the component. Can be formatted with HTML tags.
     created: 2000-12-31 # (date, optional) Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.
     id: "" # (str) Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
     keywords: # (list, optional) List of keywords that describe the hybrid model. If not provided, will be filled with the associated hybrid model's keywords.
@@ -111,7 +111,7 @@ machine_learning_components: # (list, multiple possible types shown below, optio
     documentation: # (list, optional) List of URLs or DOIs for documentation. If not provided, will be filled with the associated hybrid model's list of documentation.
       - "" # (str)
     identifier: "" # (str, optional) Digital Object Identifier (DOI). If not provided, will be filled with the associated hybrid model's DOI.
-    license: "" # (str, optional) License name. If not provided, will be filled with the associated hybrid model's license.
+    license: "" # (str, optional) License short name. If not provided, will be filled with the associated hybrid model's license.
     readme: "" # (str, optional) URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README URL.
     url: "" # (str, optional) Repository URL. If not provided, will be filled with the associated hybrid model's repository URL.
     version: "" # (str, optional) Semantic version. If not provided, will be filled with the associated hybrid model's version.
