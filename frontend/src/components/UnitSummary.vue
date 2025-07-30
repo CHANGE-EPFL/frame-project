@@ -3,7 +3,10 @@
     <h3 :class="['unit-name q-mt-lg q-mb-sm', { [hoveredClass]: hovered }]">
       {{ unit.name }}
     </h3>
-    <div class="unit-description" v-html="unit.description"></div>
+    <div
+      class="unit-description ellipsis-3-lines"
+      v-html="unit.description"
+    ></div>
     <div class="q-mt-sm">
       <KeywordList :unitType="unitType" :keywords="unit.keywords" />
     </div>
