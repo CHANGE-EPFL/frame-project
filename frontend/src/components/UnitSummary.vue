@@ -46,8 +46,7 @@ const props = defineProps({
 });
 
 const hoveredClass = computed(() => {
-  return;
-  props.unitType === 'hybrid_model'
+  return props.unitType === 'hybrid_model'
     ? 'unit-name-hovered-primary'
     : props.unitType === 'physics_based_component'
       ? 'unit-name-hovered-secondary'
