@@ -10,7 +10,7 @@
  */
 export interface CommonMetadata {
   /**
-   * Summarized description of the hybrid model.
+   * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**
@@ -46,7 +46,7 @@ export interface CommonMetadata {
    */
   identifier?: string | null;
   /**
-   * License name.
+   * License short name.
    */
   license?: string | null;
   /**
@@ -67,7 +67,7 @@ export interface CommonMetadata {
  */
 export interface CommonMetadataSummary {
   /**
-   * Summarized description of the hybrid model.
+   * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**
@@ -96,7 +96,7 @@ export interface ComputationalEnvironment {
   /**
    * Type of the computational environment that could be automatically setup after downloading the model.
    */
-  type: 'conda' | 'python_requirements' | 'pyproject_toml';
+  type: "conda" | "python_requirements" | "pyproject_toml";
   /**
    * List of file paths that contain the environment description, relative to the repository root.
    */
@@ -135,7 +135,7 @@ export interface DataIO {
  */
 export interface HybridModel {
   /**
-   * Summarized description of the hybrid model.
+   * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**
@@ -171,7 +171,7 @@ export interface HybridModel {
    */
   identifier?: string | null;
   /**
-   * License name.
+   * License short name.
    */
   license?: string | null;
   /**
@@ -201,7 +201,7 @@ export interface HybridModel {
  */
 export interface HybridModelFromFile {
   /**
-   * Summarized description of the hybrid model.
+   * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**
@@ -237,7 +237,7 @@ export interface HybridModelFromFile {
    */
   identifier?: string | null;
   /**
-   * License name.
+   * License short name.
    */
   license?: string | null;
   /**
@@ -262,7 +262,7 @@ export interface HybridModelFromFile {
  */
 export interface HybridModelSummary {
   /**
-   * Summarized description of the hybrid model.
+   * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**

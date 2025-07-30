@@ -554,7 +554,7 @@
             "description": "Hybrid model.",
             "properties": {
                 "description": {
-                    "description": "Summarized description of the hybrid model.",
+                    "description": "Summarized description of the hybrid model. Can be formatted with HTML tags.",
                     "minLength": 1,
                     "title": "Description",
                     "type": "string"
@@ -643,7 +643,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "License name.",
+                    "description": "License short name.",
                     "title": "License"
                 },
                 "readme": {
@@ -742,7 +742,7 @@
             "description": "Machine learning component.",
             "properties": {
                 "description": {
-                    "description": "Summarized description of the component.",
+                    "description": "Summarized description of the component. Can be formatted with HTML tags.",
                     "minLength": 1,
                     "title": "Description",
                     "type": "string"
@@ -831,7 +831,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "License name. If not provided, will be filled with the associated hybrid model's license.",
+                    "description": "License short name. If not provided, will be filled with the associated hybrid model's license.",
                     "title": "License"
                 },
                 "readme": {
@@ -1141,7 +1141,7 @@
             "description": "Physics-based component.",
             "properties": {
                 "description": {
-                    "description": "Summarized description of the component.",
+                    "description": "Summarized description of the component. Can be formatted with HTML tags.",
                     "minLength": 1,
                     "title": "Description",
                     "type": "string"
@@ -1230,7 +1230,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "License name. If not provided, will be filled with the associated hybrid model's license.",
+                    "description": "License short name. If not provided, will be filled with the associated hybrid model's license.",
                     "title": "License"
                 },
                 "readme": {
