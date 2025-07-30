@@ -18,7 +18,9 @@ else:
 class CommonMetadataSummary(BaseModel, extra="forbid"):
     """Essential metadata fields for hybrid models."""
 
-    description: str = Field(min_length=1, description="Summarized description of the hybrid model.")
+    description: str = Field(
+        min_length=1, description="Summarized description of the hybrid model. Can be formatted with HTML tags."
+    )
     created: date | None = Field(None, description="Date when the hybrid was created. (e.g. 2000-12-31).")
     id: str = Field(
         min_length=1,
@@ -35,7 +37,9 @@ class CommonMetadataSummary(BaseModel, extra="forbid"):
 class CommonMetadataSummaryIncomplete(BaseModel, extra="forbid"):
     """Essential metadata fields for components that allows for missing fields."""
 
-    description: str = Field(min_length=1, description="Summarized description of the component.")
+    description: str = Field(
+        min_length=1, description="Summarized description of the component. Can be formatted with HTML tags."
+    )
     created: date | None = Field(
         None,
         description=(
@@ -67,7 +71,7 @@ class CommonMetadata(CommonMetadataSummary):
     contributors: NonEmptyList = Field(description="List of contributor names.")
     documentation: list[str] | None = Field(None, description="List of URLs or DOIs for documentation.")
     identifier: str | None = Field(None, description="Digital Object Identifier (DOI).")
-    license: str | None = Field(None, description="License name.")
+    license: str | None = Field(None, description="License short name.")
     readme: str | None = Field(None, description="URL to a Markdown README file.")
     url: str = Field(min_length=1, description="Repository URL.")
     version: str | None = Field(None, description="Semantic version.")
@@ -98,7 +102,7 @@ class CommonMetadataIncomplete(CommonMetadataSummaryIncomplete):
     )
     license: str | None = Field(
         None,
-        description=("License name. If not provided, will be filled with the associated hybrid model's license."),
+        description=("License short name. If not provided, will be filled with the associated hybrid model's license."),
     )
     readme: str | None = Field(
         None,
