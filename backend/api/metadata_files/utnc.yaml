@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://frame.epfl.ch/schema
+
+hybrid_model:
+  description: |-
+    Urban Tethys-Chloris (UT&C v1.0) is a mechanistic urban ecohydrological model combining principles of ecohydrological land surface modelling with urban canopy modelling. UT&C is a fully coupled energy and water balance model that calculates 2 m air temperature, 2 m humidity, and surface temperatures. It explicitly resolves biophysical and ecophysiological characteristics of ground vegetation, urban trees, and green roofs and models all urban water fluxes including evapotranspiration, canopy interception, infiltration, and soil moisture transport. UT&C accounts for variations in urban densities, building properties, and urban irrigation schemes. Hence, the model is able to account for the effects of different plant types on the urban climate and hydrology, as well as the effects of the urban environment on plant well-being and performance. UT&C is one of the first urban canyon parameterizations to include detailed ecohydrology. Its low computational demand allows for analyses spanning multiple years with an hourly time step, therefore, facilitating long-term and seasonal analysis.
+
+    The model development and validation is presented in:
+
+    Naika Meili, Gabriele Manoli, Paolo Burlando, Elie Bou-Zeid, Winston T.L. Chow, Andrew M. Coutts, Edoardo Daly, Kerry A. Nice, Matthias Roth, Nigel J. Tapper, Erik Velasco, Enrique R. Vivoni, and Simone Fatichi (2019). <strong>An urban ecohydrological model to quantify the effect of vegetation on urban climate and hydrology (UT&C v1.0)</strong>, <i>Geoscientific Model Development, under review</i>
+  created: 2019-11-20
+  id: "utnc"
+  keywords:
+    - urban ecohydrological model
+    - urban canyon model
+    - urban climate
+    - urban hydrology
+    - ecohydrology
+  name: "Urban Tethys-Chloris"
+  contributors:
+    - Naika Meili
+    - Simone Fatichi
+  documentation:
+    - https://doi.org/10.5194/gmd-13-335-2020
+  identifier: https://doi.org/10.5281/zenodo.3548146
+  license: CC-BY-4.0
+  readme: https://github.com/NaikaMeili/UTC_BEM_ModelCode/blob/master/README.md
+  url: https://github.com/NaikaMeili/UTC_BEM_ModelCode
+  version: "1.0"
+  host_physics: "Tethys Chloris (T&C)"
+
+physics_based_components:
+  - description: |-
+      Urban Tethys-Chloris (UT&C v1.0) is a mechanistic urban ecohydrological model combining principles of ecohydrological land surface modelling with urban canopy modelling. UT&C is a fully coupled energy and water balance model that calculates 2 m air temperature, 2 m humidity, and surface temperatures. It explicitly resolves biophysical and ecophysiological characteristics of ground vegetation, urban trees, and green roofs and models all urban water fluxes including evapotranspiration, canopy interception, infiltration, and soil moisture transport. UT&C accounts for variations in urban densities, building properties, and urban irrigation schemes. Hence, the model is able to account for the effects of different plant types on the urban climate and hydrology, as well as the effects of the urban environment on plant well-being and performance. UT&C is one of the first urban canyon parameterizations to include detailed ecohydrology. Its low computational demand allows for analyses spanning multiple years with an hourly time step, therefore, facilitating long-term and seasonal analysis.
+
+      The model development and validation is presented in:
+
+      Naika Meili, Gabriele Manoli, Paolo Burlando, Elie Bou-Zeid, Winston T.L. Chow, Andrew M. Coutts, Edoardo Daly, Kerry A. Nice, Matthias Roth, Nigel J. Tapper, Erik Velasco, Enrique R. Vivoni, and Simone Fatichi (2019). <strong>An urban ecohydrological model to quantify the effect of vegetation on urban climate and hydrology (UT&C v1.0)</strong>, <i>Geoscientific Model Development, under review</i>
+    id: "utnc" # (str) Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
+    name: "Urban Tethys-Chloris"
