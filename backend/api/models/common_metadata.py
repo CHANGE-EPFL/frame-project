@@ -18,10 +18,17 @@ else:
 class CommonMetadataSummary(BaseModel, extra="forbid"):
     """Essential metadata fields for hybrid models."""
 
+    created: date | None = Field(None, description="Date when the hybrid was created. (e.g. 2000-12-31).")
     description: str = Field(
         min_length=1, description="Summarized description of the hybrid model. Can be formatted with HTML tags."
     )
-    created: date | None = Field(None, description="Date when the hybrid was created. (e.g. 2000-12-31).")
+    hidden: bool = Field(
+        False,
+        description=(
+            "Indicates whether the hybrid model is hidden within the FRAME library."
+            "Hidden models remain accessible if their ID is known."
+        ),
+    )
     id: str = Field(
         min_length=1,
         pattern="^[a-z0-9_]+$",

@@ -482,7 +482,7 @@ def load_metadata(func: Callable):
 
 @load_metadata
 def get_hybrid_models() -> list[HybridModelSummary]:
-    return list(model_summaries.values())
+    return [model_summary for model_summary in model_summaries.values() if not model_summary.hidden]
 
 
 @load_metadata
@@ -525,7 +525,7 @@ def get_hybrid_model(model_id: str, model_version: str | None) -> HybridModel:
 
 @load_metadata
 def get_hybrid_model_ids() -> list[str]:
-    return list(models.keys())
+    return [key for key, models_family in models.items() if not next(iter(models_family.values())).hidden]
 
 
 @load_metadata

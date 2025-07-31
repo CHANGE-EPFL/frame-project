@@ -5,22 +5,19 @@ from pydantic import ValidationError
 
 from api.main import app
 from api.services.metadata import (
-    get_hybrid_model_ids,
     get_hybrid_model_versions,
-    get_machine_learning_component_ids,
     get_machine_learning_component_versions,
-    get_physics_based_component_ids,
     get_physics_based_component_versions,
 )
 
 client = TestClient(app)
 
 try:
-    test_model_id = get_hybrid_model_ids()[0]
+    test_model_id = "test_model"
     test_model_version = get_hybrid_model_versions(test_model_id)[-1]
-    test_physics_based_component_id = get_physics_based_component_ids()[0]
+    test_physics_based_component_id = "test_physics_based"
     test_physics_based_component_version = get_physics_based_component_versions(test_physics_based_component_id)[-1]
-    test_machine_learning_component_id = get_machine_learning_component_ids()[0]
+    test_machine_learning_component_id = "test_machine_learning"
     test_machine_learning_component_version = get_machine_learning_component_versions(
         test_machine_learning_component_id
     )[-1]
