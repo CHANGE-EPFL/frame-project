@@ -10,13 +10,17 @@
  */
 export interface Component {
   /**
+   * Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.
+   */
+  created?: string | null;
+  /**
    * Summarized description of the component. Can be formatted with HTML tags.
    */
   description: string;
   /**
-   * Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.
+   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
    */
-  created?: string | null;
+  hidden?: boolean;
   /**
    * Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
@@ -129,13 +133,17 @@ export interface ComponentReference {
  */
 export interface ComponentSummary {
   /**
+   * Date when the hybrid was created. (e.g. 2000-12-31).
+   */
+  created?: string | null;
+  /**
    * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
    */
-  created?: string | null;
+  hidden?: boolean;
   /**
    * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
@@ -195,13 +203,17 @@ export interface Gpu {
  */
 export interface PhysicsBasedComponent {
   /**
+   * Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.
+   */
+  created?: string | null;
+  /**
    * Summarized description of the component. Can be formatted with HTML tags.
    */
   description: string;
   /**
-   * Date when the component was created (e.g. 2000-12-31). If not provided, will be filled with the associated hybrid model's creation date.
+   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
    */
-  created?: string | null;
+  hidden?: boolean;
   /**
    * Short name that serves as unique identifier for the component. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
@@ -345,13 +357,17 @@ export interface PhysicsBasedComponentReference {
  */
 export interface PhysicsBasedComponentSummary {
   /**
+   * Date when the hybrid was created. (e.g. 2000-12-31).
+   */
+  created?: string | null;
+  /**
    * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
    */
-  created?: string | null;
+  hidden?: boolean;
   /**
    * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */

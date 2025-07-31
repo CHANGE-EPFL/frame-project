@@ -553,12 +553,6 @@
             "additionalProperties": false,
             "description": "Hybrid model.",
             "properties": {
-                "description": {
-                    "description": "Summarized description of the hybrid model. Can be formatted with HTML tags.",
-                    "minLength": 1,
-                    "title": "Description",
-                    "type": "string"
-                },
                 "created": {
                     "anyOf": [
                         {
@@ -572,6 +566,18 @@
                     "default": null,
                     "description": "Date when the hybrid was created. (e.g. 2000-12-31).",
                     "title": "Created"
+                },
+                "description": {
+                    "description": "Summarized description of the hybrid model. Can be formatted with HTML tags.",
+                    "minLength": 1,
+                    "title": "Description",
+                    "type": "string"
+                },
+                "hidden": {
+                    "default": false,
+                    "description": "Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.",
+                    "title": "Hidden",
+                    "type": "boolean"
                 },
                 "id": {
                     "description": "Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use \"_\" instead) or special characters.",
