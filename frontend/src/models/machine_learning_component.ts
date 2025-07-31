@@ -18,7 +18,7 @@ export interface Component {
    */
   description: string;
   /**
-   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
+   * Indicates whether the hybrid model is hidden within the FRAME library. Hidden models remain accessible if their ID is known.
    */
   hidden?: boolean;
   /**
@@ -141,7 +141,7 @@ export interface ComponentSummary {
    */
   description: string;
   /**
-   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
+   * Indicates whether the hybrid model is hidden within the FRAME library. Hidden models remain accessible if their ID is known.
    */
   hidden?: boolean;
   /**
@@ -211,7 +211,7 @@ export interface MachineLearningComponent {
    */
   description: string;
   /**
-   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
+   * Indicates whether the hybrid model is hidden within the FRAME library. Hidden models remain accessible if their ID is known.
    */
   hidden?: boolean;
   /**
@@ -367,7 +367,7 @@ export interface MachineLearningComponentSummary {
    */
   description: string;
   /**
-   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
+   * Indicates whether the hybrid model is hidden within the FRAME library. Hidden models remain accessible if their ID is known.
    */
   hidden?: boolean;
   /**

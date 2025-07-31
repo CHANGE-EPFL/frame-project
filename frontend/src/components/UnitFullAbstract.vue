@@ -36,7 +36,7 @@
         <q-tooltip>
           Indication of the FAIR level of this unit ({{ unit.fair_level }}/{{
             MAX_FAIR_LEVEL
-          }}). Clic for more information (external link).
+          }}). Click for more information (external link).
         </q-tooltip>
       </a>
     </div>

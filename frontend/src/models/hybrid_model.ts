@@ -18,7 +18,7 @@ export interface CommonMetadata {
    */
   description: string;
   /**
-   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
+   * Indicates whether the hybrid model is hidden within the FRAME library. Hidden models remain accessible if their ID is known.
    */
   hidden?: boolean;
   /**
@@ -79,7 +79,7 @@ export interface CommonMetadataSummary {
    */
   description: string;
   /**
-   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
+   * Indicates whether the hybrid model is hidden within the FRAME library. Hidden models remain accessible if their ID is known.
    */
   hidden?: boolean;
   /**
@@ -151,7 +151,7 @@ export interface HybridModel {
    */
   description: string;
   /**
-   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
+   * Indicates whether the hybrid model is hidden within the FRAME library. Hidden models remain accessible if their ID is known.
    */
   hidden?: boolean;
   /**
@@ -221,7 +221,7 @@ export interface HybridModelFromFile {
    */
   description: string;
   /**
-   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
+   * Indicates whether the hybrid model is hidden within the FRAME library. Hidden models remain accessible if their ID is known.
    */
   hidden?: boolean;
   /**
@@ -286,7 +286,7 @@ export interface HybridModelSummary {
    */
   description: string;
   /**
-   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
+   * Indicates whether the hybrid model is hidden within the FRAME library. Hidden models remain accessible if their ID is known.
    */
   hidden?: boolean;
   /**

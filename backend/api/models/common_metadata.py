@@ -26,7 +26,7 @@ class CommonMetadataSummary(BaseModel, extra="forbid"):
         False,
         description=(
             "Indicates whether the hybrid model is hidden within the FRAME library."
-            "Hidden models remain accessible if their ID is known."
+            " Hidden models remain accessible if their ID is known."
         ),
     )
     id: str = Field(
