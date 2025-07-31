@@ -575,7 +575,7 @@
                 },
                 "hidden": {
                     "default": false,
-                    "description": "Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.",
+                    "description": "Indicates whether the hybrid model is hidden within the FRAME library. Hidden models remain accessible if their ID is known.",
                     "title": "Hidden",
                     "type": "boolean"
                 },
