@@ -13,10 +13,11 @@
         class="unit-fair-level q-ml-xs"
         href="https://www.nature.com/articles/s41597-022-01710-x"
         target="_blank"
+        v-if="unit.fair_level !== undefined"
       >
         <q-icon
-          v-for="n in unit.fair_level"
-          :key="n"
+          v-for="i in unit.fair_level"
+          :key="i"
           name="star"
           :color="
             unitType === 'hybrid_model'
@@ -26,9 +27,16 @@
                 : 'accent'
           "
         />
+        <q-icon
+          v-for="i in MAX_FAIR_LEVEL - unit.fair_level"
+          :key="i"
+          name="star"
+          color="grey-4"
+        />
         <q-tooltip>
-          Indication of the FAIR level of this unit. Clic for more information
-          (external link).
+          Indication of the FAIR level of this unit ({{ unit.fair_level }}/{{
+            MAX_FAIR_LEVEL
+          }}). Clic for more information (external link).
         </q-tooltip>
       </a>
     </div>
@@ -100,6 +108,8 @@ const props = defineProps({
     required: true,
   },
 });
+
+const MAX_FAIR_LEVEL = 4; // Match to FAIR_LEVEL_PROPERTIES size in backend/api/services/metadata.py
 </script>
 
 <style scoped lang="scss">
