@@ -10,13 +10,17 @@
  */
 export interface CommonMetadata {
   /**
+   * Date when the hybrid was created. (e.g. 2000-12-31).
+   */
+  created?: string | null;
+  /**
    * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
    */
-  created?: string | null;
+  hidden?: boolean;
   /**
    * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
@@ -67,13 +71,17 @@ export interface CommonMetadata {
  */
 export interface CommonMetadataSummary {
   /**
+   * Date when the hybrid was created. (e.g. 2000-12-31).
+   */
+  created?: string | null;
+  /**
    * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
    */
-  created?: string | null;
+  hidden?: boolean;
   /**
    * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
@@ -96,7 +104,7 @@ export interface ComputationalEnvironment {
   /**
    * Type of the computational environment that could be automatically setup after downloading the model.
    */
-  type: 'conda' | 'python_requirements' | 'pyproject_toml';
+  type: "conda" | "python_requirements" | "pyproject_toml";
   /**
    * List of file paths that contain the environment description, relative to the repository root.
    */
@@ -135,13 +143,17 @@ export interface DataIO {
  */
 export interface HybridModel {
   /**
+   * Date when the hybrid was created. (e.g. 2000-12-31).
+   */
+  created?: string | null;
+  /**
    * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
    */
-  created?: string | null;
+  hidden?: boolean;
   /**
    * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
@@ -201,13 +213,17 @@ export interface HybridModel {
  */
 export interface HybridModelFromFile {
   /**
+   * Date when the hybrid was created. (e.g. 2000-12-31).
+   */
+  created?: string | null;
+  /**
    * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
    */
-  created?: string | null;
+  hidden?: boolean;
   /**
    * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
@@ -262,13 +278,17 @@ export interface HybridModelFromFile {
  */
 export interface HybridModelSummary {
   /**
+   * Date when the hybrid was created. (e.g. 2000-12-31).
+   */
+  created?: string | null;
+  /**
    * Summarized description of the hybrid model. Can be formatted with HTML tags.
    */
   description: string;
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Indicates whether the hybrid model is hidden within the FRAME library.Hidden models remain accessible if their ID is known.
    */
-  created?: string | null;
+  hidden?: boolean;
   /**
    * Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.
    */
