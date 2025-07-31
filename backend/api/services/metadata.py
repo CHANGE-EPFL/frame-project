@@ -11,6 +11,7 @@ from typing import Any, Callable, TypeVar
 import requests
 import yaml
 from fastapi import HTTPException
+from fastapi.logger import logger
 from git import cmd
 from packaging.version import InvalidVersion, Version
 
@@ -141,13 +142,17 @@ def get_all_external_metadata_urls() -> list[str]:
             urls.append(reference)
             continue
 
-        # URL of Git repository
-        tagged_metadata_urls = get_tagged_metadata_urls_from_git(reference)
-        if len(tagged_metadata_urls) > 0:
-            urls.extend(tagged_metadata_urls)
-            continue
+        try:
+            # URL of Git repository
+            tagged_metadata_urls = get_tagged_metadata_urls_from_git(reference)
+            if len(tagged_metadata_urls) > 0:
+                urls.extend(tagged_metadata_urls)
+                continue
 
-        urls.append(get_default_metadata_url_from_git(reference))
+            urls.append(get_default_metadata_url_from_git(reference))
+
+        except Exception as e:
+            logger.error(f"Error getting metadata urls for external reference '{reference}': {e}")
 
     return urls
 
@@ -321,14 +326,18 @@ def load_models_and_components() -> tuple[
     machine_learning_components = {}
 
     for metadata_path in get_all_metadata_paths():
-        raw_data = load_metadata_yaml(metadata_path)
+        try:
+            raw_data = load_metadata_yaml(metadata_path)
 
-        add_model_and_components(
-            raw_data,
-            models,
-            physics_based_components,
-            machine_learning_components,
-        )
+            add_model_and_components(
+                raw_data,
+                models,
+                physics_based_components,
+                machine_learning_components,
+            )
+
+        except Exception as e:
+            logger.error(f"Error loading metadata from {metadata_path}: {e}")
 
     models = sort_versions(models)
     models = sort_by_date(models)
