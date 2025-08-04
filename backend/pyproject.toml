@@ -41,6 +41,7 @@ build-backend = "setuptools.build_meta"
 packages = [
 	"api",
 	"api.models",
+	"api.services",
 ]
 
 [tool.black]
