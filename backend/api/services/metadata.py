@@ -531,7 +531,7 @@ def get_hybrid_model_ids() -> list[str]:
 @load_metadata
 def get_hybrid_model_versions(model_id: str) -> list[str]:
     if model_id not in models:
-        raise HTTPException(status_code=404, detail="HybridModel ID not found.")
+        raise HTTPException(status_code=404, detail=f'HybridModel ID "{model_id}" not found.')
 
     return list(models[model_id].keys())
 
