@@ -1,3 +1,3 @@
-# List of references to external hybrid models or metadata files.
 - https://gitlab.epfl.ch/sphamba/frame-test-project
 - https://gitlab.epfl.ch/sphamba/frame-test-project/-/raw/main/frame_metadata.yaml
+- "\thttps://github.com/TalosSources/change_automatic_differentiation"
