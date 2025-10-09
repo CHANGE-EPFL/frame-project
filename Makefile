@@ -1,6 +1,6 @@
 install:
 	pip install pre-commit
-	pre-commit install -t pre-commit -t commit-msg
+	pre-commit install
 	cd backend && make install
 
 lint:
