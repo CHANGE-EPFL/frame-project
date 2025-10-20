@@ -36,9 +36,18 @@ hybrid_model:
       spatial_coverage: "" # (str, optional)
       spatial_resolution: "" # (str, optional)
       temporal_resolution: "" # (str, optional)
-  computational_environment: # (list, optional)
-    - type: conda # "conda" | "python_requirements" | "pyproject_toml"
-      file_paths: # (list) List of file paths that contain the environment description, relative to the repository root.
+  computational_environment: # (list, multiple possible types shown below, optional)
+    - type: "conda" # (str) Conda computational environment that can be automatically setup after downloading the model.
+      file_paths: # (list) List of file paths that contain the conda environment description, relative to the repository root. E.g., 'environment.yml'.
+        - "" # (str)
+    - type: "python" # (str) Python computational environment that can be automatically setup after downloading the model.
+      file_paths: # (list) List of file paths that contain the python environment description, relative to the repository root. E.g., 'requirements.txt', 'pyproject.toml'.
+        - "" # (str)
+    - type: "julia" # (str) Julia computational environment that can be automatically setup after downloading the model.
+      file_paths: # (list) List of file paths that contain the julia environment description, relative to the repository root. E.g., 'Project.toml', 'Manifest.toml'.
+        - "" # (str)
+    - type: "" # (str) Type of computational environment that can be automatically setup after downloading the model.
+      file_paths: # (list) List of file paths that contain the the environment description, relative to the repository root. E.g., for 'conda', it could be ['environment.yml'].
         - "" # (str)
 
 physics_based_components: # (list, multiple possible types shown below, optional)

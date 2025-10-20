@@ -1,6 +1,16 @@
+from typing import Union
+
 from .common_metadata import CommonMetadata, CommonMetadataSummary
+from . import computational_environment
 from .computational_environment import ComputationalEnvironment
 from .data import Data, DataIO
+
+
+computational_environment_types = [
+    c
+    for c in computational_environment.__dict__.values()
+    if issubclass(c, ComputationalEnvironment) and c is not ComputationalEnvironment
+] + [ComputationalEnvironment]
 
 
 class HybridModelFromFile(CommonMetadata):
@@ -9,7 +19,7 @@ class HybridModelFromFile(CommonMetadata):
     ml_process: str | None = None
     host_physics: str | None = None
     latent_variables: list[Data] = []
-    computational_environment: list[ComputationalEnvironment] | None = None
+    computational_environment: list[Union[tuple(computational_environment_types)]] | None = None
 
 
 class HybridModelSummary(CommonMetadataSummary, extra="ignore"):

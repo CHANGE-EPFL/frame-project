@@ -102,11 +102,11 @@ export interface CommonMetadataSummary {
  */
 export interface ComputationalEnvironment {
   /**
-   * Type of the computational environment that could be automatically setup after downloading the model.
+   * Type of computational environment that can be automatically setup after downloading the model.
    */
-  type: 'conda' | 'python_requirements' | 'pyproject_toml';
+  type: string;
   /**
-   * List of file paths that contain the environment description, relative to the repository root.
+   * List of file paths that contain the the environment description, relative to the repository root. E.g., for 'conda', it could be ['environment.yml'].
    */
   file_paths: string[];
 }
@@ -201,12 +201,58 @@ export interface HybridModel {
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
-  computational_environment?: ComputationalEnvironment[] | null;
+  computational_environment?:
+    | (
+        | CondaComputationalEnvironment
+        | PythonComputationalEnvironment
+        | JuliaComputationalEnvironment
+        | ComputationalEnvironment
+      )[]
+    | null;
   compatible_machine_learning_component_ids: string[];
   compatible_physics_based_component_ids: string[];
   data: DataIO;
   fair_level?: number;
   latest?: boolean;
+}
+/**
+ * Conda computational environment.
+ */
+export interface CondaComputationalEnvironment {
+  /**
+   * Conda computational environment that can be automatically setup after downloading the model.
+   */
+  type: string;
+  /**
+   * List of file paths that contain the conda environment description, relative to the repository root. E.g., 'environment.yml'.
+   */
+  file_paths: string[];
+}
+/**
+ * Python computational environment.
+ */
+export interface PythonComputationalEnvironment {
+  /**
+   * Python computational environment that can be automatically setup after downloading the model.
+   */
+  type: string;
+  /**
+   * List of file paths that contain the python environment description, relative to the repository root. E.g., 'requirements.txt', 'pyproject.toml'.
+   */
+  file_paths: string[];
+}
+/**
+ * Julia computational environment.
+ */
+export interface JuliaComputationalEnvironment {
+  /**
+   * Julia computational environment that can be automatically setup after downloading the model.
+   */
+  type: string;
+  /**
+   * List of file paths that contain the julia environment description, relative to the repository root. E.g., 'Project.toml', 'Manifest.toml'.
+   */
+  file_paths: string[];
 }
 /**
  * Hybrid model.
@@ -271,7 +317,14 @@ export interface HybridModelFromFile {
   ml_process?: string | null;
   host_physics?: string | null;
   latent_variables?: Data[];
-  computational_environment?: ComputationalEnvironment[] | null;
+  computational_environment?:
+    | (
+        | CondaComputationalEnvironment
+        | PythonComputationalEnvironment
+        | JuliaComputationalEnvironment
+        | ComputationalEnvironment
+      )[]
+    | null;
 }
 /**
  * Contains essential metadata fields for hybrid models.

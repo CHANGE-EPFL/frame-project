@@ -5,17 +5,12 @@
             "description": "Description of a computational environment.",
             "properties": {
                 "type": {
-                    "description": "Type of the computational environment that could be automatically setup after downloading the model.",
-                    "enum": [
-                        "conda",
-                        "python_requirements",
-                        "pyproject_toml"
-                    ],
+                    "description": "Type of computational environment that can be automatically setup after downloading the model.",
                     "title": "Type",
                     "type": "string"
                 },
                 "file_paths": {
-                    "description": "List of file paths that contain the environment description, relative to the repository root.",
+                    "description": "List of file paths that contain the the environment description, relative to the repository root. E.g., for 'conda', it could be ['environment.yml'].",
                     "items": {
                         "type": "string"
                     },
@@ -115,6 +110,32 @@
                 }
             },
             "title": "ComputationalResources",
+            "type": "object"
+        },
+        "CondaComputationalEnvironment": {
+            "additionalProperties": false,
+            "description": "Conda computational environment.",
+            "properties": {
+                "type": {
+                    "description": "Conda computational environment that can be automatically setup after downloading the model.",
+                    "pattern": "^conda$",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "file_paths": {
+                    "description": "List of file paths that contain the conda environment description, relative to the repository root. E.g., 'environment.yml'.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "File Paths",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "type",
+                "file_paths"
+            ],
+            "title": "CondaComputationalEnvironment",
             "type": "object"
         },
         "Cpu": {
@@ -720,7 +741,20 @@
                     "anyOf": [
                         {
                             "items": {
-                                "$ref": "#/$defs/ComputationalEnvironment"
+                                "anyOf": [
+                                    {
+                                        "$ref": "#/$defs/CondaComputationalEnvironment"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/PythonComputationalEnvironment"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/JuliaComputationalEnvironment"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/ComputationalEnvironment"
+                                    }
+                                ]
                             },
                             "type": "array"
                         },
@@ -741,6 +775,32 @@
                 "url"
             ],
             "title": "HybridModelFromFile",
+            "type": "object"
+        },
+        "JuliaComputationalEnvironment": {
+            "additionalProperties": false,
+            "description": "Julia computational environment.",
+            "properties": {
+                "type": {
+                    "description": "Julia computational environment that can be automatically setup after downloading the model.",
+                    "pattern": "^julia$",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "file_paths": {
+                    "description": "List of file paths that contain the julia environment description, relative to the repository root. E.g., 'Project.toml', 'Manifest.toml'.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "File Paths",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "type",
+                "file_paths"
+            ],
+            "title": "JuliaComputationalEnvironment",
             "type": "object"
         },
         "MachineLearningComponentFromFile": {
@@ -1450,6 +1510,32 @@
                 "id"
             ],
             "title": "PhysicsBasedComponentReference",
+            "type": "object"
+        },
+        "PythonComputationalEnvironment": {
+            "additionalProperties": false,
+            "description": "Python computational environment.",
+            "properties": {
+                "type": {
+                    "description": "Python computational environment that can be automatically setup after downloading the model.",
+                    "pattern": "^python$",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "file_paths": {
+                    "description": "List of file paths that contain the python environment description, relative to the repository root. E.g., 'requirements.txt', 'pyproject.toml'.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "File Paths",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "type",
+                "file_paths"
+            ],
+            "title": "PythonComputationalEnvironment",
             "type": "object"
         },
         "TrainingRequirements": {

@@ -4,6 +4,7 @@ import json
 import types
 import typing
 
+import exrex
 from pydantic import BaseModel
 
 from .data import DataIO
@@ -40,12 +41,12 @@ def export_yaml_template(output_path: str) -> None:
 
 
 def get_annotation_template(
-    model, current_level: int = 0, optional: bool = False, description: str | None = None
+    model, current_level: int = 0, optional: bool = False, description: str | None = None, pattern: str | None = None
 ) -> str:
     template = ""
     indent = "  " * current_level
 
-    if isinstance(model, types.UnionType):
+    if isinstance(model, (types.UnionType)):
         models = list(typing.get_args(model))
         if type(None) in models:
             models.remove(type(None))
@@ -67,7 +68,7 @@ def get_annotation_template(
             return template
 
     type_templates = {
-        str: ' "" # (str',
+        str: ' "{}" # (str',
         bool: " false # (bool",
         int: " 0 # (int",
         float: " 0.0 # (float",
@@ -77,6 +78,11 @@ def get_annotation_template(
     for type_, type_template in type_templates.items():
         if model is not type_:
             continue
+        if type_ is str:
+            if pattern and pattern != "^[a-z0-9_]+$":
+                type_template = type_template.format(exrex.getone(pattern))
+            else:
+                type_template = type_template.format("")
         template += type_template
         if optional:
             template += ", optional"
@@ -85,12 +91,12 @@ def get_annotation_template(
             template += f" {description}"
         return template
 
-    if isinstance(model, types.GenericAlias) or isinstance(model, typing._GenericAlias):
+    if isinstance(model, (types.GenericAlias, typing._GenericAlias)):
         if typing.get_origin(model) is list:
             model = typing.get_args(model)[0]
 
             # If this is a list of union types, show each type as an item
-            if isinstance(model, types.UnionType):
+            if isinstance(model, (types.UnionType, typing._UnionGenericAlias)):
                 models = list(typing.get_args(model))
                 if type(None) in models:
                     models.remove(type(None))
@@ -135,8 +141,15 @@ def get_annotation_template(
             field_description = getattr(field, "description", None)
             # if field_description is None:
             #     field_description = getattr(field.annotation, "__doc__", None)
+            metadata = getattr(field, "metadata", [])
+            patterns = [m.pattern for m in metadata if hasattr(m, "pattern")]
+            pattern = patterns[0] if patterns else None
             template += get_annotation_template(
-                field.annotation, current_level + 1, optional=not field.is_required(), description=field_description
+                field.annotation,
+                current_level + 1,
+                optional=not field.is_required(),
+                description=field_description,
+                pattern=pattern,
             )
 
         return template

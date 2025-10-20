@@ -19,6 +19,7 @@ dependencies = [
 	"requests~=2.32.3",
 	"packaging~=24.2",
 	"gitpython~=3.1.44",
+	"exrex>=0.12.0",
 ]
 
 [project.optional-dependencies]
@@ -44,13 +45,9 @@ packages = [
 	"api.services",
 ]
 
-[tool.black]
+[tool.ruff]
 line-length = 120
 preview = true
-
-[tool.isort]
-line_length = 120
-profile = "black"
 
 [tool.codespell]
 skip = 'uv.lock'
