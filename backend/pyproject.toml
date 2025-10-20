@@ -16,7 +16,7 @@ dependencies = [
 	"pillow~=10.4.0",
 	"pydantic~=2.11.4",
 	"pydantic-settings>=2.9.1",
-	"requests~=2.32.3",
+	"requests==2.32.5",
 	"packaging~=24.2",
 	"gitpython~=3.1.44",
 	"exrex>=0.12.0",

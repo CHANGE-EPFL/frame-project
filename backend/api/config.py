@@ -5,6 +5,7 @@ from pydantic_settings import BaseSettings
 
 class Config(BaseSettings):
     PATH_PREFIX: str = "/api"
+    REQUESTS_TIMEOUT: int = 2
 
 
 @lru_cache()

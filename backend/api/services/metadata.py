@@ -15,6 +15,7 @@ from fastapi.logger import logger
 from git import cmd
 from packaging.version import InvalidVersion, Version
 
+from ..config import config
 from ..models.common_metadata import CommonMetadata
 from ..models.component import ComponentReference
 from ..models.hybrid_model import HybridModel, HybridModelSummary
@@ -98,7 +99,7 @@ def get_tagged_metadata_urls_from_git(repo_url: str) -> list[str]:
     for tag in tags:
         url = f"{base_raw_url}/{tag}/{EXTERNAL_METADATA_FILENAME}"
         try:
-            response = requests.head(url)
+            response = requests.head(url, timeout=config.REQUESTS_TIMEOUT)
         except requests.RequestException:
             continue
         if response.status_code != 200:
@@ -122,7 +123,7 @@ def get_default_metadata_url_from_git(repo_url: str) -> str:
     url = f"{base_raw_url}/{default_branch}/{EXTERNAL_METADATA_FILENAME}"
     error_message = f"No valid FRAME metadata URLs found for repository: {repo_url}"
     try:
-        response = requests.head(url)
+        response = requests.head(url, timeout=config.REQUESTS_TIMEOUT)
     except requests.RequestException:
         raise ValueError(error_message)
     if response.status_code != 200:
@@ -166,7 +167,7 @@ def get_all_metadata_paths() -> list[str]:
 
 def load_metadata_yaml(metadata_path: str) -> dict[str, Any]:
     if metadata_path.startswith("http"):
-        response = requests.get(metadata_path)
+        response = requests.get(metadata_path, timeout=config.REQUESTS_TIMEOUT)
         response.raise_for_status()
         return yaml.safe_load(response.text)
 
