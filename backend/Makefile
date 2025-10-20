@@ -2,8 +2,9 @@ env_path=../.env
 model_modules=hybrid_model machine_learning_component physics_based_component
 
 install:
-	uv venv
+	uv venv --allow-existing
 	uv pip install -e .[dev]
+	touch ../.env
 
 run:
 	uv run dotenv -f "$(env_path)" run uvicorn api.main:app --reload
