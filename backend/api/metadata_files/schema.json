@@ -10,7 +10,7 @@
                     "type": "string"
                 },
                 "file_paths": {
-                    "description": "List of file paths that contain the the environment description, relative to the repository root. E.g., for 'conda', it could be ['environment.yml'].",
+                    "description": "List of file paths that contain the target environment description, relative to the repository root. E.g., for 'conda', it could be ['environment.yml'].",
                     "items": {
                         "type": "string"
                     },

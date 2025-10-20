@@ -106,7 +106,7 @@ export interface ComputationalEnvironment {
    */
   type: string;
   /**
-   * List of file paths that contain the the environment description, relative to the repository root. E.g., for 'conda', it could be ['environment.yml'].
+   * List of file paths that contain the target environment description, relative to the repository root. E.g., for 'conda', it could be ['environment.yml'].
    */
   file_paths: string[];
 }

@@ -9,7 +9,7 @@ from .data import Data, DataIO
 computational_environment_types = [
     c
     for c in computational_environment.__dict__.values()
-    if issubclass(c, ComputationalEnvironment) and c is not ComputationalEnvironment
+    if isinstance(c, type) and issubclass(c, ComputationalEnvironment) and c is not ComputationalEnvironment
 ] + [ComputationalEnvironment]
 
 

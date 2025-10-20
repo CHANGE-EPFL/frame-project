@@ -12,7 +12,7 @@ class ComputationalEnvironment(BaseModel, extra="forbid"):
 
     type: str = Field(description=type_description.format("Type of"))
     file_paths: list[str] = Field(
-        description=file_paths_description.format("the", "for 'conda', it could be ['environment.yml']")
+        description=file_paths_description.format("target", "for 'conda', it could be ['environment.yml']")
     )
 
 

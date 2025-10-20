@@ -47,7 +47,7 @@ hybrid_model:
       file_paths: # (list) List of file paths that contain the julia environment description, relative to the repository root. E.g., 'Project.toml', 'Manifest.toml'.
         - "" # (str)
     - type: "" # (str) Type of computational environment that can be automatically setup after downloading the model.
-      file_paths: # (list) List of file paths that contain the the environment description, relative to the repository root. E.g., for 'conda', it could be ['environment.yml'].
+      file_paths: # (list) List of file paths that contain the target environment description, relative to the repository root. E.g., for 'conda', it could be ['environment.yml'].
         - "" # (str)
 
 physics_based_components: # (list, multiple possible types shown below, optional)
