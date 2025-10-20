@@ -550,12 +550,10 @@ def get_component_models(
     return [
         model_summaries[model_id]
         for model_id, model_family in models.items()
-        if any(
-            [
-                component_id in getattr(model, f"compatible_{component_type}_component_ids", {})
-                for model in model_family.values()
-            ]
-        )
+        if any([
+            component_id in getattr(model, f"compatible_{component_type}_component_ids", {})
+            for model in model_family.values()
+        ])
     ]
 
 

@@ -15,7 +15,6 @@ from api.utils.mimetype import image_mimetypes
 
 
 class S3Client(object):
-
     def __init__(self, s3_endpoint_url, s3_access_key_id, s3_secret_access_key, region, *args, **kwargs):
         self.s3_endpoint_url = s3_endpoint_url
         self.s3_access_key_id = s3_access_key_id
@@ -48,7 +47,7 @@ class S3Client(object):
                 response = await client.head_object(Bucket=config.S3_BUCKET, Key=key)
                 if response["ResponseMetadata"]["HTTPStatusCode"] == 200:
                     return True
-            except Exception as e:
+            except Exception:
                 return False
         return False
 
@@ -80,7 +79,7 @@ class S3Client(object):
                     # Read the content of the S3 object
                     file_content = await response["Body"].read()
                     return file_content, response["ContentType"]
-            except Exception as e:
+            except Exception:
                 return False, False
         return False, False
 

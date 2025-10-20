@@ -4,15 +4,13 @@ Handle / uploads
 
 import datetime
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Security
+from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.datastructures import UploadFile
 from fastapi.param_functions import File
 from fastapi.responses import Response
 from pydantic import BaseModel
 
-from api.auth import get_api_key
 from api.services.s3 import s3_client
-from api.utils.file_nodes import FileNode
 from api.utils.file_size import size_checker
 
 
