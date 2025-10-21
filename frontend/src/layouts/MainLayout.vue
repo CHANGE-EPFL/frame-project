@@ -8,6 +8,7 @@
         <q-route-tab to="/protocol" label="FAIR Protocol" exact />
         <q-route-tab to="/cli" label="Download CLI" exact />
         <q-route-tab to="/contribute" label="Contribute" exact />
+        <q-route-tab to="/about" label="About" exact />
       </q-tabs>
     </q-header>
 

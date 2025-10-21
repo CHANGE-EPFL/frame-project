@@ -2,10 +2,9 @@
   <div>
     <h1>
       {{ unit.name }}
-      <a
+      <router-link
         class="unit-fair-level q-ml-xs"
-        href="https://www.nature.com/articles/s41597-022-01710-x"
-        target="_blank"
+        :to="{ path: '/about', hash: '#fair-level' }"
         v-if="unit.fair_level !== undefined"
       >
         <q-circular-progress
@@ -28,9 +27,9 @@
         <q-tooltip>
           Indication of the FAIR level of this unit ({{ unit.fair_level }}/{{
             MAX_FAIR_LEVEL
-          }}). Click for more information (external link).
+          }}). Click for more information.
         </q-tooltip>
-      </a>
+      </router-link>
     </h1>
     <div class="unit-type">
       {{

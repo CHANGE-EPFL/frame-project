@@ -133,7 +133,7 @@ export interface ComponentReference {
  */
 export interface ComponentSummary {
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Date when the hybrid model was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
@@ -359,7 +359,7 @@ export interface MachineLearningComponentReference {
  */
 export interface MachineLearningComponentSummary {
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Date when the hybrid model was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**

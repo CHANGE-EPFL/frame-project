@@ -10,7 +10,7 @@
  */
 export interface CommonMetadata {
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Date when the hybrid model was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
@@ -71,7 +71,7 @@ export interface CommonMetadata {
  */
 export interface CommonMetadataSummary {
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Date when the hybrid model was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
@@ -143,7 +143,7 @@ export interface DataIO {
  */
 export interface HybridModel {
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Date when the hybrid model was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
@@ -259,7 +259,7 @@ export interface JuliaComputationalEnvironment {
  */
 export interface HybridModelFromFile {
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Date when the hybrid model was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
@@ -331,7 +331,7 @@ export interface HybridModelFromFile {
  */
 export interface HybridModelSummary {
   /**
-   * Date when the hybrid was created. (e.g. 2000-12-31).
+   * Date when the hybrid model was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**

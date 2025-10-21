@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://frame.epfl.ch/schema
 
 hybrid_model:
-  created: 2000-12-31 # (date, optional) Date when the hybrid was created. (e.g. 2000-12-31).
+  created: 2000-12-31 # (date, optional) Date when the hybrid model was created. (e.g. 2000-12-31).
   description: "" # (str) Summarized description of the hybrid model. Can be formatted with HTML tags.
   hidden: false # (bool, optional) Indicates whether the hybrid model is hidden within the FRAME library. Hidden models remain accessible if their ID is known.
   id: "" # (str) Short name that serves as unique identifier for the hybrid model. Should be all lowercase and contain no spaces (use "_" instead) or special characters.

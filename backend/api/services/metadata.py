@@ -28,6 +28,10 @@ METADATA_TEMPLATE_FILENAME = "template.yaml"
 EXTERNAL_REFERENCES_FILENAME = "external_references.yaml"
 EXTERNAL_METADATA_FILENAME = "frame_metadata.yaml"
 DEFAULT_VERSION = "none"
+
+# Keep the frontend code updated to match the FAIR level properties:
+# - frontend/src/components/UnitFullAbstract.vue
+# - frontend/src/pages/AboutPage.vue
 FAIR_LEVEL_PROPERTIES = [
     [],  # level 1 (having a valid metadata file)
     [  # level 2

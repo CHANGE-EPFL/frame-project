@@ -585,7 +585,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "Date when the hybrid was created. (e.g. 2000-12-31).",
+                    "description": "Date when the hybrid model was created. (e.g. 2000-12-31).",
                     "title": "Created"
                 },
                 "description": {

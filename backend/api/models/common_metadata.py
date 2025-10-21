@@ -18,7 +18,7 @@ else:
 class CommonMetadataSummary(BaseModel, extra="forbid"):
     """Essential metadata fields for hybrid models."""
 
-    created: date | None = Field(None, description="Date when the hybrid was created. (e.g. 2000-12-31).")
+    created: date | None = Field(None, description="Date when the hybrid model was created. (e.g. 2000-12-31).")
     description: str = Field(
         min_length=1, description="Summarized description of the hybrid model. Can be formatted with HTML tags."
     )
