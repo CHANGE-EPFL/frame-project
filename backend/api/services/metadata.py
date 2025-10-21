@@ -638,3 +638,33 @@ def get_machine_learning_component_versions(component_id: str) -> list[str]:
         raise HTTPException(status_code=404, detail="MachineLearningComponent ID not found.")
 
     return list(machine_learning_components[component_id].keys())
+
+
+def get_models_with_same_url_from_components(
+    component_id: str,
+    component_version: str,
+    components: dict[str, dict[str, C]],
+) -> list[HybridModelSummary]:
+    component_family = components[component_id]
+    if component_version not in component_family:
+        raise HTTPException(status_code=404, detail="Component version not found.")
+    component = component_family[component_version]
+
+    model_ids = [
+        model_id
+        for model_id, model_family in models.items()
+        if any(component.url == model.url for model in model_family.values())
+    ]
+
+    return [model_summaries[model_id] for model_id in model_ids]
+
+
+@load_metadata
+def get_models_with_same_component_url(component_id: str, component_version) -> list[HybridModelSummary]:
+    if component_id in physics_based_components:
+        return get_models_with_same_url_from_components(component_id, component_version, physics_based_components)
+
+    if component_id in machine_learning_components:
+        return get_models_with_same_url_from_components(component_id, component_version, machine_learning_components)
+
+    raise HTTPException(status_code=404, detail="Component ID not found.")

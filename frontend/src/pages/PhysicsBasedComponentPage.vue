@@ -8,10 +8,13 @@
           class="q-mb-md"
         />
 
-        <template v-for="(unit, index) in hybridModels" :key="index">
-          <UnitLink unitType="hybrid_model" :unit="unit" />
-          <br />
-        </template>
+        <div v-if="hybridModels.length > 0">
+          <p>This component is used by the following models:</p>
+          <template v-for="(unit, index) in hybridModels" :key="index">
+            <UnitLink unitType="hybrid_model" :unit="unit" />
+            <br />
+          </template>
+        </div>
 
         <MetadataTable :data="otherMetadata" class="q-mb-lg" />
 

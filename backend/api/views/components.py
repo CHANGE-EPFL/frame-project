@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 
+from ..models.hybrid_model import HybridModelSummary
 from ..models.machine_learning_component import MachineLearningComponent, MachineLearningComponentSummary
 from ..models.physics_based_component import PhysicsBasedComponent, PhysicsBasedComponentSummary
 from ..services import metadata
@@ -73,3 +74,9 @@ async def get_physics_based_component_versions(component_id: str) -> list[str]:
 async def get_machine_learning_component_versions(component_id: str) -> list[str]:
     """Get a list of machine learning component versions."""
     return metadata.get_machine_learning_component_versions(component_id)
+
+
+@router.get("/models_same_url/{component_id}/{component_version}")
+async def get_models_with_same_component_url(component_id: str, component_version: str) -> list[HybridModelSummary]:
+    """Get a list of model IDs that share the same URL as the given component."""
+    return metadata.get_models_with_same_component_url(component_id, component_version)

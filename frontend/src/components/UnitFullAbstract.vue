@@ -63,7 +63,7 @@
     <div class="q-mt-sm"></div>
     <div class="row items-center">
       <CopyCommand
-        :command="`frame pull ${unitType === 'hybrid_model' ? 'model' : 'component'} ${unit.id}${unit.latest ? '' : `:${unit.version}`} ${unitType === 'hybrid_model' ? '' : '<LOCAL_MODEL_PATH>'}`"
+        :command="`frame pull ${unitType === 'hybrid_model' ? 'model' : 'component'} ${unit.id}${unit.latest ? '' : `:${unit.version}`}`"
         class="q-mt-lg q-mb-lg col"
       />
       <router-link to="/cli" class="q-ml-sm">
@@ -74,6 +74,16 @@
           </q-tooltip>
         </q-icon>
       </router-link>
+    </div>
+    <div v-if="modelsSameUrl.length > 0" class="q-mb-lg">
+      <p>
+        You can also obtain this component by pulling one of the following
+        models:
+      </p>
+      <template v-for="(unit, index) in modelsSameUrl" :key="index">
+        <UnitLink unitType="hybrid_model" :unit="unit" />
+        <br />
+      </template>
     </div>
     <div class="q-mt-md">
       <VersionSelector
@@ -87,12 +97,15 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue';
-import type { HybridModel } from 'src/models/hybrid_model';
+import { api } from 'src/boot/api';
+import type { HybridModel, HybridModelSummary } from 'src/models/hybrid_model';
 import type { PhysicsBasedComponent } from 'src/models/physics_based_component';
 import type { MachineLearningComponent } from 'src/models/machine_learning_component';
 import KeywordList from 'src/components/KeywordList.vue';
 import CopyCommand from 'src/components/CopyCommand.vue';
 import VersionSelector from 'src/components/VersionSelector.vue';
+import UnitLink from 'src/components/UnitLink.vue';
+const modelsSameUrl = ref<HybridModelSummary[]>([]);
 
 const props = defineProps({
   unitType: {
@@ -110,6 +123,31 @@ const props = defineProps({
 });
 
 const MAX_FAIR_LEVEL = 5; // Match to FAIR_LEVEL_PROPERTIES size in backend/api/services/metadata.py
+
+const getModelsWithSameComponentUrl = () => {
+  if (props.unitType === 'hybrid_model') {
+    modelsSameUrl.value = [];
+    return;
+  }
+
+  const endpoint = `components/models_same_url/${props.unit.id}/${props.unit.version}`;
+
+  return api
+    .get(endpoint)
+    .then((response) => {
+      modelsSameUrl.value = response.data;
+    })
+    .catch((error) => {
+      console.error(
+        `Error fetching hybrid models with same component URL for model ID ${props.unit.id}:`,
+        error,
+      );
+    });
+};
+
+onMounted(() => {
+  getModelsWithSameComponentUrl();
+});
 </script>
 
 <style scoped lang="scss">
