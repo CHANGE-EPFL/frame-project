@@ -13,8 +13,12 @@
     :options="versions"
     label="Version"
     class="q-mt-md"
+    v-if="
+      versions.length > 0 && !(versions.length === 1 && versions[0] === 'none')
+    "
     @update:model-value="redirectToVersion"
   >
+    <!-- In v-if, match 'none' to DEFAULT_VERSION in backend/api/services/metadata.py -->
   </q-select>
 </template>
 
