@@ -58,7 +58,7 @@ export interface Component {
    */
   url?: string | null;
   /**
-   * Semantic version. If not provided, will be filled with the associated hybrid model's version.
+   * Version number or name. If not provided, will be filled with the associated hybrid model's version.
    */
   version?: string | null;
   /**
@@ -115,7 +115,7 @@ export interface ComponentFromFile {
    */
   url?: string | null;
   /**
-   * Semantic version. If not provided, will be filled with the associated hybrid model's version.
+   * Version number or name. If not provided, will be filled with the associated hybrid model's version.
    */
   version?: string | null;
 }
@@ -251,7 +251,7 @@ export interface MachineLearningComponent {
    */
   url?: string | null;
   /**
-   * Semantic version. If not provided, will be filled with the associated hybrid model's version.
+   * Version number or name. If not provided, will be filled with the associated hybrid model's version.
    */
   version?: string | null;
   ml_process?: string | null;
@@ -339,7 +339,7 @@ export interface MachineLearningComponentFromFile {
    */
   url?: string | null;
   /**
-   * Semantic version. If not provided, will be filled with the associated hybrid model's version.
+   * Version number or name. If not provided, will be filled with the associated hybrid model's version.
    */
   version?: string | null;
   ml_process?: string | null;

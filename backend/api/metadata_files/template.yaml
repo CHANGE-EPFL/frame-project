@@ -15,8 +15,8 @@ hybrid_model:
   identifier: "" # (str, optional) Digital Object Identifier (DOI).
   license: "" # (str, optional) License short name.
   readme: "" # (str, optional) URL to a Markdown README file.
-  url: "" # (str) Repository URL.
-  version: "" # (str, optional) Semantic version.
+  url: "" # (str) Repository URL. Preferably not referring to a specific version. If referring to a fixed version, also fill in the 'version' field.
+  version: "" # (str, optional) Version number or name. Preferably following Semantic Versioning 'X.Y.Z', see https://semver.org.
   ml_process: "" # (str, optional)
   host_physics: "" # (str, optional)
   latent_variables: # (list, optional)
@@ -66,7 +66,7 @@ physics_based_components: # (list, multiple possible types shown below, optional
     license: "" # (str, optional) License short name. If not provided, will be filled with the associated hybrid model's license.
     readme: "" # (str, optional) URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README URL.
     url: "" # (str, optional) Repository URL. If not provided, will be filled with the associated hybrid model's repository URL.
-    version: "" # (str, optional) Semantic version. If not provided, will be filled with the associated hybrid model's version.
+    version: "" # (str, optional) Version number or name. If not provided, will be filled with the associated hybrid model's version.
     type: "" # (str, optional)
     fixed_parameters_count: 0 # (int, optional)
     tunable_parameters_count: 0 # (int, optional)
@@ -124,7 +124,7 @@ machine_learning_components: # (list, multiple possible types shown below, optio
     license: "" # (str, optional) License short name. If not provided, will be filled with the associated hybrid model's license.
     readme: "" # (str, optional) URL to a Markdown README file. If not provided, will be filled with the associated hybrid model's README URL.
     url: "" # (str, optional) Repository URL. If not provided, will be filled with the associated hybrid model's repository URL.
-    version: "" # (str, optional) Semantic version. If not provided, will be filled with the associated hybrid model's version.
+    version: "" # (str, optional) Version number or name. If not provided, will be filled with the associated hybrid model's version.
     ml_process: "" # (str, optional)
     neural_networks: # (list, optional)
       - name: "" # (str)

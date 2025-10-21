@@ -58,11 +58,11 @@ export interface CommonMetadata {
    */
   readme?: string | null;
   /**
-   * Repository URL.
+   * Repository URL. Preferably not referring to a specific version. If referring to a fixed version, also fill in the 'version' field.
    */
   url: string;
   /**
-   * Semantic version.
+   * Version number or name. Preferably following Semantic Versioning 'X.Y.Z', see https://semver.org.
    */
   version?: string | null;
 }
@@ -191,11 +191,11 @@ export interface HybridModel {
    */
   readme?: string | null;
   /**
-   * Repository URL.
+   * Repository URL. Preferably not referring to a specific version. If referring to a fixed version, also fill in the 'version' field.
    */
   url: string;
   /**
-   * Semantic version.
+   * Version number or name. Preferably following Semantic Versioning 'X.Y.Z', see https://semver.org.
    */
   version?: string | null;
   ml_process?: string | null;
@@ -307,11 +307,11 @@ export interface HybridModelFromFile {
    */
   readme?: string | null;
   /**
-   * Repository URL.
+   * Repository URL. Preferably not referring to a specific version. If referring to a fixed version, also fill in the 'version' field.
    */
   url: string;
   /**
-   * Semantic version.
+   * Version number or name. Preferably following Semantic Versioning 'X.Y.Z', see https://semver.org.
    */
   version?: string | null;
   ml_process?: string | null;

@@ -80,8 +80,14 @@ class CommonMetadata(CommonMetadataSummary):
     identifier: str | None = Field(None, description="Digital Object Identifier (DOI).")
     license: str | None = Field(None, description="License short name.")
     readme: str | None = Field(None, description="URL to a Markdown README file.")
-    url: str = Field(min_length=1, description="Repository URL.")
-    version: str | None = Field(None, description="Semantic version.")
+    url: str = Field(
+        min_length=1,
+        description="Repository URL. Preferably not referring to a specific version. If referring to a fixed version, also fill in the 'version' field.",
+    )
+    version: str | None = Field(
+        None,
+        description="Version number or name. Preferably following Semantic Versioning 'X.Y.Z', see https://semver.org.",
+    )
 
 
 class CommonMetadataIncomplete(CommonMetadataSummaryIncomplete):
@@ -126,5 +132,5 @@ class CommonMetadataIncomplete(CommonMetadataSummaryIncomplete):
     )
     version: str | None = Field(
         None,
-        description="Semantic version. If not provided, will be filled with the associated hybrid model's version.",
+        description="Version number or name. If not provided, will be filled with the associated hybrid model's version.",
     )
