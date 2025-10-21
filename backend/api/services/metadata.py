@@ -29,25 +29,26 @@ EXTERNAL_REFERENCES_FILENAME = "external_references.yaml"
 EXTERNAL_METADATA_FILENAME = "frame_metadata.yaml"
 DEFAULT_VERSION = "none"
 FAIR_LEVEL_PROPERTIES = [
-    [  # level 1
+    [],  # level 1 (having a valid metadata file)
+    [  # level 2
         "created",
         "description",
         "identifier",
         "license",
         "url",
     ],
-    [  # level 2
+    [  # level 3
         "host_physics",
         "latent_variables",
         "ml_process",
         "readme",
     ],
-    [  # level 3
+    [  # level 4
         "computational_environment",
         "data.inputs",
         "data.outputs",
     ],
-    [  # level 4
+    [  # level 5
         "documentation",
     ],
 ]

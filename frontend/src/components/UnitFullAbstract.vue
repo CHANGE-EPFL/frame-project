@@ -1,6 +1,37 @@
 <template>
   <div>
-    <h1>{{ unit.name }}</h1>
+    <h1>
+      {{ unit.name }}
+      <a
+        class="unit-fair-level q-ml-xs"
+        href="https://www.nature.com/articles/s41597-022-01710-x"
+        target="_blank"
+        v-if="unit.fair_level !== undefined"
+      >
+        <q-circular-progress
+          show-value
+          :value="(unit.fair_level / MAX_FAIR_LEVEL) * 100"
+          :color="
+            unitType === 'hybrid_model'
+              ? 'primary'
+              : unitType === 'physics_based_component'
+                ? 'secondary'
+                : 'accent'
+          "
+          track-color="grey-3"
+          size="42px"
+          :thickness="0.3"
+          class="q-ml-xs"
+        >
+          FAIR
+        </q-circular-progress>
+        <q-tooltip>
+          Indication of the FAIR level of this unit ({{ unit.fair_level }}/{{
+            MAX_FAIR_LEVEL
+          }}). Click for more information (external link).
+        </q-tooltip>
+      </a>
+    </h1>
     <div class="unit-type">
       {{
         {
@@ -9,36 +40,6 @@
           machine_learning_component: 'Machine Learning Component',
         }[unitType]
       }}
-      <a
-        class="unit-fair-level q-ml-xs"
-        href="https://www.nature.com/articles/s41597-022-01710-x"
-        target="_blank"
-        v-if="unit.fair_level !== undefined"
-      >
-        <q-icon
-          v-for="i in unit.fair_level"
-          :key="i"
-          name="star"
-          :color="
-            unitType === 'hybrid_model'
-              ? 'primary'
-              : unitType === 'physics_based_component'
-                ? 'secondary'
-                : 'accent'
-          "
-        />
-        <q-icon
-          v-for="i in MAX_FAIR_LEVEL - unit.fair_level"
-          :key="i"
-          name="star"
-          color="grey-4"
-        />
-        <q-tooltip>
-          Indication of the FAIR level of this unit ({{ unit.fair_level }}/{{
-            MAX_FAIR_LEVEL
-          }}). Click for more information (external link).
-        </q-tooltip>
-      </a>
     </div>
     <div v-if="unit.contributors" class="unit-contributors">
       {{ unit.contributors.join(', ') }}
@@ -109,7 +110,7 @@ const props = defineProps({
   },
 });
 
-const MAX_FAIR_LEVEL = 4; // Match to FAIR_LEVEL_PROPERTIES size in backend/api/services/metadata.py
+const MAX_FAIR_LEVEL = 5; // Match to FAIR_LEVEL_PROPERTIES size in backend/api/services/metadata.py
 </script>
 
 <style scoped lang="scss">
@@ -123,10 +124,7 @@ h1 {
 }
 
 .unit-fair-level {
-  font-size: 1.1em;
-  line-height: 1.2em;
-  display: inline-block;
-  transform: translateY(-0.08em);
+  text-align: center;
 }
 
 .unit-contributors {
