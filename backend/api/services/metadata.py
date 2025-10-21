@@ -660,7 +660,7 @@ def get_models_with_same_url_from_components(
 
 
 @load_metadata
-def get_models_with_same_component_url(component_id: str, component_version) -> list[HybridModelSummary]:
+def get_models_with_same_component_url(component_id: str, component_version: str) -> list[HybridModelSummary]:
     if component_id in physics_based_components:
         return get_models_with_same_url_from_components(component_id, component_version, physics_based_components)
 
