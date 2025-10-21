@@ -253,6 +253,8 @@ def compute_fair_level(model: HybridModel) -> int:
                     return level
                 if isinstance(value, list) and len(value) == 0:
                     return level
+                if isinstance(value, str) and value.strip() == "":
+                    return level
             except AttributeError:
                 return level
 
