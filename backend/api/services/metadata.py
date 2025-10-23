@@ -170,13 +170,19 @@ def get_all_metadata_paths() -> list[str]:
     return local_metadata_filepaths + get_all_external_metadata_urls()
 
 
-def load_metadata_yaml(metadata_path: str) -> dict[str, Any]:
+def load_raw_metadata(metadata_path: str) -> str:
     if metadata_path.startswith("http"):
         response = requests.get(metadata_path, timeout=config.REQUESTS_TIMEOUT)
         response.raise_for_status()
-        return yaml.safe_load(response.text)
+        return response.text
 
-    return read_yaml(metadata_path)
+    with open(metadata_path) as f:
+        return f.read()
+
+
+def load_metadata_yaml(metadata_path: str) -> dict[str, Any]:
+    raw_data = load_raw_metadata(metadata_path)
+    return yaml.safe_load(raw_data)
 
 
 def format_contributors(contributors: list[str]) -> list[str]:
@@ -266,7 +272,7 @@ def add_model_and_components(
     models: dict[str, dict[str, HybridModel]],
     physics_based_components: dict[str, dict[str, PhysicsBasedComponent]],
     machine_learning_components: dict[str, dict[str, MachineLearningComponent]],
-) -> None:
+) -> tuple[str, str]:
     metadata = MetadataFromFile(**raw_data)
     model_id = metadata.hybrid_model.id
     metadata.hybrid_model.contributors = format_contributors(metadata.hybrid_model.contributors)
@@ -293,6 +299,7 @@ def add_model_and_components(
         raise ValueError(f'Duplicate model version "{model_version}" for model ID "{model_id}"')
 
     models[model_id][model_version] = model
+    return model_id, model_version
 
 
 def sort_versions(units: dict[str, dict[str, U]]) -> dict[str, dict[str, U]]:
@@ -326,23 +333,30 @@ def load_models_and_components() -> tuple[
     dict[str, dict[str, HybridModel]],
     dict[str, dict[str, PhysicsBasedComponent]],
     dict[str, dict[str, MachineLearningComponent]],
+    dict[str, dict[str, tuple[str, str]]],
 ]:
     """Load metadata for all models and components."""
 
     models = {}
     physics_based_components = {}
     machine_learning_components = {}
+    models_raw_metadata = {}
 
     for metadata_path in get_all_metadata_paths():
         try:
-            raw_data = load_metadata_yaml(metadata_path)
+            raw_data = load_raw_metadata(metadata_path)
+            raw_data_dict = yaml.safe_load(raw_data)
 
-            add_model_and_components(
-                raw_data,
+            model_id, model_version = add_model_and_components(
+                raw_data_dict,
                 models,
                 physics_based_components,
                 machine_learning_components,
             )
+
+            if model_id not in models_raw_metadata:
+                models_raw_metadata[model_id] = {}
+            models_raw_metadata[model_id][model_version] = (os.path.basename(metadata_path), raw_data)
 
         except Exception as e:
             logger.error(f"Error loading metadata from {metadata_path}: {e}")
@@ -354,7 +368,7 @@ def load_models_and_components() -> tuple[
     machine_learning_components = sort_versions(machine_learning_components)
     machine_learning_components = sort_by_date(machine_learning_components)
 
-    return models, physics_based_components, machine_learning_components
+    return models, physics_based_components, machine_learning_components, models_raw_metadata
 
 
 def check_non_duplicated_component_ids(
@@ -436,6 +450,9 @@ def get_model_keywords(
 models: dict[str, dict[str, HybridModel]] = {}  # First key is model ID, second key is version
 model_summaries: dict[str, HybridModelSummary] = {}  # Key is model ID
 model_keywords: dict[str, set[str]] = {}
+models_raw_metadata: dict[
+    str, dict[str, tuple[str, str]]
+] = {}  # First key is model ID, second key is version, value is (filename, content)
 physics_based_components: dict[str, dict[str, PhysicsBasedComponent]] = {}
 physics_based_components_summaries: dict[str, PhysicsBasedComponentSummary] = {}
 machine_learning_components: dict[str, dict[str, MachineLearningComponent]] = {}
@@ -448,13 +465,14 @@ def _load_metadata():
     global models
     global model_summaries
     global model_keywords
+    global models_raw_metadata
     global physics_based_components
     global physics_based_components_summaries
     global machine_learning_components
     global machine_learning_components_summaries
     global metadata_loaded
 
-    models, physics_based_components, machine_learning_components = load_models_and_components()
+    models, physics_based_components, machine_learning_components, models_raw_metadata = load_models_and_components()
     check_non_duplicated_component_ids(physics_based_components, machine_learning_components)
     check_component_references(models, physics_based_components, machine_learning_components)
 
@@ -529,6 +547,20 @@ def get_unit(unit_id: str, unit_version: str | None, units: dict[str, dict[str, 
 @load_metadata
 def get_hybrid_model(model_id: str, model_version: str | None) -> HybridModel:
     return get_unit(model_id, model_version, models, HybridModel)
+
+
+@load_metadata
+def get_hybrid_model_raw_metadata(model_id: str, model_version: str | None) -> tuple[str, str]:
+    if model_id not in models_raw_metadata:
+        raise HTTPException(status_code=404, detail=f'HybridModel ID "{model_id}" not found.')
+
+    if model_version is None:
+        model_version = next(iter(models_raw_metadata[model_id].keys()))
+
+    if model_version not in models_raw_metadata[model_id]:
+        raise HTTPException(status_code=404, detail=f'HybridModel version "{model_version}" not found.')
+
+    return models_raw_metadata[model_id][model_version]
 
 
 @load_metadata

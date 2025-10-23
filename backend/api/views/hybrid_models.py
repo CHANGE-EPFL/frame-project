@@ -1,4 +1,7 @@
+import io
+
 from fastapi import APIRouter, Query
+from fastapi.responses import StreamingResponse
 
 from ..models.hybrid_model import HybridModel, HybridModelSummary
 from ..services import metadata
@@ -21,6 +24,21 @@ async def get_hybrid_model(model_id: str, model_version: str | None = None) -> H
     If the version is not provided, return the latest version.
     """
     return metadata.get_hybrid_model(model_id, model_version)
+
+
+@router.get("/metadata_file/{model_id}")
+async def get_hybrid_model_metadata_file(model_id: str, model_version: str | None = None) -> StreamingResponse:
+    """Get the metadata file content of a specific hybrid model.
+    If the version is not provided, return the latest version.
+    """
+
+    filename, content = metadata.get_hybrid_model_raw_metadata(model_id, model_version)
+
+    return StreamingResponse(
+        io.BytesIO(content.encode("utf-8")),
+        media_type="text/plain",
+        headers={"Content-Disposition": f"attachment; filename={filename}"},
+    )
 
 
 @router.get("/ids/")
