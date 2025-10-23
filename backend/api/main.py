@@ -43,6 +43,5 @@ async def get_health() -> HealthCheck:
     return HealthCheck(status="OK")
 
 
-# app.include_router(files_router, prefix="/files", tags=["Files"])
 app.include_router(hybrid_models_router, prefix="/hybrid_models", tags=["Hybrid models"])
 app.include_router(components_router, prefix="/components", tags=["Components"])
