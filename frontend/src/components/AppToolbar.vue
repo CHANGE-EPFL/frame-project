@@ -88,7 +88,10 @@ const showResources = ref(false);
 onMounted(() => {
   if (!settingsStore.settings?.intro_shown) {
     showIntro.value = true;
-    settingsStore.saveSettings({ intro_shown: true } as Settings);
+    settingsStore.saveSettings({
+      ...settingsStore.settings,
+      intro_shown: true,
+    } as Settings);
   }
 });
 </script>

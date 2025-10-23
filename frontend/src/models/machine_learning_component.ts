@@ -58,7 +58,7 @@ export interface Component {
    */
   url?: string | null;
   /**
-   * Version number or name. If not provided, will be filled with the associated hybrid model's version.
+   * Semantic version. If not provided, will be filled with the associated hybrid model's version.
    */
   version?: string | null;
   /**
@@ -115,7 +115,7 @@ export interface ComponentFromFile {
    */
   url?: string | null;
   /**
-   * Version number or name. If not provided, will be filled with the associated hybrid model's version.
+   * Semantic version. If not provided, will be filled with the associated hybrid model's version.
    */
   version?: string | null;
 }
@@ -133,7 +133,7 @@ export interface ComponentReference {
  */
 export interface ComponentSummary {
   /**
-   * Date when the hybrid model was created. (e.g. 2000-12-31).
+   * Date when the hybrid was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
@@ -251,7 +251,7 @@ export interface MachineLearningComponent {
    */
   url?: string | null;
   /**
-   * Version number or name. If not provided, will be filled with the associated hybrid model's version.
+   * Semantic version. If not provided, will be filled with the associated hybrid model's version.
    */
   version?: string | null;
   ml_process?: string | null;
@@ -339,7 +339,7 @@ export interface MachineLearningComponentFromFile {
    */
   url?: string | null;
   /**
-   * Version number or name. If not provided, will be filled with the associated hybrid model's version.
+   * Semantic version. If not provided, will be filled with the associated hybrid model's version.
    */
   version?: string | null;
   ml_process?: string | null;
@@ -359,7 +359,7 @@ export interface MachineLearningComponentReference {
  */
 export interface MachineLearningComponentSummary {
   /**
-   * Date when the hybrid model was created. (e.g. 2000-12-31).
+   * Date when the hybrid was created. (e.g. 2000-12-31).
    */
   created?: string | null;
   /**
