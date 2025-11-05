@@ -6,6 +6,7 @@ Mock data for testing.
 import datetime
 import os
 from operator import attrgetter
+import sys
 from typing import Any, Callable, TypeVar
 
 import requests
@@ -359,6 +360,8 @@ def load_models_and_components() -> tuple[
             models_raw_metadata[model_id][model_version] = (os.path.basename(metadata_path), raw_data)
 
         except Exception as e:
+            if "pytest" in sys.modules:
+                raise e
             logger.error(f"Error loading metadata from {metadata_path}: {e}")
 
     models = sort_versions(models)

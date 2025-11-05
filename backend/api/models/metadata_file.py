@@ -5,7 +5,7 @@ import types
 import typing
 
 import exrex
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from .data import DataIO
 from .hybrid_model import HybridModelFromFile
@@ -16,6 +16,7 @@ from .physics_based_component import PhysicsBasedComponentFromFile, PhysicsBased
 class MetadataFromFile(BaseModel, extra="forbid"):
     """Metadata fields for a metadata file."""
 
+    frame_metadata_version: str = Field(pattern=r"^1\.0$")  # Minor version changes must be backward compatible
     hybrid_model: HybridModelFromFile
     physics_based_components: list[PhysicsBasedComponentReference | PhysicsBasedComponentFromFile] = []
     machine_learning_components: list[MachineLearningComponentReference | MachineLearningComponentFromFile] = []

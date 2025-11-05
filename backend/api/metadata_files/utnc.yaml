@@ -1,5 +1,7 @@
 # yaml-language-server: $schema=https://frame.epfl.ch/schema
 
+frame_metadata_version: "1.0"
+
 hybrid_model:
   description: |-
     Urban Tethys-Chloris (UT&C v1.0) is a mechanistic urban ecohydrological model combining principles of ecohydrological land surface modelling with urban canopy modelling. UT&C is a fully coupled energy and water balance model that calculates 2 m air temperature, 2 m humidity, and surface temperatures. It explicitly resolves biophysical and ecophysiological characteristics of ground vegetation, urban trees, and green roofs and models all urban water fluxes including evapotranspiration, canopy interception, infiltration, and soil moisture transport. UT&C accounts for variations in urban densities, building properties, and urban irrigation schemes. Hence, the model is able to account for the effects of different plant types on the urban climate and hydrology, as well as the effects of the urban environment on plant well-being and performance. UT&C is one of the first urban canyon parameterizations to include detailed ecohydrology. Its low computational demand allows for analyses spanning multiple years with an hourly time step, therefore, facilitating long-term and seasonal analysis.

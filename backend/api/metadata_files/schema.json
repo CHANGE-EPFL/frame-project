@@ -1592,6 +1592,11 @@
     "additionalProperties": false,
     "description": "Metadata fields for a metadata file.",
     "properties": {
+        "frame_metadata_version": {
+            "pattern": "^1\\.0$",
+            "title": "Frame Metadata Version",
+            "type": "string"
+        },
         "hybrid_model": {
             "$ref": "#/$defs/HybridModelFromFile"
         },
@@ -1634,6 +1639,7 @@
         }
     },
     "required": [
+        "frame_metadata_version",
         "hybrid_model"
     ],
     "title": "MetadataFromFile",
