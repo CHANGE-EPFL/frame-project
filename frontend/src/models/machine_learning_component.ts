@@ -65,6 +65,7 @@ export interface Component {
    * Whether this version is the latest one. Automatically inferred.
    */
   latest?: boolean;
+  readme_content?: string | null;
 }
 /**
  * Component of hybrid model.
@@ -260,6 +261,7 @@ export interface MachineLearningComponent {
    * Whether this version is the latest one. Automatically inferred.
    */
   latest?: boolean;
+  readme_content?: string | null;
 }
 /**
  * Neural network metadata.

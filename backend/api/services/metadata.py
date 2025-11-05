@@ -3,6 +3,7 @@
 Mock data for testing.
 """
 
+from functools import cache
 import datetime
 import os
 from operator import attrgetter
@@ -246,9 +247,40 @@ def add_components(
                 f'Duplicate {ComponentType.__name__} version "{component_version}" for ID "{component_id}"'
             )
 
+        component.readme_content = get_readme_content(component.readme)
         components[component_id][component_version] = component
 
     return ids
+
+
+def get_git_file_raw_url(file_url: str) -> str:
+    if "github.com" in file_url:
+        raw_url = file_url.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/")
+    elif "gitlab" in file_url:
+        raw_url = file_url.replace("/-/blob/", "/-/raw/")
+    else:
+        raise ValueError(f"Unsupported Git file URL: {file_url}")
+
+    return raw_url
+
+
+@cache
+def get_readme_content(readme_url: str | None) -> str | None:
+    if readme_url is None:
+        return None
+
+    try:
+        readme_url = get_git_file_raw_url(readme_url)
+    except ValueError:
+        pass
+
+    try:
+        response = requests.get(readme_url, timeout=config.REQUESTS_TIMEOUT)
+        response.raise_for_status()
+        return response.text
+    except requests.RequestException:
+        logger.warning(f"Could not fetch README content from URL: {readme_url}")
+        return None
 
 
 def compute_fair_level(model: HybridModel) -> int:
@@ -289,6 +321,7 @@ def add_model_and_components(
         data=metadata.data,
     )
 
+    model.readme_content = get_readme_content(model.readme)
     model.fair_level = compute_fair_level(model)
 
     if model_id not in models:

@@ -214,6 +214,7 @@ export interface HybridModel {
   data: DataIO;
   fair_level?: number;
   latest?: boolean;
+  readme_content?: string | null;
 }
 /**
  * Conda computational environment.

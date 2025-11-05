@@ -65,6 +65,7 @@ export interface Component {
    * Whether this version is the latest one. Automatically inferred.
    */
   latest?: boolean;
+  readme_content?: string | null;
 }
 /**
  * Component of hybrid model.
@@ -270,6 +271,7 @@ export interface PhysicsBasedComponent {
    * Whether this version is the latest one. Automatically inferred.
    */
   latest?: boolean;
+  readme_content?: string | null;
 }
 /**
  * Vertical discretization of a physics-based component.

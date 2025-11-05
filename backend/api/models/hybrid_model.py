@@ -35,3 +35,4 @@ class HybridModel(HybridModelFromFile, HybridModelSummary):
     fair_level: int = 0
     #: Whether version is latest
     latest: bool = False
+    readme_content: str | None = None

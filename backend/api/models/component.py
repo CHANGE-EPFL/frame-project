@@ -15,6 +15,7 @@ class Component(ComponentFromFile, ComponentSummary):
     """Component of hybrid model."""
 
     latest: bool = Field(False, description="Whether this version is the latest one. Automatically inferred.")
+    readme_content: str | None = None
 
 
 class ComponentReference(BaseModel, extra="forbid"):
