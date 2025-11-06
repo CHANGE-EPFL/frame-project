@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="container">
-      <q-card v-if="machineLearningComponent" flat class="q-mb-xl">
+      <q-card v-if="machineLearningComponent" flat class="q-mb-lg">
         <UnitFullAbstract
           unitType="machine_learning_component"
           :unit="machineLearningComponent"
@@ -36,6 +36,30 @@
 
       <q-card v-else flat class="q-mt-md">
         <p><q-spinner /> Loading component data...</p>
+      </q-card>
+
+      <q-card
+        v-if="
+          machineLearningComponent && machineLearningComponent.readme_content
+        "
+        flat
+      >
+        <q-separator />
+        <h2 class="q-mt-lg q-mb-sm">
+          <q-icon name="description" class="q-mr-sm" />README.md
+        </h2>
+        <a
+          :href="machineLearningComponent.readme as string"
+          target="_blank"
+          rel="noopener"
+          class="readme-link"
+          >{{ machineLearningComponent.readme }}</a
+        >
+        <q-markdown
+          :src="machineLearningComponent.readme_content"
+          class="q-mt-md q-mb-xl"
+          no-heading-anchor-links
+        />
       </q-card>
     </div>
   </q-page>

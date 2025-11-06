@@ -128,6 +128,9 @@ declare global {
     Data,
     DataIO,
     HybridModel,
+    CondaComputationalEnvironment,
+    PythonComputationalEnvironment,
+    JuliaComputationalEnvironment,
     HybridModelFromFile,
     HybridModelSummary,
   } from './models/hybrid_model';

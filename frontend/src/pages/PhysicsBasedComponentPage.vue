@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="container">
-      <q-card v-if="physicsBasedComponent" flat class="q-mb-xl">
+      <q-card v-if="physicsBasedComponent" flat class="q-mb-lg">
         <UnitFullAbstract
           unitType="physics_based_component"
           :unit="physicsBasedComponent"
@@ -32,6 +32,28 @@
 
       <q-card v-else flat class="q-mt-md">
         <p><q-spinner /> Loading component data...</p>
+      </q-card>
+
+      <q-card
+        v-if="physicsBasedComponent && physicsBasedComponent.readme_content"
+        flat
+      >
+        <q-separator />
+        <h2 class="q-mt-lg q-mb-sm">
+          <q-icon name="description" class="q-mr-sm" />README.md
+        </h2>
+        <a
+          :href="physicsBasedComponent.readme as string"
+          target="_blank"
+          rel="noopener"
+          class="readme-link"
+          >{{ physicsBasedComponent.readme }}</a
+        >
+        <q-markdown
+          :src="physicsBasedComponent.readme_content"
+          class="q-mt-md q-mb-xl"
+          no-heading-anchor-links
+        />
       </q-card>
     </div>
   </q-page>

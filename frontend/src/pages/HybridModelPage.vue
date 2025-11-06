@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="container">
-      <q-card v-if="hybridModel" flat class="q-mb-xl">
+      <q-card v-if="hybridModel" flat class="q-mb-lg">
         <UnitFullAbstract unitType="hybrid_model" :unit="hybridModel" />
 
         <MetadataTable :data="otherMetadata" class="q-mb-lg" />
@@ -54,6 +54,7 @@
       </q-card>
 
       <q-card v-if="PhysicsBasedComponents.length" flat>
+        <q-separator />
         <h2 class="q-mt-lg q-mb-sm">
           <q-icon name="settings" class="q-mr-sm" />Physics-Based Components
         </h2>
@@ -64,6 +65,7 @@
       </q-card>
 
       <q-card v-if="MachineLearningComponents.length" flat>
+        <q-separator />
         <h2 class="q-mt-lg q-mb-sm">
           <q-icon name="psychology" class="q-mr-sm" />Machine Learning
           Components
@@ -71,6 +73,25 @@
         <UnitList
           unitType="machine_learning_component"
           :units="MachineLearningComponents"
+        />
+      </q-card>
+
+      <q-card v-if="hybridModel && hybridModel.readme_content" flat>
+        <q-separator />
+        <h2 class="q-mt-lg q-mb-sm">
+          <q-icon name="description" class="q-mr-sm" />README.md
+        </h2>
+        <a
+          :href="hybridModel.readme as string"
+          target="_blank"
+          rel="noopener"
+          class="readme-link"
+          >{{ hybridModel.readme }}</a
+        >
+        <q-markdown
+          :src="hybridModel.readme_content"
+          class="q-mt-md q-mb-xl"
+          no-heading-anchor-links
         />
       </q-card>
     </div>
