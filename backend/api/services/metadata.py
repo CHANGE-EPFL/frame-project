@@ -3,11 +3,12 @@
 Mock data for testing.
 """
 
-from functools import cache
 import datetime
 import os
-from operator import attrgetter
+import re
 import sys
+from functools import cache
+from operator import attrgetter
 from typing import Any, Callable, TypeVar
 
 import requests
@@ -21,9 +22,15 @@ from ..config import config
 from ..models.common_metadata import CommonMetadata
 from ..models.component import ComponentReference
 from ..models.hybrid_model import HybridModel, HybridModelSummary
-from ..models.machine_learning_component import MachineLearningComponent, MachineLearningComponentSummary
+from ..models.machine_learning_component import (
+    MachineLearningComponent,
+    MachineLearningComponentSummary,
+)
 from ..models.metadata_file import MetadataFromFile
-from ..models.physics_based_component import PhysicsBasedComponent, PhysicsBasedComponentSummary
+from ..models.physics_based_component import (
+    PhysicsBasedComponent,
+    PhysicsBasedComponentSummary,
+)
 
 METADATA_DIR_PATH = os.path.relpath(os.path.join(os.path.dirname(__file__), "..", "metadata_files"))
 METADATA_TEMPLATE_FILENAME = "template.yaml"
@@ -255,7 +262,7 @@ def add_components(
 
 def get_git_file_raw_url(file_url: str) -> str:
     if "github.com" in file_url:
-        raw_url = file_url.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/")
+        raw_url = re.sub(r"github\.com/([^/]+)/([^/]+)/blob/", r"raw.githubusercontent.com/\1/\2/", file_url)
     elif "gitlab" in file_url:
         raw_url = file_url.replace("/-/blob/", "/-/raw/")
     else:
@@ -272,6 +279,7 @@ def get_readme_content(readme_url: str | None) -> str | None:
     try:
         readme_url = get_git_file_raw_url(readme_url)
     except ValueError:
+        logger.warning(f"URL is neither GitHub nor GitLab: {readme_url}. Proceeding without conversion.")
         pass
 
     try:
