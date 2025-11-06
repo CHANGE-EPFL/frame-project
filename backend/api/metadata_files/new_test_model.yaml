@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://frame.epfl.ch/schema
+
+frame_metadata_version: "1.0"
+
+hybrid_model:
+  id: new_test_model
+  name: Frame test model
+  description: "A test model for the Frame project. Now in version 0.2.1 (untagged beta)."
+  documentation:
+    - "https://gitlab.epfl.ch/sphamba/frame-test-project"
+  contributors:
+    - Son Pham-Ba
+  keywords:
+    - test
+    - model
+    - frame
+    - version
+  hidden: true
+  version: "0.2.1-beta"
+  url: "https://gitlab.epfl.ch/sphamba/frame-test-project"
+  readme: "https://gitlab.epfl.ch/sphamba/frame-test-project/-/blob/main/README.md"
+  computational_environment:
+    - type: python
+      file_paths:
+      - requirements.txt
+  created: 2025-03-21
+  license: GPL-3.0
+
+physics_based_components:
+  - id: "new_test_physics_based"
+    name: "Frame test physics-based component"
+    description: "A test physics-based component for the Frame project. Now in version 0.2.1 (untagged beta)."
+    version: "0.2.1-beta"
+    keywords:
+      - test
+      - physics
+      - frame
+      - version
+
+machine_learning_components:
+  - id: "new_test_machine_learning"
+    name: "Frame test machine learning component"
+    description: "A test machine learning component for the Frame project. Now in version 0.2.1 (untagged beta)."
+    version: "0.2.1-beta"
+    keywords:
+      - test
+      - machine learning
+      - frame
+      - version
