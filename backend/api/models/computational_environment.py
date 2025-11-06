@@ -1,6 +1,5 @@
 from pydantic import BaseModel, Field
 
-
 type_description = "{} computational environment that can be automatically setup after downloading the model."
 file_paths_description = (
     "List of file paths that contain the {} environment description, relative to the repository root. E.g., {}."

@@ -1,7 +1,7 @@
+import pytest
 import yaml
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
-import pytest
 
 from api.main import app
 from api.services.metadata import get_hybrid_model_versions

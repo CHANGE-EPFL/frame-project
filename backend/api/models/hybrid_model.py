@@ -1,10 +1,9 @@
 from typing import Union
 
-from .common_metadata import CommonMetadata, CommonMetadataSummary
 from . import computational_environment
+from .common_metadata import CommonMetadata, CommonMetadataSummary
 from .computational_environment import ComputationalEnvironment
 from .data import Data, DataIO
-
 
 computational_environment_types = [
     c
