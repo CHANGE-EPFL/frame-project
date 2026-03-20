@@ -2,7 +2,7 @@ env_path=../.env
 model_modules=hybrid_model machine_learning_component physics_based_component
 
 install:
-	uv venv --allow-existing
+	uv venv --python 3.10 --allow-existing
 	uv pip install -e .[dev]
 	touch ../.env
 
